@@ -27,7 +27,7 @@
 	                	<form:label path="name" > Program Name : </form:label>
 						<form:input path="name" cssClass="form-control validate-required" id="uniPrograms_name" placeholder="Program Name"  />
 	                </div>
-                    <button id="uniPrograms-save-btn" type="submit" class="btn" >Save</button>
+                    <button id="uniPrograms-save-btn" type="submit" class="btn" onclick="return uniPrograms_crud();">Save</button>
                        
                     <!-- Hidden fields -->
                     <form:hidden path="uniProgramsId" id="uniPrograms_uniProgramsId" />

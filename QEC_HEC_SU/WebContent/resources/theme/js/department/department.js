@@ -1,44 +1,45 @@
 /**
  * Submit Form while Save/Update
  */
-$(document).on('submit', '#department_form', function(event) {
-	
-	var flag = validateForm();
-	if(flag)
+	function department_crud()
 	{
-		url ='/QEC_HEC_SU/department/save.htm';
-		var employeeData = {};
-		employeeData['name'] = $("#department_departmentName").val();
-		employeeData['detail'] = $("#department_description").val();
-		employeeData['departmentId'] = $("#department_departmentId").val();
-		employeeData['isDeleted'] = false;
-		
-		event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         contentType: "application/json",
-			 data: JSON.stringify(employeeData),
-			 
-	         beforeSend: function(xhr) {
-	             xhr.setRequestHeader("Accept", "application/json");
-	             xhr.setRequestHeader("Content-Type", "application/json");
-	         },
-			 async:false,
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#department-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					department_Clear_FromData();
+		var flag = validateForm();
+		if(flag)
+		{
+			url ='/QEC_HEC_SU/department/save.htm';
+			var employeeData = {};
+			employeeData['name'] = $("#department_departmentName").val();
+			employeeData['detail'] = $("#department_description").val();
+			employeeData['departmentId'] = $("#department_departmentId").val();
+			employeeData['isDeleted'] = false;
+			
+			event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         contentType: "application/json",
+				 data: JSON.stringify(employeeData),
+				 
+		         beforeSend: function(xhr) {
+		             xhr.setRequestHeader("Accept", "application/json");
+		             xhr.setRequestHeader("Content-Type", "application/json");
+		         },
+				 async:false,
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#department-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						department_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
-		event.preventDefault();
+			});
+			event.preventDefault();
+		}
+		return flag;
 	}
-});
 
 /**
  * get record and set data in form while double click on Grid Row

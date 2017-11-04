@@ -1,8 +1,8 @@
 /**
  * Submit Form while Save/Update
  */
-$(document).on('submit', '#uniProgram_form', function(event) {
-	
+//$(document).on('submit', '#uniProgram_form', function(event) {
+function uniPrograms_crud(){
 	var flag = validateForm();
 	if(flag)
 	{
@@ -13,7 +13,7 @@ $(document).on('submit', '#uniProgram_form', function(event) {
 		programsData['departmentId'] = $("#uniPrograms_departmentId").val();
 		programsData['uniProgramsId'] = $("#uniPrograms_uniProgramsId").val();
 		
-		//event.preventDefault();
+		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -37,8 +37,9 @@ $(document).on('submit', '#uniProgram_form', function(event) {
 			}
 		});
 	}
-	//event.preventDefault();
-});
+	event.preventDefault();
+	return flag;
+}
 
 /**
  * get record and set data in form while double click on Grid Row

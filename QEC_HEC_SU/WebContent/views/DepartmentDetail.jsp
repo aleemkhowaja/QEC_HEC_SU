@@ -10,7 +10,7 @@
 			<!-- Start Search Fields -->
 			
 				<div class="col-md-8">
-                    <form:form servletRelativeAction="#" cssClass="m-t-md ajax-form-login validate-form" method="post" commandName="departmentData" id="department_form" resolveContext="true" resolveMapping="true" 
+                    <form:form servletRelativeAction="${saveDepartment}" cssClass="m-t-md ajax-form-login validate-form" method="post" commandName="departmentData" id="department_form" resolveContext="true" resolveMapping="true" 
                      >
                     	<div class="form-group">
                     		<form:label path="name" >Department Name : </form:label>
@@ -21,7 +21,7 @@
 	                    	<form:label path="detail" > Description : </form:label>
 							<form:textarea path="detail" cssClass="form-control" id="department_description" placeholder="Description"  />
 	                    </div>
-                       <button id="department-save-btn" type="submit" class="btn" >Save</button>
+                       <button id="department-save-btn" type="submit" class="btn" onclick="return department_crud();">Save</button>
                         <!-- Hidden fields -->
                         <form:hidden path="departmentId" id="department_departmentId" />        
                    </form:form>
