@@ -93,12 +93,12 @@
                                 <a href="#" class="logo-name text-lg text-center"><img src="resources/theme/images/flogo.png"></a>
                                </div>
                         </div>
-
+						<c:url var="loginUrl" value="/login-user" />
                         <div class="col-md-4 center">
                         	<div class="login-panel">
                             	<p class="text-center m-t-md log-p">Please login into your account.</p>
                             	<c:if test="${not empty error}"> <h5 class="text-center" style="border-bottom-color:red; color : red"> Wrong Username OR Password </h5> </c:if>
-                                <form:form cssClass="m-t-md ajax-form-login" action="login-user" method="POST" modelAttribute="login">
+                                <form:form cssClass="m-t-md ajax-form-login" action="${loginUrl}" method="POST" modelAttribute="login">
                                 	<div class="form-group">
                                 		<form:label path="username">Username</form:label>
                                 		<form:input path="username" cssClass="form-control" placeholder="Username"  />

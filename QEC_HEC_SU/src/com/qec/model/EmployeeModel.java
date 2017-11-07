@@ -49,12 +49,12 @@ public class EmployeeModel  implements java.io.Serializable {
      private String religion;
      private String country;
      private String imgPath;
-     private Byte isDeleted;
+     private Boolean isDeleted;
 
     public EmployeeModel() {
     }
 
-    public EmployeeModel(DepartmentsModel departmentsModel, String title, String fullName, String surname, String cast, String maritalStatus, String fatherName, String husbandName, String email, String postalAddress, String presentAddress, String nic, Date dob, String gender, String mobile, String phone, String religion, String country, String imgPath, Byte isDeleted, Set<CitationOtherModel> citationOtherModels, Set<GoogleCitationModel> googleCitationModels, Set<EmpTravelgrandsModel> empTravelgrandses, Set<CitationConferenceModel> citationConferenceModels, Set<EmployeesServicesModel> employeesServiceses, Set<EmpPhdstrategyModel> empPhdstrategyModels, Set<CitationBookModel> citationBookModels, Set<CitationPatentModel> citationPatentModels, Set<EmpTrainingsModel> empTrainingses, Set<EmployeesEducationModel> employeesEducationModels, Set<EmpIndustriallinkagesModel> empIndustriallinkageses, Set<CitationJournalModel> citationJournalModels, Set<EmpCommunityservicesModel> empCommunityserviceses, Set<PromotionsModel> promotionses, Set<CitationThesisModel> citationThesises, Set<CitationChapterModel> citationChapterModels, Set<EmployeesCitationModel> employeesCitationModels, Set<UserModel> userModels) {
+    public EmployeeModel(DepartmentsModel departmentsModel, String title, String fullName, String surname, String cast, String maritalStatus, String fatherName, String husbandName, String email, String postalAddress, String presentAddress, String nic, Date dob, String gender, String mobile, String phone, String religion, String country, String imgPath, Boolean isDeleted, Set<CitationOtherModel> citationOtherModels, Set<GoogleCitationModel> googleCitationModels, Set<EmpTravelgrandsModel> empTravelgrandses, Set<CitationConferenceModel> citationConferenceModels, Set<EmployeesServicesModel> employeesServiceses, Set<EmpPhdstrategyModel> empPhdstrategyModels, Set<CitationBookModel> citationBookModels, Set<CitationPatentModel> citationPatentModels, Set<EmpTrainingsModel> empTrainingses, Set<EmployeesEducationModel> employeesEducationModels, Set<EmpIndustriallinkagesModel> empIndustriallinkageses, Set<CitationJournalModel> citationJournalModels, Set<EmpCommunityservicesModel> empCommunityserviceses, Set<PromotionsModel> promotionses, Set<CitationThesisModel> citationThesises, Set<CitationChapterModel> citationChapterModels, Set<EmployeesCitationModel> employeesCitationModels, Set<UserModel> userModels) {
        this.departmentsModel = departmentsModel;
        this.title = title;
        this.fullName = fullName;
@@ -260,11 +260,11 @@ public class EmployeeModel  implements java.io.Serializable {
     }
     
     @Column(name="is_deleted")
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return this.isDeleted;
     }
     
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 

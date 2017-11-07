@@ -50,4 +50,26 @@ public class LoginDAOImpl implements LoginDAO  {
 		return userModel;
 	}
 
+	@Override
+	public UserModel findByUserName(String username) throws HibernateException {
+		
+		//UserModel userModel = new UserModel();
+		Session session = sessionFactory.getCurrentSession();
+		
+		// Creating a Criteria instance
+		Criteria crit = session.createCriteria(UserModel.class);
+		//Criteria criteriaTable2 = crit.createCriteria("employeeModel", CriteriaSpecification.LEFT_JOIN); 
+		crit.setFetchMode("employeeModel", FetchMode.JOIN);
+		
+		Criterion usernameCriteria = Restrictions.eq("username", username);
+		crit.add(usernameCriteria);
+		// To get records matching with AND conditions
+		//LogicalExpression andExp = Restrictions.and(usernameCriteria);
+		//crit.add( andExp );
+		
+		crit.setMaxResults(1);
+		UserModel userModel = (UserModel) crit.uniqueResult();
+		return userModel;
+	}
+
 }

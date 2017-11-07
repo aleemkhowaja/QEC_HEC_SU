@@ -10,4 +10,6 @@ public interface LoginDAO {
 
 	public UserModel login(UserModel usersModel) throws HibernateException;
 	
+	public UserModel findByUserName(String username)  throws HibernateException;
+	
 }

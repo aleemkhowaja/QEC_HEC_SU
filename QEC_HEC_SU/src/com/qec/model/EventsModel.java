@@ -3,9 +3,6 @@ package com.qec.model;
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +11,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,10 +22,10 @@ import javax.persistence.TemporalType;
 @Table(name="events"
     ,catalog="qecdb"
 )
-public class EventsModel  implements java.io.Serializable {
+public class EventsModel  extends Model  implements java.io.Serializable {
 
-
-     private Long eventsId;
+	private static final long serialVersionUID = 1L;
+	private Long eventsId;
      private UserModel userModel;
      private DepartmentsModel departmentsModel;
      private String eventTitle;
@@ -38,27 +34,26 @@ public class EventsModel  implements java.io.Serializable {
      private Double quota;
      private String eventDetail;
      private String color;
-     private Byte isDeleted;
-     private Set<ImagesModel> imageses = new HashSet<ImagesModel>(0);
+     private Boolean isDeleted;
 
     public EventsModel() {
     }
 
-    public EventsModel(UserModel userModel, DepartmentsModel departmentsModel, String eventTitle, Date dateof, Date endDate, Double quota, String eventDetail, String color, Byte isDeleted, Set<ImagesModel> imageses) {
-       this.userModel = userModel;
-       this.departmentsModel = departmentsModel;
-       this.eventTitle = eventTitle;
-       this.dateof = dateof;
-       this.endDate = endDate;
-       this.quota = quota;
-       this.eventDetail = eventDetail;
-       this.color = color;
-       this.isDeleted = isDeleted;
-       this.imageses = imageses;
-    }
+    /*public EventsModel(Long eventsId,UserModel userModel,DepartmentsModel departmentsModel,String eventTitle,Date dateof,Date endDate,Double quota,String eventDetail,String color,Boolean isDeleted) {
    
+    	this.eventsId = eventsId;
+    	this.userModel = userModel;
+    	this.departmentsModel = departmentsModel;
+    	this.eventTitle = eventTitle;
+    	this.dateof = dateof;
+    	this.endDate = endDate;
+    	this.quota = quota;
+    	this.eventDetail = eventDetail;
+    	this.color =color;
+    	this.isDeleted = isDeleted;
+    }
+*/
      @Id @GeneratedValue(strategy=IDENTITY)
-    
     @Column(name="events_id", unique=true, nullable=false)
     public Long getEventsId() {
         return this.eventsId;
@@ -67,22 +62,23 @@ public class EventsModel  implements java.io.Serializable {
     public void setEventsId(Long eventsId) {
         this.eventsId = eventsId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+	
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
-    public UserModel getUser() {
+    public UserModel getUserModel() {
         return this.userModel;
     }
     
-    public void setUser(UserModel userModel) {
+    public void setUserModel(UserModel userModel) {
         this.userModel = userModel;
     }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="department_id")
-    public DepartmentsModel getDepartments() {
+    public DepartmentsModel getDepartmentsModel() {
         return this.departmentsModel;
     }
     
-    public void setDepartments(DepartmentsModel departmentsModel) {
+    public void setDepartmentsModel(DepartmentsModel departmentsModel) {
         this.departmentsModel = departmentsModel;
     }
     
@@ -141,25 +137,17 @@ public class EventsModel  implements java.io.Serializable {
     }
     
     @Column(name="is_deleted")
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return this.isDeleted;
     }
     
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="events")
-    public Set<ImagesModel> getImageses() {
-        return this.imageses;
-    }
-    
-    public void setImageses(Set<ImagesModel> imageses) {
-        this.imageses = imageses;
-    }
-
-
 
 
 }
+
+
 
 

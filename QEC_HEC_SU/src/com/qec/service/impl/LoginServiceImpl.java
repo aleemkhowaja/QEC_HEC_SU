@@ -2,27 +2,27 @@ package com.qec.service.impl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qec.common.SecurityUtil;
 import com.qec.dao.LoginDAO;
-import com.qec.dto.OnlineDTO;
 import com.qec.dto.UserDTO;
 import com.qec.model.UserModel;
 import com.qec.service.LoginService;
 
 @Service
-public class LoginServiceImpl implements LoginService{
+public class LoginServiceImpl implements LoginService /*UserDetailsService*/ {
 
 	@Autowired
 	private LoginDAO loginDAO;
 
 	@Override
 	@Transactional
-	public String loginUser(HttpServletRequest request, UserDTO userDTO) {
+	public String loginUser(HttpServletRequest request, UserDTO userDTO) 
+	{
 		//OnlineDTO dto = OnlineDTO.initialize();
 		try {
 			String username = userDTO.getUsername();
@@ -38,7 +38,7 @@ public class LoginServiceImpl implements LoginService{
 					session.invalidate();
 				}
 				session = request.getSession(true);
-				session.setAttribute("employee", userModel.getEmployee());
+				session.setAttribute("employee", userModel.getEmployeeModel());
 				return "redirect:/views/dashboard.jsp";
 			} else {
 				return "LoginPage";
@@ -50,7 +50,8 @@ public class LoginServiceImpl implements LoginService{
 		}
 		return "LoginPage";
 	}
-
+	
+	
 	@Override
 	public String logout(HttpServletRequest request) {
 		// TODO Auto-generated method stub
@@ -71,5 +72,29 @@ public class LoginServiceImpl implements LoginService{
 	public void setLoginDAO(LoginDAO loginDAO) {
 		this.loginDAO = loginDAO;
 	}
+
+/*	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("username :"+username);
+		UserModel  userInfo = loginDAO.findByUserName(username);
+		if(userInfo ==null){
+			throw new UsernameNotFoundException("Username was not found in the databse");
+		}
+		
+		List<String> roles = new ArrayList<String>();
+		roles.add("ROLE_USER");
+		
+		
+		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+		if(roles!=null){
+			for(String role: roles){
+				GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role);
+				grantList.add(grantedAuthority);
+			}
+		}
+		
+		
+		return null;
+	}*/
 
 }

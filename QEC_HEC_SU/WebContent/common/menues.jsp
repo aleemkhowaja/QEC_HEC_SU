@@ -49,19 +49,17 @@
 		        </ul>
        	 	</li>
                        
-           	<li class="droplink "><a href="http://3melements.com/sindhuni/coordinators"><span class="menu-icon fa fa-male"></span><p>Coordinators</p><span class="arrow"></span></a>
-            	<ul class="sub-menu">
-                	<li><a href="http://3melements.com/sindhuni/coordinators/add">Add Coordinator</a></li>
-                    <li><a href="http://3melements.com/sindhuni/coordinators">Coordinators List</a></li>
-                </ul>
-            </li>
-
-	        <li class="droplink "><a href="http://3melements.com/sindhuni/events"><span class="menu-icon fa fa-glass"></span><p>Events</p><span class="arrow"></span></a>
-            	<ul class="sub-menu">
-                	<li><a href="http://3melements.com/sindhuni/events/add">Add Event</a></li>
-                    <li><a href="http://3melements.com/sindhuni/events">Events List</a></li>
-                </ul>
-            </li>
+           	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Coordinators</p><span class="arrow"></span></a>
+	            <ul class="sub-menu">
+	                <li><a href="/QEC_HEC_SU/qec/coordinator.htm">Coordinator List</a></li>
+		        </ul>
+       	 	</li>
+       	 	
+       	 		<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Events</p><span class="arrow"></span></a>
+	            <ul class="sub-menu">
+	                <li><a href="/QEC_HEC_SU/qec/event.htm">Coordinator List</a></li>
+		        </ul>
+       	 	</li>
 
             <li class=""><a href="http://3melements.com/sindhuni/login_logs"><span class="menu-icon icon-list"></span><p>Login Logs</p></a></li>
             <li class="droplink "><a href="http://3melements.com/sindhuni/employees"><span class="menu-icon fa fa-user"></span><p>Employees</p><span class="arrow"></span></a>

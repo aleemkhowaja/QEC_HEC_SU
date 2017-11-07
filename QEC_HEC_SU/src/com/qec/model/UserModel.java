@@ -26,39 +26,40 @@ import javax.persistence.TemporalType;
 @Table(name="user"
     ,catalog="qecdb"
 )
-public class UserModel  implements java.io.Serializable {
+public class UserModel extends Model  implements java.io.Serializable {
 
 
      private Long userId;
+     					   
      private EmployeeModel employeeModel;
      private String username;
      private String password;
      private String role;
      private String fullName;
-     private Long departmentId;
+     private DepartmentsModel departmentsModel;
+    // private CampusesModel campusesModel;
      private String email;
-     private Date dateof;
-     private Long campusId;
-     private Byte isDeleted;
-     private Byte isActive;
+    /* private Date dateof;*/
+     private Boolean isDeleted;
+     private Boolean isActive;
 
+     public UserModel() {
+     }
 
-    public UserModel() {
-    }
-
-    public UserModel(EmployeeModel employeeModel, String username, String password, String role, String fullName, Long departmentId, String email, Date dateof, Long campusId, Byte isDeleted, Byte isActive, Set<GoogleCitationModel> googleCitationModels, Set<CitationConferenceModel> citationConferenceModels, Set<AccreditationsModel> accreditationses, Set<CitationBookModel> citationBookModels, Set<LoginsHistoryModel> loginsHistoryModels, Set<CitationOtherModel> citationOtherModels, Set<CitationThesisModel> citationThesises, Set<PromotionsModel> promotionses, Set<CitationJournalModel> citationJournalModels, Set<BugsModel> bugses, Set<CitationChapterModel> citationChapterModels, Set<CitationPatentModel> citationPatentModels, Set<EventsModel> eventses) {
-       this.employeeModel = employeeModel;
-       this.username = username;
-       this.password = password;
-       this.role = role;
-       this.fullName = fullName;
-       this.departmentId = departmentId;
-       this.email = email;
-       this.dateof = dateof;
-       this.campusId = campusId;
-       this.isDeleted = isDeleted;
-       this.isActive = isActive;
-    }
+     public UserModel(DepartmentsModel departmentsModel, Long userId, EmployeeModel employeeModel,String username ,String password,String role,String fullName,String email,Long campusId,Boolean isDeleted,Boolean isActive) {
+        this.departmentsModel = departmentsModel;
+        this.userId = userId;
+        this.username = username;
+     //   this.campusesModel =campusesModel;
+        this.password = password;
+        this.role = role;
+        this.fullName = fullName;
+        this.email = email ;
+        //this.dateof = dateof;
+        this.isDeleted =isDeleted;
+        this.isActive = isActive;
+        this.employeeModel = employeeModel;
+     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
     
@@ -72,20 +73,20 @@ public class UserModel  implements java.io.Serializable {
     }
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
-        return this.employeeModel;
-    }
-    
-    public void setEmployee(EmployeeModel employeeModel) {
-        this.employeeModel = employeeModel;
-    }
+    public EmployeeModel getEmployeeModel() {
+		return employeeModel;
+	}
+
+	public void setEmployeeModel(EmployeeModel employeeModel) {
+		this.employeeModel = employeeModel;
+	}
     
     @Column(name="username", length=250)
     public String getUsername() {
         return this.username;
     }
-    
-    public void setUsername(String username) {
+
+	public void setUsername(String username) {
         this.username = username;
     }
     
@@ -115,25 +116,32 @@ public class UserModel  implements java.io.Serializable {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-    
-    @Column(name="department_id")
-    public Long getDepartmentId() {
-        return this.departmentId;
-    }
-    
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
-    }
-    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="department_id") 
+    public DepartmentsModel getDepartmentsModel() {
+		return departmentsModel;
+	}
+
+	public void setDepartmentsModel(DepartmentsModel departmentsModel) {
+		this.departmentsModel = departmentsModel;
+	}
     @Column(name="email", length=250)
     public String getEmail() {
         return this.email;
     }
-    
     public void setEmail(String email) {
         this.email = email;
     }
-    @Temporal(TemporalType.DATE)
+   /* @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="campus_id")
+    public CampusesModel getCampusesModel() {
+		return campusesModel;
+	}
+
+	public void setCampusesModel(CampusesModel campusesModel) {
+		this.campusesModel = campusesModel;
+	}*/
+   /* @Temporal(TemporalType.DATE)
     @Column(name="dateof", length=10)
     public Date getDateof() {
         return this.dateof;
@@ -141,32 +149,22 @@ public class UserModel  implements java.io.Serializable {
     
     public void setDateof(Date dateof) {
         this.dateof = dateof;
-    }
-    
-    @Column(name="campus_id")
-    public Long getCampusId() {
-        return this.campusId;
-    }
-    
-    public void setCampusId(Long campusId) {
-        this.campusId = campusId;
-    }
-    
+    }*/
     @Column(name="is_deleted")
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return this.isDeleted;
     }
     
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
     
     @Column(name="is_active")
-    public Byte getIsActive() {
+    public Boolean getIsActive() {
         return this.isActive;
     }
     
-    public void setIsActive(Byte isActive) {
+    public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
 

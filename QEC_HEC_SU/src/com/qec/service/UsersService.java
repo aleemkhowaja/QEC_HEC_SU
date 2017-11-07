@@ -1,11 +1,21 @@
 package com.qec.service;
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-import com.qec.common.JTableList;
+import javax.servlet.http.HttpServletRequest;
+import com.qec.common.JQGridDTO;
+import com.qec.dto.UserDTO;
 import com.qec.model.UserModel;
+
 public interface UsersService
 {
-    public JTableList<UserModel> returnAllUsersForGrid(HttpServletRequest request);
-
-    public UserModel returnUsersById(Integer UsersId);
+    
+    public JQGridDTO<UserDTO> returnAllUsersForGrid(HttpServletRequest request);
+	
+	public String saveUserModel(UserDTO userDTO);
+	
+	public String deleteUserModel(UserDTO userDTO);
+	
+	public UserDTO getUserModelById(Long userId);
+	
+	public List<UserDTO> returnAllUserModel();
 }
