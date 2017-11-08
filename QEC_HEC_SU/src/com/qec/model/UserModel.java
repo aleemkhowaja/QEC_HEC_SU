@@ -116,6 +116,7 @@ public class UserModel extends Model  implements java.io.Serializable {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+    
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="department_id") 
     public DepartmentsModel getDepartmentsModel() {

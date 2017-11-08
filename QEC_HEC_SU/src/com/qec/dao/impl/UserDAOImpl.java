@@ -48,7 +48,9 @@ public class UserDAOImpl extends SessionFactoryDAOImp implements UserDAO {
 	public UserModel returnUserModelById(Long userId) {
 	
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(UserModel.class);
+		Criteria criteria = session.createCriteria(UserModel.class, "um");
+		criteria.createAlias("um.departmentsModel", "departmentsModel"); // inner join by
+		criteria.setFetchMode("departmentsModel", FetchMode.JOIN);
 		if(userId != null )
 		{
 			criteria.add( Restrictions.eqOrIsNull("userId", userId));

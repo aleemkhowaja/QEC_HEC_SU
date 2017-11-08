@@ -15,10 +15,11 @@
                     		<form:label path="fullName" >Full Name * </form:label>
 							<form:input path="fullName" cssClass="form-control validate-required" id="users_fullName" placeholder="Full Name"  />
 					    </div>
-	                  <%-- <form:label path="departmentsModel" > Select Department : </form:label>
-  	 			       <form:select path="departmentsModel" cssClass="form-control" id="users_departmentId" items="${departmentsModelList}" itemValue="departmentId" itemLabel="name">
-				 			
-				 		</form:select> --%>
+					    <div class="form-group">
+					    	<form:label path="departmentsModel" > Select Department : </form:label>
+  	 			       		<form:select path="departmentsModel" cssClass="form-control" id="users_departmentId" items="${departmentsModelList}" itemValue="departmentId" itemLabel="name">
+							</form:select>
+					    </div>
 	                     <%-- <div class="form-group">
 	                    	<form:label path="campusesId" > Campuses : </form:label>
 							<form:select path="campusesId" cssClass="form-control" id="users_campusId" items="${campusesModelsList}" itemValue="campusesId" itemLabel="name">

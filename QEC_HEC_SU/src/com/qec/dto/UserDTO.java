@@ -23,7 +23,7 @@ public class UserDTO  implements java.io.Serializable {
      private String password;
      private String role;
      private String fullName;
-    // private DepartmentsModel departmentsModel;
+     private DepartmentsModel departmentsModel;
      private Long departmentId;
      private String departmentName;
      //private String campusesName;
@@ -196,13 +196,13 @@ public class UserDTO  implements java.io.Serializable {
 		this.isActive = isActive;
 	}
 
-/*	public DepartmentsModel getDepartmentsModel() {
+	public DepartmentsModel getDepartmentsModel() {
 		return departmentsModel;
 	}
 
 	public void setDepartmentsModel(DepartmentsModel departmentsModel) {
 		this.departmentsModel = departmentsModel;
-	}*/
+	}
 }
 
 

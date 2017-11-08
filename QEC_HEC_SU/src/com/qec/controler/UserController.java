@@ -42,14 +42,14 @@ public class UserController {
 	@Autowired
 	private EmployeesService employeesService;
 	
-	@RequestMapping(value="/qec/coordinator.htm", method=RequestMethod.GET)
+	@RequestMapping(value="/users/coordinator.htm", method=RequestMethod.GET)
 	public String getUsersDetail(Model model) throws Exception {
 		
-		/*List<DepartmentsModel> departmentsModels = departmentsService.returnAllDepartments();*/
+		List<DepartmentsModel> departmentsModels = departmentsService.returnAllDepartments();
 		List<EmployeeModel> employeeModels = employeesService.returnAllEmployeeModels();
 		/*List<CampusesModel> campusesModels = campusesService.returnAllCampuses();*/
 		model.addAttribute("userModel", new UserDTO());
-		//model.addAttribute("departmentsModelList", departmentsModels);
+		model.addAttribute("departmentsModelList", departmentsModels);
 		model.addAttribute("employeeModelsList", employeeModels);
 		/*model.addAttribute("campusesModelsList", campusesModels);*/
 		return "CoordinatorList";

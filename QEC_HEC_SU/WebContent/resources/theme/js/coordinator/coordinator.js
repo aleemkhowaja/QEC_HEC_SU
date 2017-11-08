@@ -9,7 +9,7 @@ function coordinator_crud()
 	{	
 		url ='/QEC_HEC_SU/users/save.htm';
 		var usersData = {};
-		//usersData['departmentId'] = $("#users_departmentId").val();
+		usersData['departmentId'] = $("#users_departmentId").val();
 		usersData['userId'] = $("#users_userId").val();
 		usersData['username'] = $("#users_username").val();
 		usersData['fullName'] = $("#users_fullName").val();
@@ -76,7 +76,7 @@ function coordinator_Db_Click(rowId)
  */
 function users_Set_FormData(data)
 {
-//	$("#users_departmentId").val(data.departmentId);
+	$("#users_departmentId").val(data.departmentId);
 	$("#users_userId").val(data.userId)
 	$("#users_username").val(data.username)
 	$("#users_fullName").val(data.fullName)

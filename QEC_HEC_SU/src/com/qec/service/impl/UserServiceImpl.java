@@ -15,6 +15,7 @@ import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dao.UserDAO;
 import com.qec.dto.UserDTO;
+import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
 import com.qec.model.UserModel;
 import com.qec.service.UsersService;
@@ -101,12 +102,12 @@ public class UserServiceImpl implements UsersService  {
 		UserModel userModel = new UserModel();
 		try 
 		{
-			//DepartmentsModel departmentsModel = new DepartmentsModel(); 
+			DepartmentsModel departmentsModel = new DepartmentsModel(); 
 			EmployeeModel 	employeeModel = new EmployeeModel();
-			/*if(userDTO.getDepartmentId() != null)
+			if(userDTO.getDepartmentId() != null)
 			{
 				departmentsModel = departmentDAO.returnDepartmentById(Long.valueOf(userDTO.getDepartmentId()));
-			}*/
+			}
 			if(userDTO.getEmployeeId() != null)
 			{
 				employeeModel = employeeDAO.returnEmployeesById(Long.valueOf(userDTO.getEmployeeId()));
@@ -121,7 +122,7 @@ public class UserServiceImpl implements UsersService  {
 				userModel.setPassword(userDTO.getPassword());
 				userModel.setUsername(userDTO.getUsername());
 				userModel.setEmployeeModel(employeeModel);;
-				//userModel.setDepartmentsModel(departmentsModel);  //
+				userModel.setDepartmentsModel(departmentsModel);
 			    userModel.setIsActive(userDTO.getIsActive());
 				userModel.setIsDeleted(false);
 				genericDAO.save(userModel);
@@ -131,7 +132,7 @@ public class UserServiceImpl implements UsersService  {
 			{
 				userModel = userDAO.returnUserModelById(userDTO.getUserId());
 				userModel.setEmployeeModel(employeeModel);;
-				//userModel.setDepartmentsModel(departmentsModel);
+				userModel.setDepartmentsModel(departmentsModel);
 				userModel.setFullName(userDTO.getFullName());
 				userModel.setEmail(userDTO.getEmail());
 				/*userModel.setCampusId(userDTO.getCampusId());*/
@@ -178,7 +179,7 @@ public class UserServiceImpl implements UsersService  {
 		try 
 		{
 			userModel = userDAO.returnUserModelById(userId);
-			/*userDTO.setDepartmentId(Long.valueOf(userModel.getDepartmentsModel().getDepartmentId()));*/
+			userDTO.setDepartmentId(Long.valueOf(userModel.getDepartmentsModel().getDepartmentId()));
 			userDTO.setEmployeeId(Long.valueOf(userModel.getEmployeeModel().getEmployeeId()));
 			userDTO.setFullName(userModel.getFullName());
 			userDTO.setUsername(userModel.getUsername());
