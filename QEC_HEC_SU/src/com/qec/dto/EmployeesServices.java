@@ -14,7 +14,7 @@ public class EmployeesServices  implements java.io.Serializable {
      private UniPrograms uniPrograms;
      private Employee employee;
      private Faculty faculty;
-     private Departments departments;
+     private DepartmentsDTO departments;
      private String department;
      private String empType;
      private String postHeld;
@@ -36,7 +36,7 @@ public class EmployeesServices  implements java.io.Serializable {
         this.faculty = faculty;
         this.empType = empType;
     }
-    public EmployeesServices(UniPrograms uniPrograms, Employee employee, Faculty faculty, Departments departments, String department, String empType, String postHeld, String jobStatus, String natureOfJob, Date postStartDate, Date postEndDate, String jobDuties, String tcategory, String grade, Short scale, Byte currentWorking) {
+    public EmployeesServices(UniPrograms uniPrograms, Employee employee, Faculty faculty, DepartmentsDTO departments, String department, String empType, String postHeld, String jobStatus, String natureOfJob, Date postStartDate, Date postEndDate, String jobDuties, String tcategory, String grade, Short scale, Byte currentWorking) {
        this.uniPrograms = uniPrograms;
        this.employee = employee;
        this.faculty = faculty;
@@ -83,11 +83,11 @@ public class EmployeesServices  implements java.io.Serializable {
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
-    public Departments getDepartments() {
+    public DepartmentsDTO getDepartments() {
         return this.departments;
     }
     
-    public void setDepartments(Departments departments) {
+    public void setDepartments(DepartmentsDTO departments) {
         this.departments = departments;
     }
     public String getDepartment() {

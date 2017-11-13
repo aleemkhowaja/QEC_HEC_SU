@@ -21,16 +21,10 @@ public class CampusesModel  implements java.io.Serializable {
 
      private Long campusesId;
      private String campusName;
+     private Boolean isDeleted;
 
-    public CampusesModel() {
-    }
-
-    public CampusesModel(String campusName) {
-       this.campusName = campusName;
-    }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="campuses_id", unique=true, nullable=false)
     public Long getCampusesId() {
         return this.campusesId;
@@ -47,6 +41,15 @@ public class CampusesModel  implements java.io.Serializable {
     
     public void setCampusName(String campusName) {
         this.campusName = campusName;
+    }
+    
+    @Column(name="is_deleted")
+    public Boolean getIsDeleted() {
+        return this.isDeleted;
+    }
+    
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
 

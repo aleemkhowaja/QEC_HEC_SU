@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<!-------------------- crud urls  ---------------------------->
-	<c:url var="returnAllUsersForGrid" value="/users/returnAllUsersForGrid" ></c:url>
+	<c:url var="returnAllCoordinatorsForGrid" value="/coordinator/returnAllCoordinatorsForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
 	<jsp:include page="../common/header.jsp" />
 	<script  src="<c:url value="/resources/theme/js/coordinator/coordinator.js" />" > </script>
@@ -42,7 +42,7 @@
 					$(document).ready(function(){
 						
 						 $("#users-detail-grid-list").jqGrid({
-							url : "${returnAllUsersForGrid}",
+							url : "${returnAllCoordinatorsForGrid}",
 							datatype : "json",
 							mtype : 'POST',
 							width : 1000,
@@ -122,7 +122,7 @@
 
 							$('#search-users-button').on('click',function(){
 								var fullName =  $("#fullName").val();                             
-								jQuery("#users-detail-grid-list").jqGrid('setGridParam',{url:"returnAllUsersForGrid?fullName="+fullName}).trigger("reloadGrid");
+								jQuery("#users-detail-grid-list").jqGrid('setGridParam',{url:"returnAllCoordinatorsForGrid?fullName="+fullName}).trigger("reloadGrid");
 								
 				         });
 						   

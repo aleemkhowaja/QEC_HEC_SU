@@ -51,7 +51,7 @@
                        
            	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Coordinators</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="/QEC_HEC_SU/users/coordinator.htm">Coordinator List</a></li>
+	                <li><a href="/QEC_HEC_SU/coordinator/coordinator.htm">Coordinator List</a></li>
 		        </ul>
        	 	</li>
        	 	

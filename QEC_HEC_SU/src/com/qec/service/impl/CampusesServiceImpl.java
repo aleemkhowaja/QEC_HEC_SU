@@ -9,22 +9,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qec.common.JQGridDTO;
 import com.qec.common.JTableList;
-import com.qec.dao.DepartmentDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
-import com.qec.dao.UserDAO;
-import com.qec.dto.UserDTO;
+import com.qec.dao.CampusesDAO;
+import com.qec.dto.CampusesDTO;
 import com.qec.model.CampusesModel;
-import com.qec.model.EmployeeModel;
-import com.qec.model.UserModel;
 import com.qec.service.CampusesService;
-import com.qec.service.UsersService;
 
 @Service
 public class CampusesServiceImpl implements CampusesService  {
 
+	@Autowired
+	private CampusesDAO campusesDAO;
+	
 	@Override
 	public JTableList<CampusesModel> returnAllCampusesForGrid(HttpServletRequest request) {
 		// TODO Auto-generated method stub
@@ -36,6 +32,37 @@ public class CampusesServiceImpl implements CampusesService  {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Transactional
+	public List<CampusesDTO> returnAllCampuses() 
+	{
+		List campusesDTOs = new ArrayList<CampusesDTO>();
+		try
+		{
+			List campusesModels = campusesDAO.returnAllCampuses();
+			
+			CampusesDTO campusesDTO = new CampusesDTO();
+			campusesDTO.setCampusesId(0l);
+			campusesDTO.setCampusName("Select Campus");
+			campusesDTOs.add(campusesDTO);
+			campusesDTOs.addAll(campusesModels);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return campusesDTOs;
+	}
+
+/*	public CampusesDAO getCampusesDAO() {
+		return campusesDAO;
+	}
+
+	public void setCampusesDAO(CampusesDAO campusesDAO) {
+		this.campusesDAO = campusesDAO;
+	}*/
 	
 
 	

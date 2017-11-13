@@ -53,7 +53,7 @@ public class UserDAOImpl extends SessionFactoryDAOImp implements UserDAO {
 		criteria.setFetchMode("departmentsModel", FetchMode.JOIN);
 		if(userId != null )
 		{
-			criteria.add( Restrictions.eqOrIsNull("userId", userId));
+			criteria.add( Restrictions.eq("userId", userId));
 		}
 		UserModel userModel =  (UserModel) criteria.uniqueResult();
 		return userModel;
@@ -65,7 +65,6 @@ public class UserDAOImpl extends SessionFactoryDAOImp implements UserDAO {
 		Session session = getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(UserModel.class);
 		criteria.add( Restrictions.eq("isDeleted", false));
-		System.out.println("------"+(List<UserModel>)criteria.list());
 		return (List<UserModel>)criteria.list();
 	}
 

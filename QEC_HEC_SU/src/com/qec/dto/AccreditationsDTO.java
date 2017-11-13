@@ -14,7 +14,7 @@ public class AccreditationsDTO  implements java.io.Serializable {
      private UserDTO user;
      private Faculty faculty;
      private UniPrograms uniPrograms;
-     private Departments departments;
+     private DepartmentsDTO departments;
      private String nameOfProgram;
      private String title;
      private String locality;
@@ -28,7 +28,7 @@ public class AccreditationsDTO  implements java.io.Serializable {
     public AccreditationsDTO() {
     }
 
-    public AccreditationsDTO(UserDTO user, Faculty faculty, UniPrograms uniPrograms, Departments departments, String nameOfProgram, String title, String locality, Long accreditationCouncilId, String internationalAccreditationCouncil, Date year, String file, Date approvedDate, Date validityDate) {
+    public AccreditationsDTO(UserDTO user, Faculty faculty, UniPrograms uniPrograms, DepartmentsDTO departments, String nameOfProgram, String title, String locality, Long accreditationCouncilId, String internationalAccreditationCouncil, Date year, String file, Date approvedDate, Date validityDate) {
        this.user = user;
        this.faculty = faculty;
        this.uniPrograms = uniPrograms;
@@ -72,11 +72,11 @@ public class AccreditationsDTO  implements java.io.Serializable {
     public void setUniPrograms(UniPrograms uniPrograms) {
         this.uniPrograms = uniPrograms;
     }
-    public Departments getDepartments() {
+    public DepartmentsDTO getDepartments() {
         return this.departments;
     }
     
-    public void setDepartments(Departments departments) {
+    public void setDepartments(DepartmentsDTO departments) {
         this.departments = departments;
     }
     public String getNameOfProgram() {

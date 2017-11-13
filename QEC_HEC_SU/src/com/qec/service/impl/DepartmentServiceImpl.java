@@ -13,6 +13,7 @@ import com.qec.common.JQGridDTO;
 import com.qec.common.JTableList;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.GenericDAO;
+import com.qec.dto.DepartmentsDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.service.DepartmentsService;
 
@@ -109,21 +110,23 @@ public class DepartmentServiceImpl implements DepartmentsService {
 	}
 
 	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Transactional
-	public List<DepartmentsModel> returnAllDepartments() {
-		List<DepartmentsModel> departmentsModels = new ArrayList<>(); 
+	public List<DepartmentsDTO> returnAllDepartments() {
+		List departmentDTOs = new ArrayList<>();
 		try
 		{
-			DepartmentsModel departmentsModel = new DepartmentsModel();
-			departmentsModel.setName("Seelct department");
-			departmentsModels.add(departmentsModel);
-			departmentsModels.addAll(departmentDAO.returnAllDepartments());
+			List departmentsModels = departmentDAO.returnAllDepartments();
+			DepartmentsDTO departmentsDTO = new DepartmentsDTO();
+			departmentsDTO.setName("Seelct department");
+			departmentDTOs.add(departmentsDTO);
+			departmentDTOs.addAll(departmentsModels);
 		}
 		catch(Exception exc)
 		{
 			exc.printStackTrace();
 		}
-		return departmentsModels ;
+		return departmentDTOs ;
 	}
 	
 	

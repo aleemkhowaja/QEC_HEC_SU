@@ -12,7 +12,7 @@ public class EmpPhdstrategy  implements java.io.Serializable {
 
      private Long empPhdstrategyId;
      private Employee employee;
-     private Departments departments;
+     private DepartmentsDTO departments;
      private String studentName;
      private String dtype;
      private Double noOfStudents;
@@ -25,7 +25,7 @@ public class EmpPhdstrategy  implements java.io.Serializable {
     public EmpPhdstrategy() {
     }
 
-    public EmpPhdstrategy(Employee employee, Departments departments, String studentName, String dtype, Double noOfStudents, Date startDate, Date regDate, Double rollNo, String file, String topic) {
+    public EmpPhdstrategy(Employee employee, DepartmentsDTO departments, String studentName, String dtype, Double noOfStudents, Date startDate, Date regDate, Double rollNo, String file, String topic) {
        this.employee = employee;
        this.departments = departments;
        this.studentName = studentName;
@@ -52,11 +52,11 @@ public class EmpPhdstrategy  implements java.io.Serializable {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    public Departments getDepartments() {
+    public DepartmentsDTO getDepartments() {
         return this.departments;
     }
     
-    public void setDepartments(Departments departments) {
+    public void setDepartments(DepartmentsDTO departments) {
         this.departments = departments;
     }
     public String getStudentName() {

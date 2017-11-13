@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qec.common.JQGridDTO;
+import com.qec.dao.CampusesDAO;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dao.UserDAO;
 import com.qec.dto.UserDTO;
+import com.qec.model.CampusesModel;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
 import com.qec.model.UserModel;
@@ -37,6 +39,9 @@ public class UserServiceImpl implements UsersService  {
 	
 	@Autowired
 	private EmployeeDAO employeeDAO;
+	
+	@Autowired
+	private CampusesDAO campusesDAO;
 	
 	public UserDAO getUserDAO() {
 		return userDAO;
@@ -98,12 +103,12 @@ public class UserServiceImpl implements UsersService  {
 	@Override
 	@Transactional
 	public String saveUserModel(UserDTO userDTO) {
-		// TODO Auto-generated method stub
 		UserModel userModel = new UserModel();
 		try 
 		{
 			DepartmentsModel departmentsModel = new DepartmentsModel(); 
 			EmployeeModel 	employeeModel = new EmployeeModel();
+			CampusesModel campusesModel = new CampusesModel();
 			if(userDTO.getDepartmentId() != null)
 			{
 				departmentsModel = departmentDAO.returnDepartmentById(Long.valueOf(userDTO.getDepartmentId()));
@@ -112,19 +117,23 @@ public class UserServiceImpl implements UsersService  {
 			{
 				employeeModel = employeeDAO.returnEmployeesById(Long.valueOf(userDTO.getEmployeeId()));
 			}
+			if(userDTO.getCampusesId() != null)
+			{
+				campusesModel = campusesDAO.returnCampusByCampusId(userDTO.getCampusesId());
+			}
 			
 			if(userDTO.getUserId() == null)
 			{
 				 
 				userModel.setFullName(userDTO.getFullName());
 				userModel.setEmail(userDTO.getEmail());
-				/*userModel.setCampusId(userDTO.getCampusId());*/
 				userModel.setPassword(userDTO.getPassword());
 				userModel.setUsername(userDTO.getUsername());
 				userModel.setEmployeeModel(employeeModel);;
 				userModel.setDepartmentsModel(departmentsModel);
+				userModel.setCampusesModel(campusesModel);
 			    userModel.setIsActive(userDTO.getIsActive());
-				userModel.setIsDeleted(false);
+				userModel.setIsDeleted(userDTO.getIsDeleted());
 				genericDAO.save(userModel);
 				return "Record Inserted Successfully";
 			}
@@ -133,9 +142,9 @@ public class UserServiceImpl implements UsersService  {
 				userModel = userDAO.returnUserModelById(userDTO.getUserId());
 				userModel.setEmployeeModel(employeeModel);;
 				userModel.setDepartmentsModel(departmentsModel);
+				userModel.setCampusesModel(campusesModel);
 				userModel.setFullName(userDTO.getFullName());
 				userModel.setEmail(userDTO.getEmail());
-				/*userModel.setCampusId(userDTO.getCampusId());*/
 				userModel.setPassword(userDTO.getPassword());
 				userModel.setUsername(userDTO.getUsername());
 			 	userModel.setIsActive(userDTO.getIsActive());

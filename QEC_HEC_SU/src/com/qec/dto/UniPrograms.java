@@ -12,7 +12,7 @@ public class UniPrograms  implements java.io.Serializable {
 
 
      private Long uniProgramsId;
-     private Departments departments;
+     private DepartmentsDTO departments;
      private Double code;
      private String name;
      private Set employeesServiceses = new HashSet(0);
@@ -22,7 +22,7 @@ public class UniPrograms  implements java.io.Serializable {
     public UniPrograms() {
     }
 
-    public UniPrograms(Departments departments, Double code, String name, Set employeesServiceses, Set accreditationses, Set programHistories) {
+    public UniPrograms(DepartmentsDTO departments, Double code, String name, Set employeesServiceses, Set accreditationses, Set programHistories) {
        this.departments = departments;
        this.code = code;
        this.name = name;
@@ -38,11 +38,11 @@ public class UniPrograms  implements java.io.Serializable {
     public void setUniProgramsId(Long uniProgramsId) {
         this.uniProgramsId = uniProgramsId;
     }
-    public Departments getDepartments() {
+    public DepartmentsDTO getDepartments() {
         return this.departments;
     }
     
-    public void setDepartments(Departments departments) {
+    public void setDepartments(DepartmentsDTO departments) {
         this.departments = departments;
     }
     public Double getCode() {

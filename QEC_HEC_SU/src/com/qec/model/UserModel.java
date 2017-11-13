@@ -37,7 +37,7 @@ public class UserModel extends Model  implements java.io.Serializable {
      private String role;
      private String fullName;
      private DepartmentsModel departmentsModel;
-    // private CampusesModel campusesModel;
+     private CampusesModel campusesModel;
      private String email;
     /* private Date dateof;*/
      private Boolean isDeleted;
@@ -46,11 +46,11 @@ public class UserModel extends Model  implements java.io.Serializable {
      public UserModel() {
      }
 
-     public UserModel(DepartmentsModel departmentsModel, Long userId, EmployeeModel employeeModel,String username ,String password,String role,String fullName,String email,Long campusId,Boolean isDeleted,Boolean isActive) {
+     public UserModel(CampusesModel campusesModel, DepartmentsModel departmentsModel, Long userId, EmployeeModel employeeModel,String username ,String password,String role,String fullName,String email,Long campusId,Boolean isDeleted,Boolean isActive) {
         this.departmentsModel = departmentsModel;
         this.userId = userId;
         this.username = username;
-     //   this.campusesModel =campusesModel;
+        this.campusesModel =campusesModel;
         this.password = password;
         this.role = role;
         this.fullName = fullName;
@@ -133,7 +133,8 @@ public class UserModel extends Model  implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-   /* @ManyToOne(fetch=FetchType.LAZY)
+   
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="campus_id")
     public CampusesModel getCampusesModel() {
 		return campusesModel;
@@ -141,7 +142,8 @@ public class UserModel extends Model  implements java.io.Serializable {
 
 	public void setCampusesModel(CampusesModel campusesModel) {
 		this.campusesModel = campusesModel;
-	}*/
+	}
+	
    /* @Temporal(TemporalType.DATE)
     @Column(name="dateof", length=10)
     public Date getDateof() {

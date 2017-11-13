@@ -4,7 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.qec.common.JTableList;
-import com.qec.model.DepartmentsModel;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.EmployeeModel;
 public interface EmployeesService
 {
@@ -12,5 +12,5 @@ public interface EmployeesService
 
     public EmployeeModel returnEmployeesById(Integer EmployeesId);
     
-    public List<EmployeeModel> returnAllEmployeeModels();
+    public List<EmployeeDTO> returnAllEmployeeModels();
 }

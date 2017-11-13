@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.UserDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.UniProgramsModel;
@@ -56,9 +57,9 @@ public class RequestMappingController {
 	@RequestMapping(value="/programs/programs.htm", method=RequestMethod.GET)
 	public String getUniProgramsDetail(Model model) 
 	{
-		List<DepartmentsModel> departmentsModel = departmentsService.returnAllDepartments();
+		List<DepartmentsDTO> departmentsDTOs = departmentsService.returnAllDepartments();
 		model.addAttribute("uniProgramsData", new UniProgramsModel());
-		model.addAttribute("departmentsModelList", departmentsModel);
+		model.addAttribute("departmentsModelList", departmentsDTOs);
 		return "UniProgramList";
 	}
 

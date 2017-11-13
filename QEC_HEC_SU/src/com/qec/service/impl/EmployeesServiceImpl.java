@@ -13,6 +13,7 @@ import com.qec.common.JTableList;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
 import com.qec.service.EmployeesService;
@@ -38,22 +39,25 @@ public class EmployeesServiceImpl implements EmployeesService {
 	}
 
 	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Transactional
-	public List<EmployeeModel> returnAllEmployeeModels() {
+	public List<EmployeeDTO> returnAllEmployeeModels() {
 		// TODO Auto-generated method stub
-		List<EmployeeModel> employeeModels = new ArrayList<>(); 
+		List employeeDTOs = new ArrayList<>(); 
+		
 		try
 		{
-			EmployeeModel employeeModel = new EmployeeModel();
-			employeeModel.setFullName("Select Employee");
-			employeeModels.add(employeeModel);
-			employeeModels.addAll(employeeDAO.returnAllEmployeeModels());
+			List emploayeeModel = employeeDAO.returnAllEmployeeModels();
+			EmployeeDTO employeeDTO = new EmployeeDTO();
+			employeeDTO.setFullName("Select Employee");
+			employeeDTOs.add(employeeDTO);
+			employeeDTOs.addAll(emploayeeModel);
 		}
 		catch(Exception exc)
 		{
 			exc.printStackTrace();
 		}
-		return employeeModels ;
+		return employeeDTOs ;
 	}
 
 }

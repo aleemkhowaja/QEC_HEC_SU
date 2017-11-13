@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.qec.common.JQGridDTO;
+import com.qec.dto.DepartmentsDTO;
 import com.qec.model.DepartmentsModel;
 public interface DepartmentsService
 {
@@ -15,5 +16,5 @@ public interface DepartmentsService
 	
 	public DepartmentsModel getDepartmentById(Long departmentId);
 	
-	public List<DepartmentsModel> returnAllDepartments();
+	public List<DepartmentsDTO> returnAllDepartments();
 }

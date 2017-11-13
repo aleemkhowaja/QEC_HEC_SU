@@ -14,7 +14,7 @@ public class Events  implements java.io.Serializable {
 
      private Long eventsId;
      private UserDTO user;
-     private Departments departments;
+     private DepartmentsDTO departments;
      private String eventTitle;
      private Date dateof;
      private Date endDate;
@@ -27,7 +27,7 @@ public class Events  implements java.io.Serializable {
     public Events() {
     }
 
-    public Events(UserDTO user, Departments departments, String eventTitle, Date dateof, Date endDate, Double quota, String eventDetail, String color, Byte isDeleted, Set imageses) {
+    public Events(UserDTO user, DepartmentsDTO departments, String eventTitle, Date dateof, Date endDate, Double quota, String eventDetail, String color, Byte isDeleted, Set imageses) {
        this.user = user;
        this.departments = departments;
        this.eventTitle = eventTitle;
@@ -54,11 +54,11 @@ public class Events  implements java.io.Serializable {
     public void setUser(UserDTO user) {
         this.user = user;
     }
-    public Departments getDepartments() {
+    public DepartmentsDTO getDepartments() {
         return this.departments;
     }
     
-    public void setDepartments(Departments departments) {
+    public void setDepartments(DepartmentsDTO departments) {
         this.departments = departments;
     }
     public String getEventTitle() {
