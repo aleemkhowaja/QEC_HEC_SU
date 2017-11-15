@@ -47,13 +47,13 @@
 	                    
 	                    <div class="form-group">
 	                    	<form:label path="password" > Password * </form:label>
-							<form:input path="password" cssClass="form-control validate-required" id="users_password" placeholder="Password"  />
+							<form:password path="password" cssClass="form-control validate-required" id="users_password" placeholder="Password"  />
 	                    </div>
 	                  	<div class="form-group">
 	                    	<form:label path="isActive" > Account Status : </form:label>
 							<form:select path="isActive" id="users_isActive" cssClass="form-control">
 				 			<form:option value="0" label="Active" />
-				 			<form:option value="1" label="In Active" /> --%>
+				 			<form:option value="1" label="In Active" />
 				 			</form:select>
 	                    </div> 
                         <button id="users-save-btn" type="submit" class="btn" onclick="return coordinator_Crud();" >Save</button>
@@ -62,6 +62,7 @@
 <%--                         <form:hidden path="departmentsModel" id="users_departmentId" /> --%>
                         <form:hidden path="isActive" id="users_isActive" /> 
                         <form:hidden path="employeeModel" id="users_employeeId" />
+                        <form:hidden path="oldUsername" id="users_oldUsername"/>
                         <%-- <form:hidden path="campusId" id="users_campusId" />   --%>
                    </form:form>
                 </div>

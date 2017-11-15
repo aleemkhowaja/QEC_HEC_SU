@@ -1,11 +1,6 @@
 package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
-
-
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import com.qec.model.DepartmentsModel;
 import com.qec.model.UserModel;
 
@@ -27,24 +22,7 @@ public class EventsDTO  implements java.io.Serializable {
      private String eventDetail;
      private String color;
      private Boolean isDeleted;
-  
-/*
-    public Events() {
-    }
 
-    public Events(User user, DepartmentsDTO departments, String eventTitle, Date dateof, Date endDate, Double quota, String eventDetail, String color, Byte isDeleted, Set imageses) {
-       this.user = user;
-       this.departments = departments;
-       this.eventTitle = eventTitle;
-       this.dateof = dateof;
-       this.endDate = endDate;
-       this.quota = quota;
-       this.eventDetail = eventDetail;
-       this.color = color;
-       this.isDeleted = isDeleted;
-       this.imageses = imageses;
-    }
-   */
     public Long getEventsId() {
         return this.eventsId;
     }

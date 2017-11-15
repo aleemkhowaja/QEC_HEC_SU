@@ -1,25 +1,14 @@
 package com.qec.dao.impl;
 
 import java.util.List;
-
 import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.LogicalExpression;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.qec.dao.CampusesDAO;
-import com.qec.dao.LoginDAO;
 import com.qec.model.CampusesModel;
-import com.qec.model.DepartmentsModel;
-import com.qec.model.EmployeeModel;
-import com.qec.model.UserModel;
 
 @Repository
 public class CampusesDAOImpl implements CampusesDAO  {

@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qec.common.JQGridDTO;
+import com.qec.common.SecurityUtil;
 import com.qec.dao.CampusesDAO;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dao.UserDAO;
 import com.qec.dto.UserDTO;
+import com.qec.enums.Role;
 import com.qec.model.CampusesModel;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
@@ -31,9 +33,6 @@ public class UserServiceImpl implements UsersService  {
 	@Autowired
 	private GenericDAO genericDAO;
 	
-	/*@Autowired
-	private CampusesDAO campusesDAO;*/
-	
 	@Autowired
 	private DepartmentDAO departmentDAO;
 	
@@ -43,18 +42,10 @@ public class UserServiceImpl implements UsersService  {
 	@Autowired
 	private CampusesDAO campusesDAO;
 	
-	public UserDAO getUserDAO() {
-		return userDAO;
-	}
-
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
 
 	@Override
 	@Transactional
 	public JQGridDTO<UserDTO> returnAllUsersForGrid(HttpServletRequest request) {
-		// TODO Auto-generated method stub
 		JQGridDTO<UserDTO> jqGridDTO = new JQGridDTO<UserDTO>();
 		List<UserModel> userModels = new ArrayList<UserModel>();
 		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
@@ -65,36 +56,41 @@ public class UserServiceImpl implements UsersService  {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
 			int page = Integer.valueOf(request.getParameter("page")).intValue();
-			Integer jtStartIndex = 0;
-			Integer jtPageSize = request.getParameter("rows") == null ? null : Integer.parseInt(request.getParameter("rows"));
-			
+			Integer jtPageSize = request.getParameter("rows") == null ? 0 : Integer.parseInt(request.getParameter("rows"));
+			Integer jtStartIndex = (page-1)*jtPageSize;
 			String fullName = request.getParameter("fullName");
 			
 			userModels =  userDAO.returnAllUserModelForGrid(jtStartIndex, jtPageSize, sortingProperty, order, fullName);
-			System.out.println(userModels.size());
 			Long records = userDAO.returnAllUserModelForGridCount(fullName);
 			for(int i=0; i<userModels.size(); i++) 
 			{
-				
 				userModel = userModels.get(i);
 				userDTO = new UserDTO();
-			//	userDTO.setDepartmentName(userModel.getDepartmentsModel().getName());
+				userDTO.setDepartmentName(userModel.getDepartmentsModel().getName());
 				userDTO.setEmployeeFullName(userModel.getEmployeeModel().getFullName());
-				//userDTO.setCampusesName(userModel.getCampusesModel().getCampusName())
+				userDTO.setCampusName(userModel.getCampusesModel().getCampusName());
 				userDTO.setUsername(userModel.getUsername());
 				userDTO.setFullName(userModel.getFullName());
 				userDTO.setUserId(userModel.getUserId());
 				userDTO.setEmail(userModel.getEmail());
+				if(userModel.getIsActive())
+				{
+					userDTO.setStatus("Yes");
+				}
+				else
+				{
+					userDTO.setStatus("No");
+				}
 				userDTOs.add(userDTO);
 			}
 			jqGridDTO.setRows(userDTOs);
 			jqGridDTO.setTotal(String.valueOf(Math.ceil((double) records / jtPageSize)));
 			jqGridDTO.setRecords(String.valueOf(records));
-			jqGridDTO.setTotal(String.valueOf(Math.ceil((double) userModels.size() / jtPageSize)));
-			jqGridDTO.setRecords(String.valueOf(userModels.size()));
 			jqGridDTO.setPage(page);
+			
 		}catch(Exception ex)
-		{			ex.printStackTrace();
+		{			
+			ex.printStackTrace();
 		}
 		
 		return jqGridDTO;
@@ -103,9 +99,19 @@ public class UserServiceImpl implements UsersService  {
 	@Override
 	@Transactional
 	public String saveUserModel(UserDTO userDTO) {
-		UserModel userModel = new UserModel();
+		
 		try 
 		{
+			if(!userDTO.getUsername().equals(userDTO.getOldUsername()))
+			{
+				UserModel userModel = userDAO.returnCheckDuplicateByUserProperties(userDTO);
+				if(userModel != null)
+				{
+					return "Duplicate";
+				}
+				
+			}
+			UserModel userModel = new UserModel();
 			DepartmentsModel departmentsModel = new DepartmentsModel(); 
 			EmployeeModel 	employeeModel = new EmployeeModel();
 			CampusesModel campusesModel = new CampusesModel();
@@ -124,23 +130,23 @@ public class UserServiceImpl implements UsersService  {
 			
 			if(userDTO.getUserId() == null)
 			{
-				 
 				userModel.setFullName(userDTO.getFullName());
 				userModel.setEmail(userDTO.getEmail());
-				userModel.setPassword(userDTO.getPassword());
+				userModel.setPassword(SecurityUtil.encodePassword(userDTO.getPassword()));
 				userModel.setUsername(userDTO.getUsername());
-				userModel.setEmployeeModel(employeeModel);;
+				userModel.setEmployeeModel(employeeModel);
 				userModel.setDepartmentsModel(departmentsModel);
 				userModel.setCampusesModel(campusesModel);
 			    userModel.setIsActive(userDTO.getIsActive());
 				userModel.setIsDeleted(userDTO.getIsDeleted());
+				userModel.setRole(Role.Coordinator.getValue());
 				genericDAO.save(userModel);
 				return "Record Inserted Successfully";
 			}
 			else
 			{
-				userModel = userDAO.returnUserModelById(userDTO.getUserId());
-				userModel.setEmployeeModel(employeeModel);;
+				userModel = userDAO.returnUserModelByUserProperties(userDTO);
+				userModel.setEmployeeModel(employeeModel);
 				userModel.setDepartmentsModel(departmentsModel);
 				userModel.setCampusesModel(campusesModel);
 				userModel.setFullName(userDTO.getFullName());
@@ -151,7 +157,6 @@ public class UserServiceImpl implements UsersService  {
 				genericDAO.update(userModel);
 				return "Record Updated Successfully";
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -161,13 +166,12 @@ public class UserServiceImpl implements UsersService  {
 	@Override
 	@Transactional
 	public String deleteUserModel(UserDTO userDTO) {
-		// TODO Auto-generated method stub
 		UserModel userModels = new UserModel();
 		try 
 		{
 			if(userDTO.getUserId() != null)
 			{
-				userModels = userDAO.returnUserModelById(userDTO.getUserId());
+				userModels = userDAO.returnUserModelByUserProperties(userDTO);
 				userModels.setIsDeleted(true);
 				genericDAO.update(userModels);
 				return "Record Delete Successfully";
@@ -182,19 +186,19 @@ public class UserServiceImpl implements UsersService  {
 	@Override
 	@Transactional
 	public UserDTO getUserModelById(Long userId) {
-		// TODO Auto-generated method stub
 		UserModel userModel = new UserModel();
 		UserDTO userDTO = new UserDTO();
+		userDTO.setUserId(userId);
 		try 
 		{
-			userModel = userDAO.returnUserModelById(userId);
-			userDTO.setDepartmentId(Long.valueOf(userModel.getDepartmentsModel().getDepartmentId()));
-			userDTO.setEmployeeId(Long.valueOf(userModel.getEmployeeModel().getEmployeeId()));
+			userModel = userDAO.returnUserModelByUserProperties(userDTO);
+			userDTO.setDepartmentId(userModel.getDepartmentsModel() != null ? userModel.getDepartmentsModel().getDepartmentId():Long.valueOf(""));
+			userDTO.setEmployeeId(userModel.getEmployeeModel() != null ? userModel.getEmployeeModel().getEmployeeId() : Long.valueOf(""));
+			userDTO.setCampusesId(userModel.getCampusesModel() != null ? userModel.getCampusesModel().getCampusesId() : Long.valueOf(""));
 			userDTO.setFullName(userModel.getFullName());
 			userDTO.setUsername(userModel.getUsername());
 			userDTO.setUserId(userModel.getUserId());
 			userDTO.setEmail(userModel.getEmail());
-		//	userDTO.setPassword(userModel.getPassword());
 			userDTO.setIsActive(userModel.getIsActive());
 		}
 		catch(Exception e)
@@ -206,7 +210,6 @@ public class UserServiceImpl implements UsersService  {
 
 	@Override
 	public List<UserDTO> returnAllUserModel() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

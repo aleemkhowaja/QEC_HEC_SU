@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<!-------------------- crud urls  ---------------------------->
-	<c:url var="returnAllCoordinatorsForGrid" value="/coordinator/returnAllCoordinatorsForGrid" ></c:url>
+	<c:url var="returnAllCoordinatorsForGrid" value="/qec/coordinator/returnAllCoordinatorsForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
 	<jsp:include page="../common/header.jsp" />
 	<script  src="<c:url value="/resources/theme/js/coordinator/coordinator.js" />" > </script>
@@ -47,13 +47,27 @@
 							mtype : 'POST',
 							width : 1000,
 							height : 400,
-							colNames : [ 'user Id','Full name','Email','User Name','Employee Name'],
-							colModel : [ /* {
-									departmentsModel.name : 'departmentName',
-							    	index : 'departmentName',
-							    	width : 150
-								},  */
-								  {
+							colNames : [ 'Campus','Department','Employee Name','user Id','Full Name','Email','User Name','Is Active'],
+							colModel : [
+								{
+									name : 'campusName',
+									index : 'campusName',
+									width : 150,
+									editable : false,
+								},
+								{
+									name : 'departmentName',
+									index : 'departmentName',
+									width : 150,
+									editable : false,
+								},
+								{
+									name : 'employeeFullName',
+							        index : 'employeeFullName',
+							        width : 150,
+							        editable : false
+								},
+								{
 									name : 'userId',
 									index : 'userId',
 									hidden : true,
@@ -66,12 +80,6 @@
 							        width : 150,
 							        editable : false,
 								},
-								/* {
-									name : 'departmentName',
-							        index : 'departmentName',
-							        width : 150,
-							        editable : false,
-								}, */
 								{
 									name : 'email',
 							        index : 'email',
@@ -85,18 +93,19 @@
 							        editable : false,
 								},
 								{
-									name : 'employeeFullName',
-							        index : 'employeeFullName',
-							        width : 150,
-							        editable : false
-								}],
+									name : 'status',
+									index : 'status',
+									width : 150,
+							        editable : false,
+								}
+								],
 								ondblClickRow: function(rowId) {
 									coordinator_Db_Click(rowId);
 								},
 							    pager : '#pager',
 							    rowNum : 10,
 							    height: 'auto',
-							    rowList : [ 10 ],
+							    rowList : [ 10,20,30,40 ],
 							    sortname : 'fullName',
 							    sortorder : 'asc',
 							    viewrecords : true,

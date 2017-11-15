@@ -1,13 +1,12 @@
 /**
  * Submit Form while Save/Update
  */
-/*$(document).on('submit', '#users_form', function(event) {*/
 function coordinator_Crud()
 {
 	var flag = validateForm();
 	if(flag)
 	{	
-		url ='/QEC_HEC_SU/coordinator/save.htm';
+		url ='/QEC_HEC_SU/qec/coordinator/save.htm';
 		var usersData = {};
 		usersData['departmentId'] = $("#users_departmentId").val();
 		usersData['userId'] = $("#users_userId").val();
@@ -15,10 +14,14 @@ function coordinator_Crud()
 		usersData['fullName'] = $("#users_fullName").val();
 		usersData['email'] = $("#users_Email").val();
 		usersData['password'] = $("#users_password").val();
-		usersData['accountStatus'] = $("#users_isActive").val();
+		if(($("#users_isActive").val() != undefined) && ($("#users_isActive").val() != ""))
+		{
+			usersData['isActive'] = $("#users_isActive").val() == 0 ? false : 1;
+		}
 		usersData['employeeId'] = $("#users_employeeId").val();
 		usersData['campusesId'] = $("#users_campusId").val();
 		usersData['isDeleted'] = 0;
+		usersData['oldUsername'] = $("#users_oldUsername").val();
 		
 		
 		event.preventDefault();
@@ -28,16 +31,26 @@ function coordinator_Crud()
 	         contentType: "application/json",
 			 data: JSON.stringify(usersData),
 			
-	         beforeSend: function(xhr) {
+	         beforeSend: function(xhr) 
+	         {
 	             xhr.setRequestHeader("Accept", "application/json");
 	             xhr.setRequestHeader("Content-Type", "application/json");
 	         },
 			 async:false,
-			 success : function(data) {
-				if(data != undefined) {
+			 success : function(data) 
+			 {
+				if(data != undefined)
+				{
 					jQuery("#users-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					users_Clear_FromData();
+					if(data == "Duplicate")
+					{
+						toaster_error("Username Already Exist");
+					}
+					else
+					{
+						toaster_success(data);
+						users_Clear_FromData();
+					}
 				}
 				else {
 					toaster_error(data);
@@ -55,7 +68,7 @@ function coordinator_Crud()
  */
 function coordinator_Db_Click(rowId)
 {
-	url ='/QEC_HEC_SU/coordinator/returnCoordinatorById';
+	url ='/QEC_HEC_SU/qec/coordinator/returnCoordinatorById';
 	var rowData = jQuery("#users-detail-grid-list").getRowData(rowId); 
 	var userId = rowData['userId'];
 	event.preventDefault();
@@ -80,10 +93,11 @@ function users_Set_FormData(data)
 	$("#users_departmentId").val(data.departmentId);
 	$("#users_userId").val(data.userId)
 	$("#users_username").val(data.username)
+	$("#users_oldUsername").val(data.username)
 	$("#users_fullName").val(data.fullName)
 	$("#users_Email").val(data.email)
 	$("#users_password").val(data.password)
-	$("#users_isActive").val(data.isActive);
+	$("#users_isActive").val(data.isActive == 'true' ? 1 : 0);
 	$("#users_employeeId").val(data.employeeId);
 	$("#users_campusId").val(data.campusesId);
 }
@@ -102,6 +116,7 @@ function users_Clear_FromData()
 	$("#users_isActive").val("");
 	$("#users_employeeId").val("");
 	$("#users_campusId").val("");
+	$("#users_oldUsername").val("")
 	users_Remove_DeleteButton();
 }
 
@@ -120,7 +135,7 @@ function users_Remove_DeleteButton()
  */
 function users_DeleteUsers() 
 {
-	url ='/QEC_HEC_SU/coordinator/deleteCoordinatorById';
+	url ='/QEC_HEC_SU/qec/coordinator/deleteCoordinatorById';
 	var usersData = {};
 	usersData['userId'] = $("#users_userId").val();
 	//event.preventDefault();

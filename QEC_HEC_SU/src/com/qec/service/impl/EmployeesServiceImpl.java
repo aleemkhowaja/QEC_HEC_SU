@@ -42,7 +42,6 @@ public class EmployeesServiceImpl implements EmployeesService {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Transactional
 	public List<EmployeeDTO> returnAllEmployeeModels() {
-		// TODO Auto-generated method stub
 		List employeeDTOs = new ArrayList<>(); 
 		
 		try

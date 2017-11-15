@@ -1,9 +1,9 @@
 /**
  * Submit Form while Save/Update
  */
-$(document).on('submit', '#events_form', function(event) {
-	
-	url ='/QEC_HEC_SU/events/save.htm';
+function event_Crud()
+{
+	url ='/QEC_HEC_SU/qec/events/save.htm';
 	var eventsData = {};
 	eventsData['departmentId'] = $("#events_departmentId").val();
 	eventsData['eventsId'] =$("#events_eventsId").val()|| null;
@@ -37,12 +37,16 @@ $(document).on('submit', '#events_form', function(event) {
 		}
 	});
 	//event.preventDefault();
-});
-
-
+}
+	
+/**
+ *  get record and set data in form while double click on Grid Row
+ * @param rowId
+ * @returns
+ */
 function events_Db_Click(rowId)
 {
-	url ='/QEC_HEC_SU/events/getEventsById';
+	url ='/QEC_HEC_SU/qec/events/getEventsById';
 	var rowData = jQuery("#events-detail-grid-list").getRowData(rowId); 
 	var eventsId = rowData['eventsId'];
 	event.preventDefault();
@@ -59,6 +63,11 @@ function events_Db_Click(rowId)
 	});
 }
 
+/**
+ * Set Form Data while get record from db
+ * @param data
+ * @returns
+ */
 function events_Set_FormData(data)
 {
 
@@ -72,6 +81,10 @@ function events_Set_FormData(data)
 	
 }
 
+/**
+ * Clear form after save/Update/Delete 
+ * @returns
+ */
 function events_Clear_FromData()
 {
 	
@@ -85,7 +98,10 @@ function events_Clear_FromData()
 	events_Remove_DeleteButton();
 }
 
-
+/**
+ * 
+ * @returns
+ */
 function users_Remove_DeleteButton() 
 {
     var elem = document.getElementById('events-delete-btn');

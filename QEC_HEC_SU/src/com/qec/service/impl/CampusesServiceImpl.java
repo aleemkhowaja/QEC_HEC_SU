@@ -44,7 +44,6 @@ public class CampusesServiceImpl implements CampusesService  {
 			List campusesModels = campusesDAO.returnAllCampuses();
 			
 			CampusesDTO campusesDTO = new CampusesDTO();
-			campusesDTO.setCampusesId(0l);
 			campusesDTO.setCampusName("Select Campus");
 			campusesDTOs.add(campusesDTO);
 			campusesDTOs.addAll(campusesModels);

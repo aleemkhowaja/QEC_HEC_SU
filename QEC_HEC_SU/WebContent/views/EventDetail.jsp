@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:url var="saveEventsDetail" value="/events/save.htm" ></c:url>
+<c:url var="saveEventsDetail" value="/qec/events/save.htm" ></c:url>
 
 <div class="page-title">
 	<div class="container">
@@ -10,7 +10,7 @@
 			<!-- Start Search Fields -->
 			
 				<div class="col-md-8">`
-                    <form:form servletRelativeAction="${saveEventsDetail}" cssClass="m-t-md ajax-form-login" method="post" commandName="eventsData" id="events_form" resolveContext="true" resolveMapping="true">
+                    <form:form servletRelativeAction="${saveEventsDetail}" cssClass="m-t-md ajax-form-login" method="post" commandName="events" id="events_form" resolveContext="true" resolveMapping="true">
                        
                     
 						<div class="form-group">

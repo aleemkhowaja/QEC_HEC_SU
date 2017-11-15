@@ -37,7 +37,6 @@ public class DepartmentServiceImpl implements DepartmentsService {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
 			int page = Integer.valueOf(request.getParameter("page")).intValue();
-			/*Integer jtStartIndex = 0;*/ /*request.getParameter("jtStartIndex") == null ? null : Integer.parseInt(request.getParameter("jtStartIndex"));*/
 			Integer jtPageSize = request.getParameter("rows") == null ? 0 : Integer.parseInt(request.getParameter("rows"));
 			Integer jtStartIndex = (page-1)*jtPageSize;
 			String departmentName = request.getParameter("departmentName");

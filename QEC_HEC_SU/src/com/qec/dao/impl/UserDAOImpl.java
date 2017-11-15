@@ -9,28 +9,44 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import com.qec.dao.UserDAO;
-import com.qec.model.UniProgramsModel;
+import com.qec.dto.UserDTO;
 import com.qec.model.UserModel;
 
 @Repository
 public class UserDAOImpl extends SessionFactoryDAOImp implements UserDAO {
 
 	@Override
-	public List<UserModel> returnAllUserModelForGrid(int jtStartIndex, int jtPageSize, String sortingProperty,String order, String fullName)  {
-		
+	public List<UserModel> returnAllUserModelForGrid(int jtStartIndex, int jtPageSize, String sortingProperty,String order, String fullName) 
+	{
 		Session session =  getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(UserModel.class, "um");
-		/*criteria.createAlias("um.departmentsModel", "departmentsModel"); // inner join by
-		criteria.setFetchMode("departmentsModel", FetchMode.JOIN);*/
+		criteria.createAlias("um.departmentsModel", "departmentsModel"); // inner join by
+		criteria.setFetchMode("departmentsModel", FetchMode.JOIN);
 		criteria.createAlias("um.employeeModel", "employeeModel"); // inner join by
 		criteria.setFetchMode("employeeModel", FetchMode.JOIN);
+		criteria.createAlias("um.campusesModel", "campusesModel"); // inner join by
+		criteria.setFetchMode("campusesModel", FetchMode.JOIN);
 		criteria.setMaxResults(jtPageSize);
 		criteria.setFirstResult(jtStartIndex);
+		
+		if(sortingProperty.equals("campusName"))
+		{
+			sortingProperty = "campusesModel.campusName";
+		}
+		else if(sortingProperty.equals("departmentName"))
+		{
+			sortingProperty = "departmentsModel.name";
+		}
+		else if(sortingProperty.equals("employeeFullName"))
+		{
+			sortingProperty = "employeeModel.fullName";
+		}
+		
 		if(order.equals("asc"))
 		{
 			// To sort records in ascending order
 			criteria.addOrder(Order.asc(sortingProperty));
-		}else {
+		} else {
 			// To sort records in ascending order
 			criteria.addOrder(Order.desc(sortingProperty));
 		}
@@ -39,29 +55,48 @@ public class UserDAOImpl extends SessionFactoryDAOImp implements UserDAO {
 		{
 			criteria.add( Restrictions.like("fullName", "%"+fullName+"%"));
 		}
-		criteria.add(Restrictions.eq("isDeleted", false));
+		criteria.add(Restrictions.eq("um.isDeleted", false));
 		List<UserModel> results = criteria.list();
 		return results;
 	}
 
 	@Override
-	public UserModel returnUserModelById(Long userId) {
-	
+	public UserModel returnUserModelByUserProperties(UserDTO userDTO) 
+	{
 		Session session = getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(UserModel.class, "um");
 		criteria.createAlias("um.departmentsModel", "departmentsModel"); // inner join by
 		criteria.setFetchMode("departmentsModel", FetchMode.JOIN);
-		if(userId != null )
+		criteria.createAlias("um.campusesModel", "campusesModel"); // inner join by
+		criteria.setFetchMode("campusesModel", FetchMode.JOIN);
+		criteria.add(Restrictions.eq("um.isDeleted", false));
+		if(userDTO.getUserId() != null )
 		{
-			criteria.add( Restrictions.eq("userId", userId));
+			criteria.add( Restrictions.eq("userId", userDTO.getUserId()));
 		}
+		
+		UserModel userModel =  (UserModel) criteria.uniqueResult();
+		return userModel;
+	}
+	
+	@Override
+	public UserModel returnCheckDuplicateByUserProperties(UserDTO userDTO) 
+	{
+		Session session = getSessionFactory().getCurrentSession();
+		Criteria criteria = session.createCriteria(UserModel.class, "um");
+		criteria.add(Restrictions.eq("um.isDeleted", false));
+		if(userDTO.getUsername() != null && !"".equals(userDTO.getUsername()))
+		{
+			criteria.add(Restrictions.eq("username", userDTO.getUsername()));
+		}
+		
 		UserModel userModel =  (UserModel) criteria.uniqueResult();
 		return userModel;
 	}
 
 	@Override
-	public List<UserModel> returnAllUserModel() {
-	
+	public List<UserModel> returnAllUserModel() 
+	{
 		Session session = getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(UserModel.class);
 		criteria.add( Restrictions.eq("isDeleted", false));
@@ -69,16 +104,26 @@ public class UserDAOImpl extends SessionFactoryDAOImp implements UserDAO {
 	}
 
 	@Override
-	public UserModel deleteUserModelById(Long userId) {
+	public UserModel deleteUserModelById(Long userId) 
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Long returnAllUserModelForGridCount(String fullName) {
+	public Long returnAllUserModelForGridCount(String fullName) 
+	{
 		// TODO Auto-generated method stub
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(UserModel.class);
+		Criteria criteria = session.createCriteria(UserModel.class, "um");
+		
+		criteria.createAlias("um.departmentsModel", "departmentsModel"); // inner join by
+		criteria.setFetchMode("departmentsModel", FetchMode.JOIN);
+		criteria.createAlias("um.employeeModel", "employeeModel"); // inner join by
+		criteria.setFetchMode("employeeModel", FetchMode.JOIN);
+		criteria.createAlias("um.campusesModel", "campusesModel"); // inner join by
+		criteria.setFetchMode("campusesModel", FetchMode.JOIN);
+		
 		if(fullName != null && !"".equals(fullName))
 		{
 			criteria.add( Restrictions.like("fullName", "%"+fullName+"%"));

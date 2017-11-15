@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	
 	<!-------------------- crud urls  ---------------------------->
-	<c:url var="returnAllEventsForGrid" value="/events/returnAllEventsForGrid" ></c:url>
+	<c:url var="returnAllEventsForGrid" value="/qec/events/returnAllEventsForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
 	<jsp:include page="../common/header.jsp" />
 	<script  src="<c:url value="/resources/theme/js/events/events.js" />" > </script>

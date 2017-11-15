@@ -10,70 +10,27 @@ import com.qec.model.EmployeeModel;
  */
 public class UserDTO  implements java.io.Serializable {
 
-     private Long userId;
-     private EmployeeModel employeeModel;
-     private Long employeeId;
-     private String employeeFullName;
-     private String username;
-     private String password;
-     private String role;
-     private String fullName;
-     DepartmentsDTO departmentsDTO = new DepartmentsDTO();
-     CampusesDTO campusesDTO = new CampusesDTO();
-     private Long departmentId;
-     private String departmentName;
-     //private String campusesName;
-     private String email;
-     private Date dateof;
-     private Long campusesId;
-     private Boolean isDeleted;
-     private Boolean isActive;
-     private String accountStatus;
-    /* private Set googleCitations = new HashSet(0);
-     private Set citationConferences = new HashSet(0);
-     private Set accreditationses = new HashSet(0);
-     private Set citationBooks = new HashSet(0);
-     private Set loginsHistories = new HashSet(0);
-     private Set citationOthers = new HashSet(0);
-     private Set citationThesises = new HashSet(0);
-     private Set promotionses = new HashSet(0);
-     private Set citationJournals = new HashSet(0);
-     private Set bugses = new HashSet(0);
-     private Set citationChapters = new HashSet(0);
-     private Set citationPatents = new HashSet(0);
-     private Set eventses = new HashSet(0);
-*/
-   /* public UserDTO() {
-    }
-
-    public UserDTO(Employee employee, DepartmentsModel departmentsModel,String username, String password, String role, String fullName, Long departmentId, String email, Date dateof, Long campusId, Byte isDeleted, Byte isActive, Set googleCitations, Set citationConferences, Set accreditationses, Set citationBooks, Set loginsHistories, Set citationOthers, Set citationThesises, Set promotionses, Set citationJournals, Set bugses, Set citationChapters, Set citationPatents, Set eventses) {
-       this.employee = employee;
-       this.username = username;
-       this.password = password;
-       this.role = role;
-       this.fullName = fullName;
-       this.departmentId = departmentId;
-       this.email = email;
-       this.dateof = dateof;
-       this.campusId = campusId;
-       this.isDeleted = isDeleted;
-       this.isActive = isActive;
-       this.googleCitations = googleCitations;
-       this.citationConferences = citationConferences;
-       this.accreditationses = accreditationses;
-       this.citationBooks = citationBooks;
-       this.loginsHistories = loginsHistories;
-       this.citationOthers = citationOthers;
-       this.citationThesises = citationThesises;
-       this.promotionses = promotionses;
-       this.citationJournals = citationJournals;
-       this.bugses = bugses;
-       this.citationChapters = citationChapters;
-       this.citationPatents = citationPatents;
-       this.eventses = eventses;
-       this.departmentsModel = departmentsModel;
-    }*/
-   
+    private Long userId;
+    private EmployeeModel employeeModel;
+    private Long employeeId;
+    private String employeeFullName;
+    private String username;
+    private String oldUsername;
+    private String password;
+    private String role;
+    private String fullName;
+    DepartmentsDTO departmentsDTO = new DepartmentsDTO();
+    CampusesDTO campusesDTO = new CampusesDTO();
+    private Long departmentId;
+    private String departmentName;
+    private String campusName;
+    private String email;
+    private Date dateof;
+    private Long campusesId;
+    private Boolean isDeleted;
+    private Boolean isActive;
+    private String status;
+       
     public Long getUserId() {
         return this.userId;
     }
@@ -112,7 +69,16 @@ public class UserDTO  implements java.io.Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-    public String getPassword() {
+    
+    public String getOldUsername() {
+		return oldUsername;
+	}
+
+	public void setOldUsername(String oldUsername) {
+		this.oldUsername = oldUsername;
+	}
+
+	public String getPassword() {
         return this.password;
     }
     
@@ -163,13 +129,13 @@ public class UserDTO  implements java.io.Serializable {
         this.dateof = dateof;
     }
 	
-	/*public String getCampusesName() {
-		return campusesName;
+	public String getCampusName() {
+		return campusName;
 	}
 
-	public void setCampusesName(String campusesName) {
-		this.campusesName = campusesName;
-	}*/
+	public void setCampusName(String campusName) {
+		this.campusName = campusName;
+	}
 
 	public Long getCampusesId() {
 		return campusesId;
@@ -195,12 +161,12 @@ public class UserDTO  implements java.io.Serializable {
 		this.isActive = isActive;
 	}
 
-	public String getAccountStatus() {
-		return accountStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setAccountStatus(String accountStatus) {
-		this.accountStatus = accountStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public DepartmentsDTO getDepartmentsDTO() {
