@@ -3,40 +3,45 @@
  */
 function event_Crud()
 {
-	url ='/QEC_HEC_SU/qec/events/save.htm';
-	var eventsData = {};
-	eventsData['departmentId'] = $("#events_departmentId").val();
-	eventsData['eventsId'] =$("#events_eventsId").val()|| null;
-	eventsData['eventTitle'] =$("#events_eventTitle").val();
-	eventsData['dateof'] =$("#events_dateof").val();
-	eventsData['endDate'] = $("#events_endDate").val();
-	eventsData['quota'] = $("#events_quota").val();
-	eventsData['eventDetail'] = $("#events_eventDetail").val();
-	 
+	var flag = validateForm();
+	if(flag)
+	{	
+		url ='/QEC_HEC_SU/qec/events/save.htm';
+		var eventsData = {};
+		eventsData['departmentId'] = $("#events_departmentId").val();
+		eventsData['eventsId'] =$("#events_eventsId").val()|| null;
+		eventsData['eventTitle'] =$("#events_eventTitle").val();
+		eventsData['dateof'] =$("#events_dateof").val();
+		eventsData['endDate'] = $("#events_endDate").val();
+		eventsData['quota'] = $("#events_quota").val();
+		eventsData['eventDetail'] = $("#events_eventDetail").val();
+		 
 
-	$.ajax({
-		url :url,
-		 type: "POST",
-         contentType: "application/json",
-		 data: JSON.stringify(eventsData),
-		
-         beforeSend: function(xhr) {
-             xhr.setRequestHeader("Accept", "application/json");
-             xhr.setRequestHeader("Content-Type", "application/json");
-         },
-		 async:false,
-		 success : function(data) {
-			if(data != undefined) {
-				jQuery("#events-detail-grid-list").trigger("reloadGrid");
-				toaster_success(data);
-				events_Clear_FromData();
+		$.ajax({
+			url :url,
+			 type: "POST",
+	         contentType: "application/json",
+			 data: JSON.stringify(eventsData),
+			
+	         beforeSend: function(xhr) {
+	             xhr.setRequestHeader("Accept", "application/json");
+	             xhr.setRequestHeader("Content-Type", "application/json");
+	         },
+			 async:false,
+			 success : function(data) {
+				if(data != undefined) {
+					jQuery("#events-detail-grid-list").trigger("reloadGrid");
+					toaster_success(data);
+					events_Clear_FromData();
+				}
+				else {
+					toaster_error(data);
+				}
 			}
-			else {
-				toaster_error(data);
-			}
-		}
-	});
-	//event.preventDefault();
+		});
+	}
+	event.preventDefault();
+	return flag;
 }
 	
 /**

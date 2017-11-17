@@ -10,7 +10,7 @@ public class EmployeeDTO implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long employeeId;
-     private DepartmentsDTO departmentsDTO;
+     private DepartmentsDTO departmentsModel;
      private String title;
      private String fullName;
      private String surname;
@@ -38,11 +38,12 @@ public class EmployeeDTO implements java.io.Serializable {
 	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
-	public DepartmentsDTO getDepartmentsDTO() {
-		return departmentsDTO;
+
+	public DepartmentsDTO getDepartmentsModel() {
+		return departmentsModel;
 	}
-	public void setDepartmentsDTO(DepartmentsDTO departmentsDTO) {
-		this.departmentsDTO = departmentsDTO;
+	public void setDepartmentsModel(DepartmentsDTO departmentsModel) {
+		this.departmentsModel = departmentsModel;
 	}
 	public String getTitle() {
 		return title;

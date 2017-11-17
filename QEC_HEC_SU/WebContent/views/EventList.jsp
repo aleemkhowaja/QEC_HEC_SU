@@ -50,7 +50,7 @@
 							mtype : 'POST',
 							width : 1000,
 							height : 100,
-							colNames : [ 'eventsId','eventTitle', 'dateof','departmentName','eventDetail'],
+							colNames : [ 'Events Id','Department Name','Event Title', 'Date Of','Event Detail'],
 							colModel : [ 
 							      
 								{
@@ -59,6 +59,12 @@
 									width : 150,
 									hidden : true,
 									key : true
+								},
+								{
+							        name : 'departmentName',
+							        index : 'departmentName',
+							        width : 150,
+							        editable : false
 								},
 							    {
 									name : 'eventTitle',
@@ -72,12 +78,6 @@
 							    	width : 150,
 							    	editable : false
 								}, 
-								{
-							        name : 'departmentName',
-							        index : 'departmentName',
-							        width : 150,
-							        editable : false
-								},
 								{
 							        name : 'eventDetail',
 							        index : 'eventDetail',

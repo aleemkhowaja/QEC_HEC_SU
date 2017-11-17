@@ -11,8 +11,8 @@ public class EventsDTO  implements java.io.Serializable {
 
 
      private Long eventsId;
-     private UserModel user;
-     private DepartmentsModel departmentsModel;
+     private UserDTO userModel;
+     private DepartmentsDTO departmentsModel;
      private Long departmentId;
      private String departmentName;
      private String eventTitle;
@@ -30,19 +30,20 @@ public class EventsDTO  implements java.io.Serializable {
     public void setEventsId(Long eventsId) {
         this.eventsId = eventsId;
     }
-    public UserModel getUser() {
-		return user;
+
+	public UserDTO getUserModel() {
+		return userModel;
 	}
 
-	public void setUser(UserModel user) {
-		this.user = user;
+	public void setUserModel(UserDTO userModel) {
+		this.userModel = userModel;
 	}
-	
-	public DepartmentsModel getDepartmentsModel() {
+
+	public DepartmentsDTO getDepartmentsModel() {
 		return departmentsModel;
 	}
 
-	public void setDepartmentsModel(DepartmentsModel departmentsModel) {
+	public void setDepartmentsModel(DepartmentsDTO departmentsModel) {
 		this.departmentsModel = departmentsModel;
 	}
 

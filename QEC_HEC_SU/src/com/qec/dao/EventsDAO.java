@@ -6,14 +6,14 @@ import com.qec.model.EventsModel;
 
 public interface EventsDAO {
 	
-	public List<EventsModel> returnAllEventsModelForGrid(int jtStartIndex, int jtPageSize,String sortingProperty, String order, String  programsName);
+	public List<EventsModel> returnAllEventsModelForGrid(int jtStartIndex, int jtPageSize,String sortingProperty, String order, String  programsName) throws Exception;
 	
-	public EventsModel returnEventsModelById(Long eventsId);
+	public EventsModel returnEventsModelById(Long eventsId) throws Exception;
 	
-	public List<EventsModel> returnAllEventsModelModel();
+	public List<EventsModel> returnAllEventsModelModel() throws Exception;
 
-	public EventsModel deleteEventsModelById(Long eventsId);
+	public EventsModel deleteEventsModelById(Long eventsId) throws Exception;
 	
-	public Long returnAllEventsModelForGridCount(String eventTitle);
+	public Long returnAllEventsModelForGridCount(String eventTitle) throws Exception;
 
 }

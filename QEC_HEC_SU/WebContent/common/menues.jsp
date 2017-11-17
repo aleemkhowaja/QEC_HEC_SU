@@ -1,5 +1,12 @@
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="overlay"></div>
-        
+    <!--  start page urls -->
+    <c:url var="returnDepartmentPage" value="/qec/department/department.htm" ></c:url> 
+    <c:url var="returnProgramsPage" value="/qec/programs/programs.htm" ></c:url> 
+    <c:url var="returnCoordinatorPage" value="/qec/coordinator/coordinator.htm" ></c:url>
+    <c:url var="returnEventPage" value="/qec/event/event.htm" ></c:url> 
+    
+    <!-- end page urls -->  
     <main class="page-content content-wrap">
     	<div class="navbar">
         	<div class="navbar-inner container">
@@ -39,25 +46,25 @@
             <li class="active"><a href="http://3melements.com/sindhuni/dashboard"><span class="menu-icon icon-speedometer"></span><p>Dashboard</p></a></li>
              <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Departments</p><span class="arrow"></span></a>
             	<ul class="sub-menu">
-                    <li><a href="/QEC_HEC_SU/department/department.htm">Departments List</a></li>
+                    <li><a href="${returnDepartmentPage}">Departments</a></li>
                 </ul>
             </li>
             
             <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Programs</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="/QEC_HEC_SU/programs/programs.htm">Programs List</a></li>
+	                <li><a href="${returnProgramsPage}">Programs</a></li>
 		        </ul>
        	 	</li>
                        
            	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Coordinators</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="/QEC_HEC_SU/coordinator/coordinator.htm">Coordinator List</a></li>
+	                <li><a href="${returnCoordinatorPage}">Coordinator</a></li>
 		        </ul>
        	 	</li>
        	 	
        	 		<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Events</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="/QEC_HEC_SU/qec/event.htm">Coordinator List</a></li>
+	                <li><a href="${returnEventPage}">Event</a></li>
 		        </ul>
        	 	</li>
 

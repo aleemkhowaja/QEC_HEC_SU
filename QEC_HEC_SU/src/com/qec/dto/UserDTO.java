@@ -11,7 +11,7 @@ import com.qec.model.EmployeeModel;
 public class UserDTO  implements java.io.Serializable {
 
     private Long userId;
-    private EmployeeModel employeeModel;
+    private EmployeeDTO employeeModel;
     private Long employeeId;
     private String employeeFullName;
     private String username;
@@ -54,11 +54,11 @@ public class UserDTO  implements java.io.Serializable {
 	public void setUserId(Long userId) {
         this.userId = userId;
     }
-    public EmployeeModel getEmployeeModel() {
+    public EmployeeDTO getEmployeeModel() {
 		return employeeModel;
 	}
 
-	public void setEmployeeModel(EmployeeModel employeeModel) {
+	public void setEmployeeModel(EmployeeDTO employeeModel) {
 		this.employeeModel = employeeModel;
 	}
 

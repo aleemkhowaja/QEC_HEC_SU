@@ -57,7 +57,8 @@ public class EventsControllers {
 	 */
 	@RequestMapping(value="qec/events/returnEventByEventId", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public EventsDTO returnEventByEventId(@RequestParam("eventsId") Integer eventsId, Model model) {
+	public EventsDTO returnEventByEventId(@RequestParam("eventsId") Integer eventsId, Model model) 
+	{
 		EventsDTO eventsDTO = eventsService.getEventsModelById(Long.valueOf(eventsId)); 
 		return eventsDTO;
 	}

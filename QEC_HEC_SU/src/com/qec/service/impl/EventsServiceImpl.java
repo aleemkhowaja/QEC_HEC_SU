@@ -29,6 +29,7 @@ public class EventsServiceImpl implements EventsService {
 	@Autowired
 	private DepartmentDAO departmentDAO; 
 	
+	@SuppressWarnings({ "rawtypes", "unused", "unchecked" })
 	@Override
 	@Transactional
 	public JQGridDTO<EventsDTO> returnAllEventsModelForGrid(HttpServletRequest request) 
@@ -44,16 +45,14 @@ public class EventsServiceImpl implements EventsService {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
 			int page = Integer.valueOf(request.getParameter("page")).intValue();
-			Integer jtStartIndex = 0;
-			Integer jtPageSize = request.getParameter("rows") == null ? null : Integer.parseInt(request.getParameter("rows"));
-			
+			Integer jtPageSize = request.getParameter("rows") == null ? 0 : Integer.parseInt(request.getParameter("rows"));
+			Integer jtStartIndex = (page-1)*jtPageSize;
 			String eventTitle = request.getParameter("eventTitle");
-			
 			eventsModels =  eventsDAO.returnAllEventsModelForGrid(jtStartIndex, jtPageSize, sortingProperty, order, eventTitle);
 			Long records = eventsDAO.returnAllEventsModelForGridCount(eventTitle);
+			//eventsDTOs.addAll(eventsModels);
 			for(int i=0; i<eventsModels.size(); i++) 
 			{
-				
 				eventsModel = eventsModels.get(i);
 				eventsDTO = new EventsDTO();
 				//uniProgramsDTO.setDepartmentId(Long.valueOf(uniProgramsModel.getDepartmentsModel().getDepartmentId()));
@@ -68,11 +67,10 @@ public class EventsServiceImpl implements EventsService {
 				eventsDTOs.add(eventsDTO);
 			}
 			jqGridDTO.setRows(eventsDTOs);
-		    jqGridDTO.setTotal(String.valueOf(Math.ceil((double) (records != null ? records : 0.0) / jtPageSize)));
+			jqGridDTO.setTotal(String.valueOf(Math.ceil((double) records / jtPageSize)));
 			jqGridDTO.setRecords(String.valueOf(records));
-			jqGridDTO.setTotal(String.valueOf(Math.ceil((double) (eventsModels != null ? eventsModels.size() : 0) / jtPageSize)));
-			jqGridDTO.setRecords(String.valueOf(eventsModels.size()));
 			jqGridDTO.setPage(page);
+			
 		}catch(Exception ex)
 		{			
 			ex.printStackTrace();
