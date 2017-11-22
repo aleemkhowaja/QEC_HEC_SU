@@ -7,18 +7,18 @@
 		if(flag)
 		{
 			url ='/QEC_HEC_SU/department/save.htm';
-			var employeeData = {};
-			employeeData['name'] = $("#department_departmentName").val();
-			employeeData['detail'] = $("#department_description").val();
-			employeeData['departmentId'] = $("#department_departmentId").val();
-			employeeData['isDeleted'] = false;
+			var departmentData = {};
+			departmentData['name'] = $("#department_departmentName").val();
+			departmentData['detail'] = $("#department_description").val();
+			departmentData['departmentId'] = $("#department_departmentId").val();
+			departmentData['isDeleted'] = false;
 			
 			event.preventDefault();
 			$.ajax({
 				url :url,
 				 type: "POST",
 		         contentType: "application/json",
-				 data: JSON.stringify(employeeData),
+				 data: JSON.stringify(departmentData),
 				 
 		         beforeSend: function(xhr) {
 		             xhr.setRequestHeader("Accept", "application/json");

@@ -13,7 +13,7 @@
                 	
                 	<div class="form-group">
                     	<form:label path="title" >Title * </form:label>
-                    	<form:select path="employeeId" cssClass="form-control validate-required" id="employee_title" items="${employeeTitleList}" >
+                    	<form:select path="title" cssClass="form-control validate-required" id="employee_title" items="${employeeTitleList}" >
                     	</form:select>
 					</div>
 	                
@@ -88,7 +88,7 @@
 	               	
                     <button id="employee-save-btn" type="submit" class="btn" onclick="return employee_crud();">Save</button>
                         <!-- Hidden fields -->
-                        <form:hidden path="departmentId" id="department_departmentId" />        
+                        <form:hidden path="employeeId" id="employee_employeeId" />        
                    </form:form>
                 </div>
 		</div>

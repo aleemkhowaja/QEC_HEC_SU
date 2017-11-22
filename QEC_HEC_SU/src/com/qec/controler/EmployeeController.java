@@ -2,6 +2,7 @@ package com.qec.controler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.qec.common.JQGridDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.UserDTO;
@@ -46,8 +48,13 @@ public class EmployeeController {
 	@ResponseBody
 	public String saveEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request) 
 	{
-	  //  String result = usersService.saveUserModel(userDTO); 
-		return null; 
+		String result = "";
+		try {
+			result = employeesService.saveEmployee(employeeDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result; 
 	}
 	
 	/**
