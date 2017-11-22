@@ -46,6 +46,7 @@ public class EventsControllers {
 	public String saveEvents(@RequestBody EventsDTO eventsDTO, HttpServletRequest request) 
 	{
 	    String result = eventsService.saveEventsModelModel(eventsDTO); 
+	    System.out.println("-----------"+result);
 		return result;
 	}
 	

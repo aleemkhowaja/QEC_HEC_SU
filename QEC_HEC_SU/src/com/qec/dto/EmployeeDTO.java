@@ -10,27 +10,28 @@ public class EmployeeDTO implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long employeeId;
-     private DepartmentsDTO departmentsModel;
-     private String title;
-     private String fullName;
-     private String surname;
-     private String cast;
-     private String maritalStatus;
-     private String fatherName;
-     private String husbandName;
-     private String email;
-     private String postalAddress;
-     private String presentAddress;
-     private String nic;
-     private Date dob;
-     private String gender;
-     private String mobile;
-     private String phone;
-     private String religion;
-     private String country;
-     private String imgPath;
-     private Boolean isDeleted;
-     
+    private DepartmentsDTO departmentsModel;
+    private String title;
+    private String fullName;
+    private String surname;
+    private String cast;
+    private String maritalStatus;
+    private String fatherName;
+    private String husbandName;
+    private String email;
+    private String postalAddress;
+    private String presentAddress;
+    private String nic;
+    private Date dob;
+    private String gender;
+    private String mobile;
+    private String phone;
+    private String religion;
+    private String country;
+    private String imgPath;
+    private Boolean isDeleted;
+    private String departmentName;
+    private Integer departmentId; 
      
 	public Long getEmployeeId() {
 		return employeeId;
@@ -158,6 +159,18 @@ public class EmployeeDTO implements java.io.Serializable {
 	}
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
      
      

@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class EmpIndustriallinkages  implements java.io.Serializable {
 
 
      private Long empIndustriallinkagesId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private String nameOfOrg;
      private Date dateof;
      private String purposeOfLinkage;
@@ -22,7 +22,7 @@ public class EmpIndustriallinkages  implements java.io.Serializable {
     public EmpIndustriallinkages() {
     }
 
-    public EmpIndustriallinkages(Employee employee, String nameOfOrg, Date dateof, String purposeOfLinkage, Date startDuration, Long endDuration, String file) {
+    public EmpIndustriallinkages(EmployeeDTO employee, String nameOfOrg, Date dateof, String purposeOfLinkage, Date startDuration, Long endDuration, String file) {
        this.employee = employee;
        this.nameOfOrg = nameOfOrg;
        this.dateof = dateof;
@@ -39,11 +39,11 @@ public class EmpIndustriallinkages  implements java.io.Serializable {
     public void setEmpIndustriallinkagesId(Long empIndustriallinkagesId) {
         this.empIndustriallinkagesId = empIndustriallinkagesId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public String getNameOfOrg() {

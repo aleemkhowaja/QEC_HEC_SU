@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class CitationPatent  implements java.io.Serializable {
 
 
      private Long citationPatentId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private UserDTO user;
      private String title;
      private String url;
@@ -25,7 +25,7 @@ public class CitationPatent  implements java.io.Serializable {
     public CitationPatent() {
     }
 
-    public CitationPatent(Employee employee, UserDTO user, String title, String url, String inventors, Date publicationDate, String patentOffice, String patentNumber, String applicationNumber, String description) {
+    public CitationPatent(EmployeeDTO employee, UserDTO user, String title, String url, String inventors, Date publicationDate, String patentOffice, String patentNumber, String applicationNumber, String description) {
        this.employee = employee;
        this.user = user;
        this.title = title;
@@ -45,11 +45,11 @@ public class CitationPatent  implements java.io.Serializable {
     public void setCitationPatentId(Long citationPatentId) {
         this.citationPatentId = citationPatentId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public UserDTO getUser() {

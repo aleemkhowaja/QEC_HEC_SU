@@ -2,30 +2,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-	
 	<!-------------------- crud urls  ---------------------------->
-	<c:url var="returnAllEventsForGrid" value="/qec/events/returnAllEventsForGrid" ></c:url>
+	<c:url var="returnAllEmployeeForGrid" value="/qec/employee/returnAllEmployeeForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
 	<jsp:include page="../common/header.jsp" />
-	<script  src="<c:url value="/resources/theme/js/events/events.js" />" > </script>
+	<script  src="<c:url value="/resources/theme/js/employee/employee.js" />" > </script>
 	<body class="page-header-fixed compact-menu page-horizontal-bar">
 		<jsp:include page="../common/menues.jsp" />
 		<div class="page-inner">
 		    <div class="page-title">
 		        <div class="container">
 		        	<div class="adv_ser_row" >
-		        		<h2>Events</h2>
+		        		<h2>Users</h2>
 							<!-- Start Search Fields -->
 							<span> 
-								<input class="smallinput" type="text" name="eventTitle" id="eventTitle" placeholder="Events Title" />
-								<input type="button" value="Search" id="search-events-button" />
+								<input class="smallinput" type="text" name="fullName" id="fullName" placeholder="Employee Name" />
+								<input type="button" value="Search" id="search-employee-button" />
 							</span>
 					</div>
 					
-					<table id="events-detail-grid-list">
+					<table id="employee-detail-grid-list">
                 		<tr>
                 			<td />
                 		</tr>
@@ -34,77 +31,81 @@
 		        </div>
 		    </div>
     		<div id="main-wrapper" class="container">
-    		<!-- <div id="centercontent" class="content"> -->
-				<div id="events-detail-grid-list" class="grid-container"></div>
+				<div id="employee-detail-grid-list" class="grid-container"></div>
 				<div style="clear: both;"></div>
 				
-			 <jsp:include page="EventDetail.jsp" /> 
+				<jsp:include page="EmployeeDetail.jsp" />
 				
 				<script type="text/javascript">
 					
 					$(document).ready(function(){
 						
-						 $("#events-detail-grid-list").jqGrid({
-							url : "${returnAllEventsForGrid}",
+						 $("#employee-detail-grid-list").jqGrid({
+							url : "${returnAllEmployeeForGrid}",
 							datatype : "json",
 							mtype : 'POST',
 							width : 1000,
-							height : 100,
-							colNames : [ 'Events Id','Department Name','Event Title', 'Strat Date','End Date','Event Detail'],
-							colModel : [ 
-							      
+							height : 400,
+							colNames : [ 'Full Name','Surname','Father Name','Email','Gender','Moblie No','Employee Id'],
+							colModel : [
 								{
-									name : 'eventsId',
-									index : 'eventsId',
+									name : 'fullName',
+									index : 'fullName',
 									width : 150,
-									hidden : true,
-									key : true
+									editable : false,
 								},
 								{
-							        name : 'departmentName',
-							        index : 'departmentName',
+									name : 'surname',
+									index : 'surname',
+									width : 150,
+									editable : false,
+								},
+								{
+									name : 'fatherName',
+							        index : 'fatherName',
 							        width : 150,
 							        editable : false
 								},
-							    {
-									name : 'eventTitle',
-							    	index : 'eventTitle',
-							    	width : 150,
-							    	editable : false
+								{
+									name : 'email',
+									index : 'email',
+									width : 150
+								}, 
+								{
+									name : 'gender',
+							        index : 'gender',
+							        width : 150,
+							        editable : false,
 								},
 								{
-									name : 'dateof',
-							    	index : 'dateof',
-							    	width : 150,
-							    	editable : false
-								},
-								{
-									name : 'endDate',
-							    	index : 'endDate',
-							    	width : 150,
-							    	editable : false
-								},
-								{
-							        name : 'eventDetail',
-							        index : 'eventDetail',
+									name : 'mobile',
+							        index : 'mobile',
 							        width : 150,
 							        editable : false
-								}],
+								},
+								{
+									name : 'employeeId',
+							        index : 'employeeId',
+							        width : 150,
+							        hidden : true,
+									key : true,
+								}
+								],
 								ondblClickRow: function(rowId) {
-									events_Db_Click(rowId);
+									employee_Db_Click(rowId);
 								},
 							    pager : '#pager',
 							    rowNum : 10,
 							    height: 'auto',
 							    rowList : [ 10,20,30,40 ],
-							    sortname : 'eventTitle', 
+							    sortname : 'fullName',
 							    sortorder : 'asc',
 							    viewrecords : true,
-							    /* gridview : true,
+							    gridview : true,
 							    multiselect: true,
-							    multiboxonly: false, */
-							    caption : 'Events',
-							    jsonReader : {  // copy paste karo but thora dimag bhi lagao samjhe ? g sir :P ok a  bo chalao 
+							    multiboxonly: false,
+							    caption : 'Employee',
+							    jsonReader : {
 							    	repeatitems : false,
 							    }
 							});
@@ -120,9 +121,10 @@
 				            jQuery("#department-detail-grid-list").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true}); */
 							
 
-							$('#search-events-button').on('click',function(){
-								var eventTitle =  $("#eventTitle").val();
-								jQuery("#events-detail-grid-list").jqGrid('setGridParam',{url:"returnAllEventsForGrid?eventTitle="+eventTitle}).trigger("reloadGrid");
+							$('#employee-detail-grid-list').on('click',function(){
+								var fullName =  $("#fullName").val();                             
+								jQuery("#employee-detail-grid-list").jqGrid('setGridParam',{url:"returnAllEmployeeForGrid?fullName="+fullName}).trigger("reloadGrid");
+								
 				         });
 						   
 				  });

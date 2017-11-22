@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class EmployeesCitation  implements java.io.Serializable {
 
 
      private Long empTravelgrandsId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private String title;
      private String url;
      private String authors;
@@ -26,7 +26,7 @@ public class EmployeesCitation  implements java.io.Serializable {
     public EmployeesCitation() {
     }
 
-    public EmployeesCitation(Employee employee, String title, String url, String authors, Date publicationDate, String journal, Long volume, Long issue, String pages, String publisher, String description) {
+    public EmployeesCitation(EmployeeDTO employee, String title, String url, String authors, Date publicationDate, String journal, Long volume, Long issue, String pages, String publisher, String description) {
        this.employee = employee;
        this.title = title;
        this.url = url;
@@ -47,11 +47,11 @@ public class EmployeesCitation  implements java.io.Serializable {
     public void setEmpTravelgrandsId(Long empTravelgrandsId) {
         this.empTravelgrandsId = empTravelgrandsId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public String getTitle() {

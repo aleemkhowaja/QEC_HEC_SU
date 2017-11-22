@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,9 +11,9 @@ public class Promotions  implements java.io.Serializable {
 
 
      private Long promotionsId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private UserDTO user;
-     private Departments departments;
+     private DepartmentsDTO departments;
      private String promotionTitle;
      private Date dateof;
      private String promotionDetail;
@@ -25,18 +25,7 @@ public class Promotions  implements java.io.Serializable {
     public Promotions() {
     }
 
-    public Promotions(Employee employee, UserDTO user, Departments departments, String promotionTitle, Date dateof, String promotionDetail, Byte isDeleted, Date createdAt, String locality, Long awardId) {
-       this.employee = employee;
-       this.user = user;
-       this.departments = departments;
-       this.promotionTitle = promotionTitle;
-       this.dateof = dateof;
-       this.promotionDetail = promotionDetail;
-       this.isDeleted = isDeleted;
-       this.createdAt = createdAt;
-       this.locality = locality;
-       this.awardId = awardId;
-    }
+   
    
     public Long getPromotionsId() {
         return this.promotionsId;
@@ -45,11 +34,11 @@ public class Promotions  implements java.io.Serializable {
     public void setPromotionsId(Long promotionsId) {
         this.promotionsId = promotionsId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public UserDTO getUser() {
@@ -59,11 +48,11 @@ public class Promotions  implements java.io.Serializable {
     public void setUser(UserDTO user) {
         this.user = user;
     }
-    public Departments getDepartments() {
+    public DepartmentsDTO getDepartments() {
         return this.departments;
     }
     
-    public void setDepartments(Departments departments) {
+    public void setDepartments(DepartmentsDTO departments) {
         this.departments = departments;
     }
     public String getPromotionTitle() {

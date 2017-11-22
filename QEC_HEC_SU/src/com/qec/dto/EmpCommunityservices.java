@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class EmpCommunityservices  implements java.io.Serializable {
 
 
      private Long empCommunityservicesId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private String name;
      private Date dateof;
      private String place;
@@ -20,7 +20,7 @@ public class EmpCommunityservices  implements java.io.Serializable {
     public EmpCommunityservices() {
     }
 
-    public EmpCommunityservices(Employee employee, String name, Date dateof, String place, String file) {
+    public EmpCommunityservices(EmployeeDTO employee, String name, Date dateof, String place, String file) {
        this.employee = employee;
        this.name = name;
        this.dateof = dateof;
@@ -35,11 +35,11 @@ public class EmpCommunityservices  implements java.io.Serializable {
     public void setEmpCommunityservicesId(Long empCommunityservicesId) {
         this.empCommunityservicesId = empCommunityservicesId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public String getName() {

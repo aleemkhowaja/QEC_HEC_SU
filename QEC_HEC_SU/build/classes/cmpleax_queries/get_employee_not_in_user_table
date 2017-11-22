@@ -1,0 +1,8 @@
+Session session = getSessionFactory().getCurrentSession();
+		DetachedCriteria userSubquery = DetachedCriteria.forClass(UserModel.class,"um");
+		userSubquery.setProjection(Projections.projectionList().add(Projections.property("um.employeeModel")));
+		userSubquery.add(Restrictions.isNotNull("um.employeeModel"));
+		
+		Criteria criteria = session.createCriteria(EmployeeModel.class,"em");
+		criteria.add(Subqueries.propertyNotIn("em.employeeId", userSubquery));
+		criteria.add(Restrictions.and(Restrictions.eq("em.isDeleted", false)));

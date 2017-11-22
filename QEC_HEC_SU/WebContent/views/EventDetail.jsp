@@ -11,15 +11,14 @@
 			
 				<div class="col-md-8">
                     <form:form servletRelativeAction="${saveEventsDetail}" cssClass="m-t-md ajax-form-login validate-form" method="post" commandName="events" id="events_form" resolveContext="true" resolveMapping="true">
-                       
                     
 						<div class="form-group">
-                    		<form:label path="dateof" >Start Date : </form:label>
-							<form:input path="dateof" cssClass="form-control validate-required" id="events_dateof" placeholder="Start Date"  />
+							<form:label path="dateof" >Start Date : </form:label>
+							<form:input path="dateof" cssClass="form-control validate-required datetimepicker" id="events_dateof" placeholder="Start Date" />
 					    </div>    
 					    <div class="form-group">
                     		<form:label path="endDate" >End Date : </form:label>
-							<form:input path="endDate" cssClass="form-control validate-required" id="events_endDate" placeholder="End Date"  />
+							<form:input path="endDate" cssClass="form-control validate-required datetimepicker" id="events_endDate" placeholder="End Date"  />
 					    </div> 
 					     <div class="form-group">
                     		<form:label path="quota" >Quote : </form:label>
@@ -30,10 +29,10 @@
 							<form:input path="eventTitle" cssClass="form-control validate-required" id="events_eventTitle" placeholder="Event title"  />
 					    </div>                    
                        <div class="form-group">
-	                    <form:label path="departmentsModel" > Selcet Department : </form:label>
-  	 			        <form:select path="departmentsModel" cssClass="form-control validate-required" id="events_departmentId" items="${departmentsModelList}" itemValue="departmentId" itemLabel="name">
-				 	    <form:option  value="---Select Customer---" />
-				 		</form:select>
+		                    <form:label path="departmentsModel" > Selcet Department : </form:label>
+	  	 			        <form:select path="departmentsModel" cssClass="form-control validate-required" id="events_departmentId" items="${departmentsModelList}" itemValue="departmentId" itemLabel="name">
+					 	    	<form:option  value="---Select Customer---" />
+					 		</form:select>
 	                    </div>
                        <div class="form-group">
                     		<form:label path="eventDetail" >Event Detail : </form:label>
@@ -51,4 +50,30 @@
         <div id="pager"></div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var start_date_input=$('input[name="dateof"]'); //our date input has the name "dateof"
+	var end_date_input=$('input[name="endDate"]'); //our date input has the name "end date"
+	
+	var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+	start_date_input.datepicker({
+		dateFormat: "mm-dd-yy",
+		container: container,
+		todayHighlight: true,
+		autoclose: true,
+		orientation : "bottom right"
+	})
+	end_date_input.datepicker({
+		dateFormat: "mm-dd-yy",
+		container: container,
+		todayHighlight: true,
+		autoclose: true,
+		orientation : "bottom right"
+	})
+})
+</script>
+<style>
+	
+</style>
  

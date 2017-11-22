@@ -49,6 +49,9 @@
 	<!-- Smoke Validation -->
 	<link href=" <c:url value="/resources/theme/js/formValidation/css/smoke.min.css" />" rel="stylesheet" type="text/css"/>
 	
+	<!-- bootstrap Date and time picker  -->
+	<link href=" <c:url value="/resources/theme/plugins/bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />" rel="stylesheet" type="text/css"/>
+	
     <!-- Javascripts -->
     <script src="<c:url value="/resources/theme/js/jquery-1.10.2.js" />"></script>
     <script src="<c:url value="/resources/theme/js/jquery-ui.js" />"></script>
@@ -82,18 +85,37 @@
 	<script src="<c:url value="/resources/theme/js/formValidation/js/smoke.min.js" />"></script>
 	
 	<link href="<c:url value="/resources/theme/css/style.css" />" rel="stylesheet" />
-		
-		
+	
+	<!-- Datepicker  -->
+	<!-- bootstrap Date and time picker  -->
+	<script  src="<c:url value="/resources/theme/plugins/bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />" > </script>
+	
+	<script>
+		$( function() {
+	    	$('.datepicker').datepicker({
+	    		dateFormat: 'dd-m-yy',
+	    		showButtonPanel: true,
+	    		changeMonth: true,
+	    		buttonImage: "calendar.gif",
+	    		buttonText: "Calendar"
+	    	});
+	    	
+	    	$(".ui-widget-header").css("background","#1B75A1;");
+		} );
+  	</script>
     <style>
-		.page-content{
+		.page-content 
+		{
 			/*background:url(http://3melements.com/sindhuni/assets/images/sindh_uni_gate.jpg) center -150px no-repeat;*/
 		    background-size:cover;
 		}
-		.page-inner{
+		.page-inner
+		{
 			/*background:rgba(0,0,0,.4);*/
 		    /* background:rgba(27, 117, 161, 0.88) */
 		}
-		.login-box {
+		.login-box 
+		{
 			margin: auto;
 		    background: rgb(27, 117, 161);
 		    border-radius: 3px;
@@ -101,12 +123,15 @@
 		    width: 100%;
 		    max-width: 100%;
 		}
-		.ui-jqgrid-titlebar {
+		.ui-jqgrid-titlebar 
+		 {
 			background: #275064;
 		 }
+		 .ui-datepicker-div ui-widget-header
+		 {
+			background: #1B75A1;
+		 }
     </style>
-    
-    
 </head>
 <label id="validate-required-error" style="display: none;" class="non-readonly" >Field is required.</label>
 <label id="validate-regex-error" style="display: none;" class="non-readonly" >Please Enter Valid Value.</label>

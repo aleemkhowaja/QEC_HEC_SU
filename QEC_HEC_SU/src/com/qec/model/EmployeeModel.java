@@ -28,7 +28,6 @@ import javax.persistence.TemporalType;
 )
 public class EmployeeModel  implements java.io.Serializable {
 
-
      private Long employeeId;
      private DepartmentsModel departmentsModel;
      private String title;
@@ -51,34 +50,7 @@ public class EmployeeModel  implements java.io.Serializable {
      private String imgPath;
      private Boolean isDeleted;
 
-    public EmployeeModel() {
-    }
-
-    public EmployeeModel(DepartmentsModel departmentsModel, String title, String fullName, String surname, String cast, String maritalStatus, String fatherName, String husbandName, String email, String postalAddress, String presentAddress, String nic, Date dob, String gender, String mobile, String phone, String religion, String country, String imgPath, Boolean isDeleted, Set<CitationOtherModel> citationOtherModels, Set<GoogleCitationModel> googleCitationModels, Set<EmpTravelgrandsModel> empTravelgrandses, Set<CitationConferenceModel> citationConferenceModels, Set<EmployeesServicesModel> employeesServiceses, Set<EmpPhdstrategyModel> empPhdstrategyModels, Set<CitationBookModel> citationBookModels, Set<CitationPatentModel> citationPatentModels, Set<EmpTrainingsModel> empTrainingses, Set<EmployeesEducationModel> employeesEducationModels, Set<EmpIndustriallinkagesModel> empIndustriallinkageses, Set<CitationJournalModel> citationJournalModels, Set<EmpCommunityservicesModel> empCommunityserviceses, Set<PromotionsModel> promotionses, Set<CitationThesisModel> citationThesises, Set<CitationChapterModel> citationChapterModels, Set<EmployeesCitationModel> employeesCitationModels, Set<UserModel> userModels) {
-       this.departmentsModel = departmentsModel;
-       this.title = title;
-       this.fullName = fullName;
-       this.surname = surname;
-       this.cast = cast;
-       this.maritalStatus = maritalStatus;
-       this.fatherName = fatherName;
-       this.husbandName = husbandName;
-       this.email = email;
-       this.postalAddress = postalAddress;
-       this.presentAddress = presentAddress;
-       this.nic = nic;
-       this.dob = dob;
-       this.gender = gender;
-       this.mobile = mobile;
-       this.phone = phone;
-       this.religion = religion;
-       this.country = country;
-       this.imgPath = imgPath;
-       this.isDeleted = isDeleted;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="employee_id", unique=true, nullable=false)
     public Long getEmployeeId() {
         return this.employeeId;
@@ -87,7 +59,7 @@ public class EmployeeModel  implements java.io.Serializable {
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="department_id")
     public DepartmentsModel getDepartmentsModel() {
         return this.departmentsModel;

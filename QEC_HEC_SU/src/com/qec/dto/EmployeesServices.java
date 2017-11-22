@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -12,7 +12,7 @@ public class EmployeesServices  implements java.io.Serializable {
 
      private Long employeesServicesId;
      private UniPrograms uniPrograms;
-     private Employee employee;
+     private EmployeeDTO employee;
      private Faculty faculty;
      private DepartmentsDTO departments;
      private String department;
@@ -36,7 +36,7 @@ public class EmployeesServices  implements java.io.Serializable {
         this.faculty = faculty;
         this.empType = empType;
     }
-    public EmployeesServices(UniPrograms uniPrograms, Employee employee, Faculty faculty, DepartmentsDTO departments, String department, String empType, String postHeld, String jobStatus, String natureOfJob, Date postStartDate, Date postEndDate, String jobDuties, String tcategory, String grade, Short scale, Byte currentWorking) {
+    public EmployeesServices(UniPrograms uniPrograms, EmployeeDTO employee, Faculty faculty, DepartmentsDTO departments, String department, String empType, String postHeld, String jobStatus, String natureOfJob, Date postStartDate, Date postEndDate, String jobDuties, String tcategory, String grade, Short scale, Byte currentWorking) {
        this.uniPrograms = uniPrograms;
        this.employee = employee;
        this.faculty = faculty;
@@ -69,11 +69,11 @@ public class EmployeesServices  implements java.io.Serializable {
     public void setUniPrograms(UniPrograms uniPrograms) {
         this.uniPrograms = uniPrograms;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public Faculty getFaculty() {

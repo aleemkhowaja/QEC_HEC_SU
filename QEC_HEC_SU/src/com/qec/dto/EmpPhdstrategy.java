@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class EmpPhdstrategy  implements java.io.Serializable {
 
 
      private Long empPhdstrategyId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private DepartmentsDTO departments;
      private String studentName;
      private String dtype;
@@ -25,7 +25,7 @@ public class EmpPhdstrategy  implements java.io.Serializable {
     public EmpPhdstrategy() {
     }
 
-    public EmpPhdstrategy(Employee employee, DepartmentsDTO departments, String studentName, String dtype, Double noOfStudents, Date startDate, Date regDate, Double rollNo, String file, String topic) {
+    public EmpPhdstrategy(EmployeeDTO employee, DepartmentsDTO departments, String studentName, String dtype, Double noOfStudents, Date startDate, Date regDate, Double rollNo, String file, String topic) {
        this.employee = employee;
        this.departments = departments;
        this.studentName = studentName;
@@ -45,11 +45,11 @@ public class EmpPhdstrategy  implements java.io.Serializable {
     public void setEmpPhdstrategyId(Long empPhdstrategyId) {
         this.empPhdstrategyId = empPhdstrategyId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public DepartmentsDTO getDepartments() {

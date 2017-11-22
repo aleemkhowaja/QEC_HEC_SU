@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class CitationConference  implements java.io.Serializable {
 
 
      private Long citationConference;
-     private Employee employee;
+     private EmployeeDTO employee;
      private UserDTO user;
      private String title;
      private String url;
@@ -30,7 +30,7 @@ public class CitationConference  implements java.io.Serializable {
     public CitationConference() {
     }
 
-    public CitationConference(Employee employee, UserDTO user, String title, String url, String authors, Date publicationDate, String conference, Long volume, Long issue, String pages, String publisher, String description, String impactFactor, String hecRecognize, Double impactFactorValue) {
+    public CitationConference(EmployeeDTO employee, UserDTO user, String title, String url, String authors, Date publicationDate, String conference, Long volume, Long issue, String pages, String publisher, String description, String impactFactor, String hecRecognize, Double impactFactorValue) {
        this.employee = employee;
        this.user = user;
        this.title = title;
@@ -55,11 +55,11 @@ public class CitationConference  implements java.io.Serializable {
     public void setCitationConference(Long citationConference) {
         this.citationConference = citationConference;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public UserDTO getUser() {

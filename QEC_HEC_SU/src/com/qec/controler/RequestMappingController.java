@@ -1,6 +1,8 @@
 package com.qec.controler;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,6 @@ import com.qec.dto.EmployeeDTO;
 import com.qec.dto.EventsDTO;
 import com.qec.dto.UserDTO;
 import com.qec.model.DepartmentsModel;
-import com.qec.model.EventsModel;
 import com.qec.model.UniProgramsModel;
 import com.qec.service.CampusesService;
 import com.qec.service.DepartmentsService;
@@ -61,7 +62,7 @@ public class RequestMappingController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value="/qec/programs/programs.htm", method=RequestMethod.GET)
-	public String getUniProgramsPage(Model model) 
+	public String returnUniProgramsPage(Model model) 
 	{
 		List<DepartmentsDTO> departmentsDTOs = departmentsService.returnAllDepartments();
 		model.addAttribute("uniProgramsData", new UniProgramsModel());
@@ -75,10 +76,18 @@ public class RequestMappingController {
 	 * @return
 	 */
 	@RequestMapping(value="/qec/coordinator/coordinator.htm", method=RequestMethod.GET)
-	public String getCoordinatiorPage(Model model) 
+	public String returnPage(Model model) 
 	{
-		List<DepartmentsDTO> departmentsDTOs = departmentsService.returnAllDepartments();
-		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		List<DepartmentsDTO> departmentsDTOs = new ArrayList<DepartmentsDTO>();
+		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+		try 
+		{
+			employeeDTOs    = employeesService.returnAllEmployeeModels();
+			departmentsDTOs = departmentsService.returnAllDepartments();
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		List<CampusesDTO> campusesDTOs = campusesService.returnAllCampuses();
 		model.addAttribute("user", new UserDTO());
 		model.addAttribute("departmentsList", departmentsDTOs);
@@ -93,13 +102,24 @@ public class RequestMappingController {
 	 * @return
 	 */
 	@RequestMapping(value="/qec/event/event.htm", method=RequestMethod.GET)
-	public String getEventsPage(Model model) 
+	public String returnEventsPage(Model model) 
 	{
 		List<DepartmentsDTO> departmentsModels = departmentsService.returnAllDepartments();
 		model.addAttribute("events", new EventsDTO());
 		model.addAttribute("departmentsModelList", departmentsModels);
 		return "EventList";
-		
+	}
+	
+	/**
+	 * return employee page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/employee/employee.htm", method=RequestMethod.GET)
+	public String returnEmployeePage(Model model) 
+	{
+		model.addAttribute("employee", new EmployeeDTO());
+		return "EmployeeList";
 	}
 
 }

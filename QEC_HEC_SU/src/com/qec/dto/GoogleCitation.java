@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -10,18 +10,13 @@ public class GoogleCitation  implements java.io.Serializable {
 
 
      private Long googleCitationId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private UserDTO user;
      private String url;
 
     public GoogleCitation() {
     }
 
-    public GoogleCitation(Employee employee, UserDTO user, String url) {
-       this.employee = employee;
-       this.user = user;
-       this.url = url;
-    }
    
     public Long getGoogleCitationId() {
         return this.googleCitationId;
@@ -30,11 +25,11 @@ public class GoogleCitation  implements java.io.Serializable {
     public void setGoogleCitationId(Long googleCitationId) {
         this.googleCitationId = googleCitationId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public UserDTO getUser() {

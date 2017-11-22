@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class EmployeesEducation  implements java.io.Serializable {
 
 
      private Long employeesEducationId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private Cities cities;
      private String degreeLevel;
      private String examinationPassed;
@@ -26,7 +26,7 @@ public class EmployeesEducation  implements java.io.Serializable {
     public EmployeesEducation() {
     }
 
-    public EmployeesEducation(Employee employee, Cities cities, String degreeLevel, String examinationPassed, Date resultDate, String university, String otherUniversity, String grade, String subject1, String subject2, String subject3) {
+    public EmployeesEducation(EmployeeDTO employee, Cities cities, String degreeLevel, String examinationPassed, Date resultDate, String university, String otherUniversity, String grade, String subject1, String subject2, String subject3) {
        this.employee = employee;
        this.cities = cities;
        this.degreeLevel = degreeLevel;
@@ -47,11 +47,11 @@ public class EmployeesEducation  implements java.io.Serializable {
     public void setEmployeesEducationId(Long employeesEducationId) {
         this.employeesEducationId = employeesEducationId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public Cities getCities() {

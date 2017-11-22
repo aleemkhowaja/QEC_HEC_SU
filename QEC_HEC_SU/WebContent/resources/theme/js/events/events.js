@@ -9,14 +9,14 @@ function event_Crud()
 		url ='/QEC_HEC_SU/qec/events/save.htm';
 		var eventsData = {};
 		eventsData['departmentId'] = $("#events_departmentId").val();
-		eventsData['eventsId'] =$("#events_eventsId").val()|| null;
+		eventsData['eventsId'] =$("#events_eventsId").val() || null;
 		eventsData['eventTitle'] =$("#events_eventTitle").val();
 		eventsData['dateof'] =$("#events_dateof").val();
 		eventsData['endDate'] = $("#events_endDate").val();
 		eventsData['quota'] = $("#events_quota").val();
 		eventsData['eventDetail'] = $("#events_eventDetail").val();
 		 
-
+		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -51,7 +51,7 @@ function event_Crud()
  */
 function events_Db_Click(rowId)
 {
-	url ='/QEC_HEC_SU/qec/events/getEventsById';
+	url ='/QEC_HEC_SU/qec/events/returnEventByEventId';
 	var rowData = jQuery("#events-detail-grid-list").getRowData(rowId); 
 	var eventsId = rowData['eventsId'];
 	event.preventDefault();

@@ -4,7 +4,8 @@
     <c:url var="returnDepartmentPage" value="/qec/department/department.htm" ></c:url> 
     <c:url var="returnProgramsPage" value="/qec/programs/programs.htm" ></c:url> 
     <c:url var="returnCoordinatorPage" value="/qec/coordinator/coordinator.htm" ></c:url>
-    <c:url var="returnEventPage" value="/qec/event/event.htm" ></c:url> 
+    <c:url var="returnEventPage" value="/qec/event/event.htm" ></c:url>
+    <c:url var="returnEmployeePage" value="/qec/employee/employee.htm" ></c:url> 
     
     <!-- end page urls -->  
     <main class="page-content content-wrap">
@@ -61,20 +62,17 @@
 	                <li><a href="${returnCoordinatorPage}">Coordinator</a></li>
 		        </ul>
        	 	</li>
-       	 	
-       	 		<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Events</p><span class="arrow"></span></a>
+       	 	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Events</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
 	                <li><a href="${returnEventPage}">Event</a></li>
 		        </ul>
        	 	</li>
-
-            <li class=""><a href="http://3melements.com/sindhuni/login_logs"><span class="menu-icon icon-list"></span><p>Login Logs</p></a></li>
-            <li class="droplink "><a href="http://3melements.com/sindhuni/employees"><span class="menu-icon fa fa-user"></span><p>Employees</p><span class="arrow"></span></a>
+			<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Employee</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-    	            <li><a href="http://3melements.com/sindhuni/employees/add">Add Employee</a></li>
-                    <li><a href="http://3melements.com/sindhuni/employees">Employees List</a></li>
-                </ul>
-            </li>
+	                <li><a href="${returnEmployeePage}">Employee</a></li>
+		        </ul>
+       	 	</li>
+            <li class=""><a href="http://3melements.com/sindhuni/login_logs"><span class="menu-icon icon-list"></span><p>Login Logs</p></a></li>
 
             <li class="droplink "><a href="http://3melements.com/sindhuni/research/citations">
 	            <span class="menu-icon fa fa-beer"></span><p>Research</p><span class="arrow"></span></a>

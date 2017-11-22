@@ -61,8 +61,8 @@ public class EventsServiceImpl implements EventsService {
 				eventsDTO.setEventDetail(eventsModel.getEventDetail());
 				eventsDTO.setColor(eventsModel.getColor());
 				eventsDTO.setEventsId(eventsModel.getEventsId());
-				eventsDTO.setEndDate(eventsModel.getEndDate());
-				eventsDTO.setDateof(eventsModel.getDateof());
+				eventsDTO.setEndDate(String.valueOf(eventsModel.getEndDate()));
+				eventsDTO.setDateof(String.valueOf(eventsModel.getDateof()));
 				eventsDTO.setQuota(eventsModel.getQuota());
 				eventsDTOs.add(eventsDTO);
 			}
@@ -98,8 +98,8 @@ public class EventsServiceImpl implements EventsService {
 				
 				eventsModel.setDepartmentsModel(departmentsModel);
 				eventsModel.setEventTitle(eventsDTO.getEventTitle());
-				eventsModel.setDateof(eventsDTO.getDateof());
-				eventsModel.setEndDate(eventsDTO.getEndDate());
+				//eventsModel.setDateof(eventsDTO.getDateof());
+				//eventsModel.setEndDate(eventsDTO.getEndDate());
 				eventsModel.setQuota(eventsDTO.getQuota());
 				eventsModel.setEventDetail(eventsDTO.getEventDetail());
 				eventsModel.setIsDeleted(false);
@@ -112,8 +112,8 @@ public class EventsServiceImpl implements EventsService {
 				eventsModel.setDepartmentsModel(departmentsModel);
 				eventsModel.setEventTitle(eventsDTO.getEventTitle());
 				eventsModel.setEventDetail(eventsDTO.getEventDetail());
-				eventsModel.setDateof(eventsDTO.getDateof());
-				eventsModel.setEndDate(eventsDTO.getEndDate());
+				//eventsModel.setDateof(eventsDTO.getDateof());
+				//eventsModel.setEndDate(eventsDTO.getEndDate());
 				eventsModel.setQuota(eventsDTO.getQuota());
 				genericDAO.update(eventsModel);
 				return "Record Updated Successfully";
@@ -150,8 +150,8 @@ public class EventsServiceImpl implements EventsService {
 		{
 			eventsModel = eventsDAO.returnEventsModelById(eventsId);
 			eventsDTO.setDepartmentId(Long.valueOf(eventsModel.getDepartmentsModel().getDepartmentId()));
-			eventsDTO.setEndDate(eventsModel.getEndDate());;
-			eventsDTO.setDateof(eventsModel.getDateof());
+			eventsDTO.setEndDate(String.valueOf(eventsModel.getEndDate()));
+			eventsDTO.setDateof(String.valueOf(eventsModel.getDateof()));
 			eventsDTO.setEventTitle(eventsModel.getEventTitle());
 			eventsDTO.setQuota(eventsModel.getQuota());
 			eventsDTO.setEventDetail(eventsModel.getEventDetail());

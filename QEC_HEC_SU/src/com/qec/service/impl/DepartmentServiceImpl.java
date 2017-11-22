@@ -29,8 +29,8 @@ public class DepartmentServiceImpl implements DepartmentsService {
 
 	@Transactional
 	@Override
-	public JQGridDTO<DepartmentsModel> returnAllDepartmentsForGrid(HttpServletRequest request) {
-
+	public JQGridDTO<DepartmentsModel> returnAllDepartmentsForGrid(HttpServletRequest request) 
+	{
 		JQGridDTO<DepartmentsModel> jqGridDTO = new JQGridDTO<DepartmentsModel>();
 		List<DepartmentsModel> departmentsModels = new ArrayList<DepartmentsModel>();
 		try {

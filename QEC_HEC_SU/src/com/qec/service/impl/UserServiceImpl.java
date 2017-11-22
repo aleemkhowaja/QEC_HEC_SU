@@ -45,7 +45,8 @@ public class UserServiceImpl implements UsersService  {
 
 	@Override
 	@Transactional
-	public JQGridDTO<UserDTO> returnAllUsersForGrid(HttpServletRequest request) {
+	public JQGridDTO<UserDTO> returnAllUsersForGrid(HttpServletRequest request) 
+	{
 		JQGridDTO<UserDTO> jqGridDTO = new JQGridDTO<UserDTO>();
 		List<UserModel> userModels = new ArrayList<UserModel>();
 		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
@@ -98,8 +99,8 @@ public class UserServiceImpl implements UsersService  {
 	
 	@Override
 	@Transactional
-	public String saveUserModel(UserDTO userDTO) {
-		
+	public String saveUserModel(UserDTO userDTO) 
+	{
 		try 
 		{
 			if(!userDTO.getUsername().equals(userDTO.getOldUsername()))
@@ -165,7 +166,8 @@ public class UserServiceImpl implements UsersService  {
 
 	@Override
 	@Transactional
-	public String deleteUserModel(UserDTO userDTO) {
+	public String deleteUserModel(UserDTO userDTO) 
+	{
 		UserModel userModels = new UserModel();
 		try 
 		{
@@ -185,7 +187,8 @@ public class UserServiceImpl implements UsersService  {
 
 	@Override
 	@Transactional
-	public UserDTO getUserModelById(Long userId) {
+	public UserDTO getUserModelById(Long userId) 
+	{
 		UserModel userModel = new UserModel();
 		UserDTO userDTO = new UserDTO();
 		userDTO.setUserId(userId);
@@ -209,7 +212,8 @@ public class UserServiceImpl implements UsersService  {
 	}
 
 	@Override
-	public List<UserDTO> returnAllUserModel() {
+	public List<UserDTO> returnAllUserModel() 
+	{
 		return null;
 	}
 

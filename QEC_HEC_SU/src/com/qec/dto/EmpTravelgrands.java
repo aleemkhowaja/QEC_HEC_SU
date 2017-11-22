@@ -1,4 +1,4 @@
-package pojos;
+package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
 
 
@@ -11,7 +11,7 @@ public class EmpTravelgrands  implements java.io.Serializable {
 
 
      private Long empTravelgrandsId;
-     private Employee employee;
+     private EmployeeDTO employee;
      private Countries countries;
      private Cities cities;
      private String nature;
@@ -28,7 +28,7 @@ public class EmpTravelgrands  implements java.io.Serializable {
     public EmpTravelgrands() {
     }
 
-    public EmpTravelgrands(Employee employee, Countries countries, Cities cities, String nature, Double amount, Date durationStart, Date durationEnd, String locType, String file, String nameOfProject, String grandType, String fundingAgency, Date approvalDate) {
+    public EmpTravelgrands(EmployeeDTO employee, Countries countries, Cities cities, String nature, Double amount, Date durationStart, Date durationEnd, String locType, String file, String nameOfProject, String grandType, String fundingAgency, Date approvalDate) {
        this.employee = employee;
        this.countries = countries;
        this.cities = cities;
@@ -51,11 +51,11 @@ public class EmpTravelgrands  implements java.io.Serializable {
     public void setEmpTravelgrandsId(Long empTravelgrandsId) {
         this.empTravelgrandsId = empTravelgrandsId;
     }
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return this.employee;
     }
     
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
     public Countries getCountries() {
