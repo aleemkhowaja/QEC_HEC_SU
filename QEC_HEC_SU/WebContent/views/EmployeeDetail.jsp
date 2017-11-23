@@ -13,7 +13,9 @@
                 	
                 	<div class="form-group">
                     	<form:label path="title" >Title * </form:label>
-                    	<form:select path="title" cssClass="form-control validate-required" id="employee_title" items="${employeeTitleList}" >
+                    	<form:select path="title" cssClass="form-control validate-required" id="employee_title" >
+                    		<form:option value="">Select Title</form:option>
+                    		<form:options items="${employeeTitleList}"  />
                     	</form:select>
 					</div>
 	                
@@ -34,7 +36,9 @@
 	               	
 	               	<div class="form-group">
                     	<form:label path="gender" >Gender * </form:label>
-                    	<form:select path="gender" cssClass="form-control validate-required" id="employee_gender" items="${genderList}" >
+                    	<form:select path="gender" cssClass="form-control validate-required" id="employee_gender" >
+                    		<form:option value="">Select Gender</form:option>
+                    		<form:options items="${genderList}"  />
                     	</form:select>
 					</div>
 					
@@ -45,13 +49,15 @@
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="maritalStatus" >Marital status * </form:label>
-						<form:select path="maritalStatus" cssClass="form-control validate-required" id="employee_maritalStatus" items="${maritalStatusList}" >
+						<form:select path="maritalStatus" cssClass="form-control validate-required" id="employee_maritalStatus" >
+							<form:option value="">Select Marital Status</form:option>
+                    		<form:options items="${maritalStatusList}"  />
 						</form:select>
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="dob" >Date of Birth * </form:label>
-						<form:input path="dob" cssClass="form-control" id="employee_date validate-required" placeholder="Date"  />
+						<form:input path="dob" cssClass="form-control validate-required" id="employee_date" placeholder="Date"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
@@ -61,12 +67,12 @@
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="nic" >CNIC * </form:label>
-						<form:input path="nic" cssClass="form-control" id="employee_nic validate-required" placeholder="CNIC"  />
+						<form:input path="nic" cssClass="form-control validate-required" id="employee_nic" placeholder="CNIC"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="mobile" >Mobile No * </form:label>
-						<form:input path="mobile" cssClass="form-control" id="employee_mobile validate-required" placeholder="Mobile No"  />
+						<form:input path="mobile" cssClass="form-control validate-required" id="employee_mobile" placeholder="Mobile No"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
@@ -76,7 +82,9 @@
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="religion" >Religion * </form:label>
-						<form:select path="religion" cssClass="form-control validate-required" id="employee_religion" items="${religionList}" >
+						<form:select path="religion" cssClass="form-control validate-required" id="employee_religion" >
+							<form:option value="">Select Religion</form:option>
+                    		<form:options items="${religionList}"  />
 						</form:select>
 	               	</div>
 	               	

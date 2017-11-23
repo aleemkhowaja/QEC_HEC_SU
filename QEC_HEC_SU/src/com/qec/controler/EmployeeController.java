@@ -2,7 +2,6 @@ package com.qec.controler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.qec.common.JQGridDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.UserDTO;
@@ -62,12 +60,12 @@ public class EmployeeController {
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value="qec/employee/returnCoordinatorById", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value="qec/employee/returnEmployeeById", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public UserDTO  returnCoordinatorById(@RequestParam("userId") Integer userId) 
+	public EmployeeDTO  returnCoordinatorById(@RequestParam("employeeId") Integer employeeId) 
 	{
-		//UserDTO userDTO = usersService.getUserModelById(Long.valueOf(userId)); 
-		return null;
+		EmployeeDTO employeeDTO = employeesService.returnEmployeesById(employeeId); 
+		return employeeDTO;
 	}
 	
 	/**

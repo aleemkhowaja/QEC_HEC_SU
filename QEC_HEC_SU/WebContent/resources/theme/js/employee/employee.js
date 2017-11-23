@@ -26,6 +26,8 @@
 			employeeData['religion'] = $("#employee_religion").val();
 			employeeData['departmentId'] = $("#employee_department").val();
 			employeeData['employeeId'] = $("#employee_employeeId").val();
+			employeeData['dob'] = $("#employee_date").val();
+			
 			employeeData['isDeleted'] = false;
 			
 			event.preventDefault();
@@ -56,7 +58,28 @@
 		return flag;
 	}
 	
-	
+	/**
+	 * get record and set data in form while double click on Grid Row
+	 * @param rowId
+	 */
+	function employee_Db_Click(rowId)
+	{
+		url ='/QEC_HEC_SU/qec/employee/returnEmployeeById';
+		var rowData = jQuery("#employee-detail-grid-list").getRowData(rowId); 
+		var employeeId = rowData['employeeId'];
+		event.preventDefault();
+		$.post(url, {
+			userId : userId,
+		}, function(data) {
+			users_Set_FormData(data);
+			var myElem = document.getElementById('users-delete-btn');
+			if (myElem == null)
+			{
+				$("#users-save-btn").after("<input type='button' id='users-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='users_DeleteUsers() ;'/>");
+			}
+			
+		});
+	}
 	
 	/**
 	 * Clear form after save/Update/Delete 

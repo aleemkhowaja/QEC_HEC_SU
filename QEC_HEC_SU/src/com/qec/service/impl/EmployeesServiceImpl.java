@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qec.common.JQGridDTO;
-import com.qec.common.SecurityUtil;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
@@ -16,11 +15,8 @@ import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
 import com.qec.enums.MaritalStatus;
 import com.qec.enums.Religion;
-import com.qec.enums.Role;
-import com.qec.model.CampusesModel;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
-import com.qec.model.UserModel;
 import com.qec.service.EmployeesService;
 
 @Service
@@ -156,7 +152,6 @@ public class EmployeesServiceImpl implements EmployeesService {
 			    genericDAO.update(employeeModel);
 			    return "Record Updated Successfully";
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -170,9 +165,39 @@ public class EmployeesServiceImpl implements EmployeesService {
 	}
 
 	@Override
-	public EmployeeDTO returnEmployeesById(Integer EmployeesId)
+	
+	public EmployeeDTO returnEmployeesById(Integer employeesId)
 	{
-		return null;
+		EmployeeDTO employeeDTO = new EmployeeDTO();
+		try
+		{
+			if(employeesId != null)
+			{
+				EmployeeModel employeeModel = employeeDAO.returnEmployeesById(Long.valueOf(employeesId));
+				employeeDTO.setEmployeeId(employeeModel.getEmployeeId());
+				employeeDTO.setFullName(employeeModel.getFullName());
+				employeeDTO.setGender(employeeModel.getGender());
+				employeeDTO.setCast(employeeModel.getCast());
+				employeeDTO.setEmail(employeeModel.getEmail());
+				employeeDTO.setFatherName(employeeModel.getFatherName());
+				employeeDTO.setTitle(employeeModel.getTitle());
+				employeeDTO.setSurname(employeeModel.getSurname());
+				employeeDTO.setPostalAddress(employeeModel.getPostalAddress());
+				employeeDTO.setPresentAddress(employeeModel.getPresentAddress());
+				employeeDTO.setReligion(employeeModel.getReligion());
+				employeeDTO.setMaritalStatus(employeeModel.getMaritalStatus());
+				DepartmentsModel departmentsModel = employeeModel.getDepartmentsModel();
+				employeeDTO.setDepartmentName(departmentsModel.getName());
+				employeeDTO.setPhone(employeeModel.getPhone());
+				employeeDTO.setNic(employeeModel.getNic());
+				employeeDTO.setMobile(employeeModel.getMobile());
+			}
+			
+		} catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return employeeDTO;
 	}
 	
 }
