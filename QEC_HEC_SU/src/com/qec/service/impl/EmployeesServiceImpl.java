@@ -7,11 +7,20 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qec.common.JQGridDTO;
+import com.qec.common.SecurityUtil;
+import com.qec.dao.DepartmentDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.EmployeeDTO;
+import com.qec.enums.EmployeeTitle;
+import com.qec.enums.Gender;
+import com.qec.enums.MaritalStatus;
+import com.qec.enums.Religion;
+import com.qec.enums.Role;
+import com.qec.model.CampusesModel;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
+import com.qec.model.UserModel;
 import com.qec.service.EmployeesService;
 
 @Service
@@ -21,11 +30,14 @@ public class EmployeesServiceImpl implements EmployeesService {
 	private EmployeeDAO employeeDAO;
 	
 	@Autowired
+	private DepartmentDAO departmentDAO;
+	
+	@Autowired
 	private GenericDAO genericDAO;
 	
 	@Override
 	@Transactional
-	public JQGridDTO<EmployeeDTO> returnAllEmployeesForGrid(HttpServletRequest request) throws Exception 
+	public JQGridDTO<EmployeeDTO> returnAllEmployeesForGrid(HttpServletRequest request)
 	{
 		JQGridDTO<EmployeeDTO> jqGridDTO = new JQGridDTO<EmployeeDTO>();
 		List<EmployeeModel> employeeModels = new ArrayList<EmployeeModel>();
@@ -91,20 +103,74 @@ public class EmployeesServiceImpl implements EmployeesService {
 	}
 
 	@Override
-	public String saveEmployee(EmployeeDTO employeeDTO) throws Exception 
+	@Transactional
+	public String saveEmployee(EmployeeDTO employeeDTO)
 	{
-		System.out.println("-----------------");
+		try 
+		{
+			EmployeeModel employeeModel = new EmployeeModel();
+			DepartmentsModel departmentsModel = new DepartmentsModel(); 
+			if(employeeDTO.getDepartmentId() != null)
+			{
+				departmentsModel = departmentDAO.returnDepartmentById(Long.valueOf(employeeDTO.getDepartmentId()));
+			}
+			if(employeeDTO.getEmployeeId() == null)
+			{
+				employeeModel.setFullName(employeeDTO.getFullName());
+				employeeModel.setFatherName(employeeDTO.getFatherName());
+				employeeModel.setDob(employeeDTO.getDob());
+				employeeModel.setMaritalStatus(MaritalStatus.getValue(employeeDTO.getMaritalStatus()));
+				employeeModel.setEmail(employeeDTO.getEmail());
+				employeeModel.setHusbandName(employeeDTO.getHusbandName());
+				employeeModel.setMobile(employeeDTO.getMobile());
+				employeeModel.setPhone(employeeDTO.getPhone());
+				employeeModel.setSurname(employeeDTO.getSurname());
+			    employeeModel.setPostalAddress(employeeDTO.getPostalAddress());
+			    employeeModel.setNic(employeeDTO.getNic());
+			    employeeModel.setGender(Gender.getValue(employeeDTO.getGender()));
+			    employeeModel.setTitle(EmployeeTitle.getValue(employeeDTO.getTitle()));
+			    employeeModel.setReligion(Religion.getValue(employeeDTO.getReligion()));
+			    employeeModel.setDepartmentsModel(departmentsModel);
+			    employeeModel.setIsDeleted(employeeDTO.getIsDeleted());
+			    genericDAO.save(employeeModel);
+			    return "Record Inserted Successfully";
+			}
+			else
+			{
+				employeeModel = employeeDAO.returnEmployeesById(Long.valueOf(employeeDTO.getEmployeeId()));
+				employeeModel.setFullName(employeeDTO.getFullName());
+				employeeModel.setFatherName(employeeDTO.getFatherName());
+				employeeModel.setDob(employeeDTO.getDob());
+				employeeModel.setMaritalStatus(MaritalStatus.getValue(employeeDTO.getMaritalStatus()));
+				employeeModel.setEmail(employeeDTO.getEmail());
+				employeeModel.setHusbandName(employeeDTO.getHusbandName());
+				employeeModel.setMobile(employeeDTO.getMobile());
+				employeeModel.setPhone(employeeDTO.getPhone());
+				employeeModel.setSurname(employeeDTO.getSurname());
+			    employeeModel.setPostalAddress(employeeDTO.getPostalAddress());
+			    employeeModel.setNic(employeeDTO.getNic());
+			    employeeModel.setGender(Gender.getValue(employeeDTO.getGender()));
+			    employeeModel.setTitle(EmployeeTitle.getValue(employeeDTO.getTitle()));
+			    employeeModel.setReligion(Religion.getValue(employeeDTO.getReligion()));
+			    employeeModel.setDepartmentsModel(departmentsModel);
+			    genericDAO.update(employeeModel);
+			    return "Record Updated Successfully";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public String deleteDepartment(DepartmentsModel departmentsModel) throws Exception
+	public String deleteDepartment(DepartmentsModel departmentsModel)
 	{
 		return null;
 	}
 
 	@Override
-	public EmployeeDTO returnEmployeesById(Integer EmployeesId) throws Exception
+	public EmployeeDTO returnEmployeesById(Integer EmployeesId)
 	{
 		return null;
 	}

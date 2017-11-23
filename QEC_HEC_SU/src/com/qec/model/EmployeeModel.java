@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 @Table(name="employee"
     ,catalog="qecdb"
 )
-public class EmployeeModel  implements java.io.Serializable {
+public class EmployeeModel extends Model  implements java.io.Serializable {
 
      private Long employeeId;
      private DepartmentsModel departmentsModel;

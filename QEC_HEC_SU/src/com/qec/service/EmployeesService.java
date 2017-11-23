@@ -17,32 +17,32 @@ public interface EmployeesService
 	 * @param request
 	 * @return
 	 */
-    public JQGridDTO<EmployeeDTO> returnAllEmployeesForGrid(HttpServletRequest request) throws Exception ;
+    public JQGridDTO<EmployeeDTO> returnAllEmployeesForGrid(HttpServletRequest request);
     
     /**
      * insert record in Employee table
      * @param employeeDTO
      * @return
      */
-    public String saveEmployee(EmployeeDTO employeeDTO) throws Exception ;
+    public String saveEmployee(EmployeeDTO employeeDTO);
 	
     /**
      * delete record from employee table
      * @param departmentsModel
      * @return
      */
-	public String deleteDepartment(DepartmentsModel departmentsModel) throws Exception ;
+	public String deleteDepartment(DepartmentsModel departmentsModel);
 
 	/**
 	 * return Employee by employee id
 	 * @param EmployeesId
 	 * @return
 	 */
-    public EmployeeDTO returnEmployeesById(Integer EmployeesId) throws Exception ;
+    public EmployeeDTO returnEmployeesById(Integer EmployeesId);
 
     /**
      * return all employee models
      * @return
      */
-    public List<EmployeeDTO> returnAllEmployeeModels() throws Exception ;
+    public List<EmployeeDTO> returnAllEmployeeModels();
 }

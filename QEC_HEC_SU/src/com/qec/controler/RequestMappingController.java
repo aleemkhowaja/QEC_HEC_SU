@@ -16,6 +16,8 @@ import com.qec.dto.EventsDTO;
 import com.qec.dto.UserDTO;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
+import com.qec.enums.MaritalStatus;
+import com.qec.enums.Religion;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.UniProgramsModel;
 import com.qec.service.CampusesService;
@@ -122,12 +124,24 @@ public class RequestMappingController {
 	@RequestMapping(value="/qec/employee/employee.htm", method=RequestMethod.GET)
 	public String returnEmployeePage(Model model) 
 	{
-		EmployeeTitle employeeTitle[]= EmployeeTitle.values();
-		Gender gender[] = Gender.values();
-		
-		model.addAttribute("employee", new EmployeeDTO());
-		model.addAttribute("employeeTitleList",employeeTitle);
-		model.addAttribute("genderList",gender);
+		try 
+		{
+			EmployeeTitle employeeTitle[]= EmployeeTitle.values();
+			Gender gender[] = Gender.values();
+			MaritalStatus maritalStatus[] = MaritalStatus.values();
+			Religion religion[] = Religion.values();
+			List<DepartmentsDTO> departmentsDTOs = departmentsService.returnAllDepartments();
+			
+			model.addAttribute("employee", new EmployeeDTO());
+			model.addAttribute("employeeTitleList",employeeTitle);
+			model.addAttribute("genderList",gender);
+			model.addAttribute("maritalStatusList",maritalStatus);
+			model.addAttribute("religionList", religion);
+			model.addAttribute("departmentList", departmentsDTOs);
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 		return "EmployeeList";
 	}
 

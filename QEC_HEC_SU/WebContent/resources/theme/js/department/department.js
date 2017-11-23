@@ -122,19 +122,7 @@ function department_Clear_FromData()
 	$("#department_departmentId").val("");
 	$("#department_departmentName").val("");
 	$("#department_description").val("");
-	department_Remove_DeleteButton();
-}
-
-/**
- * Remove Delete Button After Delete the Record 
- */
-function department_Remove_DeleteButton() 
-{
-    var elem = document.getElementById('department-delete-btn');
-    if(elem != null)
-    {
-    	elem.parentNode.removeChild(elem);
-        return false;
-    }
+	//remove Delete Button
+	remove_child_Elements('department-delete-btn');
 }
 

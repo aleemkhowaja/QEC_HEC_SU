@@ -19,17 +19,17 @@
 	                
 	                <div class="form-group">
 	                	<form:label  path="fullName" > Full Name * </form:label>
-						<form:input path="fullName" cssClass="form-control" id="employee_fullName" placeholder="Full Name"  />
+						<form:input path="fullName" cssClass="form-control validate-required" id="employee_fullName" placeholder="Full Name"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="surname" > Surname  </form:label>
-						<form:input path="surname" cssClass="form-control" id="employee_surname" placeholder="Surname"  />
+						<form:input path="surname" cssClass="form-control validate-required" id="employee_surname" placeholder="Surname"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="fatherName" > Father Name * </form:label>
-						<form:input path="fatherName" cssClass="form-control" id="employee_fatherName" placeholder="Father Name"  />
+						<form:input path="fatherName" cssClass="form-control validate-required" id="employee_fatherName" placeholder="Father Name"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
@@ -40,7 +40,7 @@
 					
 					<div class="form-group">
 	                	<form:label  path="email" >Email * </form:label>
-						<form:input path="email" cssClass="form-control" id="employee_email" placeholder="Email"  />
+						<form:input path="email" cssClass="form-control validate-required" id="employee_email" placeholder="Email"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
@@ -51,22 +51,22 @@
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="dob" >Date of Birth * </form:label>
-						<form:input path="dob" cssClass="form-control" id="employee_date" placeholder="Date"  />
+						<form:input path="dob" cssClass="form-control" id="employee_date validate-required" placeholder="Date"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="postalAddress" >Postal Address * </form:label>
-						<form:textarea path="postalAddress" cssClass="form-control" id="employee_postalAddress" placeholder="Postal Address"  />
+						<form:textarea path="postalAddress" cssClass="form-control validate-required" id="employee_postalAddress" placeholder="Postal Address"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="nic" >CNIC * </form:label>
-						<form:input path="nic" cssClass="form-control" id="employee_nic" placeholder="CNIC"  />
+						<form:input path="nic" cssClass="form-control" id="employee_nic validate-required" placeholder="CNIC"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="mobile" >Mobile No * </form:label>
-						<form:input path="mobile" cssClass="form-control" id="employee_mobile" placeholder="Mobile No"  />
+						<form:input path="mobile" cssClass="form-control" id="employee_mobile validate-required" placeholder="Mobile No"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
@@ -82,7 +82,7 @@
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="departmentId" >Department * </form:label>
-						<form:select path="departmentId" cssClass="form-control validate-required" id="employee_department" items="${departmentList}" >
+						<form:select path="departmentId" cssClass="form-control validate-required" id="employee_department" itemValue="departmentId" itemLabel="name" items="${departmentList}" >
 						</form:select>
 	               	</div>
 	               	

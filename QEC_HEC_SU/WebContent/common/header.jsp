@@ -90,6 +90,9 @@
 	<!-- bootstrap Date and time picker  -->
 	<script  src="<c:url value="/resources/theme/plugins/bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />" > </script>
 	
+	<!-- common script -->
+	<script src="<c:url value="/resources/theme/js/script.js" />"></script>
+	
 	<script>
 		$( function() {
 	    	$('.datepicker').datepicker({
