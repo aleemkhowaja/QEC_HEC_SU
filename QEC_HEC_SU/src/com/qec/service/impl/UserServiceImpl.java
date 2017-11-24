@@ -2,13 +2,11 @@ package com.qec.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.common.SecurityUtil;
 import com.qec.dao.CampusesDAO;
@@ -142,7 +140,7 @@ public class UserServiceImpl implements UsersService  {
 				userModel.setIsDeleted(userDTO.getIsDeleted());
 				userModel.setRole(Role.Coordinator.getValue());
 				genericDAO.save(userModel);
-				return "Record Inserted Successfully";
+				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
@@ -156,7 +154,7 @@ public class UserServiceImpl implements UsersService  {
 				userModel.setUsername(userDTO.getUsername());
 			 	userModel.setIsActive(userDTO.getIsActive());
 				genericDAO.update(userModel);
-				return "Record Updated Successfully";
+				return CommonConstants.UPLDATE_SUCCESS_MSG;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,7 +174,7 @@ public class UserServiceImpl implements UsersService  {
 				userModels = userDAO.returnUserModelByUserProperties(userDTO);
 				userModels.setIsDeleted(true);
 				genericDAO.update(userModels);
-				return "Record Delete Successfully";
+				return CommonConstants.DELETE_SUCCESS_MSG;
 			}
 			
 		} catch (Exception e) {

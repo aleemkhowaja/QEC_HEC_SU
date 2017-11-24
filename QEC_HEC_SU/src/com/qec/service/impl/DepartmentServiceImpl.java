@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.common.JTableList;
 import com.qec.dao.DepartmentDAO;
@@ -63,12 +64,12 @@ public class DepartmentServiceImpl implements DepartmentsService {
 			if(departmentsModel != null && departmentsModel.getDepartmentId() == null)
 			{
 				genericDAO.save(departmentsModel);
-				return "Record Inserted Successfully";
+				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
 				genericDAO.update(departmentsModel);
-				return "Record Updated Successfully";
+				return CommonConstants.UPLDATE_SUCCESS_MSG;
 			}
 			
 		} catch (Exception e) {
@@ -84,7 +85,7 @@ public class DepartmentServiceImpl implements DepartmentsService {
 		{
 			departmentsModel.setIsDeleted(true);
 			genericDAO.update(departmentsModel);
-			return "Record Deleted Successfully";
+			return CommonConstants.DELETE_SUCCESS_MSG;
 		}
 		catch(Exception e)
 		{

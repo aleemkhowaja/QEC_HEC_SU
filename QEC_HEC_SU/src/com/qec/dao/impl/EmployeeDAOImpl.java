@@ -3,14 +3,17 @@ package com.qec.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 import com.qec.dao.EmployeeDAO;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
+import com.qec.model.UserModel;
 @Repository
 public class EmployeeDAOImpl extends SessionFactoryDAOImp implements EmployeeDAO{
 
@@ -64,7 +67,8 @@ public class EmployeeDAOImpl extends SessionFactoryDAOImp implements EmployeeDAO
 	{
 		// TODO Auto-generated method stub
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(EmployeeModel.class);
+		Criteria criteria = session.createCriteria(EmployeeModel.class, "em");
+		criteria.createAlias("em.departmentsModel", "departmentsModel", JoinType.LEFT_OUTER_JOIN); // inner join by
 		if(employeeId != null )
 		{
 			criteria.add( Restrictions.eqOrIsNull("employeeId", employeeId));

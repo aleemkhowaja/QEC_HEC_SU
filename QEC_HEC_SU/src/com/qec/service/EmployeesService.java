@@ -27,11 +27,11 @@ public interface EmployeesService
     public String saveEmployee(EmployeeDTO employeeDTO);
 	
     /**
-     * delete record from employee table
-     * @param departmentsModel
+     * delete Employee Record
+     * @param employeeDTO
      * @return
      */
-	public String deleteDepartment(DepartmentsModel departmentsModel);
+	public String deleteEmployee(EmployeeDTO employeeDTO);
 
 	/**
 	 * return Employee by employee id

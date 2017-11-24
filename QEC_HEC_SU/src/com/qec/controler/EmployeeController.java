@@ -32,12 +32,7 @@ public class EmployeeController {
 	@ResponseBody
 	public JQGridDTO<EmployeeDTO> returnAllEmployeeForGrid(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) 
 	{
-		JQGridDTO<EmployeeDTO> jqGridDTO = new JQGridDTO<EmployeeDTO>();
-		try {
-			jqGridDTO =  employeesService.returnAllEmployeesForGrid(request);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		JQGridDTO<EmployeeDTO> jqGridDTO =  employeesService.returnAllEmployeesForGrid(request);
 		return jqGridDTO;
 	}
 	
@@ -46,39 +41,34 @@ public class EmployeeController {
 	@ResponseBody
 	public String saveEmployee(@RequestBody EmployeeDTO employeeDTO, HttpServletRequest request) 
 	{
-		String result = "";
-		try {
-			result = employeesService.saveEmployee(employeeDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String result = employeesService.saveEmployee(employeeDTO);
 		return result; 
 	}
 	
 	/**
-	 * return Coordinator by id
+	 * return Employee Record by id
 	 * @param userId
 	 * @return
 	 */
 	@RequestMapping(value="qec/employee/returnEmployeeById", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public EmployeeDTO  returnCoordinatorById(@RequestParam("employeeId") Integer employeeId) 
+	public EmployeeDTO  returnEmployeeById(@RequestParam("employeeId") Integer employeeId) 
 	{
 		EmployeeDTO employeeDTO = employeesService.returnEmployeesById(employeeId); 
 		return employeeDTO;
 	}
 	
 	/**
-	 * delete coordinator by id
+	 * delete Employee Record by id
 	 * @param userDTO
 	 * @return
 	 */
-	@RequestMapping(value="qec/employee/deleteCoordinatorById", method = RequestMethod.POST)
+	@RequestMapping(value="qec/employee/deleteEmployeeById", method = RequestMethod.POST)
 	@ResponseBody
-	public String  deleteCoordinatorById(@RequestBody UserDTO userDTO) 
+	public String  deleteEmployeeById(@RequestBody EmployeeDTO employeeDTO) 
 	{
-	//	String result = usersService.deleteUserModel(userDTO);
-		return null;
+		String result = employeesService.deleteEmployee(employeeDTO);
+		return result;
 	}
 
 }

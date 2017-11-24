@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.qec.common.JTableList;
 import com.qec.model.EmployeeModel;
+import com.qec.model.UserModel;
 
 public interface EmployeeDAO {
 
@@ -41,4 +42,5 @@ public interface EmployeeDAO {
 	  * @return
 	  */
 	 public List<EmployeeModel> returnAllEmployeeModels() throws Exception;
+
 }

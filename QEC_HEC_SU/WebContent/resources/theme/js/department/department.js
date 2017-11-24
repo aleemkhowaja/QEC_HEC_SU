@@ -71,22 +71,17 @@ function department_Db_Click(rowId)
 function department_deleteDeaprtment() 
 {
 	url ='/QEC_HEC_SU/department/deleteDepartmentById';
-	var employeeData = {};
-	employeeData['name'] = $("#department_departmentName").val();
-	employeeData['detail'] = $("#department_description").val();
-	employeeData['departmentId'] = $("#department_departmentId").val();
+	var departmentData = {};
+	departmentData['name'] = $("#department_departmentName").val();
+	departmentData['detail'] = $("#department_description").val();
+	departmentData['departmentId'] = $("#department_departmentId").val();
 	
 	//event.preventDefault();
 	$.ajax({
 		url :url,
 		 type: "POST",
          contentType: "application/json",
-		 data: JSON.stringify(employeeData),
-		 
-         /*beforeSend: function(xhr) {
-             xhr.setRequestHeader("Accept", "application/json");
-             xhr.setRequestHeader("Content-Type", "application/json");
-         },*/
+		 data: JSON.stringify(departmentData),
 		 async:false,
 		 success : function(data) {
 			if(data != undefined) {

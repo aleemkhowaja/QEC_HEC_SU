@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.EventsDAO;
@@ -104,7 +105,7 @@ public class EventsServiceImpl implements EventsService {
 				eventsModel.setEventDetail(eventsDTO.getEventDetail());
 				eventsModel.setIsDeleted(false);
 				genericDAO.save(eventsModel);
-				return "Record Inserted Successfully";
+				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
@@ -116,7 +117,7 @@ public class EventsServiceImpl implements EventsService {
 				//eventsModel.setEndDate(eventsDTO.getEndDate());
 				eventsModel.setQuota(eventsDTO.getQuota());
 				genericDAO.update(eventsModel);
-				return "Record Updated Successfully";
+				return CommonConstants.UPLDATE_SUCCESS_MSG;
 			}
 			
 		} catch (Exception e) {
@@ -177,7 +178,7 @@ public class EventsServiceImpl implements EventsService {
 				eventsModels = eventsDAO.returnEventsModelById(eventsDTO.getEventsId());
 				eventsModels.setIsDeleted(true);
 				genericDAO.update(eventsModels);
-				return "Record Delete Successfully";
+				return CommonConstants.DELETE_SUCCESS_MSG;
 			}
 			
 		} catch (Exception e) {

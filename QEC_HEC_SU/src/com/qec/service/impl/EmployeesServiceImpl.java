@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.EmployeeDAO;
@@ -129,7 +131,7 @@ public class EmployeesServiceImpl implements EmployeesService {
 			    employeeModel.setDepartmentsModel(departmentsModel);
 			    employeeModel.setIsDeleted(employeeDTO.getIsDeleted());
 			    genericDAO.save(employeeModel);
-			    return "Record Inserted Successfully";
+			    return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
@@ -150,7 +152,7 @@ public class EmployeesServiceImpl implements EmployeesService {
 			    employeeModel.setReligion(Religion.getValue(employeeDTO.getReligion()));
 			    employeeModel.setDepartmentsModel(departmentsModel);
 			    genericDAO.update(employeeModel);
-			    return "Record Updated Successfully";
+			    return CommonConstants.UPLDATE_SUCCESS_MSG;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,13 +161,25 @@ public class EmployeesServiceImpl implements EmployeesService {
 	}
 
 	@Override
-	public String deleteDepartment(DepartmentsModel departmentsModel)
+	@Transactional
+	public String deleteEmployee(EmployeeDTO employeeDTO)
 	{
+		try
+		{
+			EmployeeModel employeeModel = employeeDAO.returnEmployeesById(employeeDTO.getEmployeeId());
+			employeeModel.setIsDeleted(true);
+			genericDAO.update(employeeModel);
+			return CommonConstants.DELETE_SUCCESS_MSG;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	
+	@Transactional
 	public EmployeeDTO returnEmployeesById(Integer employeesId)
 	{
 		EmployeeDTO employeeDTO = new EmployeeDTO();
@@ -177,6 +191,7 @@ public class EmployeesServiceImpl implements EmployeesService {
 				employeeDTO.setEmployeeId(employeeModel.getEmployeeId());
 				employeeDTO.setFullName(employeeModel.getFullName());
 				employeeDTO.setGender(employeeModel.getGender());
+				employeeDTO.setDob(employeeModel.getDob());
 				employeeDTO.setCast(employeeModel.getCast());
 				employeeDTO.setEmail(employeeModel.getEmail());
 				employeeDTO.setFatherName(employeeModel.getFatherName());
@@ -187,13 +202,16 @@ public class EmployeesServiceImpl implements EmployeesService {
 				employeeDTO.setReligion(employeeModel.getReligion());
 				employeeDTO.setMaritalStatus(employeeModel.getMaritalStatus());
 				DepartmentsModel departmentsModel = employeeModel.getDepartmentsModel();
-				employeeDTO.setDepartmentName(departmentsModel.getName());
+				if(departmentsModel != null)
+				{
+					employeeDTO.setDepartmentId(Integer.valueOf(departmentsModel.getDepartmentId().toString()));
+				}
 				employeeDTO.setPhone(employeeModel.getPhone());
 				employeeDTO.setNic(employeeModel.getNic());
 				employeeDTO.setMobile(employeeModel.getMobile());
 			}
-			
-		} catch(Exception e)
+		} 
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}

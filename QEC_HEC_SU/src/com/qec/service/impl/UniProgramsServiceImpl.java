@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.dao.DepartmentDAO;
 import com.qec.dao.GenericDAO;
@@ -101,7 +102,7 @@ public class UniProgramsServiceImpl implements UniProgramsService {
 				uniProgramsModel.setCode(uniProgramsDTO.getCode());
 				uniProgramsModel.setIsDeleted(false);
 				genericDAO.save(uniProgramsModel);
-				return "Record Inserted Successfully";
+				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
@@ -110,7 +111,7 @@ public class UniProgramsServiceImpl implements UniProgramsService {
 				uniProgramsModel.setName(uniProgramsDTO.getName());
 				uniProgramsModel.setCode(uniProgramsDTO.getCode());
 				genericDAO.update(uniProgramsModel);
-				return "Record Updated Successfully";
+				return CommonConstants.UPLDATE_SUCCESS_MSG;
 			}
 			
 		} catch (Exception e) {
@@ -151,10 +152,10 @@ public class UniProgramsServiceImpl implements UniProgramsService {
 				uniProgramsModels = uniProgramDAO.returnUniProgramsModelById(uniProgramsDTO.getUniProgramsId());
 				uniProgramsModels.setIsDeleted(true);
 				genericDAO.update(uniProgramsModels);
-				return "Record Delete Successfully";
+				return CommonConstants.DELETE_SUCCESS_MSG;
 			}
-			
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 		return null;
