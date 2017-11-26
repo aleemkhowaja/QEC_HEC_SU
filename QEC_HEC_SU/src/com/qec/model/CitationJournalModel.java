@@ -46,31 +46,8 @@ public class CitationJournalModel  implements java.io.Serializable {
      private Double impactFactorValue;
      private Date dateof;
      private Byte isDeleted;
-
-    public CitationJournalModel() {
-    }
-
-    public CitationJournalModel(EmployeeModel employeeModel, UserModel userModel, String title, String url, String authors, Date publicationDate, String journal, Long volume, Long issue, String pages, String publisher, String description, String impactFactor, String hecRecognize, Double impactFactorValue, Date dateof) {
-       this.employeeModel = employeeModel;
-       this.userModel = userModel;
-       this.title = title;
-       this.url = url;
-       this.authors = authors;
-       this.publicationDate = publicationDate;
-       this.journal = journal;
-       this.volume = volume;
-       this.issue = issue;
-       this.pages = pages;
-       this.publisher = publisher;
-       this.description = description;
-       this.impactFactor = impactFactor;
-       this.hecRecognize = hecRecognize;
-       this.impactFactorValue = impactFactorValue;
-       this.dateof = dateof;
-    }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="citation_journal_id", unique=true, nullable=false)
     public Long getCitationJournalId() {
         return this.citationJournalId;
@@ -79,7 +56,8 @@ public class CitationJournalModel  implements java.io.Serializable {
     public void setCitationJournalId(Long citationJournalId) {
         this.citationJournalId = citationJournalId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
     public EmployeeModel getEmployeeModel() {
         return this.employeeModel;

@@ -22,6 +22,13 @@ public class ChartStringsValueBean extends ChartBean {
 		super();
 		this.value1 = value1;
 	}
+	
+	public ChartStringsValueBean(String value1, Long value8) {
+		super();
+		this.value1 = value1;
+		this.value8 = value8;   
+	}
+	
 	public ChartStringsValueBean(String value1, String value2) {
 		super();
 		this.value1 = value1;

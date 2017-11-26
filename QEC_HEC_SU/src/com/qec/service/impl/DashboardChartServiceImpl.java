@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.qec.dao.DashboardChartsDAO;
 import com.qec.model.CitationConferenceModel;
-import com.qec.model.CitationJournalModel;
+import com.qec.model.chart.ChartBean;
+import com.qec.model.chart.CitationJournalChartModel;
 import com.qec.service.DashboardChartService;
 
 @Service
@@ -56,9 +57,9 @@ public class DashboardChartServiceImpl implements DashboardChartService {
 	
 	@Override
 	@Transactional
-	public List<CitationJournalModel> returnXYResearchPaperByDepartmentInstituteCenter()
+	public List<CitationJournalChartModel> returnXYResearchPaperByDepartmentInstituteCenter()
 	{
-		List<CitationJournalModel> citationJournalModels = null;
+		List<ChartBean> citationJournalModels = null;
 		try
 		{
 			citationJournalModels = dashboardChartsDAO.returnXYResearchPaperByDepartmentInstituteCenter();
@@ -67,7 +68,7 @@ public class DashboardChartServiceImpl implements DashboardChartService {
 		{
 			ex.printStackTrace();
 		}
-		return citationJournalModels;
+		return null;
 	}
 	
 	

@@ -50,7 +50,7 @@ public class EmployeeDAOImpl extends SessionFactoryDAOImp implements EmployeeDAO
 	{
 		//get Session Factory from SessionFactoryDAOImp
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(DepartmentsModel.class);
+		Criteria criteria = session.createCriteria(EmployeeModel.class);
 		
 		if(employeeName != null && !"".equals(employeeName))
 		{

@@ -3,7 +3,7 @@ package com.qec.dao;
 import java.util.List;
 
 import com.qec.model.CitationConferenceModel;
-import com.qec.model.CitationJournalModel;
+import com.qec.model.chart.ChartBean;
 
 public interface DashboardChartsDAO {
 	
@@ -19,7 +19,7 @@ public interface DashboardChartsDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	List<CitationJournalModel> returnXYResearchPaperByDepartmentInstituteCenter() throws Exception;
+	List<ChartBean> returnXYResearchPaperByDepartmentInstituteCenter() throws Exception;
 	
 	
 

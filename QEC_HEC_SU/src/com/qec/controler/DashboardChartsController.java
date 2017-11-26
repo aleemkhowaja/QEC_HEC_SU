@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qec.model.CitationConferenceModel;
-import com.qec.model.CitationJournalModel;
+import com.qec.model.chart.CitationJournalChartModel;
 import com.qec.service.DashboardChartService;
 
 @Controller
@@ -36,6 +36,8 @@ public class DashboardChartsController {
 	@RequestMapping(value="/dashboard/returnImpactFactorByHECForChart", produces = "application/json")
 	@ResponseBody
 	public List<CitationConferenceModel> returnImpactFactorByHECForChart(ModelMap modelMap) {
+		System.out.println("----------------------------------");
+		List<CitationJournalChartModel> citationJournalModels =  dashboardChartService.returnXYResearchPaperByDepartmentInstituteCenter();
 		return dashboardChartService.returnImpactFactorByHec();
 	}
 	//end return impact factor by hec for chart
@@ -47,7 +49,7 @@ public class DashboardChartsController {
 	 */
 	@RequestMapping(value="/dashboard/returnXYResearchPaperByDepartmentInstituteCenter", produces = "application/json")
 	@ResponseBody
-	public List<CitationJournalModel> returnXYResearchPaperByDepartmentInstituteCenter(ModelMap modelMap) {
+	public List<CitationJournalChartModel> returnXYResearchPaperByDepartmentInstituteCenter(ModelMap modelMap) {
 		return dashboardChartService.returnXYResearchPaperByDepartmentInstituteCenter();
 	}
 	//end return impact factor by hec for chart

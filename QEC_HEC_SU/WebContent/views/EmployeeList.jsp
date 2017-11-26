@@ -121,7 +121,7 @@
 				            jQuery("#department-detail-grid-list").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true}); */
 							
 
-							$('#employee-detail-grid-list').on('click',function(){
+							$('#search-employee-button').on('click',function(){
 								var fullName =  $("#fullName").val();                             
 								jQuery("#employee-detail-grid-list").jqGrid('setGridParam',{url:"returnAllEmployeeForGrid?fullName="+fullName}).trigger("reloadGrid");
 								

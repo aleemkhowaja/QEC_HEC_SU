@@ -3,7 +3,7 @@ package com.qec.service;
 import java.util.List;
 
 import com.qec.model.CitationConferenceModel;
-import com.qec.model.CitationJournalModel;
+import com.qec.model.chart.CitationJournalChartModel;
 
 public interface DashboardChartService {
 	
@@ -19,6 +19,6 @@ public interface DashboardChartService {
 	 * @return
 	 * @throws Exception
 	 */
-	List<CitationJournalModel> returnXYResearchPaperByDepartmentInstituteCenter();
+	List<CitationJournalChartModel> returnXYResearchPaperByDepartmentInstituteCenter();
 
 }
