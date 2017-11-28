@@ -1,16 +1,12 @@
 package com.qec.service.impl;
 
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.qec.dao.DashboardChartsDAO;
 import com.qec.model.CitationConferenceModel;
 import com.qec.model.chart.ChartBean;
-import com.qec.model.chart.CitationJournalChartModel;
 import com.qec.service.DashboardChartService;
 
 @Service
@@ -19,25 +15,6 @@ public class DashboardChartServiceImpl implements DashboardChartService {
 	@Autowired
 	private DashboardChartsDAO dashboardChartsDAO;
 	
-	/**
-	 * 
-	 * @return DashboardChartsDAO
-	*/
-	public DashboardChartsDAO getDashboardChartsDAO() 
-	{
-		return dashboardChartsDAO;
-	}
-
-	/**
-	 * 
-	 * @param dashboardChartsDAO
-	*/
-	public void setDashboardChartsDAO(DashboardChartsDAO dashboardChartsDAO) 
-	{
-		this.dashboardChartsDAO = dashboardChartsDAO;
-	}
-
-
 	@Override
 	@Transactional
 	public List<CitationConferenceModel> returnImpactFactorByHec() 
@@ -57,18 +34,34 @@ public class DashboardChartServiceImpl implements DashboardChartService {
 	
 	@Override
 	@Transactional
-	public List<CitationJournalChartModel> returnXYResearchPaperByDepartmentInstituteCenter()
+	public List<ChartBean> returnXYResearchPaperByDepartmentInstituteCenter()
 	{
-		List<ChartBean> citationJournalModels = null;
+		List<ChartBean> xYResearchPapersModels = null;
 		try
 		{
-			citationJournalModels = dashboardChartsDAO.returnXYResearchPaperByDepartmentInstituteCenter();
+			xYResearchPapersModels = dashboardChartsDAO.returnXYResearchPaperByDepartmentInstituteCenter();
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
-		return null;
+		return xYResearchPapersModels;
+	}
+
+	@Override
+	@Transactional
+	public List<ChartBean> returnTravelGrantsByDepartmentInstituteCenter() 
+	{
+		List<ChartBean> travelGrantByDepartment = null;
+		try
+		{
+			travelGrantByDepartment = dashboardChartsDAO.returnTravelGrantsByDepartmentInstituteCenter();
+		}
+		catch(Exception e)
+		{
+		e.printStackTrace();	
+		}
+		return travelGrantByDepartment;
 	}
 	
 	

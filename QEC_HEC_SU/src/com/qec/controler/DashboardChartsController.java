@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qec.model.CitationConferenceModel;
+import com.qec.model.chart.ChartBean;
 import com.qec.model.chart.CitationJournalChartModel;
 import com.qec.service.DashboardChartService;
 
@@ -36,8 +37,6 @@ public class DashboardChartsController {
 	@RequestMapping(value="/dashboard/returnImpactFactorByHECForChart", produces = "application/json")
 	@ResponseBody
 	public List<CitationConferenceModel> returnImpactFactorByHECForChart(ModelMap modelMap) {
-		System.out.println("----------------------------------");
-		List<CitationJournalChartModel> citationJournalModels =  dashboardChartService.returnXYResearchPaperByDepartmentInstituteCenter();
 		return dashboardChartService.returnImpactFactorByHec();
 	}
 	//end return impact factor by hec for chart
@@ -49,10 +48,22 @@ public class DashboardChartsController {
 	 */
 	@RequestMapping(value="/dashboard/returnXYResearchPaperByDepartmentInstituteCenter", produces = "application/json")
 	@ResponseBody
-	public List<CitationJournalChartModel> returnXYResearchPaperByDepartmentInstituteCenter(ModelMap modelMap) {
+	public List<ChartBean> returnXYResearchPaperByDepartmentInstituteCenter(ModelMap modelMap) {
 		return dashboardChartService.returnXYResearchPaperByDepartmentInstituteCenter();
 	}
-	//end return impact factor by hec for chart
+	//end return impact XY Research Papers for chart
+	
+	/**
+	 * return Travel Grants By Department/Institute/Center
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value="/dashboard/returnTravelGrantsByDepartmentInstituteCenter", produces = "application/json")
+	@ResponseBody
+	public List<ChartBean> returnTravelGrantsByDepartmentInstituteCenter(ModelMap modelMap) {
+		return dashboardChartService.returnTravelGrantsByDepartmentInstituteCenter();
+	}
+	//end return travel Grants for chart
 	
 	
 	

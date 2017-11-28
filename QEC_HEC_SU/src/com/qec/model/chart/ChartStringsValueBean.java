@@ -8,9 +8,9 @@ public class ChartStringsValueBean extends ChartBean {
 	private String value5;
 	private String value6;
 	private String value7;
-	
 	private Long value8;
 	private Long value9;
+	private Long value10;
 	
 	public ChartStringsValueBean(Long value8, Long value9) {
 		super();
@@ -23,10 +23,11 @@ public class ChartStringsValueBean extends ChartBean {
 		this.value1 = value1;
 	}
 	
-	public ChartStringsValueBean(String value1, Long value8) {
+	public ChartStringsValueBean(String value1, Long value8, Long value9) {
 		super();
 		this.value1 = value1;
-		this.value8 = value8;   
+		this.value8 = value8;
+		this.value9 = value9;
 	}
 	
 	public ChartStringsValueBean(String value1, String value2) {
@@ -47,7 +48,16 @@ public class ChartStringsValueBean extends ChartBean {
 		this.value1 = value1;
 		this.value2 = value2;
 		this.value3 = value3;
-		this.value4=value4;
+		this.value4 = value4;
+		
+	}
+	
+	public ChartStringsValueBean(String value1, Long value8, Long value9,Long value10) {
+		super();
+		this.value1  = value1;
+		this.value8  = value8;
+		this.value9  = value9;
+		this.value10 = value10;
 		
 	}
 	public ChartStringsValueBean(String value1, String value2, String value3,String value4,String value5) {
@@ -112,6 +122,30 @@ public class ChartStringsValueBean extends ChartBean {
 	}
 	public void setValue7(String value7) {
 		this.value7 = value7;
+	}
+
+	public Long getValue8() {
+		return value8;
+	}
+
+	public void setValue8(Long value8) {
+		this.value8 = value8;
+	}
+
+	public Long getValue9() {
+		return value9;
+	}
+
+	public void setValue9(Long value9) {
+		this.value9 = value9;
+	}
+
+	public Long getValue10() {
+		return value10;
+	}
+
+	public void setValue10(Long value10) {
+		this.value10 = value10;
 	}
 	
 }

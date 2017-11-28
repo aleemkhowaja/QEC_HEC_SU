@@ -3,22 +3,26 @@ package com.qec.service;
 import java.util.List;
 
 import com.qec.model.CitationConferenceModel;
-import com.qec.model.chart.CitationJournalChartModel;
+import com.qec.model.chart.ChartBean;
 
 public interface DashboardChartService {
 	
 	/**
 	 * return Impact factor by hec
 	 * @return
-	 * @throws Exception
 	 */
 	List<CitationConferenceModel> returnImpactFactorByHec();
 	
 	/**
 	 * return XY Research Paper By Department/Institute/Center
 	 * @return
-	 * @throws Exception
 	 */
-	List<CitationJournalChartModel> returnXYResearchPaperByDepartmentInstituteCenter();
+	List<ChartBean> returnXYResearchPaperByDepartmentInstituteCenter();
+	
+	/**
+	 * return Travel Grants By Department/Institute/Center
+	 * @return
+	 */
+	List<ChartBean> returnTravelGrantsByDepartmentInstituteCenter();
 
 }

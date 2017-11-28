@@ -40,27 +40,8 @@ public class EmpTravelgrandsModel  implements java.io.Serializable {
      private String fundingAgency;
      private Date approvalDate;
 
-    public EmpTravelgrandsModel() {
-    }
-
-    public EmpTravelgrandsModel(EmployeeModel employeeModel, CountriesModel countriesModel, CitiesModel citiesModel, String nature, Double amount, Date durationStart, Date durationEnd, String locType, String file, String nameOfProject, String grandType, String fundingAgency, Date approvalDate) {
-       this.employeeModel = employeeModel;
-       this.countriesModel = countriesModel;
-       this.citiesModel = citiesModel;
-       this.nature = nature;
-       this.amount = amount;
-       this.durationStart = durationStart;
-       this.durationEnd = durationEnd;
-       this.locType = locType;
-       this.file = file;
-       this.nameOfProject = nameOfProject;
-       this.grandType = grandType;
-       this.fundingAgency = fundingAgency;
-       this.approvalDate = approvalDate;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+  
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="emp_travelgrands_id", unique=true, nullable=false)
     public Long getEmpTravelgrandsId() {
         return this.empTravelgrandsId;
@@ -69,31 +50,31 @@ public class EmpTravelgrandsModel  implements java.io.Serializable {
     public void setEmpTravelgrandsId(Long empTravelgrandsId) {
         this.empTravelgrandsId = empTravelgrandsId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="countries_id")
-    public CountriesModel getCountries() {
+    public CountriesModel getCountriesModel() {
         return this.countriesModel;
     }
     
-    public void setCountries(CountriesModel countriesModel) {
+    public void setCountriesModel(CountriesModel countriesModel) {
         this.countriesModel = countriesModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cities_id")
-    public CitiesModel getCities() {
+    public CitiesModel getCitiesModel() {
         return this.citiesModel;
     }
     
-    public void setCities(CitiesModel citiesModel) {
+    public void setCitiesModel(CitiesModel citiesModel) {
         this.citiesModel = citiesModel;
     }
     
@@ -186,9 +167,6 @@ public class EmpTravelgrandsModel  implements java.io.Serializable {
     public void setApprovalDate(Date approvalDate) {
         this.approvalDate = approvalDate;
     }
-
-
-
 
 }
 

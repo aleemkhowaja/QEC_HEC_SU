@@ -2,16 +2,11 @@ package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,30 +19,13 @@ import javax.persistence.Table;
 public class CitiesModel  implements java.io.Serializable {
 
 
-     private Long citiesId;
-     private String cityName;
-     private String province;
-     private String abbrivation;
-     private Set<EmpTrainingsModel> empTrainingses = new HashSet<EmpTrainingsModel>(0);
-     private Set<EmpTravelgrandsModel> empTravelgrandses = new HashSet<EmpTravelgrandsModel>(0);
-     private Set<StudentScholarshipsModel> studentScholarshipses = new HashSet<StudentScholarshipsModel>(0);
-     private Set<EmployeesEducationModel> employeesEducationModels = new HashSet<EmployeesEducationModel>(0);
+    private Long citiesId;
+    private String cityName;
+    private String province;
+    private String abbrivation;
 
-    public CitiesModel() {
-    }
-
-    public CitiesModel(String cityName, String province, String abbrivation, Set<EmpTrainingsModel> empTrainingses, Set<EmpTravelgrandsModel> empTravelgrandses, Set<StudentScholarshipsModel> studentScholarshipses, Set<EmployeesEducationModel> employeesEducationModels) {
-       this.cityName = cityName;
-       this.province = province;
-       this.abbrivation = abbrivation;
-       this.empTrainingses = empTrainingses;
-       this.empTravelgrandses = empTravelgrandses;
-       this.studentScholarshipses = studentScholarshipses;
-       this.employeesEducationModels = employeesEducationModels;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+      
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="cities_id", unique=true, nullable=false)
     public Long getCitiesId() {
         return this.citiesId;
@@ -83,42 +61,6 @@ public class CitiesModel  implements java.io.Serializable {
     public void setAbbrivation(String abbrivation) {
         this.abbrivation = abbrivation;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cities")
-    public Set<EmpTrainingsModel> getEmpTrainingses() {
-        return this.empTrainingses;
-    }
-    
-    public void setEmpTrainingses(Set<EmpTrainingsModel> empTrainingses) {
-        this.empTrainingses = empTrainingses;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cities")
-    public Set<EmpTravelgrandsModel> getEmpTravelgrandses() {
-        return this.empTravelgrandses;
-    }
-    
-    public void setEmpTravelgrandses(Set<EmpTravelgrandsModel> empTravelgrandses) {
-        this.empTravelgrandses = empTravelgrandses;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cities")
-    public Set<StudentScholarshipsModel> getStudentScholarshipses() {
-        return this.studentScholarshipses;
-    }
-    
-    public void setStudentScholarshipses(Set<StudentScholarshipsModel> studentScholarshipses) {
-        this.studentScholarshipses = studentScholarshipses;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cities")
-    public Set<EmployeesEducationModel> getEmployeesEducations() {
-        return this.employeesEducationModels;
-    }
-    
-    public void setEmployeesEducations(Set<EmployeesEducationModel> employeesEducationModels) {
-        this.employeesEducationModels = employeesEducationModels;
-    }
-
-
-
-
 }
 
 

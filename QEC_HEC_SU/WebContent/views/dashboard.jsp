@@ -253,7 +253,8 @@
 <div class="cd-overlay"></div>
 
 <script src="<c:url value="/resources/theme/js/qec-charts/monthImpactFactorByHec.js" />"></script>
-
+<script src="<c:url value="/resources/theme/js/qec-charts/travelGrants.js" />"></script>
+<script src="<c:url value="/resources/theme/js/qec-charts/hecXYResearcPapers.js" />"></script>
 <!-- Javascripts -->
 
 
