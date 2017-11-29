@@ -12,6 +12,12 @@ public class ChartStringsValueBean extends ChartBean {
 	private Long value9;
 	private Long value10;
 	
+	public ChartStringsValueBean(String value1, Long value8) {
+		super();
+		this.value1 = value1;
+		this.value8 = value8;
+	}
+	
 	public ChartStringsValueBean(Long value8, Long value9) {
 		super();
 		this.value8 = value8;

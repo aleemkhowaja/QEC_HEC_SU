@@ -49,16 +49,44 @@ public class DashboardChartDAOImpl  extends SessionFactoryDAOImp implements Dash
 	public List<ChartBean> returnTravelGrantsByDepartmentInstituteCenter() throws Exception 
 	{
 		Session session = getSessionFactory().getCurrentSession();
-		StringBuffer hql = new StringBuffer("SELECT new com.qec.model.chart.ChartStringsValueBean(dm.name,count(case etg.locType when 'HEC' then 1 else null end),");
-		hql.append("count(case etg.locType when 'International' then 1 else null end),count(case etg.locType when 'National' then 1 else null end))");
+		StringBuffer hql = new StringBuffer("SELECT new com.qec.model.chart.ChartStringsValueBean(dm.name,count(case when etg.locType='HEC' and etg.grandType='Travel' then 1 else null end),");
+		hql.append("count(case when etg.locType='International' and etg.grandType='Travel' then 1 else null end),count(case when etg.locType='National' and etg.grandType='Travel' then 1 else null end))");
 		hql.append(" FROM EmpTravelgrandsModel etg ");
 		hql.append(" RIGHT OUTER JOIN etg.employeeModel em");
 		hql.append(" RIGHT OUTER JOIN em.departmentsModel dm");
 		hql.append(" group by dm.departmentId");
-		
 		Query query = session.createQuery(hql.toString());
 		List<ChartBean> travelGrantByDepartmentList = query.list();	
 		return travelGrantByDepartmentList;
+	}
+
+	@Override
+	public List<ChartBean> returnResearchFundingByDepartmentInstituteCenter() throws Exception 
+	{
+		Session session = getSessionFactory().getCurrentSession();
+		StringBuffer hql = new StringBuffer("SELECT new com.qec.model.chart.ChartStringsValueBean(dm.name,count(case when etg.locType='HEC' and etg.grandType='Research' then 1 else null end),");
+		hql.append("count(case when etg.locType='International' and etg.grandType='Research' then 1 else null end),count(case when etg.locType='National' and etg.grandType='Research' then 1 else null end))");
+		hql.append(" FROM EmpTravelgrandsModel etg ");
+		hql.append(" RIGHT OUTER JOIN etg.employeeModel em");
+		hql.append(" RIGHT OUTER JOIN em.departmentsModel dm");
+		hql.append(" group by dm.departmentId");
+		Query query = session.createQuery(hql.toString());
+		List<ChartBean> researchFundingGrantByDepartmentList = query.list();	
+		return researchFundingGrantByDepartmentList;
+	}
+
+	@Override
+	public List<ChartBean> returnEmployeeCommunityServicesByDepartmentInstituteCenter() throws Exception 
+	{
+		Session session = getSessionFactory().getCurrentSession();
+		StringBuffer hql = new StringBuffer("SELECT new com.qec.model.chart.ChartStringsValueBean(dm.name,count(em.employeeId))");
+		hql.append(" FROM EmpCommunityservicesModel ecsm ");
+		hql.append(" RIGHT OUTER JOIN ecsm.employeeModel em");
+		hql.append(" RIGHT OUTER JOIN em.departmentsModel dm");
+		hql.append(" group by dm.departmentId");
+		Query query = session.createQuery(hql.toString());
+		List<ChartBean> researchFundingGrantByDepartmentList = query.list();	
+		return researchFundingGrantByDepartmentList;
 	}
 
 }

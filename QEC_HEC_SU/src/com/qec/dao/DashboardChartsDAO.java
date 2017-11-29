@@ -28,6 +28,20 @@ public interface DashboardChartsDAO {
 	 */
 	List<ChartBean> returnTravelGrantsByDepartmentInstituteCenter() throws Exception;
 	
+	/**
+	 * return Research Funding By Department/Institute/Center
+	 * @return
+	 * @throws Exception
+	 */
+	List<ChartBean> returnResearchFundingByDepartmentInstituteCenter() throws Exception;
+	
+	/**
+	 * return return Employee Community Services By Department/Institute/Center
+	 * @return
+	 * @throws Exception
+	 */
+	List<ChartBean> returnEmployeeCommunityServicesByDepartmentInstituteCenter() throws Exception;
+	
 	
 	
 	

@@ -1,7 +1,6 @@
 package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
-
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,41 +24,33 @@ import javax.persistence.TemporalType;
 public class EmpCommunityservicesModel  implements java.io.Serializable {
 
 
-     private Long empCommunityservicesId;
-     private EmployeeModel employeeModel;
-     private String name;
-     private Date dateof;
-     private String place;
-     private String file;
+	private Long empCommunityservicesId;
+    private EmployeeModel employeeModel;
+    private String name;
+    private Date dateof;
+    private String place;
+    private String file;
 
-    public EmpCommunityservicesModel() {
-    }
-
-    public EmpCommunityservicesModel(EmployeeModel employeeModel, String name, Date dateof, String place, String file) {
-       this.employeeModel = employeeModel;
-       this.name = name;
-       this.dateof = dateof;
-       this.place = place;
-       this.file = file;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="emp_communityservices_id", unique=true, nullable=false)
-    public Long getEmpCommunityservicesId() {
+    public Long getEmpCommunityservicesId() 
+    {
         return this.empCommunityservicesId;
     }
     
-    public void setEmpCommunityservicesId(Long empCommunityservicesId) {
+    public void setEmpCommunityservicesId(Long empCommunityservicesId) 
+    {
         this.empCommunityservicesId = empCommunityservicesId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() 
+    {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
     
@@ -98,10 +89,6 @@ public class EmpCommunityservicesModel  implements java.io.Serializable {
     public void setFile(String file) {
         this.file = file;
     }
-
-
-
-
 }
 
 

@@ -1,7 +1,6 @@
 package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
-
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,12 +17,10 @@ import javax.persistence.Table;
 )
 public class CitiesModel  implements java.io.Serializable {
 
-
     private Long citiesId;
     private String cityName;
     private String province;
     private String abbrivation;
-
       
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="cities_id", unique=true, nullable=false)
@@ -62,5 +59,3 @@ public class CitiesModel  implements java.io.Serializable {
         this.abbrivation = abbrivation;
     }
 }
-
-

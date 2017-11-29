@@ -143,7 +143,7 @@
                     <div class="row">
 
                         <div class="col-sm-12">
-                            <div id="femp_travelgrands_new"></div>
+                            <div id="research_funding_grants"></div>
                         </div>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
     <div class="page-footer">
         <div class="container">
             <div class="col-md-10">
-            <p class="no-s txt-white">2017 &copy; Quality Enhancement Cell, University of Sindh Jamshoro Pakistan | Developed by : <a href="http://gexton.com/" style="color:#fff;">Gexton</a></p>
+            <p class="no-s txt-white">2017 &copy; Quality Enhancement Cell, University of Sindh Jamshoro Pakistan</p>
             </div>
             <div class="col-md-2">
                 <a href="http://3melements.com/sindhuni/support" class="btn btn-danger">Support/ Bug Report</a>
@@ -253,8 +253,10 @@
 <div class="cd-overlay"></div>
 
 <script src="<c:url value="/resources/theme/js/qec-charts/monthImpactFactorByHec.js" />"></script>
-<script src="<c:url value="/resources/theme/js/qec-charts/travelGrants.js" />"></script>
-<script src="<c:url value="/resources/theme/js/qec-charts/hecXYResearcPapers.js" />"></script>
+<script src="<c:url value="/resources/theme/js/qec-charts/travelGrantsByDepartments.js" />"></script>
+<script src="<c:url value="/resources/theme/js/qec-charts/hecXYResearcPapersByDepartments.js" />"></script>
+<script src="<c:url value="/resources/theme/js/qec-charts/researchFundingGrantsByDepartments.js" />"></script>
+<script src="<c:url value="/resources/theme/js/qec-charts/employeeCommunityServicesByDepartments.js" />"></script>
 <!-- Javascripts -->
 
 

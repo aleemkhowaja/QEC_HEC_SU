@@ -63,6 +63,39 @@ public class DashboardChartServiceImpl implements DashboardChartService {
 		}
 		return travelGrantByDepartment;
 	}
+
+
+	@Override
+	@Transactional
+	public List<ChartBean> returnResearchFundingByDepartmentInstituteCenter() 
+	{
+		List<ChartBean> researchFundingGrantByDepartment = null;
+		try
+		{
+			researchFundingGrantByDepartment = dashboardChartsDAO.returnResearchFundingByDepartmentInstituteCenter();
+		}
+		catch(Exception e)
+		{
+		e.printStackTrace();	
+		}
+		return researchFundingGrantByDepartment;
+	}
+
+
+	@Override
+	@Transactional
+	public List<ChartBean> returnEmployeeCommunityServicesByDepartmentInstituteCenter() {
+		List<ChartBean> employeeCommunityServicesByDepartment = null;
+		try
+		{
+			employeeCommunityServicesByDepartment = dashboardChartsDAO.returnEmployeeCommunityServicesByDepartmentInstituteCenter();
+		}
+		catch(Exception e)
+		{
+		e.printStackTrace();	
+		}
+		return employeeCommunityServicesByDepartment;
+	}
 	
 	
 
