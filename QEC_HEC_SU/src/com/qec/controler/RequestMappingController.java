@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.qec.dto.CampusesDTO;
 import com.qec.dto.DepartmentsDTO;
@@ -41,11 +43,37 @@ public class RequestMappingController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/login.htm", method=RequestMethod.GET)
-	public String returnIndexPage(Model model) 
+	@RequestMapping(value = "/login.htm", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView returnLoginPage(@RequestParam(value = "error", required = false) String error,
+		@RequestParam(value = "logout", required = false) String logout) 
 	{
-		model.addAttribute("login", new UserDTO());
-		return "LoginPage";
+		ModelAndView model = new ModelAndView();
+		if (error != null) 
+		{
+			model.addObject("error", "Invalid username and password!");
+		}
+
+		if (logout != null) 
+		{
+			model.addObject("msg", "You've been logged out successfully.");
+		}
+		model.addObject("login", new UserDTO());
+		model.setViewName("LoginPage");
+		return model;
+	}
+	
+	
+	/**
+	 * return dashboard Page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="qec/dashboard.htm", method=RequestMethod.GET)
+	public ModelAndView returnDashboardPage() 
+	{
+		ModelAndView model = new ModelAndView();
+		model.setViewName("dashboard");
+		return model;
 	}
 	
 	/**

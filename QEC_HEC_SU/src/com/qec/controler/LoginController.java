@@ -1,4 +1,4 @@
-package com.qec.controler;
+/*package com.qec.controler;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +25,7 @@ public class LoginController {
 		this.loginService = loginService;
 	}
 	
-	/*@RequestMapping(value = { "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("welcomePage");
@@ -77,7 +77,7 @@ public class LoginController {
 		model.addObject("login", new UserDTO());
 		model.setViewName("/LoginPage");
 		return model;
-	}*/
+	}
 	
 	
 	//Login Method
@@ -90,3 +90,4 @@ public class LoginController {
 	}
 	
 }
+*/

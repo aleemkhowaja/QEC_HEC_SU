@@ -1,4 +1,4 @@
-package com.qec.common;
+/*package com.qec.common;
 
 import java.io.IOException;
 
@@ -35,27 +35,27 @@ public class AuthorizationFilter implements Filter {
 			String reqURI = reqt.getRequestURI();
 			// ************************ If User Is Already Login Redirect To
 			// Home Page ************************ //
-			/*if (ses.getAttribute("employee") == null)
+			if (ses.getAttribute("employee") == null)
 			{
 				resp.sendRedirect(reqt.getContextPath() + "/index.jsp");
 			}
-			else*/ 
-			if (reqURI.indexOf("/login.htm") >= 0 && (ses != null && ses.getAttribute("employee") != null))
+			else 
+			if (reqURI.indexOf("/login") >= 0 && (ses != null && ses.getAttribute("employee") != null))
 			{
 				resp.sendRedirect(reqt.getContextPath() + "/views/dashboard.jsp");
 			}
-			else if (reqURI.indexOf("/login.htm") >= 0
+			else if (reqURI.indexOf("/login") >= 0
 					|| (ses != null && ses.getAttribute("employee") != null))
 			{
 				chain.doFilter(request, response);
 			}
 			else
 			{
-				resp.sendRedirect(reqt.getContextPath() + "/login.htm");
+				resp.sendRedirect(reqt.getContextPath() + "/login");
 			}
 			
 		} catch (Exception e) {
-			/*System.out.println(e.getMessage());*/
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -64,3 +64,4 @@ public class AuthorizationFilter implements Filter {
 
 	}
 }
+*/
