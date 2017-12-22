@@ -1,3 +1,5 @@
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -43,10 +45,15 @@
 				<script type="text/javascript">
 					
 					$(document).ready(function(){
-						
-						 $("#department-detail-grid-list").jqGrid({
+						var token = $("meta[name='_csrf']").attr("content");
+					    var header = $("meta[name='_csrf_header']").attr("content");
+						$("#department-detail-grid-list").jqGrid({
 							url : "${returnAllDepartmentForGrid}",
 							datatype : "json",
+							beforeSend: function(xhr) 
+					        {
+								 xhr.setRequestHeader(header, token);
+					        },
 							mtype : 'POST',
 							width : 1000,
 							height : 100,

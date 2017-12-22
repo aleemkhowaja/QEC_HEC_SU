@@ -1,11 +1,16 @@
 $(document).ready(function(){
-
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 	url = '/QEC_HEC_SU/dashboard/returnEmployeeCommunityServiceByDepartmentInstituteCenter';
 	$.ajax({
 		url :url,
 		 type: "POST",
          contentType: "application/json",
 		 async:false,
+		 beforeSend: function(xhr) 
+         {
+			 xhr.setRequestHeader(header, token);
+         },
 		 success : function(data) {
 			 employeeCommunityServicesByDepartment_fill_chart(data);
 		 }
