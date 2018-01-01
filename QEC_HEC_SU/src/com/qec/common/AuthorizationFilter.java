@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class AuthorizationFilter implements Filter {
 
 	public AuthorizationFilter() {
+		System.out.println("------------------------------");
 	}
 
 	@Override
@@ -33,11 +34,12 @@ public class AuthorizationFilter implements Filter {
 			HttpSession ses = reqt.getSession(false);
 
 			String reqURI = reqt.getRequestURI();
+			System.out.println("----------------------------"+ses.getAttribute("employee"));
 			// ************************ If User Is Already Login Redirect To
 			// Home Page ************************ //
 			if (ses.getAttribute("employee") == null)
 			{
-				resp.sendRedirect(reqt.getContextPath() + "/index.jsp");
+				resp.sendRedirect(reqt.getContextPath() + "/login.htm");
 			}
 			else 
 			if (reqURI.indexOf("/login") >= 0 && (ses != null && ses.getAttribute("employee") != null))
@@ -51,7 +53,7 @@ public class AuthorizationFilter implements Filter {
 			}
 			else
 			{
-				resp.sendRedirect(reqt.getContextPath() + "/login");
+				resp.sendRedirect(reqt.getContextPath() + "/login.html");
 			}
 			
 		} catch (Exception e) {

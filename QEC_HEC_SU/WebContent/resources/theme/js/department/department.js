@@ -3,6 +3,8 @@
  */
 	function department_crud()
 	{
+		var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
 		var flag = validateForm();
 		if(flag)
 		{
@@ -23,6 +25,7 @@
 		         beforeSend: function(xhr) {
 		             xhr.setRequestHeader("Accept", "application/json");
 		             xhr.setRequestHeader("Content-Type", "application/json");
+		             xhr.setRequestHeader(header, token);
 		         },
 				 async:false,
 				 success : function(data) {
@@ -47,13 +50,40 @@
  */
 function department_Db_Click(rowId)
 {
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 	url ='/QEC_HEC_SU/department/getDepartmentById';
 	var rowData = jQuery("#department-detail-grid-list").getRowData(rowId); 
 	var departmentId = rowData['departmentId'];
 	event.preventDefault();
-	$.post(url, {
+	$.ajax({
+		url :url,
+		 type: "POST",
+		 async:false,
+		 data:{departmentId : departmentId},
+		 beforeSend: function(xhr) 
+         {
+			 xhr.setRequestHeader(header, token);
+         },
+		 success : function(data) {
+			department_Set_FormData(data);
+			var myElem = document.getElementById('department-delete-btn');
+			if (myElem == null)
+			{
+				$("#department-save-btn").after("<input type='button' id='department-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='department_deleteDeaprtment();'/>");
+			}
+		 }
+	});
+	
+/*	$.post(url,
+	beforeSend: function(xhr) 
+	{
+		xhr.setRequestHeader(header, token);
+	},
+	{
 		departmentId : departmentId,
-	}, function(data) {
+	}
+	 function(data) {
 		department_Set_FormData(data);
 		
 		var myElem = document.getElementById('department-delete-btn');
@@ -62,7 +92,7 @@ function department_Db_Click(rowId)
 			$("#department-save-btn").after("<input type='button' id='department-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='department_deleteDeaprtment();'/>");
 		}
 		
-	});
+	});*/
 }
 
 /**
@@ -70,6 +100,8 @@ function department_Db_Click(rowId)
  */
 function department_deleteDeaprtment() 
 {
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 	url ='/QEC_HEC_SU/department/deleteDepartmentById';
 	var departmentData = {};
 	departmentData['name'] = $("#department_departmentName").val();
@@ -83,6 +115,10 @@ function department_deleteDeaprtment()
          contentType: "application/json",
 		 data: JSON.stringify(departmentData),
 		 async:false,
+		 beforeSend: function(xhr) 
+         {
+			 xhr.setRequestHeader(header, token);
+         },
 		 success : function(data) {
 			if(data != undefined) {
 				

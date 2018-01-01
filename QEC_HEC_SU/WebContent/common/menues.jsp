@@ -1,13 +1,15 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="overlay"></div>
+    
     <!--  start page urls -->
     <c:url var="returnDepartmentPage" value="/qec/department/department.htm" ></c:url> 
     <c:url var="returnProgramsPage" value="/qec/programs/programs.htm" ></c:url> 
     <c:url var="returnCoordinatorPage" value="/qec/coordinator/coordinator.htm" ></c:url>
     <c:url var="returnEventPage" value="/qec/event/event.htm" ></c:url>
     <c:url var="returnEmployeePage" value="/qec/employee/employee.htm" ></c:url> 
-    
+    <c:url var="returnPublicationPage" value="/qec/publication/publication.htm" ></c:url> 
     <!-- end page urls -->  
+    
     <main class="page-content content-wrap">
     	<div class="navbar">
         	<div class="navbar-inner container">
@@ -77,7 +79,7 @@
             <li class="droplink "><a href="http://3melements.com/sindhuni/research/citations">
 	            <span class="menu-icon fa fa-beer"></span><p>Research</p><span class="arrow"></span></a>
     	        <ul class="sub-menu">
-        	        <li><a href="http://3melements.com/sindhuni/research/citations">Publications</a></li> 
+        	        <li><a href="${returnPublicationPage}">Publications</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/training">Training/workShops</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/phdStudents">MPHIL/PHD Students</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/travelGrands">Research/Travel Grants</a></li> 

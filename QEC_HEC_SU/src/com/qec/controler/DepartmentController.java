@@ -23,7 +23,7 @@ public class DepartmentController {
 	private DepartmentsService departmentsService;
 	
 	//start get all department for Grid
-	@RequestMapping(value="/department/returnAllDepartmentsForGrid", produces = "application/json")
+	@RequestMapping(value="qec/department/returnAllDepartmentsForGrid", produces = "application/json")
 	@ResponseBody
 	public JQGridDTO<DepartmentsModel> returnAllDepartmenForGrid(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) {
 		return departmentsService.returnAllDepartmentsForGrid(request);

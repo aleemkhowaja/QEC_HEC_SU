@@ -42,17 +42,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-	    	http.authorizeRequests()
-		    .antMatchers("/qec/dashboard.htm").access("hasRole('admin') or hasRole('coordinator')")
+    	//http.addFilterAfter(new AuthorizationFilter(), BasicAuthenticationFilter.class);
+    	http.authorizeRequests()
+		    .antMatchers("/qec/**").access("hasRole('admin') or hasRole('coordinator')")
+		    .antMatchers("/views/**").access("hasRole('admin') or hasRole('coordinator')")
 			.antMatchers("/login.htm").permitAll()
 			.and()
 			    .formLogin().loginPage("/login.htm").loginProcessingUrl("/login.htm").failureUrl("/login.htm?error")
 			    .defaultSuccessUrl("/qec/dashboard.htm")
 			    .usernameParameter("username").passwordParameter("password")
-			.and()
-			    .logout().logoutSuccessUrl("/login.htm?logout")
-			.and()
-			    .csrf();
+			    .and().logout().logoutSuccessUrl("/login.htm?logout")
+			    .and().csrf();
 	    }
 
 }

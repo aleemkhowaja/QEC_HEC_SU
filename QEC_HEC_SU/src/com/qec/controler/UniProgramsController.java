@@ -28,7 +28,7 @@ public class UniProgramsController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value="/programs/returnAllProgramsForGrid", produces = "application/json")
+	@RequestMapping(value="qec/programs/returnAllProgramsForGrid", produces = "application/json")
 	@ResponseBody
 	public JQGridDTO<UniProgramsDTO> returnAllUniProgramsForGrid(HttpServletRequest request, HttpServletResponse response, 
 			ModelMap modelMap) 

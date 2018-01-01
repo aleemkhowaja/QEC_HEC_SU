@@ -1,10 +1,12 @@
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<!-------------------- crud urls  ---------------------------->
-	<c:url var="returnAllUniProgramsForGrid" value="/programs/returnAllProgramsForGrid" ></c:url>
+	<c:url var="returnAllUniProgramsForGrid" value="/qec/programs/returnAllProgramsForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
 	<jsp:include page="../common/header.jsp" />
 	<script  src="<c:url value="/resources/theme/js/programs/uni-programs.js" />" > </script>
@@ -40,9 +42,16 @@
 				<script type="text/javascript">
 					
 					$(document).ready(function(){
-						
-						 $("#uni-programs-detail-grid-list").jqGrid({
+						var token = $("meta[name='_csrf']").attr("content");
+					    var header = $("meta[name='_csrf_header']").attr("content");
+					 	$("#uni-programs-detail-grid-list").jqGrid({
 							url : "${returnAllUniProgramsForGrid}",
+							loadBeforeSend : function(jqXHR) {
+				                // you should modify the next line to get the CSRF tocken
+				                // in any way (for example $('meta[name=csrf]').attr('content')
+				                // if you have <meta name="csrf" content="abcdefjklmnopqrstuvwxyz="/>)
+				                jqXHR.setRequestHeader(header, token);
+				            },
 							datatype : "json",
 							mtype : 'POST',
 							width : 1000,
@@ -104,7 +113,9 @@
 
 							$('#search-program-button').on('click',function(){
 								var uniProgramName =  $("#uniProgramsName").val();
-								jQuery("#uni-programs-detail-grid-list").jqGrid('setGridParam',{url:"/programs/returnAllUniProgramsForGrid?uniProgramName="+uniProgramName}).trigger("reloadGrid");
+								jQuery("#uni-programs-detail-grid-list").jqGrid('setGridParam',{
+									url:"returnAllProgramsForGrid?uniProgramName="+uniProgramName
+								}).trigger("reloadGrid");
 				         });
 						   
 				  });

@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	
 	<!-------------------- crud urls  ---------------------------->
-	<c:url var="returnAllDepartmentForGrid" value="/department/returnAllDepartmentsForGrid/" ></c:url>
+	<c:url var="returnAllDepartmentForGrid" value="/qec/department/returnAllDepartmentsForGrid/" ></c:url>
 	<!-- ------------------------------------------------------ -->
 	<jsp:include page="../common/header.jsp" />
 	<script  src="<c:url value="/resources/theme/js/department/department.js" />" > </script>
@@ -47,13 +47,16 @@
 					$(document).ready(function(){
 						var token = $("meta[name='_csrf']").attr("content");
 					    var header = $("meta[name='_csrf_header']").attr("content");
+					    
 						$("#department-detail-grid-list").jqGrid({
 							url : "${returnAllDepartmentForGrid}",
+							loadBeforeSend : function(jqXHR) {
+				                // you should modify the next line to get the CSRF tocken
+				                // in any way (for example $('meta[name=csrf]').attr('content')
+				                // if you have <meta name="csrf" content="abcdefjklmnopqrstuvwxyz="/>)
+				                jqXHR.setRequestHeader(header, token);
+				            },
 							datatype : "json",
-							beforeSend: function(xhr) 
-					        {
-								 xhr.setRequestHeader(header, token);
-					        },
 							mtype : 'POST',
 							width : 1000,
 							height : 100,
@@ -81,6 +84,14 @@
 								ondblClickRow: function(rowId) {
 									department_Db_Click(rowId);
 								},
+								ajaxEditOptions: {
+						            beforeSend: function(jqXHR) {
+						                // you should modify the next line to get the CSRF tocken
+						                // in any way (for example $('meta[name=csrf]').attr('content')
+						                // if you have <meta name="csrf" content="abcdefjklmnopqrstuvwxyz="/>)
+						                jqXHR.setRequestHeader(header, token);
+						            }
+						        },
 							    pager : '#pager',
 							    rowNum : 10,
 							    height: 'auto',
@@ -110,7 +121,11 @@
 
 							$('#search-department-button').on('click',function(){
 								var departmentName =  $("#departmentName").val();
-								jQuery("#department-detail-grid-list").jqGrid('setGridParam',{url:"returnAllDepartmentsForGrid?departmentName="+departmentName}).trigger("reloadGrid");
+								jQuery("#department-detail-grid-list").jqGrid('setGridParam',
+										{
+											url:"returnAllDepartmentsForGrid?departmentName="+departmentName
+										}
+								).trigger("reloadGrid");
 				         });
 						   
 				  });
@@ -129,6 +144,6 @@
                 <a href="http://3melements.com/sindhuni/support" class="btn btn-danger">Support/ Bug Report</a>
             </div>
         </div>
-    </div></div>
+    </div>
 	</body>
 </html>

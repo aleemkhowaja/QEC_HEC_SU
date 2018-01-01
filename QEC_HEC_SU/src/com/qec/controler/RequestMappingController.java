@@ -172,5 +172,16 @@ public class RequestMappingController {
 		}
 		return "EmployeeList";
 	}
+	
+	/**
+	 * return publication page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/publication.htm", method=RequestMethod.GET)
+	public String returnPublicationPage(Model model) 
+	{
+		return "PublicationsList";
+	}
 
 }
