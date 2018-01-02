@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qec.dto.CampusesDTO;
+import com.qec.dto.CitationJournalDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.EventsDTO;
 import com.qec.dto.UserDTO;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
+import com.qec.enums.HECRecognize;
+import com.qec.enums.ImpactFactor;
 import com.qec.enums.MaritalStatus;
 import com.qec.enums.Religion;
 import com.qec.model.DepartmentsModel;
@@ -114,15 +117,15 @@ public class RequestMappingController {
 		List<DepartmentsDTO> departmentsDTOs = new ArrayList<DepartmentsDTO>();
 		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
 		List<CampusesDTO> campusesDTOs = new ArrayList<CampusesDTO>();
-		try 
-		{
+		/*try 
+		{*/
 			employeeDTOs    = employeesService.returnAllEmployeeModels();
 			departmentsDTOs = departmentsService.returnAllDepartments();
 			campusesDTOs    = campusesService.returnAllCampuses();
-		} catch (Exception e) 
+		/*} catch (Exception e) 
 		{
 			e.printStackTrace();
-		}
+		}*/
 		model.addAttribute("user", new UserDTO());
 		model.addAttribute("departmentsList", departmentsDTOs);
 		model.addAttribute("employeeList", employeeDTOs);
@@ -152,8 +155,8 @@ public class RequestMappingController {
 	@RequestMapping(value="/qec/employee/employee.htm", method=RequestMethod.GET)
 	public String returnEmployeePage(Model model) 
 	{
-		try 
-		{
+		/*try 
+		{*/
 			EmployeeTitle employeeTitle[]= EmployeeTitle.values();
 			Gender gender[] = Gender.values();
 			MaritalStatus maritalStatus[] = MaritalStatus.values();
@@ -166,10 +169,10 @@ public class RequestMappingController {
 			model.addAttribute("maritalStatusList",maritalStatus);
 			model.addAttribute("religionList", religion);
 			model.addAttribute("departmentList", departmentsDTOs);
-		} catch (Exception e) 
+		/*} catch (Exception e) 
 		{
 			e.printStackTrace();
-		}
+		}*/
 		return "EmployeeList";
 	}
 	
@@ -181,6 +184,14 @@ public class RequestMappingController {
 	@RequestMapping(value="/qec/publication/publication.htm", method=RequestMethod.GET)
 	public String returnPublicationPage(Model model) 
 	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		ImpactFactor impactFactors[] = ImpactFactor.values();
+		HECRecognize hecRecognize[] = HECRecognize.values();
+		
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("impactFactorList", impactFactors);
+		model.addAttribute("hecRecognizeList", hecRecognize);
+		model.addAttribute("journal", new CitationJournalDTO());
 		return "PublicationsList";
 	}
 

@@ -40,19 +40,19 @@
 						</ul>
 						<div id="journalTab">
 						</div>
-						<div id="#ConferenceTab">
+						<div id="ConferenceTab">
 						</div>
-						<div id="#ChapterTab">
+						<div id="ChapterTab">
 						</div>
-						<div id="#BookTab">
+						<div id="BookTab">
 						</div>
-						<div id="#ThesisTab">
+						<div id="ThesisTab">
 						</div>
-						<div id="#PatentTab">
+						<div id="PatentTab">
 						</div>
-						<div id="#GoogleTab">
+						<div id="GoogleTab">
 						</div>
-						<div id="#OtherTab">
+						<div id="OtherTab">
 						</div>
 					</div>
         			<div id="pager"></div>
@@ -69,8 +69,8 @@
 					$(document).ready(function(){
 						
 						$("#tabs").tabs();
-						$("#tab1").html("<h1>  Hello Tab1</h1>");
-						$("#tab2").html("<h1> Hello Tab2</h1>");
+						$("#journalTab").load("JournalDetail.jsp");
+						$("#ConferenceTab").html("<h1> Hello Tab2</h1>");
 				  	});
 				</script>
     	</div><!-- Row -->
