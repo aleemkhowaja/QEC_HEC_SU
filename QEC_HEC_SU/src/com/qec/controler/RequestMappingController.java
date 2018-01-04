@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qec.dto.CampusesDTO;
+import com.qec.dto.CitationConferenceDTO;
 import com.qec.dto.CitationJournalDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
@@ -193,6 +194,44 @@ public class RequestMappingController {
 		model.addAttribute("hecRecognizeList", hecRecognize);
 		model.addAttribute("journal", new CitationJournalDTO());
 		return "PublicationsList";
+	}
+	
+	/**
+	 * return Journal page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/journal.htm", method=RequestMethod.GET)
+	public ModelAndView returnJournalDetailsPage(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		ImpactFactor impactFactors[] = ImpactFactor.values();
+		HECRecognize hecRecognize[] = HECRecognize.values();
+		
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("impactFactorList", impactFactors);
+		model.addAttribute("hecRecognizeList", hecRecognize);
+		model.addAttribute("journal", new CitationJournalDTO());
+		return new ModelAndView( "CitationJournalDetail" );
+	}
+	
+	/**
+	 * return Conference page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/conference.htm", method=RequestMethod.GET)
+	public ModelAndView returnCitationDetailsPage(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		ImpactFactor impactFactors[] = ImpactFactor.values();
+		HECRecognize hecRecognize[] = HECRecognize.values();
+		
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("impactFactorList", impactFactors);
+		model.addAttribute("hecRecognizeList", hecRecognize);
+		model.addAttribute("conference", new CitationConferenceDTO());
+		return new ModelAndView("CitationConferenceDetail");
 	}
 
 }

@@ -5,7 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 	
 	<!-------------------- crud urls  ---------------------------->
@@ -58,32 +57,29 @@
         			<div id="pager"></div>
 		        </div>
 		   </div>
-    		<div id="main-wrapper" class="container">
-    		<!-- <div id="centercontent" class="content"> -->
-				<div id="department-detail-grid" class="grid-container"></div>
-				<div style="clear: both;"></div>
-				
-				<%-- <jsp:include page="DepartmentDetail.jsp" /> --%>
-				
-				<script type="text/javascript">
-					$(document).ready(function(){
-						
-						$("#tabs").tabs();
-						$("#journalTab").load("JournalDetail.jsp");
-						$("#ConferenceTab").html("<h1> Hello Tab2</h1>");
-				  	});
-				</script>
-    	</div><!-- Row -->
-    </div><!-- Main Wrapper -->
-    <div class="page-footer">
-        <div class="container">
-            <div class="col-md-10">
-            <p class="no-s txt-white">2017 &copy; Quality Enhancement Cell, University of Sindh Jamshoro Pakistan | Developed by : <a href="http://gexton.com/" style="color:#fff;">Gexton</a></p>
-            </div>
-            <div class="col-md-2">
-                <a href="http://3melements.com/sindhuni/support" class="btn btn-danger">Support/ Bug Report</a>
-            </div>
-        </div>
-    </div>
+		   <script src="<c:url value="/resources/theme/js/publications/citationJournal.js" />"></script>
+		   <script src="<c:url value="/resources/theme/js/publications/citationConference.js" />"></script>
+		   
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#tabs").tabs();
+					var journalResponse = citationJournal_returnCitationJournalPage();
+					var conferenceResponse = citationConference_returnCitationConferencePage();
+					
+					$("#journalTab").html(journalResponse);
+					$("#ConferenceTab").html(conferenceResponse);
+				});
+			</script>
+    	</div><!-- Main Wrapper -->
+    	<div class="page-footer">
+        	<div class="container">
+	            <div class="col-md-10">
+	            <p class="no-s txt-white">2017 &copy; Quality Enhancement Cell, University of Sindh Jamshoro Pakistan | Developed by : <a href="http://gexton.com/" style="color:#fff;">Gexton</a></p>
+	            </div>
+	            <div class="col-md-2">
+	                <a href="http://3melements.com/sindhuni/support" class="btn btn-danger">Support/ Bug Report</a>
+	            </div>
+       	 	</div>
+    	</div>
 	</body>
 </html>

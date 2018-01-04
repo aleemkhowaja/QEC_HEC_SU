@@ -14,6 +14,7 @@ import com.qec.model.UserModel;
 public class CitationJournalDTO  implements java.io.Serializable {
 	
 	private Long citationJournalId;
+	private Integer employeeId;
     private EmployeeDTO employeeDTO;
     private UserModel userModel;
     private String title;
@@ -38,6 +39,12 @@ public class CitationJournalDTO  implements java.io.Serializable {
 	}
 	public void setCitationJournalId(Long citationJournalId) {
 		this.citationJournalId = citationJournalId;
+	}
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
 	}
 	public EmployeeDTO getEmployeeDTO() {
 		return employeeDTO;

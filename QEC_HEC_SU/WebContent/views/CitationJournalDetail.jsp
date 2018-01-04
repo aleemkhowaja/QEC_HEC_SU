@@ -16,8 +16,8 @@
                     <form:form servletRelativeAction="${saveCoordinator}" cssClass="m-t-md ajax-form-login validate-form" method="post" commandName="journal" id="journal_form" resolveContext="true" resolveMapping="true">
                    					    
 	                    <div  class="form-group">
-	                   		<form:label path="employeeModel" > Select Employee * </form:label>
-  	 			       		<form:select path="employeeModel" cssClass="form-control validate-required" id="users_employeeId" items="${employeeList}" itemValue="employeeId" itemLabel="fullName">
+	                   		<form:label path="employeeId" > Select Employee * </form:label>
+  	 			       		<form:select path="employeeId" cssClass="form-control validate-required" id="users_employeeId" items="${employeeList}" itemValue="employeeId" itemLabel="fullName">
 				 			</form:select>
 	                    </div>
 	                    
@@ -93,12 +93,8 @@
 	                                        
                         <button id="users-save-btn" type="submit" class="btn" onclick="return coordinator_Crud();" >Save</button>
                         <!-- Hidden fields -->
-                         <form:hidden path="userId" id="users_userId" />
-<%--                         <form:hidden path="departmentsModel" id="users_departmentId" /> --%>
-                        <form:hidden path="isActive" id="users_isActive" /> 
-                        <form:hidden path="employeeModel" id="users_employeeId" />
-                        <form:hidden path="oldUsername" id="users_oldUsername"/>
-                        <%-- <form:hidden path="campusId" id="users_campusId" />   --%>
+                         <form:hidden path="citationJournalId" id="journal_citationJournalId" />
+                        <form:hidden path="isDeleted" id="journal_isDeleted" /> 
                    </form:form>
                 </div>
 		</div>
