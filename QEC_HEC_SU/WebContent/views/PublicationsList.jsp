@@ -39,19 +39,19 @@
 						</ul>
 						<div id="journalTab">
 						</div>
-						<div id="ConferenceTab">
+						<div id="conferenceTab">
 						</div>
-						<div id="ChapterTab">
+						<div id="chapterTab">
 						</div>
-						<div id="BookTab">
+						<div id="bookTab">
 						</div>
-						<div id="ThesisTab">
+						<div id="thesisTab">
 						</div>
-						<div id="PatentTab">
+						<div id="patentTab">
 						</div>
-						<div id="GoogleTab">
+						<div id="googleTab">
 						</div>
-						<div id="OtherTab">
+						<div id="otherTab">
 						</div>
 					</div>
         			<div id="pager"></div>
@@ -59,15 +59,27 @@
 		   </div>
 		   <script src="<c:url value="/resources/theme/js/publications/citationJournal.js" />"></script>
 		   <script src="<c:url value="/resources/theme/js/publications/citationConference.js" />"></script>
+		   <script src="<c:url value="/resources/theme/js/publications/citationChapter.js" />"></script>
+		   <script src="<c:url value="/resources/theme/js/publications/citationBook.js" />"></script>
+		   <script src="<c:url value="/resources/theme/js/publications/citationThesis.js" />"></script>
+		   <script src="<c:url value="/resources/theme/js/publications/citationPatent.js" />"></script>
 		   
 			<script type="text/javascript">
 				$(document).ready(function(){
 					$("#tabs").tabs();
 					var journalResponse = citationJournal_returnCitationJournalPage();
 					var conferenceResponse = citationConference_returnCitationConferencePage();
+					var chapterResponse = citationChapter_returnCitationChapterPage();
+					var bookResponse = citationBook_returnCitationBookPage();
+					var thesisResponse = citationThesis_returnCitationThesisPage();
+					var patentResponse = citationPatent_returnCitationPatentPage();
 					
 					$("#journalTab").html(journalResponse);
-					$("#ConferenceTab").html(conferenceResponse);
+					$("#conferenceTab").html(conferenceResponse);
+					$("#chapterTab").html(chapterResponse);
+					$("#bookTab").html(bookResponse);
+					$("#thesisTab").html(thesisResponse);
+					$("#patentTab").html(patentResponse);
 				});
 			</script>
     	</div><!-- Main Wrapper -->

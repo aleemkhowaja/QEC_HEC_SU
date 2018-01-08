@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qec.dto.CampusesDTO;
+import com.qec.dto.CitationBookDTO;
+import com.qec.dto.CitationChapterDTO;
 import com.qec.dto.CitationConferenceDTO;
 import com.qec.dto.CitationJournalDTO;
+import com.qec.dto.CitationPatentDTO;
+import com.qec.dto.CitationThesisDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.EventsDTO;
@@ -221,7 +225,7 @@ public class RequestMappingController {
 	 * @return
 	 */
 	@RequestMapping(value="/qec/publication/conference.htm", method=RequestMethod.GET)
-	public ModelAndView returnCitationDetailsPage(Model model) 
+	public ModelAndView returnConferenceDetailsPage(Model model) 
 	{
 		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
 		ImpactFactor impactFactors[] = ImpactFactor.values();
@@ -232,6 +236,62 @@ public class RequestMappingController {
 		model.addAttribute("hecRecognizeList", hecRecognize);
 		model.addAttribute("conference", new CitationConferenceDTO());
 		return new ModelAndView("CitationConferenceDetail");
+	}
+	
+	/**
+	 * return Chapter page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/chapter.htm", method=RequestMethod.GET)
+	public ModelAndView returnChapterDetailsPage(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("chapter", new CitationChapterDTO());
+		return new ModelAndView("CitationChapterDetail");
+	}
+	
+	/**
+	 * return Book page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/book.htm", method=RequestMethod.GET)
+	public ModelAndView returnBookDetailsPage(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("book", new CitationBookDTO());
+		return new ModelAndView("CitationBookDetail");
+	}
+	
+	/**
+	 * return Thesis page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/thesis.htm", method=RequestMethod.GET)
+	public ModelAndView returnThesisDetailsPage(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("thesis", new CitationThesisDTO());
+		return new ModelAndView("CitationThesisDetail");
+	}
+	
+	/**
+	 * return Patent page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/patent.htm", method=RequestMethod.GET)
+	public ModelAndView returnPatentDetailsPage(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("patent", new CitationPatentDTO());
+		return new ModelAndView("CitationPatentDetail");
 	}
 
 }
