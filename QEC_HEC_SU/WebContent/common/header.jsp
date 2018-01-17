@@ -134,6 +134,10 @@
 		 {
 			background: #1B75A1;
 		 }
+		 .ui-jqgrid ui-widget ui-widget-content ui-corner-all
+		 {
+		 	margin-left: 0%
+		 }
     </style>
 </head>
 <label id="validate-required-error" style="display: none;" class="non-readonly" >Field is required.</label>

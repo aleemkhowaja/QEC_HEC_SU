@@ -1,10 +1,36 @@
 package com.qec.service;
 import javax.servlet.http.HttpServletRequest;
+import com.qec.common.JQGridDTO;
+import com.qec.dto.CitationJournalDTO;
 import com.qec.model.CitationJournalModel;
-import com.qec.common.JTableList;
 public interface CitationJournalService
 {
-    public JTableList<CitationJournalModel> returnAllCitationJournalForGrid(HttpServletRequest request);
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+    public JQGridDTO<CitationJournalDTO> returnAllCitationJournalForGrid(HttpServletRequest request);
 
+    /**
+     * 
+     * @param CitationJournalId
+     * @return
+     */
     public CitationJournalModel returnCitationJournalById(Integer CitationJournalId);
+    
+    /**
+     * 
+     * @param citationJournalModel
+     * @return
+     */
+    public String saveCitationJournal(CitationJournalModel citationJournalModel);
+	
+    /**
+     * 
+     * @param citationJournalModel
+     * @return
+     */
+	public String deleteCitationJournal(CitationJournalModel citationJournalModel);
+	
 }

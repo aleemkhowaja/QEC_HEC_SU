@@ -21,6 +21,7 @@ import com.qec.dto.CitationThesisDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.EventsDTO;
+import com.qec.dto.GoogleCitationDTO;
 import com.qec.dto.UserDTO;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
@@ -216,7 +217,7 @@ public class RequestMappingController {
 		model.addAttribute("impactFactorList", impactFactors);
 		model.addAttribute("hecRecognizeList", hecRecognize);
 		model.addAttribute("journal", new CitationJournalDTO());
-		return new ModelAndView( "CitationJournalDetail" );
+		return new ModelAndView( "CitationJournalList" );
 	}
 	
 	/**
@@ -293,5 +294,19 @@ public class RequestMappingController {
 		model.addAttribute("patent", new CitationPatentDTO());
 		return new ModelAndView("CitationPatentDetail");
 	}
-
+	
+	/**
+	 * return Google page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/publication/google.htm", method=RequestMethod.GET)
+	public ModelAndView returnGoogleDetailsPage(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("google", new GoogleCitationDTO());
+		return new ModelAndView("CitationGoogleDetail");
+	}
+	
 }

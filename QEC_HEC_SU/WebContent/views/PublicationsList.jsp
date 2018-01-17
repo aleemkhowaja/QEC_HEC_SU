@@ -18,12 +18,12 @@
 		    <div class="page-title">
 		        <div class="container">
 		        	<div class="adv_ser_row" >
-		        		<h2>Departments</h2>
+		        		<h2>Publications</h2>
 							<!-- Start Search Fields -->
-							<span> 
+							<!-- <span> 
 								<input class="smallinput" type="text" name="departmentName" id="departmentName" placeholder="Department Name" />
 								<input type="button" value="Search" id="search-department-button" />
-							</span>
+							</span> -->
 					</div>
 					
 					<div id="tabs">
@@ -57,29 +57,54 @@
         			<div id="pager"></div>
 		        </div>
 		   </div>
-		   <script src="<c:url value="/resources/theme/js/publications/citationJournal.js" />"></script>
+
 		   <script src="<c:url value="/resources/theme/js/publications/citationConference.js" />"></script>
 		   <script src="<c:url value="/resources/theme/js/publications/citationChapter.js" />"></script>
 		   <script src="<c:url value="/resources/theme/js/publications/citationBook.js" />"></script>
 		   <script src="<c:url value="/resources/theme/js/publications/citationThesis.js" />"></script>
 		   <script src="<c:url value="/resources/theme/js/publications/citationPatent.js" />"></script>
+		   <script src="<c:url value="/resources/theme/js/publications/citationGoogle.js" />"></script>
+		   
+		   <script src="<c:url value="/resources/theme/js/publications/citationPublication.js" />"></script>
 		   
 			<script type="text/javascript">
 				$(document).ready(function(){
 					$("#tabs").tabs();
-					var journalResponse = citationJournal_returnCitationJournalPage();
-					var conferenceResponse = citationConference_returnCitationConferencePage();
-					var chapterResponse = citationChapter_returnCitationChapterPage();
-					var bookResponse = citationBook_returnCitationBookPage();
-					var thesisResponse = citationThesis_returnCitationThesisPage();
-					var patentResponse = citationPatent_returnCitationPatentPage();
 					
+					//load Journal Tab
+					var journalUrl = "journal.htm";
+					var journalResponse = citationPublication_returnTabPage(journalUrl);
 					$("#journalTab").html(journalResponse);
+					
+					//load Conference Tab
+					var conferenceUrl = "conference.htm";
+					var conferenceResponse = citationPublication_returnTabPage(conferenceUrl);
 					$("#conferenceTab").html(conferenceResponse);
+
+					//load Chapter Tab
+					var chapterUrl = "chapter.htm";
+					var chapterResponse = citationPublication_returnTabPage(chapterUrl);
 					$("#chapterTab").html(chapterResponse);
+					
+					//load book Tab
+					var bookUrl = "book.htm";
+					var bookResponse = citationPublication_returnTabPage(bookUrl);
 					$("#bookTab").html(bookResponse);
+					
+					//load Thesis Tab
+					var thesisUrl = "thesis.htm";
+					var thesisResponse = citationPublication_returnTabPage(thesisUrl);
 					$("#thesisTab").html(thesisResponse);
+					
+					//load Patent Tab
+					var patentUrl = "patent.htm";
+					var patentResponse = citationPublication_returnTabPage(patentUrl);
 					$("#patentTab").html(patentResponse);
+					
+					//load Google Tab
+					var googleUrl = "google.htm";
+					var googleResponse = citationPublication_returnTabPage(googleUrl);
+					$("#googleTab").html(googleResponse);
 				});
 			</script>
     	</div><!-- Main Wrapper -->
