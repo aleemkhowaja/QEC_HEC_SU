@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.dao.CitationJournalDAO;
-import com.qec.dao.DepartmentDAO;
+import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationJournalDTO;
-import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationJournalModel;
-import com.qec.model.DepartmentsModel;
+import com.qec.model.EmployeeModel;
 import com.qec.service.CitationJournalService;
 
 @Service
@@ -25,14 +26,18 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 	private  CitationJournalDAO citationJournalDAO;
 	
 	@Autowired
+	private EmployeeDAO employeeDAO; 
+	
+	@Autowired
 	private GenericDAO genericDAO;
 	
 	@Override
+	@Transactional
 	public JQGridDTO<CitationJournalDTO> returnAllCitationJournalForGrid(HttpServletRequest request) 
 	{
-		JQGridDTO<CitationJournalModel> jqGridDTO = new JQGridDTO<CitationJournalModel>();
+		JQGridDTO<CitationJournalDTO> jqGridDTO = new JQGridDTO<CitationJournalDTO>();
 		List<CitationJournalDTO> citationJournalDTOs = new ArrayList<CitationJournalDTO>();
-		EmployeeDTO employeeDTO = new EmployeeDTO();
+		CitationJournalDTO citationJournalDTO = new CitationJournalDTO();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -45,11 +50,22 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 			for(int i=0; i<citationJournalModels.size(); i++)
 			{
 				CitationJournalModel citationJournalModel = citationJournalModels.get(i);
-				employeeDTO = new EmployeeDTO();
-				
+				citationJournalDTO = new CitationJournalDTO();
+				citationJournalDTO.setCitationJournalId(citationJournalModel.getCitationJournalId());
+				citationJournalDTO.setAuthors(citationJournalModel.getAuthors());
+				citationJournalDTO.setDateof(citationJournalModel.getDateof());
+				citationJournalDTO.setDescription(citationJournalModel.getDescription());
+				citationJournalDTO.setTitle(citationJournalModel.getTitle());
+				citationJournalDTO.setUrl(citationJournalModel.getUrl());
+				citationJournalDTO.setPublicationDate(citationJournalModel.getPublicationDate());
+				citationJournalDTO.setJournal(citationJournalModel.getJournal());
+				citationJournalDTO.setVolume(citationJournalModel.getVolume());
+				citationJournalDTO.setIssue(citationJournalModel.getIssue());
+				citationJournalDTO.setPages(citationJournalModel.getPages());
+				citationJournalDTOs.add(citationJournalDTO);
 			}
 			Long records = citationJournalDAO.returnAllCitationJournalModelForGridCount(citationJournal);
-			jqGridDTO.setRows(citationJournalModels);
+			jqGridDTO.setRows(citationJournalDTOs);
 			jqGridDTO.setTotal(String.valueOf(Math.ceil((double) records / jtPageSize)));
 			jqGridDTO.setRecords(String.valueOf(records));
 			jqGridDTO.setPage(page);
@@ -70,14 +86,67 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 	}
 
 	@Override
-	public String saveCitationJournal(CitationJournalModel citationJournalModel) {
-		// TODO Auto-generated method stub
+	public String saveCitationJournal(CitationJournalDTO citationJournalDTO) 
+	{
+		EmployeeModel employeeModel = new EmployeeModel();
+		CitationJournalModel citationJournalModel = new CitationJournalModel();
+		try {
+			if(citationJournalDTO != null && citationJournalDTO.getEmployeeId() != null )
+			{
+				employeeModel = employeeDAO.returnEmployeesById(citationJournalDTO.getEmployeeId());
+			}
+			if(citationJournalDTO != null && citationJournalDTO.getCitationJournalId() == null)
+			{
+				citationJournalModel.setCitationJournalId(citationJournalDTO.getCitationJournalId());
+				citationJournalModel.setTitle(citationJournalDTO.getTitle());
+				citationJournalModel.setAuthors(citationJournalDTO.getAuthors());
+				citationJournalModel.setDateof(citationJournalDTO.getDateof());
+				citationJournalModel.setDescription(citationJournalDTO.getDescription());
+				citationJournalModel.setHecRecognize(citationJournalDTO.getHecRecognize());
+				citationJournalModel.setImpactFactor(citationJournalDTO.getImpactFactor());
+				citationJournalModel.setImpactFactorValue(citationJournalDTO.getImpactFactorValue());
+				citationJournalModel.setIssue(citationJournalDTO.getIssue());
+				citationJournalModel.setJournal(citationJournalDTO.getJournal());
+				citationJournalModel.setPages(citationJournalDTO.getPages());
+				citationJournalModel.setPublicationDate(citationJournalDTO.getPublicationDate());
+				citationJournalModel.setPublisher(citationJournalDTO.getPublisher());
+				citationJournalModel.setUrl(citationJournalDTO.getUrl());
+				citationJournalModel.setVolume(citationJournalDTO.getVolume());
+				
+				genericDAO.save(citationJournalModel);
+				return CommonConstants.SAVE_SUCCESS_MSG;
+			}
+			else
+			{
+				citationJournalModel = citationJournalDAO.returnCitationJournalModelById(citationJournalDTO.getCitationJournalId());
+				citationJournalModel.setCitationJournalId(citationJournalDTO.getCitationJournalId());
+				citationJournalModel.setTitle(citationJournalDTO.getTitle());
+				citationJournalModel.setAuthors(citationJournalDTO.getAuthors());
+				citationJournalModel.setDateof(citationJournalDTO.getDateof());
+				citationJournalModel.setDescription(citationJournalDTO.getDescription());
+				citationJournalModel.setHecRecognize(citationJournalDTO.getHecRecognize());
+				citationJournalModel.setImpactFactor(citationJournalDTO.getImpactFactor());
+				citationJournalModel.setImpactFactorValue(citationJournalDTO.getImpactFactorValue());
+				citationJournalModel.setIssue(citationJournalDTO.getIssue());
+				citationJournalModel.setJournal(citationJournalDTO.getJournal());
+				citationJournalModel.setPages(citationJournalDTO.getPages());
+				citationJournalModel.setPublicationDate(citationJournalDTO.getPublicationDate());
+				citationJournalModel.setPublisher(citationJournalDTO.getPublisher());
+				citationJournalModel.setUrl(citationJournalDTO.getUrl());
+				citationJournalModel.setVolume(citationJournalDTO.getVolume());
+				genericDAO.update(citationJournalModel);
+				return CommonConstants.UPLDATE_SUCCESS_MSG;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public String deleteCitationJournal(
-			CitationJournalModel citationJournalModel) {
+			CitationJournalDTO citationJournalDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Table(name="citation_journal"
     ,catalog="qecdb"
 )
-public class CitationJournalModel  implements java.io.Serializable {
+public class CitationJournalModel extends Model  implements java.io.Serializable {
 
 
      private Long citationJournalId;
@@ -45,7 +45,7 @@ public class CitationJournalModel  implements java.io.Serializable {
      private String hecRecognize;
      private Double impactFactorValue;
      private Date dateof;
-     private Byte isDeleted;
+     private Boolean isDeleted;
    
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="citation_journal_id", unique=true, nullable=false)
@@ -203,11 +203,11 @@ public class CitationJournalModel  implements java.io.Serializable {
     }
     
     @Column(name="is_deleted")
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return this.isDeleted;
     }
     
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 

@@ -1,3 +1,6 @@
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -20,7 +23,7 @@
 						</span>
 					</div>
 					
-					<table id="journal-detail-grid-list">
+					<table id="journal-detail-grid-list" class="grid-container">
                 		<tr>
                 			<td />
                 		</tr>
@@ -36,9 +39,16 @@
 
 				<script type="text/javascript">
 					$(document).ready(function(){
-						
+						var token = $("meta[name='_csrf']").attr("content");
+					    var header = $("meta[name='_csrf_header']").attr("content");
 						 $("#journal-detail-grid-list").jqGrid({
 							url : "${returnAllJournalForGrid}",
+							loadBeforeSend : function(jqXHR) {
+				                // you should modify the next line to get the CSRF tocken
+				                // in any way (for example $('meta[name=csrf]').attr('content')
+				                // if you have <meta name="csrf" content="abcdefjklmnopqrstuvwxyz="/>)
+				                jqXHR.setRequestHeader(header, token);
+				            },
 							datatype : "json",
 							mtype : 'POST',
 							width : 1000,
@@ -103,6 +113,14 @@
 								ondblClickRow: function(rowId) {
 									ctationJournal_Db_Click(rowId);
 								},
+								ajaxEditOptions: {
+						            beforeSend: function(jqXHR) {
+						                // you should modify the next line to get the CSRF tocken
+						                // in any way (for example $('meta[name=csrf]').attr('content')
+						                // if you have <meta name="csrf" content="abcdefjklmnopqrstuvwxyz="/>)
+						                jqXHR.setRequestHeader(header, token);
+						            }
+						        },
 							    pager : '#pager',
 							    rowNum : 10,
 							    height: 'auto',
@@ -140,12 +158,13 @@
 				</script>
     		</div><!-- Row -->
     	</div><!-- Main Wrapper -->
-	</body>
-	
-	<style>
-		.ui-jqgrid ui-widget ui-widget-content ui-corner-all
+    	<style>
+		.grid-container
 		 {
 		 	margin-left: 0%
 		 }
 	</style>
+	</body>
+	
+	
 </html>

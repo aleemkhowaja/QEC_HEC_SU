@@ -1,21 +1,14 @@
 package com.qec.dao.impl;
 
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.qec.dao.CitationJournalDAO;
-import com.qec.dao.DepartmentDAO;
 import com.qec.model.CitationJournalModel;
-import com.qec.model.DepartmentsModel;
-import com.sun.org.apache.xpath.internal.operations.Gte;
 
 @Repository
 public class CitationJournalDAOImpl extends SessionFactoryDAOImp implements CitationJournalDAO {

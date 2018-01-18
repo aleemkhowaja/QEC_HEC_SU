@@ -24,13 +24,13 @@ public interface CitationJournalService
      * @param citationJournalModel
      * @return
      */
-    public String saveCitationJournal(CitationJournalModel citationJournalModel);
+    public String saveCitationJournal(CitationJournalDTO citationJournalDTO);
 	
     /**
      * 
      * @param citationJournalModel
      * @return
      */
-	public String deleteCitationJournal(CitationJournalModel citationJournalModel);
+	public String deleteCitationJournal(CitationJournalDTO citationJournalDTO);
 	
 }

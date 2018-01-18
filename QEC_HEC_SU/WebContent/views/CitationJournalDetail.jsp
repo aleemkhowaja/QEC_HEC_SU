@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!-- start controller urls -->
-<c:url var="saveCoordinator" value="/coordinator/save.htm" ></c:url>
+<c:url var="saveCitationJournal" value="/qec/journal/save.htm"></c:url>
 <!-- end controller urls -->
 
 <div class="page-title">
@@ -13,7 +13,7 @@
 			<!-- Start Search Fields -->
 			
 				<div class="col-md-8">
-                    <form:form servletRelativeAction="${saveCoordinator}" cssClass="m-t-md ajax-form-login validate-form" method="post" commandName="journal" id="journal_form" resolveContext="true" resolveMapping="true">
+                    <form:form servletRelativeAction="${saveCitationJournal}" cssClass="m-t-md ajax-form-login validate-form" method="post" commandName="journal" id="citationJournal_form" resolveContext="true" resolveMapping="true">
                    					    
 	                    <div  class="form-group">
 	                   		<form:label path="employeeId" > Select Employee * </form:label>
@@ -91,10 +91,10 @@
 				 			</form:select>
 	                    </div> 
 	                                        
-                        <button id="users-save-btn" type="submit" class="btn" onclick="return coordinator_Crud();" >Save</button>
+                        <button id="users-save-btn" type="submit" class="btn" onclick="citationJournal_Crud();" >Save</button>
                         <!-- Hidden fields -->
                          <form:hidden path="citationJournalId" id="journal_citationJournalId" />
-                        <form:hidden path="isDeleted" id="journal_isDeleted" /> 
+                        <form:hidden  path="isDeleted" id="journal_isDeleted" /> 
                    </form:form>
                 </div>
 		</div>

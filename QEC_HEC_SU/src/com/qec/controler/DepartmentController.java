@@ -25,7 +25,8 @@ public class DepartmentController {
 	//start get all department for Grid
 	@RequestMapping(value="qec/department/returnAllDepartmentsForGrid", produces = "application/json")
 	@ResponseBody
-	public JQGridDTO<DepartmentsModel> returnAllDepartmenForGrid(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) {
+	public JQGridDTO<DepartmentsModel> returnAllDepartmenForGrid(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) 
+	{
 		return departmentsService.returnAllDepartmentsForGrid(request);
 	}
 	//end get all department for Grid
@@ -38,7 +39,8 @@ public class DepartmentController {
 	 */
 	@RequestMapping(value="/department/save.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public String saveDepartment(@RequestBody DepartmentsModel departmentsModel, HttpServletRequest request) {
+	public String saveDepartment(@RequestBody DepartmentsModel departmentsModel, HttpServletRequest request) 
+	{
 		String result = departmentsService.saveDepartment(departmentsModel);
 		return result;
 	}
@@ -52,7 +54,8 @@ public class DepartmentController {
 	 */
 	@RequestMapping(value="/department/getDepartmentById", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public DepartmentsModel  getDepartmentById(@RequestParam("departmentId") Integer departmentId, Model model) {
+	public DepartmentsModel  getDepartmentById(@RequestParam("departmentId") Integer departmentId, Model model) 
+	{
 		DepartmentsModel departmentsModel = departmentsService.getDepartmentById(Long.valueOf(departmentId));
 		return departmentsModel;
 	}
@@ -65,21 +68,9 @@ public class DepartmentController {
 	 */
 	@RequestMapping(value="/department/deleteDepartmentById", method = RequestMethod.POST)
 	@ResponseBody
-	public String  deleteDepartmentById(@RequestBody DepartmentsModel departmentsModel, HttpServletRequest request) {
+	public String  deleteDepartmentById(@RequestBody DepartmentsModel departmentsModel, HttpServletRequest request) 
+	{
 		String result = departmentsService.deleteDepartment(departmentsModel);
 		return result;
-	}
-
-	/**
-	 * @return the departmentsService
-	 */
-	public DepartmentsService getDepartmentsService() {
-		return departmentsService;
-	}
-	/**
-	 * @param departmentsService the departmentsService to set
-	 */
-	public void setDepartmentsService(DepartmentsService departmentsService) {
-		this.departmentsService = departmentsService;
 	}
 }

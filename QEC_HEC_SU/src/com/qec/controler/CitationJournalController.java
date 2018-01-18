@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.qec.common.JQGridDTO;
 import com.qec.dto.CitationJournalDTO;
 import com.qec.dto.UserDTO;
+import com.qec.model.DepartmentsModel;
 import com.qec.service.CitationJournalService;
 import com.qec.service.UsersService;
 
@@ -37,5 +38,21 @@ public class CitationJournalController {
 	{
 		return citationJournalService.returnAllCitationJournalForGrid(request);
 	}
+	
+	
+	/**
+	 * save department in database
+	 * @param departmentsModel
+	 * @param request
+	 * @return result either it is add record or update record
+	 */
+	@RequestMapping(value="qec/journal/save.htm", method = RequestMethod.POST)
+	@ResponseBody
+	public String saveDepartment(@RequestBody CitationJournalDTO citationJournalDTO, HttpServletRequest request) 
+	{
+		String result = citationJournalService.saveCitationJournal(citationJournalDTO);
+		return result;
+	}
+
 
 }
