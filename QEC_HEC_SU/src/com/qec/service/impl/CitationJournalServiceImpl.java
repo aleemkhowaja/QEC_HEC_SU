@@ -86,6 +86,7 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 	}
 
 	@Override
+	@Transactional
 	public String saveCitationJournal(CitationJournalDTO citationJournalDTO) 
 	{
 		EmployeeModel employeeModel = new EmployeeModel();

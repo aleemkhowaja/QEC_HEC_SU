@@ -30,17 +30,30 @@ function citationJournal_returnCitationJournalPage()
  */
 	function citationJournal_Crud()
 	{
-		alert("--------------");
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
-		/*var flag = validateForm();
+		var flag = validateForm();
 		if(flag)
-		{*/
+		{
 			url ='/QEC_HEC_SU/qec/journal/save.htm';
-			//var citationJournalData = $("#citationJournal_form").serializeForm();
-			var citationJournalData = {};
-			departmentData['citationJournalId'] = $("#journal_citationJournalId").val();
-			departmentData['title'] = $("#journal_title").val();
+			var citationJournalData = {}
+			var $inputs = $('#citationJournal_form :input');
+			$('#citationJournal_form input, #citationJournal_form select #citationJournal_form textarea').each(function (index)
+			{
+				if($(this).attr('name') != undefined && $(this).attr('id') != undefined)
+				{
+					citationJournalData[$(this).attr('name')] = $("#"+$(this).attr('id')).val();
+				}
+				// For debugging purposes...
+			   // alert($(this).attr('name') + ': ' + $(this).attr('id'));
+			   // ids[$(this).attr('name')] = $(this).attr('id');
+			});
+			
+			
+			//citationJournalData =  $("#citationJournal_form").serializeForm();
+			/*var citationJournalData = {};
+			citationJournalData['employeeId'] = $("#users_employeeId").val();
+			citationJournalData['title'] = $("#journal_title").val();*/
 			
 			event.preventDefault();
 			$.ajax({
@@ -66,7 +79,7 @@ function citationJournal_returnCitationJournalPage()
 					}
 				}
 			});
-		//}
+		}
 		event.preventDefault();
 		return true;
 	}

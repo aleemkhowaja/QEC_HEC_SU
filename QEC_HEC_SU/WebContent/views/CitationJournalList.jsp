@@ -9,8 +9,10 @@
 	<!-------------------- crud urls  ---------------------------->
 	<c:url var="returnAllJournalForGrid" value="/qec/journal/returnAllCitationJournalForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
+	<%-- <jsp:include page="../common/header.jsp" /> --%>
 	<script src="<c:url value="/resources/theme/js/publications/citationJournal.js" />"></script>
 	<body class="page-header-fixed compact-menu page-horizontal-bar">
+		<%-- <jsp:include page="../common/menues.jsp" /> --%>
 		<div class="page-inner">
 		    <div class="page-title">
 		        <div class="container">

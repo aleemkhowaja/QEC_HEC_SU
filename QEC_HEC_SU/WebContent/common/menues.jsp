@@ -7,7 +7,10 @@
     <c:url var="returnCoordinatorPage" value="/qec/coordinator/coordinator.htm" ></c:url>
     <c:url var="returnEventPage" value="/qec/event/event.htm" ></c:url>
     <c:url var="returnEmployeePage" value="/qec/employee/employee.htm" ></c:url> 
-    <c:url var="returnPublicationPage" value="/qec/publication/publication.htm" ></c:url> 
+    <c:url var="returnPublicationPage" value="/qec/publication/publication.htm" ></c:url>
+    <c:url var="returnCitationPage" value="/qec/publication/journal.htm" ></c:url>
+    
+     
     <!-- end page urls -->  
     
     <main class="page-content content-wrap">

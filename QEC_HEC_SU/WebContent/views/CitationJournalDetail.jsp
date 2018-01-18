@@ -91,7 +91,7 @@
 				 			</form:select>
 	                    </div> 
 	                                        
-                        <button id="users-save-btn" type="submit" class="btn" onclick="citationJournal_Crud();" >Save</button>
+                        <button id="users-save-btn" type="submit" class="btn" onclick="return citationJournal_Crud();" >Save</button>
                         <!-- Hidden fields -->
                          <form:hidden path="citationJournalId" id="journal_citationJournalId" />
                         <form:hidden  path="isDeleted" id="journal_isDeleted" /> 
