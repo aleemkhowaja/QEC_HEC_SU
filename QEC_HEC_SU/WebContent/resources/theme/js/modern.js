@@ -490,13 +490,10 @@ function validateGenericAllRequired()
 		if($.trim( $(this).val())==""){
 			$(this).css("border-bottom-color", "red");
 			$(this).before($("#validate-required-error").clone());
-		
 			var $validateRequiredError = $(this).prev() ;
 			$validateRequiredError.removeAttr("id");
 			$validateRequiredError.attr("class","validate-required-error non-readonly msgerror");
-		
 			var $validateRequiredMessage = $(this).attr("validate-required-message");
-		
 			if($validateRequiredMessage != undefined){			
 				//var $defaultErrorMessage = $validateRequiredError.find(".msgerror");
 				$validateRequiredError.html($validateRequiredMessage);
@@ -534,4 +531,13 @@ function validateForm()
 	if (!flag)
 		alert('Invalid Data filled. See Error Messages for more Information.');
 	return flag;
+}
+
+function clearFields(formId)
+{
+	$("#"+formId+" input,#"+formId+" select,#"+formId+" textarea").each(function(){
+		 $("#"+$(this).attr('id')).val("");
+	});
+	
+
 }

@@ -20,22 +20,11 @@ import javax.persistence.Table;
 @Table(name="uni_programs", catalog="qecdb")
 public class UniProgramsModel extends Model  implements java.io.Serializable {
 
-
      private Long uniProgramsId;
      private DepartmentsModel departmentsModel;
      private String code;
      private String name;
-     private Boolean isDeleted;
      
-    public UniProgramsModel() {
-    }
-
-    public UniProgramsModel(DepartmentsModel departmentsModel, String code, String name) {
-       this.departmentsModel = departmentsModel;
-       this.code = code;
-       this.name = name;
-    }
-   
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="uni_programs_id", unique=true, nullable=false)
     public Long getUniProgramsId() {
@@ -73,17 +62,6 @@ public class UniProgramsModel extends Model  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Column(name="is_deleted")
-	public Boolean getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-   
-    
 }
 
 

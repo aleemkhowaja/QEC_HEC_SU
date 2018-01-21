@@ -16,12 +16,11 @@ import javax.persistence.Table;
 @Table(name="campuses"
     ,catalog="qecdb"
 )
-public class CampusesModel  implements java.io.Serializable {
+public class CampusesModel extends Model  implements java.io.Serializable {
 
 
      private Long campusesId;
      private String campusName;
-     private Boolean isDeleted;
 
    
     @Id @GeneratedValue(strategy=IDENTITY)
@@ -42,18 +41,6 @@ public class CampusesModel  implements java.io.Serializable {
     public void setCampusName(String campusName) {
         this.campusName = campusName;
     }
-    
-    @Column(name="is_deleted")
-    public Boolean getIsDeleted() {
-        return this.isDeleted;
-    }
-    
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-
-
 
 }
 

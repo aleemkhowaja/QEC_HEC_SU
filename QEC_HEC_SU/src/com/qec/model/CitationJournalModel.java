@@ -45,7 +45,6 @@ public class CitationJournalModel extends Model  implements java.io.Serializable
      private String hecRecognize;
      private Double impactFactorValue;
      private Date dateof;
-     private Boolean isDeleted;
    
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="citation_journal_id", unique=true, nullable=false)
@@ -202,18 +201,6 @@ public class CitationJournalModel extends Model  implements java.io.Serializable
         this.dateof = dateof;
     }
     
-    @Column(name="is_deleted")
-    public Boolean getIsDeleted() {
-        return this.isDeleted;
-    }
-    
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-
-
-
 }
 
 

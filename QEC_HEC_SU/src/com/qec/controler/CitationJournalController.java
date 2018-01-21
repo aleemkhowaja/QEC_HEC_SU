@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qec.common.JQGridDTO;
 import com.qec.dto.CitationJournalDTO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.dto.UserDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.service.CitationJournalService;
@@ -53,6 +54,30 @@ public class CitationJournalController {
 		String result = citationJournalService.saveCitationJournal(citationJournalDTO);
 		return result;
 	}
-
-
+	
+	/**
+	 * retrun Citation Journal Record By ID
+	 * @param citationJournalId
+	 * @return
+	 */
+	@RequestMapping(value="qec/journal/returnCitationJournalById", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public CitationJournalDTO  returnCitationJournalById(@RequestParam("citationJournalId") Integer citationJournalId) 
+	{
+		CitationJournalDTO citationJournalDTO = citationJournalService.returnCitationJournalById(citationJournalId); 
+		return citationJournalDTO;
+	}
+	
+	/**
+	 * delete Citation Journal Record by id
+	 * @param CitationJournalDTO
+	 * @return
+	 */
+	@RequestMapping(value="qec/journal/deleteCitationJournalById", method = RequestMethod.POST)
+	@ResponseBody
+	public String  deleteCitationJournalById(@RequestParam("citationJournalId") Integer citationJournalId) 
+	{
+		String result = citationJournalService.deleteCitationJournal(citationJournalId);
+		return result;
+	}
 }

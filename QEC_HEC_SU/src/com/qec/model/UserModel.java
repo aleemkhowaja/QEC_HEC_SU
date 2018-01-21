@@ -31,31 +31,9 @@ public class UserModel extends Model  implements java.io.Serializable {
      private CampusesModel campusesModel;
      private String email;
     /* private Date dateof;*/
-     private Boolean isDeleted;
      private Boolean isActive;
 
-     public UserModel() 
-     {
-    	 
-     }
-
-     public UserModel(CampusesModel campusesModel, DepartmentsModel departmentsModel, Long userId, EmployeeModel employeeModel,String username ,String password,String role,String fullName,String email,Long campusId,Boolean isDeleted,Boolean isActive) {
-        this.departmentsModel = departmentsModel;
-        this.userId = userId;
-        this.username = username;
-        this.campusesModel =campusesModel;
-        this.password = password;
-        this.role = role;
-        this.fullName = fullName;
-        this.email = email ;
-        //this.dateof = dateof;
-        this.isDeleted =isDeleted;
-        this.isActive = isActive;
-        this.employeeModel = employeeModel;
-     }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="user_id", unique=true, nullable=false)
     public Long getUserId() {
         return this.userId;
@@ -64,6 +42,7 @@ public class UserModel extends Model  implements java.io.Serializable {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+    
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
     public EmployeeModel getEmployeeModel() {
@@ -146,15 +125,6 @@ public class UserModel extends Model  implements java.io.Serializable {
     public void setDateof(Date dateof) {
         this.dateof = dateof;
     }*/
-    @Column(name="is_deleted")
-    public Boolean getIsDeleted() {
-        return this.isDeleted;
-    }
-    
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-    
     @Column(name="is_active")
     public Boolean getIsActive() {
         return this.isActive;

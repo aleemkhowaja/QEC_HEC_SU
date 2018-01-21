@@ -15,9 +15,7 @@ public class CitationConferenceDTO  implements java.io.Serializable {
     private UserDTO user;
     private String title;
     private String url;
-    private String authors
-    
-    ;
+    private String authors;
     private Date publicationDate;
     private String conference;
     private Long volume;

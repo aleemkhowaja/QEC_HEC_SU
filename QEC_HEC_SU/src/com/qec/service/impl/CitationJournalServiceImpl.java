@@ -47,6 +47,7 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 			String citationJournal = request.getParameter("title");
 			
 			List<CitationJournalModel> citationJournalModels  =  citationJournalDAO.returnAllCitationJournalModelForGrid(jtStartIndex, jtPageSize, sortingProperty, order, citationJournal);
+			
 			for(int i=0; i<citationJournalModels.size(); i++)
 			{
 				CitationJournalModel citationJournalModel = citationJournalModels.get(i);
@@ -79,10 +80,39 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 	}
 
 	@Override
-	public CitationJournalModel returnCitationJournalById(
-			Integer CitationJournalId) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public CitationJournalDTO returnCitationJournalById(Integer citationJournalId) 
+	{
+		CitationJournalDTO citationJournalDTO = new CitationJournalDTO();
+		try
+		{
+			CitationJournalModel citationJournalModel =  citationJournalDAO.returnCitationJournalModelById(Long.valueOf(citationJournalId));
+			citationJournalDTO.setCitationJournalId(citationJournalModel.getCitationJournalId());
+			citationJournalDTO.setAuthors(citationJournalModel.getAuthors());
+			citationJournalDTO.setDescription(citationJournalModel.getDescription());
+			if(citationJournalModel.getEmployeeModel() != null)
+			{
+				citationJournalDTO.setEmployeeId(Long.valueOf(citationJournalModel.getEmployeeModel().getEmployeeId().toString()));
+			}
+			citationJournalDTO.setHecRecognize(citationJournalModel.getHecRecognize());
+			citationJournalDTO.setImpactFactor(citationJournalModel.getImpactFactor());
+			citationJournalDTO.setImpactFactorValue(citationJournalModel.getImpactFactorValue());
+			citationJournalDTO.setIssue(citationJournalModel.getIssue());
+			citationJournalDTO.setJournal(citationJournalModel.getJournal());
+			citationJournalDTO.setPages(citationJournalModel.getPages());
+			citationJournalDTO.setJournal(citationJournalModel.getJournal());
+			citationJournalDTO.setPages(citationJournalModel.getPages());
+			citationJournalDTO.setPublicationDate(citationJournalModel.getPublicationDate());
+			citationJournalDTO.setTitle(citationJournalModel.getTitle());
+			citationJournalDTO.setUrl(citationJournalModel.getUrl());
+			citationJournalDTO.setVolume(citationJournalModel.getVolume());
+			citationJournalDTO.setPublisher(citationJournalModel.getPublisher());
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return citationJournalDTO;
 	}
 
 	@Override
@@ -98,6 +128,7 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 			}
 			if(citationJournalDTO != null && citationJournalDTO.getCitationJournalId() == null)
 			{
+				citationJournalModel.setEmployeeModel(employeeModel);
 				citationJournalModel.setCitationJournalId(citationJournalDTO.getCitationJournalId());
 				citationJournalModel.setTitle(citationJournalDTO.getTitle());
 				citationJournalModel.setAuthors(citationJournalDTO.getAuthors());
@@ -113,13 +144,14 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 				citationJournalModel.setPublisher(citationJournalDTO.getPublisher());
 				citationJournalModel.setUrl(citationJournalDTO.getUrl());
 				citationJournalModel.setVolume(citationJournalDTO.getVolume());
-				
+				citationJournalModel.setIsDeleted(false);
 				genericDAO.save(citationJournalModel);
 				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
 				citationJournalModel = citationJournalDAO.returnCitationJournalModelById(citationJournalDTO.getCitationJournalId());
+				citationJournalModel.setEmployeeModel(employeeModel);
 				citationJournalModel.setCitationJournalId(citationJournalDTO.getCitationJournalId());
 				citationJournalModel.setTitle(citationJournalDTO.getTitle());
 				citationJournalModel.setAuthors(citationJournalDTO.getAuthors());
@@ -146,9 +178,20 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 	}
 
 	@Override
-	public String deleteCitationJournal(
-			CitationJournalDTO citationJournalDTO) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public String deleteCitationJournal(Integer citationJournalId) 
+	{
+		try
+		{
+			CitationJournalModel citationJournalModel = citationJournalDAO.returnCitationJournalModelById(Long.valueOf(citationJournalId));
+			citationJournalModel.setIsDeleted(true);
+			genericDAO.update(citationJournalModel);
+			return CommonConstants.DELETE_SUCCESS_MSG;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return null;
 	}
 	

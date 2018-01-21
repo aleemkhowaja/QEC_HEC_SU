@@ -1,13 +1,12 @@
 package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
-
+import static javax.persistence.GenerationType.IDENTITY;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,10 +21,10 @@ import javax.persistence.TemporalType;
 @Table(name="citation_conference"
     ,catalog="qecdb"
 )
-public class CitationConferenceModel  implements java.io.Serializable {
+public class CitationConferenceModel extends Model  implements java.io.Serializable {
 
 
-     private Long citationConference;
+     private Long citationConferenceId;
      private EmployeeModel employeeModel;
      private UserModel userModel;
      private String title;
@@ -41,48 +40,29 @@ public class CitationConferenceModel  implements java.io.Serializable {
      private String impactFactor;
      private String hecRecognize;
      private Double impactFactorValue;
+     
 
-    public CitationConferenceModel() {
-    }
-
-    public CitationConferenceModel(EmployeeModel employeeModel, UserModel userModel, String title, String url, String authors, Date publicationDate, String conference, Long volume, Long issue, String pages, String publisher, String description, String impactFactor, String hecRecognize, Double impactFactorValue) {
-       this.employeeModel = employeeModel;
-       this.userModel = userModel;
-       this.title = title;
-       this.url = url;
-       this.authors = authors;
-       this.publicationDate = publicationDate;
-       this.conference = conference;
-       this.volume = volume;
-       this.issue = issue;
-       this.pages = pages;
-       this.publisher = publisher;
-       this.description = description;
-       this.impactFactor = impactFactor;
-       this.hecRecognize = hecRecognize;
-       this.impactFactorValue = impactFactorValue;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="citation_conference", unique=true, nullable=false)
-    public Long getCitationConference() {
-        return this.citationConference;
+    public Long getCitationConferenceId() {
+        return this.citationConferenceId;
     }
     
-    public void setCitationConference(Long citationConference) {
-        this.citationConference = citationConference;
+    public void setCitationConferenceId(Long citationConferenceId) {
+        this.citationConferenceId = citationConferenceId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     public UserModel getUser() {
         return this.userModel;

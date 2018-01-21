@@ -28,13 +28,13 @@
 					
 					<div id="tabs">
 						<ul>
-							<li><a href="#journalTab">Journal</a></li>
-							<li><a href="#ConferenceTab">Conference</a></li>
-							<li><a href="#ChapterTab">Chapter</a></li>
-							<li><a href="#BookTab">Book</a></li>
-							<li><a href="#ThesisTab">Thesis</a></li>
-							<li><a href="#PatentTab">Patent</a></li>
-							<li><a href="#GoogleTab">Google</a></li>
+							<li><a onclick="publication_tabOpen('journal');" href="#journalTab">Journal</a></li>
+							<li><a onclick="publication_tabOpen('conference');" href="#ConferenceTab">Conference</a></li>
+							<li><a onclick="publication_tabOpen('chapter');" href="#ChapterTab">Chapter</a></li>
+							<li><a onclick="publication_tabOpen('book');"  href="#BookTab">Book</a></li>
+							<li><a onclick="publication_tabOpen('thesis');" href="#ThesisTab">Thesis</a></li>
+							<li><a onclick="publication_tabOpen('patent');" href="#PatentTab">Patent</a></li>
+							<li><a onclick="publication_tabOpen('google');" href="#GoogleTab">Google</a></li>
 							<li><a href="#OtherTab">Other</a></li>
 						</ul>
 						<div id="journalTab">
@@ -70,8 +70,9 @@
 			<script type="text/javascript">
 				$(document).ready(function(){
 					$("#tabs").tabs();
-					
-					//load Journal Tab
+					var tabId = "journal";
+					publication_tabOpen(tabId);
+				/* 	//load Journal Tab
 					var journalUrl = "journal.htm";
 					var journalResponse = citationPublication_returnTabPage(journalUrl);
 					$("#journalTab").html(journalResponse);
@@ -104,8 +105,99 @@
 					//load Google Tab
 					var googleUrl = "google.htm";
 					var googleResponse = citationPublication_returnTabPage(googleUrl);
-					$("#googleTab").html(googleResponse);
+					$("#googleTab").html(googleResponse); */
 				});
+				
+				function publication_tabOpen(tabId)
+				{
+					var journalResponse = citationPublication_returnTabPage(tabId+".htm");
+					$("#"+tabId+"Tab").html(journalResponse);
+					if(tabId == "journal")
+					{
+						$("#conferenceTab").html("");
+						$("#chapterTab").html("");
+						$("#bookTab").html("");
+						$("#thesisTab").html("");
+						$("#patentTab").html("");
+						$("#googleTab").html("");
+						$("#otherTab").html("");
+						
+					}
+					else if(tabId == "conference")
+					{
+						$("#journalTab").html("");
+						$("#chapterTab").html("");
+						$("#bookTab").html("");
+						$("#thesisTab").html("");
+						$("#patentTab").html("");
+						$("#googleTab").html("");
+						$("#otherTab").html("");
+						
+					}
+					else if(tabId == "chapter")
+					{
+						$("#journalTab").html("");
+						$("#conferenceTab").html("");
+						$("#bookTab").html("");
+						$("#thesisTab").html("");
+						$("#patentTab").html("");
+						$("#googleTab").html("");
+						$("#otherTab").html("");
+						
+					}
+					else if(tabId == "book")
+					{
+						$("#journalTab").html("");
+						$("#conferenceTab").html("");
+						$("#chapterTab").html("");
+						$("#thesisTab").html("");
+						$("#patentTab").html("");
+						$("#googleTab").html("");
+						$("#otherTab").html("");
+						
+					}
+					else if(tabId == "thesis")
+					{
+						$("#journalTab").html("");
+						$("#conferenceTab").html("");
+						$("#chapterTab").html("");
+						$("#bookTab").html("");
+						$("#patentTab").html("");
+						$("#googleTab").html("");
+						$("#otherTab").html("");
+					}
+					else if(tabId == "patent")
+					{
+						$("#journalTab").html("");
+						$("#conferenceTab").html("");
+						$("#chapterTab").html("");
+						$("#bookTab").html("");
+						$("#thesisTab").html("");
+						$("#googleTab").html("");
+						$("#otherTab").html("");
+					}
+					else if(tabId == "google")
+					{
+						$("#journalTab").html("");
+						$("#conferenceTab").html("");
+						$("#chapterTab").html("");
+						$("#bookTab").html("");
+						$("#patentTab").html("");
+						$("#thesisTab").html("");
+						$("#otherTab").html("");
+					}
+					else if(tabId == "other")
+					{
+						$("#journalTab").html("");
+						$("#conferenceTab").html("");
+						$("#chapterTab").html("");
+						$("#bookTab").html("");
+						$("#patentTab").html("");
+						$("#thesisTab").html("");
+						$("#googleTab").html("");
+					}
+				}
+				
 			</script>
     	</div><!-- Main Wrapper -->
     	<div class="page-footer">

@@ -8,6 +8,17 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Model {
 	
+	private Boolean isDeleted;
+	
+    @Column(name="is_deleted")
+    public Boolean getIsDeleted() {
+        return this.isDeleted;
+    }
+    
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+	
 	/*@Column(name="created_by")
 	private Integer createdBy;
 	@Column(name="created_date")

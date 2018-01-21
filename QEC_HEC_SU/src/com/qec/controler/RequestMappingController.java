@@ -236,7 +236,7 @@ public class RequestMappingController {
 		model.addAttribute("impactFactorList", impactFactors);
 		model.addAttribute("hecRecognizeList", hecRecognize);
 		model.addAttribute("conference", new CitationConferenceDTO());
-		return new ModelAndView("CitationConferenceDetail");
+		return new ModelAndView("CitationConferenceList");
 	}
 	
 	/**

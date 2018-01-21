@@ -48,7 +48,6 @@ public class EmployeeModel extends Model  implements java.io.Serializable {
      private String religion;
      private String country;
      private String imgPath;
-     private Boolean isDeleted;
 
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="employee_id", unique=true, nullable=false)
@@ -230,16 +229,6 @@ public class EmployeeModel extends Model  implements java.io.Serializable {
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
     }
-    
-    @Column(name="is_deleted")
-    public Boolean getIsDeleted() {
-        return this.isDeleted;
-    }
-    
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
 }
 
 

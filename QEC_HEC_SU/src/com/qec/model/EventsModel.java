@@ -33,7 +33,6 @@ public class EventsModel  extends Model  implements java.io.Serializable {
     private Double quota;
     private String eventDetail;
     private String color;
-    private Boolean isDeleted;
 
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="events_id", unique=true, nullable=false)
@@ -119,14 +118,5 @@ public class EventsModel  extends Model  implements java.io.Serializable {
     
 	public void setColor(String color) {
 		this.color = color;
-	}
-    
-	@Column(name="is_deleted")
-	public Boolean getIsDeleted() {
-		return this.isDeleted;
-	}
-    
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
 	}
 }

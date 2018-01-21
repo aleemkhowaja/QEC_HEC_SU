@@ -17,7 +17,7 @@ public interface CitationJournalService
      * @param CitationJournalId
      * @return
      */
-    public CitationJournalModel returnCitationJournalById(Integer CitationJournalId);
+    public CitationJournalDTO returnCitationJournalById(Integer citationJournalId);
     
     /**
      * 
@@ -31,6 +31,6 @@ public interface CitationJournalService
      * @param citationJournalModel
      * @return
      */
-	public String deleteCitationJournal(CitationJournalDTO citationJournalDTO);
+	public String deleteCitationJournal(Integer citationJournalId);
 	
 }

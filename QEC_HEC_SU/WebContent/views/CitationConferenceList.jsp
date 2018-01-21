@@ -7,25 +7,25 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<!-------------------- crud urls  ---------------------------->
-	<c:url var="returnAllJournalForGrid" value="/qec/journal/returnAllCitationJournalForGrid" ></c:url>
+	<c:url var="returnAllConferenceForGrid" value="/qec/conference/returnAllCitationConferenceForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
 	<%-- <jsp:include page="../common/header.jsp" /> --%>
-	<script src="<c:url value="/resources/theme/js/publications/citationJournal.js" />"></script>
+	<script src="<c:url value="/resources/theme/js/publications/citationConference.js" />"></script>
 	<body class="page-header-fixed compact-menu page-horizontal-bar">
 		<%-- <jsp:include page="../common/menues.jsp" /> --%>
 		<div class="page-inner">
 		    <div class="page-title">
 		        <div class="container">
 		        	<div class="adv_ser_row" >
-		        		<h2>Journal</h2>
+		        		<h2>Conference</h2>
 						<!-- Start Search Fields -->
 						<span> 
-							<input class="smallinput" type="text" name="journalTitle" id="journalTitle" placeholder="Journal Title" />
-							<input type="button" value="Search" id="search-journal-button" />
+							<input class="smallinput" type="text" name="conferenceTitle" id="conferenceTitle" placeholder="Conference Title" />
+							<input type="button" value="Search" id="search-conference-button" />
 						</span>
 					</div>
 					
-					<table id="journal-detail-grid-list" class="grid-container">
+					<table id="conference-detail-grid-list" class="grid-container">
                 		<tr>
                 			<td />
                 		</tr>
@@ -34,17 +34,17 @@
 		        </div>
 		    </div>
     		<div id="main-wrapper" class="container">
-				<div id="journal-detail-grid-list" class="grid-container"></div>
+				<div id="conference-detail-grid-list" class="grid-container"></div>
 				<div style="clear: both;"></div>
-				<!-- include journal detail page -->
-				<jsp:include page="CitationJournalDetail.jsp" />
+				<!-- include conference detail page -->
+				<jsp:include page="CitationConferenceDetail.jsp" />
 
 				<script type="text/javascript">
 					$(document).ready(function(){
 						var token = $("meta[name='_csrf']").attr("content");
 					    var header = $("meta[name='_csrf_header']").attr("content");
-						 $("#journal-detail-grid-list").jqGrid({
-							url : "${returnAllJournalForGrid}",
+						 $("#conference-detail-grid-list").jqGrid({
+							url : "${returnAllConferenceForGrid}",
 							loadBeforeSend : function(jqXHR) {
 				                // you should modify the next line to get the CSRF tocken
 				                // in any way (for example $('meta[name=csrf]').attr('content')
@@ -55,7 +55,7 @@
 							mtype : 'POST',
 							width : 1000,
 							height : 400,
-							colNames : [ 'Title','Url','Authors','Publication Date','Journal','Volume','Issue','Pages','Action'],
+							colNames : [ 'Title','Url','Authors','Publication Date','Conference','Volume','Issue','Pages','Action'],
 							colModel : [
 								{
 									name : 'title',
@@ -81,8 +81,8 @@
 									width : 150
 								}, 
 								{
-									name : 'journal',
-							        index : 'journal',
+									name : 'conference',
+							        index : 'conference',
 							        width : 150,
 							        editable : false,
 								},
@@ -105,15 +105,15 @@
 							        editable : false
 								},
 								{
-									name : 'citationJournalId',
-							        index : 'citationJournalId',
+									name : 'citationConferenceId',
+							        index : 'citationConferenceId',
 							        width : 150,
 							        hidden : true,
 									key : true,
 								}
 								],
 								ondblClickRow: function(rowId) {
-									citationJournal_Db_Click(rowId);
+									citationConference_Db_Click(rowId);
 								},
 								ajaxEditOptions: {
 						            beforeSend: function(jqXHR) {
@@ -133,7 +133,7 @@
 							    gridview : true,
 							    multiselect: true,
 							    multiboxonly: false,
-							    caption : 'Citation Journal',
+							    caption : 'Citation Conference',
 							    jsonReader : {
 							    	repeatitems : false,
 							    }
@@ -150,9 +150,9 @@
 				            jQuery("#department-detail-grid-list").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true}); */
 							
 
-							$('#search-journal-button').on('click',function(){
-								var journalTitle =  $("#journalTitle").val();                             
-								jQuery("#journal-detail-grid-list").jqGrid('setGridParam',{url:"/QEC_HEC_SU/qec/journal/returnAllCitationJournalForGrid?title="+journalTitle}).trigger("reloadGrid");
+							$('#search-conference-button').on('click',function(){
+								var conferenceTitle =  $("#conferenceTitle").val();                             
+								jQuery("#conference-detail-grid-list").jqGrid('setGridParam',{url:"/QEC_HEC_SU/qec/conference/returnAllCitationConferenceForGrid?title="+conferenceTitle}).trigger("reloadGrid");
 								
 				         });
 						   
