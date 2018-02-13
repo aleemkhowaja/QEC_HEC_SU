@@ -22,7 +22,7 @@
                     </a>
                 </div>
                 <div class="logo-box">
-                	<a href="http://3melements.com/sindhuni/" class="logo-text"><img src="../resources/theme/images/logo1.png" width="200"></a>
+                	<a href="http://3melements.com/sindhuni/" class="logo-text"><img src="/QEC_HEC_SU/resources/theme/images/logo1.png" width="200"></a>
                 </div><!-- Logo Box -->
                 <div class="search-button">
                 	<a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i class="fa fa-search"></i></a>

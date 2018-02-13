@@ -15,35 +15,28 @@
     </div>
     <div id="main-wrapper" class="container">
         <div class="row">
-                            <div class="col-lg-3 col-md-3">
-                    <div class="panel info-box panel-white color1">
-                        <div class="panel-body">
-
-
-                            <div class="info-box-stats">
-                                <p class="counter">79</p>
-                                                                <span class="info-box-title">TEACHING STAFF</span>
-                            </div>
-
-
+        	<div class="col-lg-3 col-md-3">
+            	<div class="panel info-box panel-white color1">
+                	<div class="panel-body">
+                    	<div class="info-box-stats">
+                        	<p class="counter">79</p>
+                           	<span class="info-box-title">TEACHING STAFF</span>
                         </div>
                     </div>
-                </div>
-                            <div class="col-lg-3 col-md-3">
-                    <div class="panel info-box panel-white color1">
-                        <div class="panel-body">
-
-
-                            <div class="info-box-stats">
-                                <p class="counter">15</p>
-                                                                <span class="info-box-title">NON TEACHING STAFF</span>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                        <div class="col-lg-3 col-md-3">
+               	</div>
+           	</div>
+            <div class="col-lg-3 col-md-3">
+            	<div class="panel info-box panel-white color1">
+                	<div class="panel-body">
+	                	<div class="info-box-stats">
+    	                	<p class="counter">15</p>
+              				<span class="info-box-title">NON TEACHING STAFF</span>
+                       	</div>
+		            </div>
+        	  </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3">
                 <div class="panel info-box panel-white color2">
                     <div class="panel-body">
                         <div class="info-box-stats">
@@ -54,6 +47,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-3 col-md-3">
                 <div class="panel info-box panel-white color2">
                     <div class="panel-body">
@@ -61,47 +55,43 @@
                             <p class="counter">41</p>
                             <span class="info-box-title">Female Students</span>
                         </div>
-                        
                     </div>
                 </div>
             </div>
-                            
             
             <div class="col-lg-3 col-md-3">
-                <div class="panel info-box panel-white color3">
-                    <div class="panel-body">
-                        <div class="info-box-stats">
-                            <p><span class="counter">122</span></p>
+            	<div class="panel info-box panel-white color3">
+                	<div class="panel-body">
+                    	<div class="info-box-stats">
+                        	<p><span class="counter">122</span></p>
                             <span class="info-box-title">Impact Factor Research Papers</span>
                         </div>
-                        
                     </div>
                 </div>
             </div>
-                            
             
             <div class="col-lg-3 col-md-3">
-                <div class="panel info-box panel-white color3">
-                    <div class="panel-body">
-                        <div class="info-box-stats">
-                            <p><span class="counter">95</span></p>
+            	<div class="panel info-box panel-white color3" style="padding: 7px 10px;">
+                	<div class="panel-body">
+                    	<div class="info-box-stats">
+                        	<p><span class="counter">95</span></p>
                             <span class="info-box-title">Research Papers HEC Recognize(XYZ)</span>
                         </div>
-                        
                     </div>
                 </div>
             </div>
-                        <div class="col-lg-3 col-md-3">
-                <div class="panel info-box panel-white color4">
-                    <div class="panel-body">
-                        <div class="info-box-stats">
-                            <p class="counter">162</p>
+            
+            <div class="col-lg-3 col-md-3">
+            	<div class="panel info-box panel-white color4">
+                	<div class="panel-body">
+                    	<div class="info-box-stats">
+                        	<p class="counter">162</p>
                             <span class="info-box-title">Male Teachers</span>
                         </div>
-                        
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-3 col-md-3">
                 <div class="panel info-box panel-white color4">
                     <div class="panel-body">
@@ -114,9 +104,9 @@
                 </div>
             </div>
         </div><!-- Row -->
+        
         <div class="row">
             <div class="col-lg-12 col-md-12">
-
                 <div class="panel panel-white">
                     <div class="row">
                         
@@ -260,7 +250,10 @@
 <script src="<c:url value="/resources/theme/js/qec-charts/researchFundingGrantsByDepartments.js" />"></script>
 <script src="<c:url value="/resources/theme/js/qec-charts/employeeCommunityServicesByDepartments.js" />"></script>
 <!-- Javascripts -->
+<script>
 
+
+</script>
 
 
 </body>
