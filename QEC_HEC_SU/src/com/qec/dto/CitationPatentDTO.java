@@ -10,7 +10,7 @@ public class CitationPatentDTO  implements java.io.Serializable {
 
     private Long citationPatentId;
     private EmployeeDTO employee;
-    private Integer employeeId;
+    private Long employeeId;
     private UserDTO user;
     private String title;
     private String url;
@@ -38,11 +38,11 @@ public class CitationPatentDTO  implements java.io.Serializable {
         this.employee = employee;
     }
 
-	public Integer getEmployeeId() {
+	public Long getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
 

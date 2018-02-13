@@ -2,7 +2,6 @@ package com.qec.controler;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.qec.dto.CampusesDTO;
 import com.qec.dto.CitationBookDTO;
 import com.qec.dto.CitationChapterDTO;
@@ -21,7 +19,7 @@ import com.qec.dto.CitationThesisDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.EventsDTO;
-import com.qec.dto.GoogleCitationDTO;
+import com.qec.dto.CitationGoogleDTO;
 import com.qec.dto.UserDTO;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
@@ -250,7 +248,7 @@ public class RequestMappingController {
 		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
 		model.addAttribute("employeeList", employeeDTOs);
 		model.addAttribute("chapter", new CitationChapterDTO());
-		return new ModelAndView("CitationChapterDetail");
+		return new ModelAndView("CitationChapterList");
 	}
 	
 	/**
@@ -264,7 +262,7 @@ public class RequestMappingController {
 		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
 		model.addAttribute("employeeList", employeeDTOs);
 		model.addAttribute("book", new CitationBookDTO());
-		return new ModelAndView("CitationBookDetail");
+		return new ModelAndView("CitationBookList");
 	}
 	
 	/**
@@ -278,7 +276,7 @@ public class RequestMappingController {
 		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
 		model.addAttribute("employeeList", employeeDTOs);
 		model.addAttribute("thesis", new CitationThesisDTO());
-		return new ModelAndView("CitationThesisDetail");
+		return new ModelAndView("CitationThesisList");
 	}
 	
 	/**
@@ -292,7 +290,7 @@ public class RequestMappingController {
 		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
 		model.addAttribute("employeeList", employeeDTOs);
 		model.addAttribute("patent", new CitationPatentDTO());
-		return new ModelAndView("CitationPatentDetail");
+		return new ModelAndView("CitationPatentList");
 	}
 	
 	/**
@@ -305,8 +303,8 @@ public class RequestMappingController {
 	{
 		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
 		model.addAttribute("employeeList", employeeDTOs);
-		model.addAttribute("google", new GoogleCitationDTO());
-		return new ModelAndView("CitationGoogleDetail");
+		model.addAttribute("google", new CitationGoogleDTO());
+		return new ModelAndView("CitationGoogleList");
 	}
 	
 }

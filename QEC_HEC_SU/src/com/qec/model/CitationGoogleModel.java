@@ -2,11 +2,12 @@ package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,43 +20,34 @@ import javax.persistence.Table;
 @Table(name="google_citation"
     ,catalog="qecdb"
 )
-public class GoogleCitationModel  implements java.io.Serializable {
+public class CitationGoogleModel extends Model implements java.io.Serializable {
 
-
-     private Long googleCitationId;
+     private Long citationGoogleId;
      private EmployeeModel employeeModel;
      private UserModel userModel;
      private String url;
-
-    public GoogleCitationModel() {
-    }
-
-    public GoogleCitationModel(EmployeeModel employeeModel, UserModel userModel, String url) {
-       this.employeeModel = employeeModel;
-       this.userModel = userModel;
-       this.url = url;
-    }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="google_citation_id", unique=true, nullable=false)
-    public Long getGoogleCitationId() {
-        return this.googleCitationId;
+    public Long getCitationGoogleId() {
+        return this.citationGoogleId;
     }
     
-    public void setGoogleCitationId(Long googleCitationId) {
-        this.googleCitationId = googleCitationId;
+    public void setCitationGoogleId(Long citationGoogleId) {
+        this.citationGoogleId = citationGoogleId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     public UserModel getUser() {
         return this.userModel;
@@ -73,10 +65,4 @@ public class GoogleCitationModel  implements java.io.Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
-
-
-
-
 }
-
-

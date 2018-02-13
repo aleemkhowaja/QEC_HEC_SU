@@ -4,7 +4,6 @@ import java.util.List;
 import com.qec.model.CitationConferenceModel;
 
 public interface CitationConferenceDAO  {
-
 	
 	/**
 	 * 
@@ -26,8 +25,9 @@ public interface CitationConferenceDAO  {
 	
 
 	/**
-	 * 
+	 * return All citation Conference Models
 	 * @return
+	 * @throws Exception
 	 */
 	public List<CitationConferenceModel> returnAllCitationConferenceModel() throws Exception;
 

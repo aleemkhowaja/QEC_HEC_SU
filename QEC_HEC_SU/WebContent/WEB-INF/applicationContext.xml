@@ -65,6 +65,11 @@
 				<value>com.qec.model.CountriesModel</value>
 				<value>com.qec.model.EmpTravelgrandsModel</value>
 				<value>com.qec.model.EmpCommunityservicesModel</value>
+				<value>com.qec.model.CitationChapterModel</value>
+				<value>com.qec.model.CitationBookModel</value>
+				<value>com.qec.model.CitationThesisModel</value>
+				<value>com.qec.model.CitationPatentModel</value>
+				<value>com.qec.model.CitationGoogleModel</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

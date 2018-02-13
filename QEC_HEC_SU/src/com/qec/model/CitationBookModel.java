@@ -1,7 +1,6 @@
 package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
-
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name="citation_book"
     ,catalog="qecdb"
 )
-public class CitationBookModel  implements java.io.Serializable {
+public class CitationBookModel extends Model implements java.io.Serializable {
 
 
      private Long citationBookId;
@@ -38,25 +37,8 @@ public class CitationBookModel  implements java.io.Serializable {
      private String publisher;
      private String description;
 
-    public CitationBookModel() {
-    }
-
-    public CitationBookModel(EmployeeModel employeeModel, UserModel userModel, String title, String url, String authors, Date publicationDate, Long volume, Long issue, String pages, String publisher, String description) {
-       this.employeeModel = employeeModel;
-       this.userModel = userModel;
-       this.title = title;
-       this.url = url;
-       this.authors = authors;
-       this.publicationDate = publicationDate;
-       this.volume = volume;
-       this.issue = issue;
-       this.pages = pages;
-       this.publisher = publisher;
-       this.description = description;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+  
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="citation_book_id", unique=true, nullable=false)
     public Long getCitationBookId() {
         return this.citationBookId;
@@ -65,16 +47,18 @@ public class CitationBookModel  implements java.io.Serializable {
     public void setCitationBookId(Long citationBookId) {
         this.citationBookId = citationBookId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     public UserModel getUser() {
         return this.userModel;
@@ -164,10 +148,6 @@ public class CitationBookModel  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
-
-
 }
 
 

@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name="citation_patent"
     ,catalog="qecdb"
 )
-public class CitationPatentModel  implements java.io.Serializable {
+public class CitationPatentModel extends Model  implements java.io.Serializable {
 
 
      private Long citationPatentId;
@@ -36,127 +36,109 @@ public class CitationPatentModel  implements java.io.Serializable {
      private String patentNumber;
      private String applicationNumber;
      private String description;
-
-    public CitationPatentModel() {
-    }
-
-    public CitationPatentModel(EmployeeModel employeeModel, UserModel userModel, String title, String url, String inventors, Date publicationDate, String patentOffice, String patentNumber, String applicationNumber, String description) {
-       this.employeeModel = employeeModel;
-       this.userModel = userModel;
-       this.title = title;
-       this.url = url;
-       this.inventors = inventors;
-       this.publicationDate = publicationDate;
-       this.patentOffice = patentOffice;
-       this.patentNumber = patentNumber;
-       this.applicationNumber = applicationNumber;
-       this.description = description;
-    }
    
      @Id @GeneratedValue(strategy=IDENTITY)
-    
-    @Column(name="citation_patent_id", unique=true, nullable=false)
-    public Long getCitationPatentId() {
+     @Column(name="citation_patent_id", unique=true, nullable=false)
+     public Long getCitationPatentId() {
         return this.citationPatentId;
-    }
+     }
     
-    public void setCitationPatentId(Long citationPatentId) {
+     public void setCitationPatentId(Long citationPatentId) {
         this.citationPatentId = citationPatentId;
-    }
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+     }
+
+     @ManyToOne(fetch=FetchType.LAZY)
+     @JoinColumn(name="employee_id")
+     public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
-    }
+     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
-        this.employeeModel = employeeModel;
-    }
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    public UserModel getUser() {
+     public void setEmployeeModel(EmployeeModel employeeModel) {
+    	 this.employeeModel = employeeModel;
+     }
+
+     @ManyToOne(fetch=FetchType.LAZY)
+     @JoinColumn(name="user_id")
+     public UserModel getUser() {
         return this.userModel;
-    }
+     }
     
-    public void setUser(UserModel userModel) {
+     public void setUser(UserModel userModel) {
         this.userModel = userModel;
-    }
+     }
     
-    @Column(name="title", length=65535)
-    public String getTitle() {
+     @Column(name="title", length=65535)
+     public String getTitle() {
         return this.title;
-    }
+     }
     
-    public void setTitle(String title) {
+     public void setTitle(String title) {
         this.title = title;
-    }
+     }
     
-    @Column(name="url", length=65535)
-    public String getUrl() {
+     @Column(name="url", length=65535)
+     public String getUrl() {
         return this.url;
-    }
+     }
     
-    public void setUrl(String url) {
+     public void setUrl(String url) {
         this.url = url;
-    }
+     }
     
-    @Column(name="inventors", length=65535)
-    public String getInventors() {
+     @Column(name="inventors", length=65535)
+     public String getInventors() {
         return this.inventors;
-    }
+     }
     
-    public void setInventors(String inventors) {
+     public void setInventors(String inventors) {
         this.inventors = inventors;
-    }
-    @Temporal(TemporalType.DATE)
-    @Column(name="publication_date", length=10)
-    public Date getPublicationDate() {
+     }
+    
+     @Temporal(TemporalType.DATE)
+     @Column(name="publication_date", length=10)
+     public Date getPublicationDate() {
         return this.publicationDate;
-    }
+     }
     
-    public void setPublicationDate(Date publicationDate) {
+     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
-    }
+     }
     
-    @Column(name="patent_office", length=100)
-    public String getPatentOffice() {
+     @Column(name="patent_office", length=100)
+     public String getPatentOffice() {
         return this.patentOffice;
-    }
+     }
     
-    public void setPatentOffice(String patentOffice) {
+     public void setPatentOffice(String patentOffice) {
         this.patentOffice = patentOffice;
-    }
+     }
     
-    @Column(name="patent_number", length=100)
-    public String getPatentNumber() {
+     @Column(name="patent_number", length=100)
+     public String getPatentNumber() {
         return this.patentNumber;
-    }
+     }
     
-    public void setPatentNumber(String patentNumber) {
+     public void setPatentNumber(String patentNumber) {
         this.patentNumber = patentNumber;
-    }
+     }
     
-    @Column(name="application_number", length=100)
-    public String getApplicationNumber() {
+     @Column(name="application_number", length=100)
+     public String getApplicationNumber() {
         return this.applicationNumber;
-    }
+     }
     
-    public void setApplicationNumber(String applicationNumber) {
+     public void setApplicationNumber(String applicationNumber) {
         this.applicationNumber = applicationNumber;
-    }
+     }
     
-    @Column(name="description", length=65535)
-    public String getDescription() {
+     @Column(name="description", length=65535)
+     public String getDescription() {
         return this.description;
-    }
+     }
     
-    public void setDescription(String description) {
+     public void setDescription(String description) {
         this.description = description;
-    }
-
-
-
-
+     }
 }
 
 

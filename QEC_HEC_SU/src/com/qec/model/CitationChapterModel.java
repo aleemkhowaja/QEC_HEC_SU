@@ -2,12 +2,14 @@ package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,43 +24,23 @@ import javax.persistence.TemporalType;
 @Table(name="citation_chapter"
     ,catalog="qecdb"
 )
-public class CitationChapterModel  implements java.io.Serializable {
+public class  CitationChapterModel extends Model  implements java.io.Serializable {
 
+    private Long citationChapterId;
+    private EmployeeModel employeeModel;
+    private UserModel userModel;
+    private String title;
+    private String url;
+    private String authors;
+    private Date publicationDate;
+    private String book;
+    private Long volume;
+    private Long issue;
+    private String pages;
+    private String publisher;
+    private String description;
 
-     private Long citationChapterId;
-     private EmployeeModel employeeModel;
-     private UserModel userModel;
-     private String title;
-     private String url;
-     private String authors;
-     private Date publicationDate;
-     private String book;
-     private Long volume;
-     private Long issue;
-     private String pages;
-     private String publisher;
-     private String description;
-
-    public CitationChapterModel() {
-    }
-
-    public CitationChapterModel(EmployeeModel employeeModel, UserModel userModel, String title, String url, String authors, Date publicationDate, String book, Long volume, Long issue, String pages, String publisher, String description) {
-       this.employeeModel = employeeModel;
-       this.userModel = userModel;
-       this.title = title;
-       this.url = url;
-       this.authors = authors;
-       this.publicationDate = publicationDate;
-       this.book = book;
-       this.volume = volume;
-       this.issue = issue;
-       this.pages = pages;
-       this.publisher = publisher;
-       this.description = description;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="citation_chapter_id", unique=true, nullable=false)
     public Long getCitationChapterId() {
         return this.citationChapterId;
@@ -67,16 +49,18 @@ public class CitationChapterModel  implements java.io.Serializable {
     public void setCitationChapterId(Long citationChapterId) {
         this.citationChapterId = citationChapterId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     public UserModel getUser() {
         return this.userModel;
@@ -175,10 +159,6 @@ public class CitationChapterModel  implements java.io.Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
-
-
 }
 
 

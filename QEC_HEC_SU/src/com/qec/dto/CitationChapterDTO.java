@@ -11,7 +11,7 @@ public class CitationChapterDTO  implements java.io.Serializable {
 
     private Long citationChapterId;
     private EmployeeDTO employee;
-    private Integer employeeId;
+    private Long employeeId;
     private UserDTO user;
     private String title;
     private String url;
@@ -34,11 +34,11 @@ public class CitationChapterDTO  implements java.io.Serializable {
         this.citationChapterId = citationChapterId;
     }
     
-	public Integer getEmployeeId() {
+	public Long getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(Long employeeId) {
 		this.employeeId = employeeId;
 	}
 

@@ -1,7 +1,5 @@
 package com.qec.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 

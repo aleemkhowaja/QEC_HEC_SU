@@ -91,7 +91,7 @@
 		$("#citationConference_url").val(data.url);
 		$("#citationConference_author").val(data.authors);
 		$("#citationConference_publication_date").val(data.publicationDate);
-		$("#citationConference_Conference").val(data.conference);
+		$("#citationConference_conference").val(data.conference);
 		$("#citationConference_volume").val(data.volume);
 		$("#citationConference_issue").val(data.issue);
 		$("#citationConference_pages").val(data.pages);
@@ -123,7 +123,7 @@
 				if(data != undefined) {
 					jQuery("#conference-detail-grid-list").trigger("reloadGrid");
 					toaster_success(data);
-					citaionConference_Clear_FromData();
+					citationConference_Clear_FromData();
 				}
 				else {
 					toaster_error(data);

@@ -1,10 +1,35 @@
 package com.qec.service;
+
 import javax.servlet.http.HttpServletRequest;
-import com.qec.model.CitationPatentModel;
-import com.qec.common.JTableList;
+import com.qec.common.JQGridDTO;
+import com.qec.dto.CitationPatentDTO;
 public interface CitationPatentService
 {
-    public JTableList<CitationPatentModel> returnAllCitationPatentForGrid(HttpServletRequest request);
+	/**
+	 * return All Citation Patent for Grid
+	 * @param request
+	 * @return
+	 */
+    public JQGridDTO<CitationPatentDTO> returnAllCitationPatentForGrid(HttpServletRequest request);
 
-    public CitationPatentModel returnCitationPatentById(Integer CitationPatentId);
+    /**
+     * return Citation Patent By ID
+     * @param CitationPatentId
+     * @return
+     */
+    public CitationPatentDTO returnCitationPatentById(Integer citationPatentId);
+    
+    /**
+     * save Citation Patent 
+     * @param CitationPatentDTO
+     * @return
+     */
+    public String saveCitationPatent(CitationPatentDTO citationPatentDTO);
+	
+    /**
+     * delete Citation Patent
+     * @param citationPatentId
+     * @return
+     */
+	public String deleteCitationPatent(Integer citationPatentId);
 }

@@ -22,10 +22,9 @@ import javax.persistence.TemporalType;
 @Table(name="citation_thesis"
     ,catalog="qecdb"
 )
-public class CitationThesisModel  implements java.io.Serializable {
+public class CitationThesisModel extends Model implements java.io.Serializable {
 
-
-     private Long citationThesisId;
+	private Long citationThesisId;
      private EmployeeModel employeeModel;
      private UserModel userModel;
      private String title;
@@ -35,22 +34,8 @@ public class CitationThesisModel  implements java.io.Serializable {
      private String institution;
      private String description;
 
-    public CitationThesisModel() {
-    }
-
-    public CitationThesisModel(EmployeeModel employeeModel, UserModel userModel, String title, String url, String authors, Date publicationDate, String institution, String description) {
-       this.employeeModel = employeeModel;
-       this.userModel = userModel;
-       this.title = title;
-       this.url = url;
-       this.authors = authors;
-       this.publicationDate = publicationDate;
-       this.institution = institution;
-       this.description = description;
-    }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="citation_thesis_id", unique=true, nullable=false)
     public Long getCitationThesisId() {
         return this.citationThesisId;
@@ -59,16 +44,19 @@ public class CitationThesisModel  implements java.io.Serializable {
     public void setCitationThesisId(Long citationThesisId) {
         this.citationThesisId = citationThesisId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     public UserModel getUser() {
         return this.userModel;
