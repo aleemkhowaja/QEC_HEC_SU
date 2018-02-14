@@ -9,8 +9,8 @@
     <c:url var="returnEmployeePage" value="/qec/employee/employee.htm" ></c:url> 
     <c:url var="returnPublicationPage" value="/qec/publication/publication.htm" ></c:url>
     <c:url var="returnCitationPage" value="/qec/publication/journal.htm" ></c:url>
+    <c:url var="logout" value="/logout" ></c:url>
     
-     
     <!-- end page urls -->  
     
     <main class="page-content content-wrap">
@@ -37,7 +37,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-list" role="menu">
                                 	<li role="presentation"><a href="http://3melements.com/sindhuni/users/editprofile"><i class="fa fa-user"></i>Profile</a></li>
-                                    <li role="presentation"><a href="http://3melements.com/sindhuni/users/logout"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
+                                    <li role="presentation"><a href="${logout}"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
                                 </ul>
                            	</li>
                      	</ul><!-- Nav -->
@@ -119,3 +119,28 @@
                     </ul>
                 </div><!-- Page Sidebar Inner -->
             </div><!-- Page Sidebar -->
+            
+            <script>
+            
+            function login_logut()
+            {
+            	var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+            	url ='/logout';
+            	event.preventDefault();
+            	$.ajax({
+            		url :url,
+            		 type: "POST",
+                     contentType: "application/json",
+                     beforeSend: function(xhr) {
+                         xhr.setRequestHeader("Accept", "application/json");
+                         xhr.setRequestHeader("Content-Type", "application/json");
+                         xhr.setRequestHeader(header, token);
+                     },
+            		 async:false,
+            		 success : function(data) {}
+            	});
+            	event.preventDefault();
+            }
+            
+            </script>

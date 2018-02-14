@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -43,6 +44,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	//http.addFilterAfter(new AuthorizationFilter(), BasicAuthenticationFilter.class);
+    	
+    	http
+    	.headers()
+		.httpStrictTransportSecurity()
+			.includeSubDomains(true)
+			.maxAgeInSeconds(31536000);
+    	
+    	/*http.requiresChannel()
+    	  .anyRequest().requiresSecure();*/
+    	
     	http.authorizeRequests()
 		    .antMatchers("/qec/**").access("hasRole('admin') or hasRole('coordinator')")
 		    .antMatchers("/views/**").access("hasRole('admin') or hasRole('coordinator')")
@@ -52,7 +63,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			    .defaultSuccessUrl("/qec/dashboard.htm")
 			    .usernameParameter("username").passwordParameter("password")
 			    .and().logout().logoutSuccessUrl("/login.htm?logout")
+			    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			    .and().csrf();
+    	
+    	http
+    	.headers()
+		.frameOptions().deny();
+    	
+    	//for XSS attack
+    	http.headers()
+		.xssProtection()
+			.block(true);
+    	
+    	/*http.requiresChannel()
+  	  		.antMatchers("/login.htm").requiresSecure();*/
+    	
 	    }
 
 }

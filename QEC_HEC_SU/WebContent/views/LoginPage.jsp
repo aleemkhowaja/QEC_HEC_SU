@@ -85,61 +85,37 @@
     </head>
     <body class="page-login" id="body" >
         <main class="page-content">
-            <div class="page-inner">
-                <div id="main-wrapper">
-                    <div class="row">
-                        <div class="col-md-4 center">
-                            <div class="login-box">
-                                <a href="#" class="logo-name text-lg text-center"><img src="resources/theme/images/flogo.png"></a>
-                               </div>
+        	<div class="page-inner">
+            	<div id="main-wrapper">
+                	<div class="row">
+                    	<div class="col-md-4 center">
+                        	<div class="login-box">
+                            	<a href="#" class="logo-name text-lg text-center"><img src="resources/theme/images/flogo.png"></a>
+                            </div>
                         </div>
 						<c:url var="loginUrl" value="/login.htm" />
                         <div class="col-md-4 center">
                         	<div class="login-panel">
                             	<p class="text-center m-t-md log-p">Please login into your account.</p>
                             	<c:if test="${not empty error}"> <h5 class="text-center" style="border-bottom-color:red; color : red"> Wrong Username OR Password </h5> </c:if>
-                                
-<%--                                 <form name='loginForm'
-		  action="${loginUrl}" method='POST'>
 
-		  <table>
-			<tr>
-				<td>User:</td>
-				<td><input type='text' name='username' value=''></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type='password' name='password' /></td>
-			</tr>
-			<tr>
-				<td colspan='2'><input name="submit" type="submit"
-					value="submit" /></td>
-			</tr>
-		  </table>
-
-		  <input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-		
-		</form> --%>
-		
-       <form:form cssClass="m-t-md ajax-form-login" action="${loginUrl}" method="POST" modelAttribute="login">
-                                	<div class="form-group">
-                                		<form:label path="username">Username</form:label>
-                                		<form:input path="username" cssClass="form-control" placeholder="Username"  />
-	                                </div>
-	                                
-	                                <div class="form-group">
-	                                	<form:label path="password">Password</form:label>
-	                                	<form:password path="password" cssClass="form-control" placeholder="Password"  />
-	                                </div>
-	                                	<button type="submit" class="btn btn-success btn-block login-btn">Login</button>
-	                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                </form:form>
-                                <p class="text-center m-t-xs text-sm log-copy">2017 &copy; Quality Enhancement Cell, University of Sindh Jamshoro Pakistan</p>
-                            </div>
-                        </div>
-                         
-                    </div><!-- Row -->
+						       	<form:form cssClass="m-t-md ajax-form-login" action="${loginUrl}" method="POST" modelAttribute="login">
+						       		<div class="form-group">
+						            	<form:label path="username">Username</form:label>
+						                <form:input path="username" cssClass="form-control" placeholder="Username"  />
+							        </div>
+						
+							        <div class="form-group">
+							        	<form:label path="password">Password</form:label>
+							            <form:password path="password" cssClass="form-control" placeholder="Password"  />
+							        </div>
+							        <button type="submit" class="btn btn-success btn-block login-btn">Login</button>
+							        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						      	</form:form>
+						    	<p class="text-center m-t-xs text-sm log-copy">2017 &copy; Quality Enhancement Cell, University of Sindh Jamshoro Pakistan</p>
+                        	</div>
+                    	</div>
+                	</div><!-- Row -->
                 </div><!-- Main Wrapper -->
             </div><!-- Page Inner -->
         </main><!-- Page Content -->
