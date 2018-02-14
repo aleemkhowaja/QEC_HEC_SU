@@ -39,9 +39,16 @@
 				<script type="text/javascript">
 					
 					$(document).ready(function(){
-						
+						var token = $("meta[name='_csrf']").attr("content");
+					    var header = $("meta[name='_csrf_header']").attr("content");
 						 $("#employee-detail-grid-list").jqGrid({
 							url : "${returnAllEmployeeForGrid}",
+							loadBeforeSend : function(jqXHR) {
+				                // you should modify the next line to get the CSRF tocken
+				                // in any way (for example $('meta[name=csrf]').attr('content')
+				                // if you have <meta name="csrf" content="abcdefjklmnopqrstuvwxyz="/>)
+				                jqXHR.setRequestHeader(header, token);
+				            },
 							datatype : "json",
 							mtype : 'POST',
 							width : 1000,

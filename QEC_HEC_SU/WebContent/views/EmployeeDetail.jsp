@@ -67,17 +67,17 @@
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="nic" >CNIC * </form:label>
-						<form:input path="nic" cssClass="form-control validate-required" id="employee_nic" placeholder="CNIC"  />
+						<form:input path="nic" cssClass="form-control validate-required validate-integer-value" id="employee_nic" placeholder="CNIC"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="mobile" >Mobile No * </form:label>
-						<form:input path="mobile" cssClass="form-control validate-required" id="employee_mobile" placeholder="Mobile No"  />
+						<form:input path="mobile" cssClass="form-control validate-required validate-integer-value" id="employee_mobile" placeholder="Mobile No"  />
 	               	</div>
 	               	
 	               	<div class="form-group">
 	                	<form:label  path="phone" >Phone No * </form:label>
-						<form:input path="phone" cssClass="form-control" id="employee_phone" placeholder="Phone No"  />
+						<form:input path="phone" cssClass="form-control validate-integer-value" id="employee_phone" placeholder="Phone No"  />
 	               	</div>
 	               	
 	               	<div class="form-group">

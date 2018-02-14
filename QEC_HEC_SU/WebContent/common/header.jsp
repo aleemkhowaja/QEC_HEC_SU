@@ -11,6 +11,9 @@
     <meta name="keywords" content="admin,dashboard" />
     <meta name="author" content="Steelcoders" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
+	
     <c:url var="home" value="/" scope="request" />
         
     <!-- Styles -->
@@ -104,6 +107,7 @@
 	    	});
 	    	
 	    	$(".ui-widget-header").css("background","#1B75A1;");
+	    	validateIntegerValues();
 		} );
   	</script>
     <style>
