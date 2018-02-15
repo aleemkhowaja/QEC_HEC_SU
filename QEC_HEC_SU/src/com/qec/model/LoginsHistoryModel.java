@@ -30,19 +30,11 @@ public class LoginsHistoryModel  implements java.io.Serializable {
      private Date dateof;
      private Date startTime;
      private Date endTime;
+     private String ipAddress;
+     private String macAddress;
 
-    public LoginsHistoryModel() {
-    }
-
-    public LoginsHistoryModel(UserModel userModel, Date dateof, Date startTime, Date endTime) {
-       this.userModel = userModel;
-       this.dateof = dateof;
-       this.startTime = startTime;
-       this.endTime = endTime;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+ 
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="logins_history_id", unique=true, nullable=false)
     public Long getLoginsHistoryId() {
         return this.loginsHistoryId;
@@ -51,15 +43,17 @@ public class LoginsHistoryModel  implements java.io.Serializable {
     public void setLoginsHistoryId(Long loginsHistoryId) {
         this.loginsHistoryId = loginsHistoryId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
-    public UserModel getUser() {
+    public UserModel getUserModel() {
         return this.userModel;
     }
     
-    public void setUser(UserModel userModel) {
+    public void setUserModel(UserModel userModel) {
         this.userModel = userModel;
     }
+    
     @Temporal(TemporalType.DATE)
     @Column(name="dateof", length=10)
     public Date getDateof() {
@@ -69,6 +63,7 @@ public class LoginsHistoryModel  implements java.io.Serializable {
     public void setDateof(Date dateof) {
         this.dateof = dateof;
     }
+    
     @Temporal(TemporalType.TIME)
     @Column(name="start_time", length=8)
     public Date getStartTime() {
@@ -88,9 +83,21 @@ public class LoginsHistoryModel  implements java.io.Serializable {
         this.endTime = endTime;
     }
 
+    @Column(name="ip_address", length=10)
+	public String getIpAddress() {
+		return ipAddress;
+	}
 
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
 
+	@Column(name="mac_address", length=10)
+	public String getMacAddress() {
+		return macAddress;
+	}
 
+	public void setMacAddress(String macAddress) {
+		this.macAddress = macAddress;
+	}
 }
-
-

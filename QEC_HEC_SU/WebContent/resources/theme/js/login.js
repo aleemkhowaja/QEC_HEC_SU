@@ -24,3 +24,25 @@ $(document).on('submit', 'form.ajax-form-login', function() {
 	});
 	return false;
 });*/
+
+
+function login_logut()
+{
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+	url ='/logout';
+	event.preventDefault();
+	$.ajax({
+		url :url,
+		 type: "POST",
+         contentType: "application/json",
+         beforeSend: function(xhr) {
+             xhr.setRequestHeader("Accept", "application/json");
+             xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.setRequestHeader(header, token);
+         },
+		 async:false,
+		 success : function(data) {}
+	});
+	event.preventDefault();
+}

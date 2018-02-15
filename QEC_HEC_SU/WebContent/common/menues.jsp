@@ -9,6 +9,7 @@
     <c:url var="returnEmployeePage" value="/qec/employee/employee.htm" ></c:url> 
     <c:url var="returnPublicationPage" value="/qec/publication/publication.htm" ></c:url>
     <c:url var="returnCitationPage" value="/qec/publication/journal.htm" ></c:url>
+    <c:url var="dashboardPage" value="/qec/dashboard.htm" ></c:url>
     <c:url var="logout" value="/logout" ></c:url>
     
     <!-- end page urls -->  
@@ -49,7 +50,7 @@
        <div class="page-sidebar-inner">
        	<ul class="menu accordion-menu">
         	<li class="nav-heading"><span>Navigation</span></li>
-            <li class="active"><a href="http://3melements.com/sindhuni/dashboard"><span class="menu-icon icon-speedometer"></span><p>Dashboard</p></a></li>
+            <li class="active"><a href="${dashboardPage}"><span class="menu-icon icon-speedometer"></span><p>Dashboard</p></a></li>
              <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Departments</p><span class="arrow"></span></a>
             	<ul class="sub-menu">
                     <li><a href="${returnDepartmentPage}">Departments</a></li>

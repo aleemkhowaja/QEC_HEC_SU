@@ -70,6 +70,7 @@
 				<value>com.qec.model.CitationThesisModel</value>
 				<value>com.qec.model.CitationPatentModel</value>
 				<value>com.qec.model.CitationGoogleModel</value>
+				<value>com.qec.model.LoginsHistoryModel</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

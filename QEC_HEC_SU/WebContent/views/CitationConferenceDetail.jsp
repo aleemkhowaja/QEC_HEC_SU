@@ -75,7 +75,7 @@
 	                  	<div class="form-group">
 	                    	<form:label 	path="impactFactor" > Impact Factor : </form:label>
 							<form:select 	path="impactFactor" cssClass="form-control validate-required"  id="citationConference_impactFactor">
-					 			<form:option	value="" label="Select Impact Factor" />
+					 			<form:option value="" label="Select Impact Factor" />
 					 			<form:options  	items="${impactFactorList}" />
 				 			</form:select>
 	                    </div> 
@@ -86,7 +86,7 @@
 	                    <div class="form-group">
 	                    	<form:label 	path="hecRecognize" > Hec Recognize : </form:label>
 							<form:select 	path="hecRecognize" cssClass="form-control validate-required"  id="citationConference_hecRecognize">
-					 			<form:option	value="" label="Select Hec Recognize" />
+					 			<form:option value="" label="Select Hec Recognize" />
 					 			<form:options  	items="${hecRecognizeList}" />
 				 			</form:select>
 	                    </div> 

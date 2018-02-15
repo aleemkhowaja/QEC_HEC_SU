@@ -72,40 +72,9 @@
 					$("#tabs").tabs();
 					var tabId = "journal";
 					publication_tabOpen(tabId);
-				/* 	//load Journal Tab
-					var journalUrl = "journal.htm";
-					var journalResponse = citationPublication_returnTabPage(journalUrl);
-					$("#journalTab").html(journalResponse);
-					
-					//load Conference Tab
-					var conferenceUrl = "conference.htm";
-					var conferenceResponse = citationPublication_returnTabPage(conferenceUrl);
-					$("#conferenceTab").html(conferenceResponse);
-
-					//load Chapter Tab
-					var chapterUrl = "chapter.htm";
-					var chapterResponse = citationPublication_returnTabPage(chapterUrl);
-					$("#chapterTab").html(chapterResponse);
-					
-					//load book Tab
-					var bookUrl = "book.htm";
-					var bookResponse = citationPublication_returnTabPage(bookUrl);
-					$("#bookTab").html(bookResponse);
-					
-					//load Thesis Tab
-					var thesisUrl = "thesis.htm";
-					var thesisResponse = citationPublication_returnTabPage(thesisUrl);
-					$("#thesisTab").html(thesisResponse);
-					
-					//load Patent Tab
-					var patentUrl = "patent.htm";
-					var patentResponse = citationPublication_returnTabPage(patentUrl);
-					$("#patentTab").html(patentResponse);
-					
-					//load Google Tab
-					var googleUrl = "google.htm";
-					var googleResponse = citationPublication_returnTabPage(googleUrl);
-					$("#googleTab").html(googleResponse); */
+				
+					validateIntegerValues();
+			    	validateFloatValues();
 				});
 				
 				function publication_tabOpen(tabId)

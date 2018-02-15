@@ -12,6 +12,18 @@ function remove_child_Elements(id)
     }
 }
 
+function validateFloatValues()
+{
+	$(".validate-float-value").keypress(function (event) {
+		$(this).val($(this).val().replace(/[^0-9\.]/g,''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+	checkIfPasteCorrectData('validate-float-value');
+}
+
+
 function validateIntegerValues()
 {
 	$(".validate-integer-value").keypress(function (e) {	
@@ -23,7 +35,7 @@ function validateIntegerValues()
 			return testIntegerValues(e);
 			}
 	});
-
+	checkIfPasteCorrectData('validate-integer-value');
 }
 
 function testIntegerValues(e)
@@ -33,6 +45,19 @@ function testIntegerValues(e)
 			return false;
 		}
 }
+
+function checkIfPasteCorrectData(className)
+{
+	$("."+className).on("paste", function(e) {
+	    var that = this;
+	    that.style.color = "#fff";
+	    setTimeout(function() {
+	        that.value = that.value.replace(/\D/g, "");
+	        that.style.color = "#000";
+	    }, 100);
+	});
+}
+
 
 function validateGenericAllRegex1()
 {

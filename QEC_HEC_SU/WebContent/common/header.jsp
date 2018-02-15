@@ -108,6 +108,7 @@
 	    	
 	    	$(".ui-widget-header").css("background","#1B75A1;");
 	    	validateIntegerValues();
+	    	validateFloatValues();
 		} );
   	</script>
     <style>

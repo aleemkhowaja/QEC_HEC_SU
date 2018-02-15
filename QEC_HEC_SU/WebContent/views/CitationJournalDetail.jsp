@@ -49,12 +49,12 @@
 	                    
 	                    <div class="form-group">
 	                    	<form:label path="volume" > Volume * </form:label>
-							<form:input path="volume" cssClass="form-control validate-required" id="citationJournal_volume" placeholder="Volume"  />
+							<form:input path="volume" cssClass="form-control validate-required validate-integer-value" id="citationJournal_volume" placeholder="Volume" maxlength="10" />
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                    	<form:label path="issue" > Issue * </form:label>
-							<form:input path="issue" cssClass="form-control validate-required" id="citationJournal_issue" placeholder="Issue"  />
+							<form:input path="issue" cssClass="form-control validate-required validate-integer-value" id="citationJournal_issue" placeholder="Issue" maxlength="10"  />
 	                    </div>
 	                    
 	                     <div class="form-group">
@@ -79,10 +79,12 @@
 					 			<form:options  	items="${impactFactorList}" />
 				 			</form:select>
 	                    </div> 
+	                    
 	                    <div class="form-group">
 	                    	<form:label 	path="impactFactorValue" > Impact Factor Value * </form:label>
-							<form:textarea 	path="impactFactorValue" cssClass="form-control validate-required" id="citationJournal_impactFactorValue" placeholder="Ratio"  />
+							<form:input path="impactFactorValue" cssClass="form-control validate-required validate-float-value" id="citationJournal_impactFactorValue" placeholder="Volume"  />
 	                    </div>
+	                    
 	                    <div class="form-group">
 	                    	<form:label 	path="hecRecognize" > Hec Recognize : </form:label>
 							<form:select 	path="hecRecognize" cssClass="form-control validate-required"  id="citationJournal_hecRecognize">
