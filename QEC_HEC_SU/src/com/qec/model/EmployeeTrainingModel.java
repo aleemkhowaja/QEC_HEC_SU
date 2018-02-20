@@ -22,8 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name="emp_trainings"
     ,catalog="qecdb"
 )
-public class EmpTrainingsModel  implements java.io.Serializable {
-
+public class EmployeeTrainingModel extends Model implements java.io.Serializable {
 
      private Long empTrainingsId;
      private EmployeeModel employeeModel;
@@ -38,25 +37,8 @@ public class EmpTrainingsModel  implements java.io.Serializable {
      private Date dateof;
      private String fundingDetail;
 
-    public EmpTrainingsModel() {
-    }
-
-    public EmpTrainingsModel(EmployeeModel employeeModel, CountriesModel countriesModel, CitiesModel citiesModel, String name, String place, String file, String locality, String instituteName, String trainingCondition, Date dateof, String fundingDetail) {
-       this.employeeModel = employeeModel;
-       this.countriesModel = countriesModel;
-       this.citiesModel = citiesModel;
-       this.name = name;
-       this.place = place;
-       this.file = file;
-       this.locality = locality;
-       this.instituteName = instituteName;
-       this.trainingCondition = trainingCondition;
-       this.dateof = dateof;
-       this.fundingDetail = fundingDetail;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+  
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="emp_trainings_id", unique=true, nullable=false)
     public Long getEmpTrainingsId() {
         return this.empTrainingsId;
@@ -65,31 +47,34 @@ public class EmpTrainingsModel  implements java.io.Serializable {
     public void setEmpTrainingsId(Long empTrainingsId) {
         this.empTrainingsId = empTrainingsId;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="employee_id")
-    public EmployeeModel getEmployee() {
+    public EmployeeModel getEmployeeModel() {
         return this.employeeModel;
     }
     
-    public void setEmployee(EmployeeModel employeeModel) {
+    public void setEmployeeModel(EmployeeModel employeeModel) {
         this.employeeModel = employeeModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="countries_id")
-    public CountriesModel getCountries() {
+    public CountriesModel getCountriesModel() {
         return this.countriesModel;
     }
     
-    public void setCountries(CountriesModel countriesModel) {
+    public void setCountriesModel(CountriesModel countriesModel) {
         this.countriesModel = countriesModel;
     }
-@ManyToOne(fetch=FetchType.LAZY)
+    
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cities_id")
-    public CitiesModel getCities() {
+    public CitiesModel getCitiesModel() {
         return this.citiesModel;
     }
     
-    public void setCities(CitiesModel citiesModel) {
+    public void setCitiesModel(CitiesModel citiesModel) {
         this.citiesModel = citiesModel;
     }
     
