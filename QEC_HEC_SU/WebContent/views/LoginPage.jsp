@@ -21,13 +21,13 @@
         <c:url var="home" value="/" scope="request" />
         
                 <!-- Styles -->
-        <link href="<c:url value="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" />" rel="stylesheet" type="text/css">
+        <%-- <link href="<c:url value="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" />" rel="stylesheet" type="text/css"> --%>
         <link href="<c:url value="/resources/theme/plugins/pace-master/themes/blue/pace-theme-flash.css" />" rel="stylesheet" type="text/css">
         
         <link href="<c:url value="/resources/theme/plugins/uniform/css/uniform.default.min.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" type="text/css">
-        <link href="<c:url value="/resources/theme/plugins/fontawesome/css/font-awesome.css" />" rel="stylesheet" type="text/css">
-        <link href="<c:url value="/resources/theme/plugins/line-icons/simple-line-icons.css" />" rel="stylesheet" type="text/css">
+       <%--  <link href="<c:url value="/resources/theme/plugins/fontawesome/css/font-awesome.css" />" rel="stylesheet" type="text/css"> --%>
+        <%-- <link href="<c:url value="/resources/theme/plugins/line-icons/simple-line-icons.css" />" rel="stylesheet" type="text/css"> --%>
         <link href="<c:url value="/resources/theme/plugins/waves/waves.min.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/switchery/switchery.min.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/3d-bold-navigation/css/style.css" />" rel="stylesheet" type="text/css">

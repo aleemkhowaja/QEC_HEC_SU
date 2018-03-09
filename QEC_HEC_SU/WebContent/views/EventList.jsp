@@ -1,3 +1,5 @@
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -9,10 +11,10 @@
 	<!-------------------- crud urls  ---------------------------->
 	<c:url var="returnAllEventsForGrid" value="/qec/events/returnAllEventsForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
-	<jsp:include page="../common/header.jsp" />
+	<%-- <jsp:include page="../common/header.jsp" /> --%>
 	<script  src="<c:url value="/resources/theme/js/events/events.js" />" > </script>
 	<body class="page-header-fixed compact-menu page-horizontal-bar">
-		<jsp:include page="../common/menues.jsp" />
+		<%-- <jsp:include page="../common/menues.jsp" /> --%>
 		<div class="page-inner">
 		    <div class="page-title">
 		        <div class="container">
@@ -44,8 +46,17 @@
 					
 					$(document).ready(function(){
 						
+						var token = $("meta[name='_csrf']").attr("content");
+					    var header = $("meta[name='_csrf_header']").attr("content");
+					    
 						 $("#events-detail-grid-list").jqGrid({
 							url : "${returnAllEventsForGrid}",
+							loadBeforeSend : function(jqXHR) {
+				                // you should modify the next line to get the CSRF tocken
+				                // in any way (for example $('meta[name=csrf]').attr('content')
+				                // if you have <meta name="csrf" content="abcdefjklmnopqrstuvwxyz="/>)
+				                jqXHR.setRequestHeader(header, token);
+				            },
 							datatype : "json",
 							mtype : 'POST',
 							width : 1000,

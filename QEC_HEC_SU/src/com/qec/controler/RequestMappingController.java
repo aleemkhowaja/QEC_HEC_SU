@@ -1,7 +1,13 @@
 package com.qec.controler;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,17 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.qec.dto.CampusesDTO;
 import com.qec.dto.CitationBookDTO;
 import com.qec.dto.CitationChapterDTO;
 import com.qec.dto.CitationConferenceDTO;
+import com.qec.dto.CitationGoogleDTO;
 import com.qec.dto.CitationJournalDTO;
 import com.qec.dto.CitationPatentDTO;
 import com.qec.dto.CitationThesisDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.EventsDTO;
-import com.qec.dto.CitationGoogleDTO;
 import com.qec.dto.UserDTO;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
@@ -52,8 +59,21 @@ public class RequestMappingController {
 	 */
 	@RequestMapping(value = "/login.htm", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView returnLoginPage(@RequestParam(value = "error", required = false) String error,
-		@RequestParam(value = "logout", required = false) String logout) 
+		@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) 
 	{
+		String ip = request.getLocalAddr();
+		
+		Map<String, String> result = new HashMap<>();
+
+	    /*Enumeration headerNames = request.getHeaderNames();
+	    while (headerNames.hasMoreElements()) {
+	        String key = (String) headerNames.nextElement();
+	        String value = request.getHeader(key);
+	        System.out.println(key+" ++++++++++"+value);
+	    }*/
+
+	    
+		System.out.println("ip:::"+ip);
 		ModelAndView model = new ModelAndView();
 		if (error != null) 
 		{

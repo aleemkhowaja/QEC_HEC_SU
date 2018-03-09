@@ -31,7 +31,7 @@
 					    
 	                    <div  class="form-group">
 	                   		<form:label path="employeeModel" > Select Employee * </form:label>
-  	 			       		<form:select path="employeeModel" cssClass="form-control validate-required" id="users_employeeId" items="${employeeList}" itemValue="employeeId" itemLabel="fullName">
+  	 			       		<form:select path="employeeModel" cssClass="form-control validate-required" id="users_employee" items="${employeeList}" itemValue="employeeId" itemLabel="fullName">
 				 			</form:select>
 	                    </div>
 	                    
@@ -51,7 +51,7 @@
 	                    </div>
 	                  	<div class="form-group">
 	                    	<form:label path="isActive" > Account Status : </form:label>
-							<form:select path="isActive" id="users_isActive" cssClass="form-control">
+							<form:select path="isActive" id="users_status" cssClass="form-control">
 				 			<form:option value="0" label="Active" />
 				 			<form:option value="1" label="In Active" />
 				 			</form:select>

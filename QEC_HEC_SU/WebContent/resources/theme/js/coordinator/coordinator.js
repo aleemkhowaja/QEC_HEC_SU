@@ -14,11 +14,11 @@ function coordinator_Crud()
 		usersData['fullName'] = $("#users_fullName").val();
 		usersData['email'] = $("#users_Email").val();
 		usersData['password'] = $("#users_password").val();
-		if(($("#users_isActive").val() != undefined) && ($("#users_isActive").val() != ""))
+		if(($("#users_status").val() != undefined) && ($("#users_status").val() != ""))
 		{
-			usersData['isActive'] = $("#users_isActive").val() == 0 ? false : 1;
+			usersData['isActive'] = $("#users_status").val() == 0 ? false : 1;
 		}
-		usersData['employeeId'] = $("#users_employeeId").val();
+		usersData['employeeId'] = $("#users_employee").val();
 		usersData['campusesId'] = $("#users_campusId").val();
 		usersData['isDeleted'] = 0;
 		usersData['oldUsername'] = $("#users_oldUsername").val();
@@ -97,8 +97,8 @@ function users_Set_FormData(data)
 	$("#users_fullName").val(data.fullName)
 	$("#users_Email").val(data.email)
 	$("#users_password").val(data.password)
-	$("#users_isActive").val(data.isActive == 'true' ? 1 : 0);
-	$("#users_employeeId").val(data.employeeId);
+	$("#users_status").val(data.isActive == 'true' ? 1 : 0);
+	$("#users_employee").val(data.employeeId);
 	$("#users_campusId").val(data.campusesId);
 }
 
@@ -113,8 +113,8 @@ function users_Clear_FromData()
 	$("#users_fullName").val("");
 	$("#users_Email").val("");
 	$("#users_password").val("");
-	$("#users_isActive").val("");
-	$("#users_employeeId").val("");
+	$("#users_status").val("");
+	$("#users_employee").val("");
 	$("#users_campusId").val("");
 	$("#users_oldUsername").val("")
 	users_Remove_DeleteButton();

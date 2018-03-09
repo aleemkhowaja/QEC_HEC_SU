@@ -8,10 +8,10 @@
 	<!-------------------- crud urls  ---------------------------->
 	<c:url var="returnAllUniProgramsForGrid" value="/qec/programs/returnAllProgramsForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
-	<jsp:include page="../common/header.jsp" />
+	<%-- <jsp:include page="../common/header.jsp" /> --%>
 	<script  src="<c:url value="/resources/theme/js/programs/uni-programs.js" />" > </script>
 	<body class="page-header-fixed compact-menu page-horizontal-bar">
-		<jsp:include page="../common/menues.jsp" />
+		<%-- <jsp:include page="../common/menues.jsp" /> --%>
 		<div class="page-inner">
 		    <div class="page-title">
 		        <div class="container">

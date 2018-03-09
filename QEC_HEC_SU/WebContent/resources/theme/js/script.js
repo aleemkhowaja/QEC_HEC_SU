@@ -88,3 +88,28 @@ function validateGenericAllRegex1()
 		}
 	});
 }
+
+function returnPage(url)
+{
+	var responseData = null;
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	event.preventDefault();
+	$.ajax({
+		url :url,
+		type: "GET",
+		beforeSend: function(xhr) {
+			$(".page-inner").load("../common/loader.jsp");
+			xhr.setRequestHeader("Accept", "application/json");
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.setRequestHeader(header, token);
+		},
+		async:true,
+		success : function(response) 
+		{
+			$(".page-inner").html(response);
+//			responseData = response;
+		}
+	});
+	//return responseData;
+}

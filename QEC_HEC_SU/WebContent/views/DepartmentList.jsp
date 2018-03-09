@@ -11,11 +11,11 @@
 	<!-------------------- crud urls  ---------------------------->
 	<c:url var="returnAllDepartmentForGrid" value="/qec/department/returnAllDepartmentsForGrid/" ></c:url>
 	<!-- ------------------------------------------------------ -->
-	<jsp:include page="../common/header.jsp" />
+	<%-- <jsp:include page="../common/header.jsp" /> --%>
 	<script  src="<c:url value="/resources/theme/js/department/department.js" />" > </script>
 	<body class="page-header-fixed compact-menu page-horizontal-bar">
-		<jsp:include page="../common/menues.jsp" />
-		<div class="page-inner">
+		<%-- <jsp:include page="../common/menues.jsp" /> --%>
+		<!-- <div class="page-inner"> -->
 		    <div class="page-title">
 		        <div class="container">
 		        	<div class="adv_ser_row" >
@@ -144,6 +144,6 @@
                 <a href="http://3melements.com/sindhuni/support" class="btn btn-danger">Support/ Bug Report</a>
             </div>
         </div>
-    </div>
+   <!--  </div> -->
 	</body>
 </html>

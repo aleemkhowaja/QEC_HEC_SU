@@ -1,5 +1,9 @@
 package com.qec.service.impl;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,25 +71,34 @@ public class LoginServiceImpl implements /*LoginService*/ UserDetailsService {
 	
 
 	@Transactional
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("-------------------"+passwordEncoder.encode("y"));
-/*		System.out.println("----------------"+username);
-		UserModel userMode = new UserModel();
-		userMode.setUsername("a");
-		userMode.setPassword("b");
-		return new org.springframework.security.core.userdetails.User(userMode.getUsername(), userMode.getPassword(), 
-                true, true, true, true);
-		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_coordinator"));
-		
-		return new org.springframework.security.core.userdetails.User(userMode.getUsername(), userMode.getPassword(), true, true, true, true, grantedAuthorities); 
-	*/	
-		System.out.println("username :"+username);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
+	{
 		UserModel  userInfo = loginDAO.findByUserName(username);
 		if(userInfo == null){
 			throw new UsernameNotFoundException("Username was not found in the databse");
 		}
 		
+		InetAddress ip;
+		try {
+			ip = InetAddress.getLocalHost();
+			String hostAddress = ip.getHostAddress();
+			String hostName = ip.getHostName();
+			System.out.println("Current Host address : " + hostAddress);
+			System.out.println("Current Host Name : " + hostAddress);
+			NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+			byte[] mac = network.getHardwareAddress();
+
+			System.out.print("Current MAC address : ");
+
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < mac.length; i++) {
+				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+			}
+			System.out.println(sb.toString());
+		} catch (UnknownHostException | SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		List<String> roles = new ArrayList<String>();
 		roles.add(userInfo.getRole());
 		

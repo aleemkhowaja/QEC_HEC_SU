@@ -1,3 +1,5 @@
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -6,10 +8,10 @@
 	<!-------------------- crud urls  ---------------------------->
 	<c:url var="returnAllCoordinatorsForGrid" value="/qec/coordinator/returnAllCoordinatorsForGrid" ></c:url>
 	<!-- ------------------------------------------------------ -->
-	<jsp:include page="../common/header.jsp" />
+	<%-- <jsp:include page="../common/header.jsp" /> --%>
 	<script  src="<c:url value="/resources/theme/js/coordinator/coordinator.js" />" > </script>
 	<body class="page-header-fixed compact-menu page-horizontal-bar">
-		<jsp:include page="../common/menues.jsp" />
+		<%-- <jsp:include page="../common/menues.jsp" /> --%>
 		<div class="page-inner">
 		    <div class="page-title">
 		        <div class="container">

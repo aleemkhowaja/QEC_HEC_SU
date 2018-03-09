@@ -1,3 +1,5 @@
+   	<meta name="_csrf" content="${_csrf.token}" />
+	<meta name="_csrf_header" content="${_csrf.headerName}" />
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="overlay"></div>
     
@@ -10,6 +12,7 @@
     <c:url var="returnPublicationPage" value="/qec/publication/publication.htm" ></c:url>
     <c:url var="returnCitationPage" value="/qec/publication/journal.htm" ></c:url>
     <c:url var="dashboardPage" value="/qec/dashboard.htm" ></c:url>
+    
     <c:url var="logout" value="/logout" ></c:url>
     
     <!-- end page urls -->  
@@ -53,29 +56,29 @@
             <li class="active"><a href="${dashboardPage}"><span class="menu-icon icon-speedometer"></span><p>Dashboard</p></a></li>
              <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Departments</p><span class="arrow"></span></a>
             	<ul class="sub-menu">
-                    <li><a href="${returnDepartmentPage}">Departments</a></li>
+                    <li><a href="#" onclick="returnPage('${returnDepartmentPage}');">Departments</a></li>
                 </ul>
             </li>
             
             <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Programs</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="${returnProgramsPage}">Programs</a></li>
+	                <li><a href="#" onclick="returnPage('${returnProgramsPage}');">Programs</a></li>
 		        </ul>
        	 	</li>
                        
            	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Coordinators</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="${returnCoordinatorPage}">Coordinator</a></li>
+	                <li><a href="#"  onclick="returnPage('${returnCoordinatorPage}');">Coordinator</a></li>
 		        </ul>
        	 	</li>
        	 	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Events</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="${returnEventPage}">Event</a></li>
+	                <li><a href="#"  onclick="returnPage('${returnEventPage}');">Event</a></li>
 		        </ul>
        	 	</li>
 			<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Employee</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="${returnEmployeePage}">Employee</a></li>
+	                <li><a href="#" onclick="returnPage('${returnEmployeePage}');">Employee</a></li>
 		        </ul>
        	 	</li>
             <li class=""><a href="http://3melements.com/sindhuni/login_logs"><span class="menu-icon icon-list"></span><p>Login Logs</p></a></li>
@@ -83,7 +86,7 @@
             <li class="droplink "><a href="http://3melements.com/sindhuni/research/citations">
 	            <span class="menu-icon fa fa-beer"></span><p>Research</p><span class="arrow"></span></a>
     	        <ul class="sub-menu">
-        	        <li><a href="${returnPublicationPage}">Publications</a></li> 
+        	        <li><a href="#" onclick="returnPage('${returnPublicationPage}');">Publications</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/training">Training/workShops</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/phdStudents">MPHIL/PHD Students</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/travelGrands">Research/Travel Grants</a></li> 
