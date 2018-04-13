@@ -1,7 +1,7 @@
 /**
  * Submit Form while Save/Update
  */
-	function citationPatent_Crud()
+	function citationPatent_Crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
@@ -60,7 +60,7 @@
 		url ='/QEC_HEC_SU/qec/patent/returnCitationPatentById';
 		var rowData = jQuery("#patent-detail-grid-list").getRowData(rowId); 
 		var citationPatentId = rowData['citationPatentId'];
-		event.preventDefault();
+//		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -93,34 +93,39 @@
 		$("#citationPatent_patentNumber").val(data.patentNumber);
 		$("#citationPatent_applicationNumber").val(data.applicationNumber);
 		$("#citationPatent_description").val(data.description);
+		pageAniamateScroll();
 	}
 	
 	function citationPatent_DeleteCitationPatent()
 	{
-		var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/qec/patent/deleteCitationPatentById';
-		var citationPatentId = $("#citationPatent_citationPatentId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         data:{citationPatentId : citationPatentId},
-			 async:false,
-			 beforeSend: function(xhr) 
-	         {
-				 xhr.setRequestHeader(header, token);
-	         },
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#patent-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					citationPatent_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/patent/deleteCitationPatentById';
+			var citationPatentId = $("#citationPatent_citationPatentId").val();
+			
+			//event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         data:{citationPatentId : citationPatentId},
+				 async:false,
+				 beforeSend: function(xhr) 
+		         {
+					 xhr.setRequestHeader(header, token);
+		         },
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#patent-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						citationPatent_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
+			});
+		}
 	}

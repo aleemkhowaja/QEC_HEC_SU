@@ -11,11 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.common.JTableList;
 import com.qec.dao.DepartmentDAO;
+import com.qec.dao.FacultyDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.model.DepartmentsModel;
+import com.qec.model.FacultyModel;
 import com.qec.service.DepartmentsService;
 
 @Service
@@ -25,15 +26,20 @@ public class DepartmentServiceImpl implements DepartmentsService {
 	private DepartmentDAO departmentDAO;
 	
 	@Autowired
+	private FacultyDAO facultyDAO;
+	
+	@Autowired
 	private GenericDAO genericDAO;
 	
 
 	@Transactional
 	@Override
-	public JQGridDTO<DepartmentsModel> returnAllDepartmentsForGrid(HttpServletRequest request) 
+	public JQGridDTO <DepartmentsDTO> returnAllDepartmentsForGrid(HttpServletRequest request) 
 	{
-		JQGridDTO<DepartmentsModel> jqGridDTO = new JQGridDTO<DepartmentsModel>();
-		List<DepartmentsModel> departmentsModels = new ArrayList<DepartmentsModel>();
+		JQGridDTO<DepartmentsDTO> jqGridDTO = new JQGridDTO<DepartmentsDTO>();
+		
+		List departmentsModels = new ArrayList<>();
+		List<DepartmentsDTO> departmentsDTOs = new ArrayList<DepartmentsDTO>();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -43,8 +49,9 @@ public class DepartmentServiceImpl implements DepartmentsService {
 			String departmentName = request.getParameter("departmentName");
 			
 			departmentsModels =  departmentDAO.returnAllDepartmentForGrid(jtStartIndex, jtPageSize, sortingProperty, order, departmentName);
+			departmentsDTOs.addAll(departmentsModels);
 			Long records = departmentDAO.returnAllDepartmentForGridCount(departmentName);
-			jqGridDTO.setRows(departmentsModels);
+			jqGridDTO.setRows(departmentsDTOs);
 			jqGridDTO.setTotal(String.valueOf(Math.ceil((double) records / jtPageSize)));
 			jqGridDTO.setRecords(String.valueOf(records));
 			jqGridDTO.setPage(page);
@@ -59,15 +66,28 @@ public class DepartmentServiceImpl implements DepartmentsService {
 
 	@Override
 	@Transactional
-	public String saveDepartment(DepartmentsModel departmentsModel) {
+	public String saveDepartment(DepartmentsDTO departmentsDTO) {
+		DepartmentsModel departmentsModel = new DepartmentsModel();
 		try {
-			if(departmentsModel != null && departmentsModel.getDepartmentId() == null)
+			if(departmentsDTO != null && departmentsDTO.getDepartmentId() == null)
 			{
+				FacultyModel facultyModel = facultyDAO.returnFacultyById(departmentsDTO.getFacultyId());
+				departmentsModel.setDepartmentId(departmentsDTO.getDepartmentId());
+				departmentsModel.setName(departmentsDTO.getName());
+				departmentsModel.setDetail(departmentsDTO.getDetail());
+				departmentsModel.setFaculty(facultyModel);
+				departmentsModel.setIsDeleted(false);
 				genericDAO.save(departmentsModel);
 				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
+				departmentsModel = departmentDAO.returnDepartmentById(departmentsDTO.getDepartmentId());
+				FacultyModel facultyModel = facultyDAO.returnFacultyById(departmentsDTO.getFacultyId());
+				departmentsModel.setDepartmentId(departmentsDTO.getDepartmentId());
+				departmentsModel.setName(departmentsDTO.getName());
+				departmentsModel.setDetail(departmentsDTO.getDetail());
+				departmentsModel.setFaculty(facultyModel);
 				genericDAO.update(departmentsModel);
 				return CommonConstants.UPLDATE_SUCCESS_MSG;
 			}
@@ -80,9 +100,10 @@ public class DepartmentServiceImpl implements DepartmentsService {
 
 	@Override
 	@Transactional
-	public String deleteDepartment(DepartmentsModel departmentsModel) {
+	public String deleteDepartment(Integer departmentId) {
 		try
 		{
+			DepartmentsModel departmentsModel = departmentDAO.returnDepartmentById(Long.valueOf(departmentId));
 			departmentsModel.setIsDeleted(true);
 			genericDAO.update(departmentsModel);
 			return CommonConstants.DELETE_SUCCESS_MSG;
@@ -96,17 +117,22 @@ public class DepartmentServiceImpl implements DepartmentsService {
 
 	@Override
 	@Transactional
-	public DepartmentsModel getDepartmentById(Long departmentId) {
+	public DepartmentsDTO returnDepartmentById(Long departmentId) {
 		DepartmentsModel departmentsModel = null;
+		DepartmentsDTO departmentsDTO = new DepartmentsDTO();
 		try 
 		{
 			departmentsModel = departmentDAO.returnDepartmentById(departmentId);
+			departmentsDTO.setDepartmentId(departmentsModel.getDepartmentId());
+			departmentsDTO.setName(departmentsModel.getName());
+			departmentsDTO.setDetail(departmentsModel.getDetail());
+			departmentsDTO.setFacultyId(departmentsModel.getFaculty().getFacultyId());
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return departmentsModel;
+		return departmentsDTO;
 	}
 
 	@Override

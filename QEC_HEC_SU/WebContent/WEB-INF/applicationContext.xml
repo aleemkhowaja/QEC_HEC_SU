@@ -44,6 +44,13 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
+	
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/sindhdoc_qecdb" />
+		<property name="username" value="sindhdoc_root" />
+		<property name="password" value="aleemkhowaja123$" />
+	</bean> -->
    <!-- End mysql Data source Setting  -->
 
    
@@ -54,6 +61,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- <value>com.qec.model.GenericModel</value> -->
+				<value>com.qec.model.FacultyModel</value>
 				<value>com.qec.model.DepartmentsModel</value>
 				<value>com.qec.model.EmployeeModel</value>
 				<value>com.qec.model.UserModel</value>
@@ -71,12 +79,13 @@
 				<value>com.qec.model.CitationPatentModel</value>
 				<value>com.qec.model.CitationGoogleModel</value>
 				<value>com.qec.model.LoginsHistoryModel</value>
+				<value>com.qec.model.EventsModel</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.show_sql">true</prop> -->
 			</props>
 		</property>
 	</bean>
@@ -94,8 +103,11 @@
    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
        <property name="dataSource" ref="dataSource"></property>  
    </bean>
-   <!-- End jdbc template config Setting  -->  
+   <!-- End jdbc template config Setting  --> 
    
-
-   
+   <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="1048576"/>
+    </bean>
+    
 </beans>

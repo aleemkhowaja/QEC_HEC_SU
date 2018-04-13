@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 import com.qec.dao.CitationThesisDAO;
 import com.qec.model.CitationThesisModel;
@@ -19,7 +20,13 @@ public class CitationThesisDAOImpl extends SessionFactoryDAOImp implements Citat
 	{
 		//get Session Factory from SessionFactoryDAOImp
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(CitationThesisModel.class);
+		Criteria criteria = session.createCriteria(CitationThesisModel.class, "cth");
+		criteria.createAlias("cth.employeeModel", "employeeModel", JoinType.LEFT_OUTER_JOIN); // left outer join by
+		
+		if(sortingProperty.equalsIgnoreCase("employee.fullName"))
+		{
+			sortingProperty = "employeeModel.fullName";
+		}
 		
 		criteria.setMaxResults(jtPageSize);
 		criteria.setFirstResult(jtStartIndex);

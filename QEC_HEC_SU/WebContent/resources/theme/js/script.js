@@ -89,7 +89,7 @@ function validateGenericAllRegex1()
 	});
 }
 
-function returnPage(url)
+function returnPage(url, event)
 {
 	var responseData = null;
 	var token = $("meta[name='_csrf']").attr("content");
@@ -108,8 +108,14 @@ function returnPage(url)
 		success : function(response) 
 		{
 			$(".page-inner").html(response);
+			validateIntegerValues();
+			validateFloatValues();
 //			responseData = response;
 		}
 	});
 	//return responseData;
+}
+
+function pageAniamateScroll(){
+	$('body,html').animate({ scrollTop: 400}, 800);
 }

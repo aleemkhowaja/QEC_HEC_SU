@@ -139,6 +139,18 @@ public class DateUtil {
 		return date;
 	}
 	
+	public static Date stringToDate(String date)
+	{
+		 SimpleDateFormat formatter =new SimpleDateFormat("y-M-dd");
+		 Date date1 = null;
+		try {
+			date1 = formatter.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return date1 ;
+	}
 	
 	public static Timestamp stringToTimeStampWithTime2(String strTime){
 		Timestamp tempTimestamp = null;

@@ -1,11 +1,13 @@
 /**
  * Submit Form while Save/Update
  */
-function event_Crud()
+function event_Crud(event)
 {
 	var flag = validateForm();
 	if(flag)
 	{	
+		var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
 		url ='/QEC_HEC_SU/qec/events/save.htm';
 		var eventsData = {};
 		eventsData['departmentId'] = $("#events_departmentId").val();
@@ -16,8 +18,31 @@ function event_Crud()
 		eventsData['quota'] = $("#events_quota").val();
 		eventsData['eventDetail'] = $("#events_eventDetail").val();
 		 
+		var formData = $("#events_form").serialize();
+		
+			
 		event.preventDefault();
+		
 		$.ajax({
+            url: url,
+            type: "POST",
+            data: new FormData(document.getElementById("events_form")),
+            beforeSend: function(xhr) {
+	             xhr.setRequestHeader(header, token);
+	         },
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false
+          }).done(function(data) {
+        	  alert('File uploaded ...');
+              
+          }).fail(function(jqXHR, textStatus) {
+              //alert(jqXHR.responseText);
+              alert('File upload failed ...');
+          });
+		
+		
+		/*$.ajax({
 			url :url,
 			 type: "POST",
 	         contentType: "application/json",
@@ -26,6 +51,7 @@ function event_Crud()
 	         beforeSend: function(xhr) {
 	             xhr.setRequestHeader("Accept", "application/json");
 	             xhr.setRequestHeader("Content-Type", "application/json");
+	             xhr.setRequestHeader(header, token);
 	         },
 			 async:false,
 			 success : function(data) {
@@ -38,7 +64,7 @@ function event_Crud()
 					toaster_error(data);
 				}
 			}
-		});
+		});*/
 	}
 	event.preventDefault();
 	return flag;
@@ -51,21 +77,31 @@ function event_Crud()
  */
 function events_Db_Click(rowId)
 {
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    
 	url ='/QEC_HEC_SU/qec/events/returnEventByEventId';
 	var rowData = jQuery("#events-detail-grid-list").getRowData(rowId); 
 	var eventsId = rowData['eventsId'];
-	event.preventDefault();
-	$.post(url, {
-		eventsId : eventsId,
-	}, function(data) {
-		events_Set_FormData(data);
-		var myElem = document.getElementById('events-delete-btn');
-		if (myElem == null)
-		{
-			$("#events-save-btn").after("<input type='button' id='events-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='events_deleteEvents() ;'/>");
-		}
-		
+	$.ajax({
+		url :url,
+		 type: "POST",
+		 async:false,
+		 data:{eventsId : eventsId,},
+		 beforeSend: function(xhr) 
+         {
+			 xhr.setRequestHeader(header, token);
+         },
+		 success : function(data) {
+			 events_Set_FormData(data);
+			 var myElem = document.getElementById('events-delete-btn');
+			 if (myElem == null)
+			 {
+				 $("#events-save-btn").after("<input type='button' id='events-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='events_deleteEvents() ;'/>");
+			 }
+		 }
 	});
+	
 }
 
 /**
@@ -83,7 +119,7 @@ function events_Set_FormData(data)
 	$("#events_quota").val(data.quota)
 	$("#events_eventDetail").val(data.eventDetail);
 	$("#events_endDate").val(data.endDate);
-	
+	pageAniamateScroll();
 }
 
 /**
@@ -117,6 +153,8 @@ function users_Remove_DeleteButton()
 
 function events_deleteEvents() 
 {
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 	url ='/QEC_HEC_SU/events/deleteEventsById';
 	var eventsData = {};
 	eventsData['departmentId'] = $("#events_departmentId").val();
@@ -136,6 +174,7 @@ function events_deleteEvents()
          beforeSend: function(xhr) {
              xhr.setRequestHeader("Accept", "application/json");
              xhr.setRequestHeader("Content-Type", "application/json");
+             xhr.setRequestHeader(header, token);
          },
 		 async:false,
 		 success : function(data) {

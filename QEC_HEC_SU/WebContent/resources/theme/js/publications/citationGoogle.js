@@ -1,7 +1,7 @@
 /**
  * Submit Form while Save/Update
  */
-	function citationGoogle_Crud()
+	function citationGoogle_Crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
@@ -60,7 +60,7 @@
 		url ='/QEC_HEC_SU/qec/google/returnCitationGoogleById';
 		var rowData = jQuery("#google-detail-grid-list").getRowData(rowId); 
 		var citationGoogleId = rowData['citationGoogleId'];
-		event.preventDefault();
+//		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -87,34 +87,39 @@
 		$("#citationGoogle_citationGoogleId").val(data.citationGoogleId);
 		$("#google_employeeId").val(data.employeeId);
 		$("#google_url").val(data.url);
+		pageAniamateScroll();
 	}
 	
 	function citationGoogle_DeleteCitationGoogle()
 	{
-		var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/qec/google/deleteCitationGoogleById';
-		var citationGoogleId = $("#citationGoogle_citationGoogleId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			 url :url,
-			 type: "POST",
-	         data:{citationGoogleId : citationGoogleId},
-			 async:false,
-			 beforeSend: function(xhr) 
-	         { 
-				 xhr.setRequestHeader(header, token);
-	         },
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#google-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					citationGoogle_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/google/deleteCitationGoogleById';
+			var citationGoogleId = $("#citationGoogle_citationGoogleId").val();
+			
+			//event.preventDefault();
+			$.ajax({
+				 url :url,
+				 type: "POST",
+		         data:{citationGoogleId : citationGoogleId},
+				 async:false,
+				 beforeSend: function(xhr) 
+		         { 
+					 xhr.setRequestHeader(header, token);
+		         },
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#google-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						citationGoogle_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
+			});
+		}
 	}

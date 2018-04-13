@@ -1,11 +1,18 @@
 package com.qec.service;
 
 import java.util.List;
+
+import com.qec.dto.ChartListDTO;
 import com.qec.model.CitationConferenceModel;
 import com.qec.model.chart.ChartBean;
 
 public interface DashboardChartService {
 	
+	/**
+	 * return all dashboard charts
+	 * @return
+	 */
+	ChartListDTO returnDashboardCharts();
 	/**
 	 * return Impact factor by hec
 	 * @return

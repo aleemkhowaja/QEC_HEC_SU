@@ -49,12 +49,12 @@
 	                    
 	                    <div class="form-group">
 	                    	<form:label path="volume" > Volume * </form:label>
-							<form:input path="volume" cssClass="form-control validate-required" id="citationChapter_volume" placeholder="Volume"  />
+							<form:input path="volume" cssClass="form-control validate-required validate-integer-value" id="citationChapter_volume" placeholder="Volume"  />
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                    	<form:label path="issue" > Issue * </form:label>
-							<form:input path="issue" cssClass="form-control validate-required" id="citationChapter_issue" placeholder="Issue"  />
+							<form:input path="issue" cssClass="form-control validate-required validate-integer-value" id="citationChapter_issue" placeholder="Issue"  />
 	                    </div>
 	                    
 	                     <div class="form-group">
@@ -72,7 +72,7 @@
 							<form:textarea 	path="description" cssClass="form-control validate-required" id="citationChapter_description" placeholder="Description"  />
 	                    </div>
 	                    
-                        <button id="citationChapter-save-btn" type="submit" class="btn" onclick="return citationChapter_Crud();" >Save</button>
+                        <button id="citationChapter-save-btn" type="submit" class="btn" onclick="return citationChapter_Crud(event);" >Save</button>
                         <!-- Hidden fields -->
                          <form:hidden path="citationChapterId" id="citationChapter_citationChapterId" />
                         <form:hidden path="isDeleted" id="chapter_isDeleted" /> 

@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 import com.qec.dao.CitationJournalDAO;
 import com.qec.model.CitationJournalModel;
@@ -19,10 +20,16 @@ public class CitationJournalDAOImpl extends SessionFactoryDAOImp implements Cita
 	{
 		//get Session Factory from SessionFactoryDAOImp
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(CitationJournalModel.class);
+		Criteria criteria = session.createCriteria(CitationJournalModel.class, "cj");
+		
+		criteria.createAlias("cj.employeeModel", "employeeModel", JoinType.LEFT_OUTER_JOIN); // left outer join by
 		
 		criteria.setMaxResults(jtPageSize);
 		criteria.setFirstResult(jtStartIndex);
+		if(sortingProperty.equalsIgnoreCase("employeeDTO.fullName"))
+		{
+			sortingProperty = "employeeModel.fullName";
+		}
 		if(order.equals("asc"))
 		{
 			// To sort records in ascending order

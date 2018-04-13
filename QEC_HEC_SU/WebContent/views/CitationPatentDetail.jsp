@@ -60,7 +60,7 @@
 						<form:textarea 	path="description" cssClass="form-control validate-required" id="citationPatent_description" placeholder="Description"  />
 	               </div>
 	                    
-                   <button id="citationPatent-save-btn" type="submit" class="btn" onclick="return citationPatent_Crud();" >Save</button>
+                   <button id="citationPatent-save-btn" type="submit" class="btn" onclick="return citationPatent_Crud(event);" >Save</button>
                    
                    <!-- Hidden fields -->
                    <form:hidden path="citationPatentId" id="citationPatent_citationPatentId" />

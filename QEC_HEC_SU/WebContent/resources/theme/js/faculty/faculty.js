@@ -1,27 +1,29 @@
 /**
  * Submit Form while Save/Update
  */
-	function department_crud(event)
+	function faculty_crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
 		var flag = validateForm();
 		if(flag)
 		{
-			url ='/QEC_HEC_SU/department/save.htm';
-			var departmentData = {};
-			departmentData['facultyId'] = $("#department_facultyId").val();
-			departmentData['name'] = $("#department_departmentName").val();
-			departmentData['detail'] = $("#department_description").val();
-			departmentData['departmentId'] = $("#department_departmentId").val();
-			departmentData['isDeleted'] = false;
+			url ='/QEC_HEC_SU/faculty/save.htm';
+			var facultyData = {};
+			$('#faculty_form input, #faculty_form select, #faculty_form textarea').each(function (index)
+			{
+				if($(this).attr('name') != undefined && $(this).attr('id') != undefined)
+				{
+					facultyData[$(this).attr('name')] = $("#"+$(this).attr('id')).val();
+				}
+			});
 			
 			event.preventDefault();
 			$.ajax({
 				url :url,
 				 type: "POST",
 		         contentType: "application/json",
-				 data: JSON.stringify(departmentData),
+				 data: JSON.stringify(facultyData),
 				 
 		         beforeSend: function(xhr) {
 		             xhr.setRequestHeader("Accept", "application/json");
@@ -32,9 +34,9 @@
 				 success : function(data) {
 					if(data != undefined) 
 					{
-						jQuery("#department-detail-grid-list").trigger("reloadGrid");
+						jQuery("#faculty-detail-grid-list").trigger("reloadGrid");
 						toaster_success(data);
-						department_Clear_FromData();
+						faculty_Clear_FromData();
 					}
 					else 
 					{
@@ -51,29 +53,29 @@
  * get record and set data in form while double click on Grid Row
  * @param rowId
  */
-function department_Db_Click(rowId)
+function faculty_Db_Click(rowId)
 {
 	var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
-	url ='/QEC_HEC_SU/department/returnDepartmentById';
-	var rowData = jQuery("#department-detail-grid-list").getRowData(rowId); 
-	var departmentId = rowData['departmentId'];
+	url ='/QEC_HEC_SU/faculty/getFacultyById';
+	var rowData = jQuery("#faculty-detail-grid-list").getRowData(rowId); 
+	var facultyId = rowData['facultyId'];
 	//event.preventDefault();
 	$.ajax({
 		url :url,
 		 type: "POST",
 		 async:false,
-		 data:{departmentId : departmentId},
+		 data:{facultyId : facultyId},
 		 beforeSend: function(xhr) 
          {
 			 xhr.setRequestHeader(header, token);
          },
 		 success : function(data) {
-			department_Set_FormData(data);
-			var myElem = document.getElementById('department-delete-btn');
+			faculty_Set_FormData(data);
+			var myElem = document.getElementById('faculty-delete-btn');
 			if (myElem == null)
 			{
-				$("#department-save-btn").after("<input type='button' id='department-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='department_deleteDeaprtment();'/>");
+				$("#faculty-save-btn").after("<input type='button' id='faculty-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='faculty_deleteDeaprtment();'/>");
 			}
 		 }
 	});
@@ -84,15 +86,15 @@ function department_Db_Click(rowId)
 		xhr.setRequestHeader(header, token);
 	},
 	{
-		departmentId : departmentId,
+		facultyId : facultyId,
 	}
 	 function(data) {
-		department_Set_FormData(data);
+		faculty_Set_FormData(data);
 		
-		var myElem = document.getElementById('department-delete-btn');
+		var myElem = document.getElementById('faculty-delete-btn');
 		if (myElem == null)
 		{
-			$("#department-save-btn").after("<input type='button' id='department-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='department_deleteDeaprtment();'/>");
+			$("#faculty-save-btn").after("<input type='button' id='faculty-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='faculty_deleteDeaprtment();'/>");
 		}
 		
 	});*/
@@ -101,20 +103,20 @@ function department_Db_Click(rowId)
 /**
  * Delete Record from db while click on Delete Button
  */
-function department_deleteDeaprtment() 
+function faculty_deleteDeaprtment() 
 {
 	var result = confirm("Do you want to Delete?");
 	if(result)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/department/deleteDepartmentById';
-		var departmentId = $("#department_departmentId").val();
+		url ='/QEC_HEC_SU/faculty/deleteFacultyById';
+		var facultyId = $("#faculty_facultyId").val();
 		//event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
-	         data:{departmentId : departmentId},
+	         data:{facultyId : facultyId},
 			 async:false,
 			 beforeSend: function(xhr) 
 	         {
@@ -123,9 +125,9 @@ function department_deleteDeaprtment()
 			 success : function(data) {
 				if(data != undefined) {
 					
-					jQuery("#department-detail-grid-list").trigger("reloadGrid");
+					jQuery("#faculty-detail-grid-list").trigger("reloadGrid");
 					toaster_success(data);
-					department_Clear_FromData();
+					faculty_Clear_FromData();
 				}
 				else {
 					toaster_error(data);
@@ -140,25 +142,22 @@ function department_deleteDeaprtment()
  * Set Form Data while get record from db
  * @param data
  */
-function department_Set_FormData(data)
+function faculty_Set_FormData(data)
 {
-	$("#department_facultyId").val(data.facultyId);
-	$("#department_departmentId").val(data.departmentId);
-	$("#department_departmentName").val(data.name);
-	$("#department_description").val(data.detail);
+	$("#faculty_facultyId").val(data.facultyId);
+	$("#faculty_facultyName").val(data.facultyName);
 	pageAniamateScroll();
 }
 
 /**
  * Clear form after save/Update/Delete 
  */
-function department_Clear_FromData()
+function faculty_Clear_FromData()
 {
-	$("#department_facultyId").val("");
-	$("#department_departmentId").val("");
-	$("#department_departmentName").val("");
-	$("#department_description").val("");
+	$("#faculty_facultyId").val("");
+	$("#faculty_facultyName").val("");
+	$("#faculty_description").val("");
 	//remove Delete Button
-	remove_child_Elements('department-delete-btn');
+	remove_child_Elements('faculty-delete-btn');
 }
 

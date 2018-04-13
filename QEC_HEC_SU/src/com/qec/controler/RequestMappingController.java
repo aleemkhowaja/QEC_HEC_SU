@@ -1,7 +1,6 @@
 package com.qec.controler;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,7 @@ import com.qec.dto.CitationThesisDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.dto.EventsDTO;
+import com.qec.dto.FacultyDTO;
 import com.qec.dto.UserDTO;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
@@ -35,13 +35,18 @@ import com.qec.enums.ImpactFactor;
 import com.qec.enums.MaritalStatus;
 import com.qec.enums.Religion;
 import com.qec.model.DepartmentsModel;
+import com.qec.model.FacultyModel;
 import com.qec.model.UniProgramsModel;
 import com.qec.service.CampusesService;
 import com.qec.service.DepartmentsService;
 import com.qec.service.EmployeesService;
+import com.qec.service.FacultyService;
 
 @Controller
 public class RequestMappingController {
+	
+	@Autowired
+	private FacultyService facultyService;
 	
 	@Autowired
 	private DepartmentsService departmentsService;
@@ -108,10 +113,24 @@ public class RequestMappingController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/qec/department/department.htm", method=RequestMethod.GET)
-	public String getEmployeePage(Model model) 
+	@RequestMapping(value="/qec/faculty/faculty.htm", method=RequestMethod.GET)
+	public String getFacultyPage(Model model) 
 	{
-		model.addAttribute("departmentData", new DepartmentsModel());
+		model.addAttribute("facultyData", new FacultyDTO());
+		return "FacultyList";
+	}
+	
+	/**
+	 *  return department list page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/department/department.htm", method=RequestMethod.GET)
+	public String getDepartmentPage(Model model) 
+	{
+		List<FacultyDTO> facultyDTOs = facultyService.returnAllFaculty();
+		model.addAttribute("facultyModelList", facultyDTOs);
+		model.addAttribute("departmentData", new DepartmentsDTO());
 		return "DepartmentList";
 	}
 	

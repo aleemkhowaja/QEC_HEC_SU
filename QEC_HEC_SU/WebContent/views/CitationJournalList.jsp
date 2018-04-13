@@ -55,8 +55,14 @@
 							mtype : 'POST',
 							width : 1000,
 							height : 400,
-							colNames : [ 'Title','Url','Authors','Publication Date','Journal','Volume','Issue','Pages','Action'],
+							colNames : [ 'Employee Name','Title','Url','Authors','Publication Date','Journal','Volume','Action'],
 							colModel : [
+								{
+									name : 'employeeDTO.fullName',
+									index : 'employeeDTO.fullName',
+									width : 150,
+									editable : false,
+								},       
 								{
 									name : 'title',
 									index : 'title',
@@ -89,18 +95,6 @@
 								{
 									name : 'volume',
 							        index : 'volume',
-							        width : 150,
-							        editable : false
-								},
-								{
-									name : 'issue',
-							        index : 'issue',
-							        width : 150,
-							        editable : false
-								},
-								{
-									name : 'pages',
-							        index : 'pages',
 							        width : 150,
 							        editable : false
 								},
@@ -152,10 +146,11 @@
 
 							$('#search-journal-button').on('click',function(){
 								var journalTitle =  $("#journalTitle").val();                             
-								jQuery("#journal-detail-grid-list").jqGrid('setGridParam',{url:"/QEC_HEC_SU/qec/journal/returnAllCitationJournalForGrid?title="+journalTitle}).trigger("reloadGrid");
+								jQuery("#journal-detail-grid-list").jqGrid('setGridParam',{url:"journal/returnAllCitationJournalForGrid?title="+journalTitle}).trigger("reloadGrid");
 								
 				         });
-						   
+						validateIntegerValues();
+					    validateFloatValues();
 				  });
 				</script>
     		</div><!-- Row -->

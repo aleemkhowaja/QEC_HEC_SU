@@ -2,7 +2,8 @@
  * Submit Form while Save/Update
  */
 //$(document).on('submit', '#uniProgram_form', function(event) {
-function uniPrograms_crud(){
+function uniPrograms_crud(event)
+{
 	var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
 	var flag = validateForm();
@@ -55,7 +56,7 @@ function uniPrograms_Db_Click(rowId)
 	url ='/QEC_HEC_SU/programs/getUniProgramsById';
 	var rowData = jQuery("#uni-programs-detail-grid-list").getRowData(rowId); 
 	var uniProgramsId = rowData['uniProgramsId'];
-	event.preventDefault();
+	//event.preventDefault();
 	$.ajax({
 		url :url,
 		 type: "POST",
@@ -86,6 +87,7 @@ function uniPrograms_Set_FormData(data)
 	$("#uniPrograms_name").val(data.name);
 	$("#uniPrograms_code").val(data.code);
 	$("#uniPrograms_departmentId").val(data.departmentId);
+	pageAniamateScroll();
 }
 
 /**
@@ -116,36 +118,40 @@ function uniPrograms_Remove_DeleteButton()
  */
 function uniPrograms_deleteUniPrograms() 
 {
-	var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-	url ='/QEC_HEC_SU/programs/deleteUniProgrmsById';
-	var programsData = {};
-	programsData['name'] = $("#uniPrograms_name").val();
-	programsData['code'] = $("#uniPrograms_code").val();
-	programsData['departmentId'] = $("#uniPrograms_departmentId").val();
-	programsData['uniProgramsId'] = $("#uniPrograms_uniProgramsId").val();
-	//event.preventDefault();
-	$.ajax({
-		url :url,
-		 type: "POST",
-         contentType: "application/json",
-		 data: JSON.stringify(programsData),
-		 
-         beforeSend: function(xhr) {
-        	 xhr.setRequestHeader(header, token);
-         },
-		 async:false,
-		 success : function(data) {
-			if(data != undefined) {
-				
-				jQuery("#uni-programs-detail-grid-list").trigger("reloadGrid");
-				toaster_success(data);
-				uniPrograms_Clear_FromData();
+	var result = confirm("Do you want to Delete?");
+	if(result)
+	{
+		var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
+		url ='/QEC_HEC_SU/programs/deleteUniProgrmsById';
+		var programsData = {};
+		programsData['name'] = $("#uniPrograms_name").val();
+		programsData['code'] = $("#uniPrograms_code").val();
+		programsData['departmentId'] = $("#uniPrograms_departmentId").val();
+		programsData['uniProgramsId'] = $("#uniPrograms_uniProgramsId").val();
+		//event.preventDefault();
+		$.ajax({
+			url :url,
+			 type: "POST",
+	         contentType: "application/json",
+			 data: JSON.stringify(programsData),
+			 
+	         beforeSend: function(xhr) {
+	        	 xhr.setRequestHeader(header, token);
+	         },
+			 async:false,
+			 success : function(data) {
+				if(data != undefined) {
+					
+					jQuery("#uni-programs-detail-grid-list").trigger("reloadGrid");
+					toaster_success(data);
+					uniPrograms_Clear_FromData();
+				}
+				else {
+					toaster_error(data);
+				}
 			}
-			else {
-				toaster_error(data);
-			}
-		}
-	});
+		});
+	}
 	//event.preventDefault();
 }

@@ -1,8 +1,10 @@
 /**
  * Submit Form while Save/Update
  */
-function coordinator_Crud()
+function coordinator_Crud(event)
 {
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 	var flag = validateForm();
 	if(flag)
 	{	
@@ -35,6 +37,7 @@ function coordinator_Crud()
 	         {
 	             xhr.setRequestHeader("Accept", "application/json");
 	             xhr.setRequestHeader("Content-Type", "application/json");
+	             xhr.setRequestHeader(header, token);
 	         },
 			 async:false,
 			 success : function(data) 
@@ -68,22 +71,32 @@ function coordinator_Crud()
  */
 function coordinator_Db_Click(rowId)
 {
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 	url ='/QEC_HEC_SU/qec/coordinator/returnCoordinatorById';
 	var rowData = jQuery("#users-detail-grid-list").getRowData(rowId); 
 	var userId = rowData['userId'];
-	event.preventDefault();
-	$.post(url, {
-		userId : userId,
-	}, function(data) {
-		users_Set_FormData(data);
-		var myElem = document.getElementById('users-delete-btn');
-		if (myElem == null)
-		{
-			$("#users-save-btn").after("<input type='button' id='users-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='users_DeleteUsers() ;'/>");
-		}
-		
+	//event.preventDefault();
+	$.ajax({
+		url :url,
+		 type: "POST",
+		 async:false,
+		 data:{userId : userId},
+		 beforeSend: function(xhr) 
+         {
+			 xhr.setRequestHeader(header, token);
+         },
+		 success : function(data) {
+			 users_Set_FormData(data);
+			 var myElem = document.getElementById('users-delete-btn');
+				if (myElem == null)
+				{
+					$("#users-save-btn").after("<input type='button' id='users-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='users_DeleteUsers() ;'/>");
+				}
+		 }
 	});
 }
+
 /**
  * Set Form Data while get record from db
  * @param data
@@ -100,6 +113,7 @@ function users_Set_FormData(data)
 	$("#users_status").val(data.isActive == 'true' ? 1 : 0);
 	$("#users_employee").val(data.employeeId);
 	$("#users_campusId").val(data.campusesId);
+	pageAniamateScroll();
 }
 
 /**
@@ -135,32 +149,41 @@ function users_Remove_DeleteButton()
  */
 function users_DeleteUsers() 
 {
-	url ='/QEC_HEC_SU/qec/coordinator/deleteCoordinatorById';
-	var usersData = {};
-	usersData['userId'] = $("#users_userId").val();
-	//event.preventDefault();
-	$.ajax({
-		url :url,
-		 type: "POST",
-         contentType: "application/json",
-		 data: JSON.stringify(usersData),
-		 
-         /*beforeSend: function(xhr) {
-             xhr.setRequestHeader("Accept", "application/json");
-             xhr.setRequestHeader("Content-Type", "application/json");
-         },*/
-		 async:false,
-		 success : function(data) {
-			if(data != undefined) {
-				
-				jQuery("#users-detail-grid-list").trigger("reloadGrid");
-				toaster_success(data);
-				users_Clear_FromData();
+	
+	var result = confirm("Do you want to Delete?");
+	if(result)
+	{
+		var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
+		url ='/QEC_HEC_SU/qec/coordinator/deleteCoordinatorById';
+		var usersData = {};
+		usersData['userId'] = $("#users_userId").val();
+		//event.preventDefault();
+		$.ajax({
+			url :url,
+			 type: "POST",
+	         contentType: "application/json",
+			 data: JSON.stringify(usersData),
+			 beforeSend: function(xhr) {
+	        	 xhr.setRequestHeader(header, token);
+	         },
+	         /*beforeSend: function(xhr) {
+	             xhr.setRequestHeader("Accept", "application/json");
+	             xhr.setRequestHeader("Content-Type", "application/json");
+	         },*/
+			 async:false,
+			 success : function(data) {
+				if(data != undefined) {
+					
+					jQuery("#users-detail-grid-list").trigger("reloadGrid");
+					toaster_success(data);
+					users_Clear_FromData();
+				}
+				else {
+					toaster_error(data);
+				}
 			}
-			else {
-				toaster_error(data);
-			}
-		}
-	});
+		});
+	}
 	//event.preventDefault();
 }

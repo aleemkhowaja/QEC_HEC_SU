@@ -1,5 +1,3 @@
-<meta name="_csrf" content="${_csrf.token}" />
-<meta name="_csrf_header" content="${_csrf.headerName}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -19,7 +17,7 @@
 		        		<h2>Users</h2>
 							<!-- Start Search Fields -->
 							<span> 
-								<input class="smallinput" type="text" name="fullName" id="fullName" placeholder="User Name" />
+								<input class="smallinput" type="text" name="fullName" id="fullName" placeholder="Full Name" />
 								<input type="button" value="Search" id="search-users-button" />
 							</span>
 					</div>
@@ -140,10 +138,11 @@
 
 							$('#search-users-button').on('click',function(){
 								var fullName =  $("#fullName").val();                             
-								jQuery("#users-detail-grid-list").jqGrid('setGridParam',{url:"returnAllCoordinatorsForGrid?fullName="+fullName}).trigger("reloadGrid");
+								jQuery("#users-detail-grid-list").jqGrid('setGridParam',{url:"coordinator/returnAllCoordinatorsForGrid?fullName="+fullName}).trigger("reloadGrid");
 								
 				         });
-						   
+							validateIntegerValues();
+						    validateFloatValues();
 				  });
 						
 			        	

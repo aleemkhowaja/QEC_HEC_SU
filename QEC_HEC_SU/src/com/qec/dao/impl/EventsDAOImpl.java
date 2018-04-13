@@ -6,10 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 import com.qec.dao.EventsDAO;
 import com.qec.model.EventsModel;
 import com.qec.model.UniProgramsModel;
+import com.qec.model.UserModel;
 
 
 @Repository
@@ -20,10 +22,8 @@ public class EventsDAOImpl extends SessionFactoryDAOImp implements EventsDAO {
 	{
 		Session session =  getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(EventsModel.class, "em");
-		criteria.createAlias("em.departmentsModel", "departmentsModel"); // inner join by
-		criteria.setFetchMode("departmentsModel", FetchMode.JOIN);
-		criteria.createAlias("em.userModel", "userModel"); // inner join by
-		criteria.setFetchMode("userModel", FetchMode.JOIN);
+		criteria.createAlias("em.departmentsModel", "departmentsModel", JoinType.LEFT_OUTER_JOIN); // left outer join by
+		criteria.createAlias("em.userModel", "userModel", JoinType.LEFT_OUTER_JOIN); // left outer join by
 		criteria.setMaxResults(jtPageSize);
 		criteria.setFirstResult(jtStartIndex);
 		if(order.equals("asc"))
@@ -74,7 +74,7 @@ public class EventsDAOImpl extends SessionFactoryDAOImp implements EventsDAO {
 	public Long returnAllEventsModelForGridCount(String eventTitle) throws Exception 
 	{
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(EventsModel.class);
+		Criteria criteria = session.createCriteria(EventsModel.class, "em");
 		
 		if(eventTitle != null && !"".equals(eventTitle))
 		{

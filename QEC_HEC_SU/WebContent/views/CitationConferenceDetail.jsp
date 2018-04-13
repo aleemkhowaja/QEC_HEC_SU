@@ -49,12 +49,12 @@
 	                    
 	                    <div class="form-group">
 	                    	<form:label path="volume" > Volume * </form:label>
-							<form:input path="volume" cssClass="form-control validate-required" id="citationConference_volume" placeholder="Volume"  />
+							<form:input path="volume" cssClass="form-control validate-required validate-integer-value" id="citationConference_volume" placeholder="Volume"  />
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                    	<form:label path="issue" > Issue * </form:label>
-							<form:input path="issue" cssClass="form-control validate-required" id="citationConference_issue" placeholder="Issue"  />
+							<form:input path="issue" cssClass="form-control validate-required validate-integer-value" id="citationConference_issue" placeholder="Issue"  />
 	                    </div>
 	                    
 	                     <div class="form-group">
@@ -81,7 +81,7 @@
 	                    </div> 
 	                    <div class="form-group">
 	                    	<form:label 	path="impactFactorValue" > Impact Factor Value * </form:label>
-							<form:textarea 	path="impactFactorValue" cssClass="form-control validate-required" id="citationConference_impactFactorValue" placeholder="Ratio"  />
+							<form:textarea 	path="impactFactorValue" cssClass="form-control validate-required validate-float-value" id="citationConference_impactFactorValue" placeholder="Ratio"  />
 	                    </div>
 	                    <div class="form-group">
 	                    	<form:label 	path="hecRecognize" > Hec Recognize : </form:label>
@@ -91,7 +91,7 @@
 				 			</form:select>
 	                    </div> 
 	                                        
-                        <button id="citationConference-save-btn" type="submit" class="btn" onclick="return citationConference_Crud();" >Save</button>
+                        <button id="citationConference-save-btn" type="submit" class="btn" onclick="return citationConference_Crud(event);" >Save</button>
                         <!-- Hidden fields -->
                          <form:hidden path="citationConferenceId" id="citationConference_citationConferenceId" />
                         <form:hidden path="isDeleted" id="citationConference_isDeleted" /> 

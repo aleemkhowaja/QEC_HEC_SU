@@ -14,7 +14,7 @@
 		    <div class="page-title">
 		        <div class="container">
 		        	<div class="adv_ser_row" >
-		        		<h2>Users</h2>
+		        		<h2>Employees</h2>
 							<!-- Start Search Fields -->
 							<span> 
 								<input class="smallinput" type="text" name="fullName" id="fullName" placeholder="Employee Name" />
@@ -130,7 +130,7 @@
 
 							$('#search-employee-button').on('click',function(){
 								var fullName =  $("#fullName").val();                             
-								jQuery("#employee-detail-grid-list").jqGrid('setGridParam',{url:"returnAllEmployeeForGrid?fullName="+fullName}).trigger("reloadGrid");
+								jQuery("#employee-detail-grid-list").jqGrid('setGridParam',{url:"employee/returnAllEmployeeForGrid?fullName="+fullName}).trigger("reloadGrid");
 								
 				         });
 						   

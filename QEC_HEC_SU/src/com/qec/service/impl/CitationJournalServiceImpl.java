@@ -15,6 +15,7 @@ import com.qec.dao.CitationJournalDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationJournalDTO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationJournalModel;
 import com.qec.model.EmployeeModel;
 import com.qec.service.CitationJournalService;
@@ -38,6 +39,7 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 		JQGridDTO<CitationJournalDTO> jqGridDTO = new JQGridDTO<CitationJournalDTO>();
 		List<CitationJournalDTO> citationJournalDTOs = new ArrayList<CitationJournalDTO>();
 		CitationJournalDTO citationJournalDTO = new CitationJournalDTO();
+		EmployeeDTO employeeDTO = new EmployeeDTO();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -52,6 +54,13 @@ public class CitationJournalServiceImpl implements CitationJournalService  {
 			{
 				CitationJournalModel citationJournalModel = citationJournalModels.get(i);
 				citationJournalDTO = new CitationJournalDTO();
+				//set Employee Details
+				employeeDTO = new EmployeeDTO();
+				if(citationJournalModel.getEmployeeModel() != null )
+				{
+					employeeDTO.setFullName(citationJournalModel.getEmployeeModel().getFullName());
+					citationJournalDTO.setEmployeeDTO(employeeDTO);
+				}
 				citationJournalDTO.setCitationJournalId(citationJournalModel.getCitationJournalId());
 				citationJournalDTO.setAuthors(citationJournalModel.getAuthors());
 				citationJournalDTO.setDateof(citationJournalModel.getDateof());

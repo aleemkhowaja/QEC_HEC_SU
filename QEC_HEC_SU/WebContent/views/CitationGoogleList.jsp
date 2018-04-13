@@ -120,7 +120,8 @@
 								jQuery("#google-detail-grid-list").jqGrid('setGridParam',{url:"/QEC_HEC_SU/qec/google/returnAllCitationGoogleForGrid?url="+GoogleUrl}).trigger("reloadGrid");
 								
 				         });
-						   
+							validateIntegerValues();
+						    validateFloatValues();  
 				  });
 				</script>
     		</div><!-- Row -->
@@ -132,6 +133,4 @@
 		 }
 	</style>
 	</body>
-	
-	
 </html>

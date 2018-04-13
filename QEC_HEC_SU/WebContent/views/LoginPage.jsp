@@ -22,21 +22,21 @@
         
                 <!-- Styles -->
         <%-- <link href="<c:url value="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" />" rel="stylesheet" type="text/css"> --%>
-        <link href="<c:url value="/resources/theme/plugins/pace-master/themes/blue/pace-theme-flash.css" />" rel="stylesheet" type="text/css">
+       <%--  <link href="<c:url value="/resources/theme/plugins/pace-master/themes/blue/pace-theme-flash.css" />" rel="stylesheet" type="text/css"> --%>
         
-        <link href="<c:url value="/resources/theme/plugins/uniform/css/uniform.default.min.css" />" rel="stylesheet" type="text/css">
+       <link href="<c:url value="/resources/theme/plugins/uniform/css/uniform.default.min.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" type="text/css">
-       <%--  <link href="<c:url value="/resources/theme/plugins/fontawesome/css/font-awesome.css" />" rel="stylesheet" type="text/css"> --%>
-        <%-- <link href="<c:url value="/resources/theme/plugins/line-icons/simple-line-icons.css" />" rel="stylesheet" type="text/css"> --%>
+        <%--  <link href="<c:url value="/resources/theme/plugins/fontawesome/css/font-awesome.css" />" rel="stylesheet" type="text/css"> --%>
+<%--          <link href="<c:url value="/resources/theme/plugins/line-icons/simple-line-icons.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/waves/waves.min.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/switchery/switchery.min.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/3d-bold-navigation/css/style.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/slidepushmenus/css/component.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/weather-icons-master/css/weather-icons.min.css" />" rel="stylesheet" type="text/css">
         <link href="<c:url value="/resources/theme/plugins/metrojs/MetroJs.min.css" />" rel="stylesheet" type="text/css">
-        <link href="<c:url value="/resources/theme/plugins/toastr/toastr.min.css" />" rel="stylesheet" type="text/css">
+        <link href="<c:url value="/resources/theme/plugins/toastr/toastr.min.css" />" rel="stylesheet" type="text/css"> --%>
         
-        <link href="<c:url value="/resources/theme/plugins/toastr/toastr.min.css" />" rel="stylesheet" type="text/css">
+       <%--  <link href="<c:url value="/resources/theme/plugins/toastr/toastr.min.css" />" rel="stylesheet" type="text/css"> --%>
         	
         <!-- Theme Styles -->
         <link href=" <c:url value="/resources/theme/css/modern.min.css" />" rel="stylesheet" type="text/css"/>
@@ -44,12 +44,12 @@
         
         <script  src="<c:url value="/resources/theme/plugins/3d-bold-navigation/js/modernizr.js" />" > </script>
         
-        <link href="<c:url value="/resources/theme/css/jquery-ui.css" />" rel="stylesheet">
+      <%--   <link href="<c:url value="/resources/theme/css/jquery-ui.css" />" rel="stylesheet">
         <link href="<c:url value="/resources/theme/css/metro/green/jtable.css" />" rel="stylesheet">
-		<link href="<c:url value="/resources/theme/css/jtable_metro_base.css" />" rel="stylesheet">
+		<link href="<c:url value="/resources/theme/css/jtable_metro_base.css" />" rel="stylesheet"> --%>
 		
         <!-- Javascripts -->
-        <script src="<c:url value="/resources/theme/plugins/jquery/jquery-2.1.4.min.js" />"></script>
+       <%--  <script src="<c:url value="/resources/theme/plugins/jquery/jquery-2.1.4.min.js" />"></script>
         <script src="<c:url value="/resources/theme/plugins/jquery-ui/jquery-ui.min.js" />"></script>
         <script src="<c:url value="/resources/theme/plugins/pace-master/pace.min.js" />"></script>
         <script src="<c:url value="/resources/theme/plugins/jquery-blockui/jquery.blockui.js" />"></script>
@@ -62,7 +62,7 @@
         <script src="<c:url value="/resources/theme/plugins/waves/waves.min.js" />"></script>
         <script  src="<c:url value="/resources/theme/js/jquery.jtable.js" />" > </script>
         <script src="<c:url value="/resources/theme/js/modern.js" />"></script>
-        <script src="<c:url value="/resources/theme/js/login.js" />"></script>
+        <script src="<c:url value="/resources/theme/js/login.js" />"></script> --%>
                 <style>
              .page-content{
                  /*background:url(http://3melements.com/sindhuni/assets/images/sindh_uni_gate.jpg) center -150px no-repeat;*/

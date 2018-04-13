@@ -5,12 +5,29 @@
 
 <html>
 	<jsp:include page="../common/header.jsp" />
+   <head>
+   		<script>
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+		
+			var yyyy = today.getFullYear();
+			if(dd<10){
+			    dd='0'+dd;
+			} 
+			if(mm<10){
+			    mm='0'+mm;
+			} 
+			var today = dd+'/'+mm+'/'+yyyy;
+			$("#title-with-date").val("Quality Assurance System "+today);
+    </script>
+   </head>
     <body class="page-header-fixed compact-menu page-horizontal-bar">
     	<jsp:include page="../common/menues.jsp" />
 	<div class="page-inner">
     <div class="page-title">
         <div class="container">
-            <h3>Quality Assurance System 09/Jul/2017</h3>
+            <h3 id="title-with-date"> Welcome to Quality Assurance System </h3>
         </div>
     </div>
     <div id="main-wrapper" class="container">
@@ -174,14 +191,6 @@
             </div>
         </div>
     </div></div>
-<script>
-    var data2=[            [0, "1"],
-            [1, "1"],
-];
-    var ticks=[
-            [0, "01/01/2016"],
-            [1, "10/02/2016"],
-    ];</script>
 
 
 <%-- <script src="<c:url value="/resources/theme/js/pages/dashboard.js" />"></script> --%>
@@ -244,11 +253,11 @@
 </nav>
 <div class="cd-overlay"></div>
 
-<script src="<c:url value="/resources/theme/js/qec-charts/monthImpactFactorByHec.js" />"></script>
-<script src="<c:url value="/resources/theme/js/qec-charts/travelGrantsByDepartments.js" />"></script>
+<script src="<c:url value="/resources/theme/js/qec-charts/dashboardCharts.js" />"></script>
+<%-- <script src="<c:url value="/resources/theme/js/qec-charts/travelGrantsByDepartments.js" />"></script>
 <script src="<c:url value="/resources/theme/js/qec-charts/hecXYResearcPapersByDepartments.js" />"></script>
 <script src="<c:url value="/resources/theme/js/qec-charts/researchFundingGrantsByDepartments.js" />"></script>
-<script src="<c:url value="/resources/theme/js/qec-charts/employeeCommunityServicesByDepartments.js" />"></script>
+<script src="<c:url value="/resources/theme/js/qec-charts/employeeCommunityServicesByDepartments.js" />"></script> --%>
 <!-- Javascripts -->
 <script>
 

@@ -94,7 +94,7 @@
 						</form:select>
 	               	</div>
 	               	
-                    <button id="employee-save-btn" type="submit" class="btn" onclick="return employee_crud();">Save</button>
+                    <button id="employee-save-btn" type="submit" class="btn" onclick="return employee_crud(event);">Save</button>
                         <!-- Hidden fields -->
                         <form:hidden path="employeeId" id="employee_employeeId" />        
                    </form:form>

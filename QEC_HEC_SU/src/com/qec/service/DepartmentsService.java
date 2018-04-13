@@ -8,13 +8,37 @@ import com.qec.dto.DepartmentsDTO;
 import com.qec.model.DepartmentsModel;
 public interface DepartmentsService
 {
-    public JQGridDTO<DepartmentsModel> returnAllDepartmentsForGrid(HttpServletRequest request);
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+    public JQGridDTO<DepartmentsDTO> returnAllDepartmentsForGrid(HttpServletRequest request);
 	
-	public String saveDepartment(DepartmentsModel departmentsModel);
+    /**
+     * 
+     * @param departmentsDTO
+     * @return
+     */
+	public String saveDepartment(DepartmentsDTO departmentsDTO);
 	
-	public String deleteDepartment(DepartmentsModel departmentsModel);
+	/**
+	 * 
+	 * @param departmentId
+	 * @return
+	 */
+	public String deleteDepartment(Integer departmentId);
 	
-	public DepartmentsModel getDepartmentById(Long departmentId);
+	/**
+	 * 
+	 * @param departmentId
+	 * @return
+	 */
+	public DepartmentsDTO returnDepartmentById(Long departmentId);
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<DepartmentsDTO> returnAllDepartments();
 }

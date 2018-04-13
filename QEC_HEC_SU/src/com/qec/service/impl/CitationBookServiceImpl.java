@@ -12,6 +12,7 @@ import com.qec.dao.CitationBookDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationBookDTO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationBookModel;
 import com.qec.model.EmployeeModel;
 import com.qec.service.CitationBookService;
@@ -35,6 +36,7 @@ public class CitationBookServiceImpl implements CitationBookService  {
 		JQGridDTO<CitationBookDTO> jqGridDTO = new JQGridDTO<CitationBookDTO>();
 		List<CitationBookDTO> citationBookDTOs = new ArrayList<CitationBookDTO>();
 		CitationBookDTO citationBookDTO = new CitationBookDTO();
+		EmployeeDTO employeeDTO = new EmployeeDTO();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -47,6 +49,13 @@ public class CitationBookServiceImpl implements CitationBookService  {
 			{
 				CitationBookModel citationBookModel = citationBookModels.get(i);
 				citationBookDTO = new CitationBookDTO();
+				//set Employee Details
+				employeeDTO = new EmployeeDTO();
+				if(citationBookModel.getEmployeeModel() != null )
+				{
+					employeeDTO.setFullName(citationBookModel.getEmployeeModel().getFullName());
+					citationBookDTO.setEmployee(employeeDTO);
+				}
 				citationBookDTO.setCitationBookId(citationBookModel.getCitationBookId());
 				citationBookDTO.setAuthors(citationBookModel.getAuthors());
 				citationBookDTO.setDescription(citationBookModel.getDescription());

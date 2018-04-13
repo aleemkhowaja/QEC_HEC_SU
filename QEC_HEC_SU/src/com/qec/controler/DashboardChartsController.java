@@ -1,11 +1,14 @@
 package com.qec.controler;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.qec.dto.ChartListDTO;
 import com.qec.model.CitationConferenceModel;
 import com.qec.model.chart.ChartBean;
 import com.qec.service.DashboardChartService;
@@ -24,6 +27,19 @@ public class DashboardChartsController {
 	public void setDashboardChartService(DashboardChartService dashboardChartService) 
 	{
 		this.dashboardChartService = dashboardChartService;
+	}
+	
+	/**
+	 * return Impact factor for charts
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value="/dashboard/returnDashboardCharts", produces = "application/json")
+	@ResponseBody
+	public ChartListDTO returnDashboardCharts(ModelMap modelMap) 
+	{
+		System.out.println("===========================================");
+		return dashboardChartService.returnDashboardCharts();
 	}
 	
 	/**

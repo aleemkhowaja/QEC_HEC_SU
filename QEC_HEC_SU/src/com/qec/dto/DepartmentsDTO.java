@@ -1,7 +1,5 @@
 package com.qec.dto;
 // Generated Aug 19, 2017 9:08:15 PM by Hibernate Tools 3.2.1.GA
-
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,12 +8,13 @@ import java.util.Set;
  */
 public class DepartmentsDTO  implements java.io.Serializable {
 
-
 	private Long departmentId;
     private String name;
     private String detail;
     private Boolean isDeleted;
-     
+    private FacultyDTO faculty;
+    private Long facultyId;
+    
 	public Long getDepartmentId() {
 		return departmentId;
 	}
@@ -40,6 +39,19 @@ public class DepartmentsDTO  implements java.io.Serializable {
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+	public FacultyDTO getFaculty() {
+		return faculty;
+	}
+	public void setFaculty(FacultyDTO faculty) {
+		this.faculty = faculty;
+	}
+	public Long getFacultyId() {
+		return facultyId;
+	}
+	public void setFacultyId(Long facultyId) {
+		this.facultyId = facultyId;
+	}
+	
 }
 
 

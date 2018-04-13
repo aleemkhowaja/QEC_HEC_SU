@@ -476,6 +476,9 @@ function toaster_warning(data)
 	});
 }
 
+function toaseter_conform(data)
+{}
+
 /**
  * validate required fields from form
  * @returns {Boolean}

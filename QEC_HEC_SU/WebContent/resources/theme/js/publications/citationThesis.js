@@ -1,7 +1,7 @@
 /**
  * Submit Form while Save/Update
  */
-	function citationThesis_Crud()
+	function citationThesis_Crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
@@ -60,7 +60,7 @@
 		url ='/QEC_HEC_SU/qec/thesis/returnCitationThesisById';
 		var rowData = jQuery("#thesis-detail-grid-list").getRowData(rowId); 
 		var citationThesisId = rowData['citationThesisId'];
-		event.preventDefault();
+//		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -91,34 +91,39 @@
 		$("#citationThesis_publication_date").val(data.publicationDate);
 		$("#citationThesis_institution").val(data.institution);
 		$("#citationThesis_description").val(data.description);
+		pageAniamateScroll();
 	}
 	
 	function citationThesis_DeleteCitationThesis()
 	{
-		var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/qec/thesis/deleteCitationThesisById';
-		var citationThesisId = $("#citationThesis_citationThesisId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         data:{citationThesisId : citationThesisId},
-			 async:false,
-			 beforeSend: function(xhr) 
-	         {
-				 xhr.setRequestHeader(header, token);
-	         },
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#thesis-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					citationThesis_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/thesis/deleteCitationThesisById';
+			var citationThesisId = $("#citationThesis_citationThesisId").val();
+			
+			//event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         data:{citationThesisId : citationThesisId},
+				 async:false,
+				 beforeSend: function(xhr) 
+		         {
+					 xhr.setRequestHeader(header, token);
+		         },
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#thesis-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						citationThesis_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
+			});
+		}
 	}

@@ -53,7 +53,7 @@
 	<link href=" <c:url value="/resources/theme/js/formValidation/css/smoke.min.css" />" rel="stylesheet" type="text/css"/>
 	
 	<!-- bootstrap Date and time picker  -->
-	<link href=" <c:url value="/resources/theme/plugins/bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />" rel="stylesheet" type="text/css"/>
+	<%-- <link href=" <c:url value="/resources/theme/plugins/bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />" rel="stylesheet" type="text/css"/> --%>
 	
     <!-- Javascripts -->
     <script src="<c:url value="/resources/theme/js/jquery-1.10.2.js" />"></script>
@@ -91,7 +91,7 @@
 	
 	<!-- Datepicker  -->
 	<!-- bootstrap Date and time picker  -->
-	<script  src="<c:url value="/resources/theme/plugins/bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />" > </script>
+	<%-- <script  src="<c:url value="/resources/theme/plugins/bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />" > </script> --%>
 	
 	<!-- common script -->
 	<script src="<c:url value="/resources/theme/js/script.js" />"></script>
@@ -99,7 +99,7 @@
 	<script>
 		$( function() {
 	    	$('.datepicker').datepicker({
-	    		dateFormat: 'dd-m-yy',
+	    		dateFormat: 'yy-m-dd',
 	    		showButtonPanel: true,
 	    		changeMonth: true,
 	    		buttonImage: "calendar.gif",
@@ -107,6 +107,8 @@
 	    	});
 	    	
 	    	$(".ui-widget-header").css("background","#1B75A1;");
+	    	
+	    	
 	    	validateIntegerValues();
 	    	validateFloatValues();
 		} );

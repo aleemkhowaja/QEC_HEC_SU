@@ -8,10 +8,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.qec.dao.DepartmentDAO;
+import com.qec.model.CitationConferenceModel;
 import com.qec.model.DepartmentsModel;
 import com.sun.org.apache.xpath.internal.operations.Gte;
 
@@ -24,10 +26,16 @@ public class DepartmentDAOImpl extends SessionFactoryDAOImp implements Departmen
 	{
 		//get Session Factory from SessionFactoryDAOImp
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(DepartmentsModel.class);
-		
+		Criteria criteria = session.createCriteria(DepartmentsModel.class, "dm");
+		criteria.createAlias("dm.faculty", "faculty", JoinType.LEFT_OUTER_JOIN); // left outer join by
 		criteria.setMaxResults(jtPageSize);
 		criteria.setFirstResult(jtStartIndex);
+		
+		if(sortingProperty.equalsIgnoreCase("facultyDTO.facultyName"))
+		{
+			sortingProperty = "faculty.facultyName";
+		}
+		
 		if(order.equals("asc"))
 		{
 			// To sort records in ascending order
@@ -57,7 +65,9 @@ public class DepartmentDAOImpl extends SessionFactoryDAOImp implements Departmen
 	{
 		//get Session Factory from SessionFactoryDAOImp
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(DepartmentsModel.class);
+		Criteria criteria = session.createCriteria(DepartmentsModel.class, "dm");
+		criteria.createAlias("dm.faculty", "faculty", JoinType.LEFT_OUTER_JOIN); // left outer join by
+		
 		if(departmentId != null )
 		{
 			criteria.add( Restrictions.eqOrIsNull("departmentId", departmentId));

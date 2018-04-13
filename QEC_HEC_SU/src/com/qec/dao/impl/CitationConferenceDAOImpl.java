@@ -1,15 +1,13 @@
 package com.qec.dao.impl;
 
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
-
-import com.qec.dao.CitationConferenceDAO;
 import com.qec.dao.CitationConferenceDAO;
 import com.qec.model.CitationConferenceModel;
 
@@ -22,10 +20,14 @@ public class CitationConferenceDAOImpl extends SessionFactoryDAOImp implements C
 	{
 		//get Session Factory from SessionFactoryDAOImp
 		Session session = getSessionFactory().getCurrentSession();
-		Criteria criteria = session.createCriteria(CitationConferenceModel.class);
-		
+		Criteria criteria = session.createCriteria(CitationConferenceModel.class, "cc");
+		criteria.createAlias("cc.employeeModel", "employeeModel", JoinType.LEFT_OUTER_JOIN); // left outer join by
 		criteria.setMaxResults(jtPageSize);
 		criteria.setFirstResult(jtStartIndex);
+		if(sortingProperty.equalsIgnoreCase("employee.fullName"))
+		{
+			sortingProperty = "employeeModel.fullName";
+		}
 		if(order.equals("asc"))
 		{
 			// To sort records in ascending order

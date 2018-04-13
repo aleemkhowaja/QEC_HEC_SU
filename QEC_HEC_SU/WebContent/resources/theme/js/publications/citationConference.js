@@ -1,7 +1,7 @@
 /**
  * Submit Form while Save/Update
  */
-	function citationConference_Crud()
+	function citationConference_Crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
@@ -61,7 +61,7 @@
 		url ='/QEC_HEC_SU/qec/conference/returnCitationConferenceById';
 		var rowData = jQuery("#conference-detail-grid-list").getRowData(rowId); 
 		var citationConferenceId = rowData['citationConferenceId'];
-		event.preventDefault();
+//		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -100,34 +100,39 @@
 		$("#citationConference_impactFactor").val(data.impactFactor);
 		$("#citationConference_impactFactorValue").val(data.impactFactorValue);
 		$("#citationConference_hecRecognize").val(data.hecRecognize);
+		pageAniamateScroll();
 	}
 	
 	function citationConference_DeleteCitationConference()
 	{
-		var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/qec/conference/deleteCitationConferenceById';
-		var citationConferenceId = $("#citationConference_citationConferenceId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         data:{citationConferenceId : citationConferenceId},
-			 async:false,
-			 beforeSend: function(xhr) 
-	         {
-				 xhr.setRequestHeader(header, token);
-	         },
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#conference-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					citationConference_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/conference/deleteCitationConferenceById';
+			var citationConferenceId = $("#citationConference_citationConferenceId").val();
+			
+			//event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         data:{citationConferenceId : citationConferenceId},
+				 async:false,
+				 beforeSend: function(xhr) 
+		         {
+					 xhr.setRequestHeader(header, token);
+		         },
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#conference-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						citationConference_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
+			});
+		}
 	}

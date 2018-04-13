@@ -10,7 +10,7 @@ public class UniDepartments  implements java.io.Serializable {
 
 
      private Long uniDepartmentsId;
-     private Faculty faculty;
+     private FacultyDTO faculty;
      private Double code;
      private String name;
      private String detail;
@@ -20,10 +20,10 @@ public class UniDepartments  implements java.io.Serializable {
     }
 
 	
-    public UniDepartments(Faculty faculty) {
+    public UniDepartments(FacultyDTO faculty) {
         this.faculty = faculty;
     }
-    public UniDepartments(Faculty faculty, Double code, String name, String detail, Byte isDeleted) {
+    public UniDepartments(FacultyDTO faculty, Double code, String name, String detail, Byte isDeleted) {
        this.faculty = faculty;
        this.code = code;
        this.name = name;
@@ -38,11 +38,11 @@ public class UniDepartments  implements java.io.Serializable {
     public void setUniDepartmentsId(Long uniDepartmentsId) {
         this.uniDepartmentsId = uniDepartmentsId;
     }
-    public Faculty getFaculty() {
+    public FacultyDTO getFaculty() {
         return this.faculty;
     }
     
-    public void setFaculty(Faculty faculty) {
+    public void setFaculty(FacultyDTO faculty) {
         this.faculty = faculty;
     }
     public Double getCode() {

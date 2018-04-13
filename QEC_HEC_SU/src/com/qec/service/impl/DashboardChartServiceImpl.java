@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qec.dao.DashboardChartsDAO;
+import com.qec.dto.ChartListDTO;
 import com.qec.model.CitationConferenceModel;
 import com.qec.model.chart.ChartBean;
 import com.qec.service.DashboardChartService;
@@ -95,6 +96,32 @@ public class DashboardChartServiceImpl implements DashboardChartService {
 		e.printStackTrace();	
 		}
 		return employeeCommunityServicesByDepartment;
+	}
+
+
+	@Override
+	@Transactional
+	public ChartListDTO returnDashboardCharts() 
+	{
+		ChartListDTO chartListDTO = new ChartListDTO();
+		try
+		{
+			List<CitationConferenceModel> citationConferenceModels = dashboardChartsDAO.returnImpactFactorByHec();
+			List<ChartBean> xYResearchPapersModels =  dashboardChartsDAO.returnXYResearchPaperByDepartmentInstituteCenter();
+			List<ChartBean> travelGrantByDepartment = dashboardChartsDAO.returnTravelGrantsByDepartmentInstituteCenter();
+			List<ChartBean> researchFundingGrantByDepartment = dashboardChartsDAO.returnResearchFundingByDepartmentInstituteCenter();
+			List<ChartBean> employeeCommunityServicesByDepartment  = dashboardChartsDAO.returnEmployeeCommunityServicesByDepartmentInstituteCenter();
+			chartListDTO.setReturnImpactFactorByHec(citationConferenceModels);
+			chartListDTO.setReturnXYResearchPaperByDepartmentInstituteCenter(xYResearchPapersModels);
+			chartListDTO.setReturnTravelGrantsByDepartmentInstituteCenter(travelGrantByDepartment);
+			chartListDTO.setReturnResearchFundingByDepartmentInstituteCenter(researchFundingGrantByDepartment);
+			chartListDTO.setReturnEmployeeCommunityServicesByDepartmentInstituteCenter(employeeCommunityServicesByDepartment);
+		}
+		catch(Exception e)
+		{
+		e.printStackTrace();	
+		}
+		return chartListDTO;
 	}
 	
 	

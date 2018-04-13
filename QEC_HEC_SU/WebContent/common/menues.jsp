@@ -4,6 +4,7 @@
     <div class="overlay"></div>
     
     <!--  start page urls -->
+    <c:url var="returnFacultyPage" value="/qec/faculty/faculty.htm" ></c:url> 
     <c:url var="returnDepartmentPage" value="/qec/department/department.htm" ></c:url> 
     <c:url var="returnProgramsPage" value="/qec/programs/programs.htm" ></c:url> 
     <c:url var="returnCoordinatorPage" value="/qec/coordinator/coordinator.htm" ></c:url>
@@ -54,31 +55,38 @@
        	<ul class="menu accordion-menu">
         	<li class="nav-heading"><span>Navigation</span></li>
             <li class="active"><a href="${dashboardPage}"><span class="menu-icon icon-speedometer"></span><p>Dashboard</p></a></li>
+            
+            <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Faculty</p><span class="arrow"></span></a>
+            	<ul class="sub-menu">
+                    <li><a href="#" onclick="returnPage('${returnFacultyPage}',event);">Faculty</a></li>
+                </ul>
+            </li>
+            
              <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Departments</p><span class="arrow"></span></a>
             	<ul class="sub-menu">
-                    <li><a href="#" onclick="returnPage('${returnDepartmentPage}');">Departments</a></li>
+                    <li><a href="#" onclick="returnPage('${returnDepartmentPage}',event);">Departments</a></li>
                 </ul>
             </li>
             
             <li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Programs</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="#" onclick="returnPage('${returnProgramsPage}');">Programs</a></li>
+	                <li><a href="#" onclick="returnPage('${returnProgramsPage}', event);">Programs</a></li>
 		        </ul>
        	 	</li>
                        
            	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Coordinators</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="#"  onclick="returnPage('${returnCoordinatorPage}');">Coordinator</a></li>
+	                <li><a href="#"  onclick="returnPage('${returnCoordinatorPage}', event);">Coordinator</a></li>
 		        </ul>
        	 	</li>
        	 	<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Events</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="#"  onclick="returnPage('${returnEventPage}');">Event</a></li>
+	                <li><a href="#"  onclick="returnPage('${returnEventPage}', event);">Event</a></li>
 		        </ul>
        	 	</li>
 			<li class="droplink "><a href="#"><span class="menu-icon fa fa-building"></span><p>Employee</p><span class="arrow"></span></a>
 	            <ul class="sub-menu">
-	                <li><a href="#" onclick="returnPage('${returnEmployeePage}');">Employee</a></li>
+	                <li><a href="#" onclick="returnPage('${returnEmployeePage}', event);">Employee</a></li>
 		        </ul>
        	 	</li>
             <li class=""><a href="http://3melements.com/sindhuni/login_logs"><span class="menu-icon icon-list"></span><p>Login Logs</p></a></li>
@@ -86,7 +94,7 @@
             <li class="droplink "><a href="http://3melements.com/sindhuni/research/citations">
 	            <span class="menu-icon fa fa-beer"></span><p>Research</p><span class="arrow"></span></a>
     	        <ul class="sub-menu">
-        	        <li><a href="#" onclick="returnPage('${returnPublicationPage}');">Publications</a></li> 
+        	        <li><a href="#" onclick="returnPage('${returnPublicationPage}', event);">Publications</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/training">Training/workShops</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/phdStudents">MPHIL/PHD Students</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/travelGrands">Research/Travel Grants</a></li> 

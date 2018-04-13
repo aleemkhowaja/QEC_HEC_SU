@@ -5,8 +5,10 @@
 	/**
 	 * employee save/update
 	 */
-	function employee_crud()
+	function employee_crud(event)
 	{
+		var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
 		var flag = validateForm();
 		if(flag)
 		{
@@ -39,6 +41,7 @@
 		         {
 		             xhr.setRequestHeader("Accept", "application/json");
 		             xhr.setRequestHeader("Content-Type", "application/json");
+		             xhr.setRequestHeader(header, token);
 		         },
 				 async:false,
 				 success : function(data) 
@@ -66,19 +69,29 @@
 	 */
 	function employee_Db_Click(rowId)
 	{
+		var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
 		url ='/QEC_HEC_SU/qec/employee/returnEmployeeById';
 		var rowData = jQuery("#employee-detail-grid-list").getRowData(rowId); 
 		var employeeId = rowData['employeeId'];
-		event.preventDefault();
-		$.post(url, {
-			employeeId : employeeId,
-		}, function(data) {
-			employee_Set_FormData(data);
-			var myElem = document.getElementById('employee-delete-btn');
-			if (myElem == null)
-			{
-				$("#employee-save-btn").after("<input type='button' id='employee-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='employee_DeleteEmployee() ;'/>");
-			}
+		
+		$.ajax({
+			url :url,
+			 type: "POST",
+			 async:false,
+			 data:{employeeId : employeeId},
+			 beforeSend: function(xhr) 
+	         {
+				 xhr.setRequestHeader(header, token);
+	         },
+			 success : function(data) {
+				 employee_Set_FormData(data);
+				 var myElem = document.getElementById('employee-delete-btn');
+				 if (myElem == null)
+				 {
+					 $("#employee-save-btn").after("<input type='button' id='employee-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='employee_DeleteEmployee() ;'/>");
+				 }
+			 }
 		});
 	}
 	
@@ -103,6 +116,7 @@
 		$("#employee_department").val(data.departmentId);
 		$("#employee_employeeId").val(data.employeeId);
 		$("#employee_date").val(data.dob);
+		pageAniamateScroll();
 	}
 	
 	/**
@@ -110,30 +124,40 @@
 	 */
 	function employee_DeleteEmployee() 
 	{
-		url ='/QEC_HEC_SU/qec/employee/deleteEmployeeById';
-		var employeeData = {};
-		employeeData['employeeId'] = $("#employee_employeeId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         contentType: "application/json",
-			 data: JSON.stringify(employeeData),
-			 async:false,
-			 success : function(data) {
-				if(data != undefined) {
-					
-					jQuery("#employee-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					employee_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/employee/deleteEmployeeById';
+			var employeeData = {};
+			employeeData['employeeId'] = $("#employee_employeeId").val();
+			
+			//event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         contentType: "application/json",
+				 data: JSON.stringify(employeeData),
+				 beforeSend: function(xhr) 
+		         {
+					 xhr.setRequestHeader(header, token);
+		         },
+				 async:false,
+				 success : function(data) {
+					if(data != undefined) {
+						
+						jQuery("#employee-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						employee_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
-		//event.preventDefault();
+			});
+			//event.preventDefault();
+		}
 	}
 	/**
 	 * Clear form after save/Update/Delete 

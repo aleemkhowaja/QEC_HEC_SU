@@ -50,7 +50,7 @@
 						<form:textarea 	path="description" cssClass="form-control validate-required" id="citationThesis_description" placeholder="Description"  />
 	               </div>
 	                    
-                   <button id="citationThesis-save-btn" type="submit" class="btn" onclick="return citationThesis_Crud();" >Save</button>
+                   <button id="citationThesis-save-btn" type="submit" class="btn" onclick="return citationThesis_Crud(event);" >Save</button>
                    
                    <!-- Hidden fields -->
                    <form:hidden path="citationThesisId" id="citationThesis_citationThesisId" />

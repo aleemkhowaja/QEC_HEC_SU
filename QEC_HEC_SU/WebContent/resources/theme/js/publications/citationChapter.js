@@ -1,7 +1,7 @@
 /**
  * Submit Form while Save/Update
  */
-	function citationChapter_Crud()
+	function citationChapter_Crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
@@ -61,7 +61,7 @@
 		url ='/QEC_HEC_SU/qec/chapter/returnCitationChapterById';
 		var rowData = jQuery("#chapter-detail-grid-list").getRowData(rowId); 
 		var citationChapterId = rowData['citationChapterId'];
-		event.preventDefault();
+//		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -97,34 +97,39 @@
 		$("#citationChapter_pages").val(data.pages);
 		$("#citationChapter_publisher").val(data.publisher);
 		$("#citationChapter_description").val(data.description);
+		pageAniamateScroll();
 	}
 	
 	function citationChapter_DeleteCitationChapter()
 	{
-		var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/qec/chapter/deleteCitationChapterById';
-		var citationChapterId = $("#citationChapter_citationChapterId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         data:{citationChapterId : citationChapterId},
-			 async:false,
-			 beforeSend: function(xhr) 
-	         {
-				 xhr.setRequestHeader(header, token);
-	         },
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#chapter-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					citationChapter_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/chapter/deleteCitationChapterById';
+			var citationChapterId = $("#citationChapter_citationChapterId").val();
+			
+			//event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         data:{citationChapterId : citationChapterId},
+				 async:false,
+				 beforeSend: function(xhr) 
+		         {
+					 xhr.setRequestHeader(header, token);
+		         },
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#chapter-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						citationChapter_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
+			});
+		}
 	}

@@ -2,16 +2,20 @@ package com.qec.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.dao.CitationPatentDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationPatentDTO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationPatentModel;
 import com.qec.model.EmployeeModel;
 import com.qec.service.CitationPatentService;
@@ -35,6 +39,7 @@ public class CitationPatentServiceImpl implements CitationPatentService  {
 		JQGridDTO<CitationPatentDTO> jqGridDTO = new JQGridDTO<CitationPatentDTO>();
 		List<CitationPatentDTO> citationPatentDTOs = new ArrayList<CitationPatentDTO>();
 		CitationPatentDTO citationPatentDTO = new CitationPatentDTO();
+		EmployeeDTO employeeDTO = new EmployeeDTO();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -47,6 +52,13 @@ public class CitationPatentServiceImpl implements CitationPatentService  {
 			{
 				CitationPatentModel citationPatentModel = citationPatentModels.get(i);
 				citationPatentDTO = new CitationPatentDTO();
+				//set Employee Details
+				employeeDTO = new EmployeeDTO();
+				if(citationPatentModel.getEmployeeModel() != null )
+				{
+					employeeDTO.setFullName(citationPatentModel.getEmployeeModel().getFullName());
+					citationPatentDTO.setEmployee(employeeDTO);
+				}
 				citationPatentDTO.setCitationPatentId(citationPatentModel.getCitationPatentId());
 				citationPatentDTO.setInventors(citationPatentModel.getInventors());
 				citationPatentDTO.setDescription(citationPatentModel.getDescription());

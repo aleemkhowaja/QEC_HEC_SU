@@ -13,7 +13,7 @@ public class EmployeesServices  implements java.io.Serializable {
      private Long employeesServicesId;
      private UniPrograms uniPrograms;
      private EmployeeDTO employee;
-     private Faculty faculty;
+     private FacultyDTO faculty;
      private DepartmentsDTO departments;
      private String department;
      private String empType;
@@ -32,11 +32,11 @@ public class EmployeesServices  implements java.io.Serializable {
     }
 
 	
-    public EmployeesServices(Faculty faculty, String empType) {
+    public EmployeesServices(FacultyDTO faculty, String empType) {
         this.faculty = faculty;
         this.empType = empType;
     }
-    public EmployeesServices(UniPrograms uniPrograms, EmployeeDTO employee, Faculty faculty, DepartmentsDTO departments, String department, String empType, String postHeld, String jobStatus, String natureOfJob, Date postStartDate, Date postEndDate, String jobDuties, String tcategory, String grade, Short scale, Byte currentWorking) {
+    public EmployeesServices(UniPrograms uniPrograms, EmployeeDTO employee, FacultyDTO faculty, DepartmentsDTO departments, String department, String empType, String postHeld, String jobStatus, String natureOfJob, Date postStartDate, Date postEndDate, String jobDuties, String tcategory, String grade, Short scale, Byte currentWorking) {
        this.uniPrograms = uniPrograms;
        this.employee = employee;
        this.faculty = faculty;
@@ -76,11 +76,11 @@ public class EmployeesServices  implements java.io.Serializable {
     public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
-    public Faculty getFaculty() {
+    public FacultyDTO getFaculty() {
         return this.faculty;
     }
     
-    public void setFaculty(Faculty faculty) {
+    public void setFaculty(FacultyDTO faculty) {
         this.faculty = faculty;
     }
     public DepartmentsDTO getDepartments() {

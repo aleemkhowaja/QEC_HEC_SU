@@ -55,8 +55,14 @@
 							mtype : 'POST',
 							width : 1000,
 							height : 400,
-							colNames : [ 'Title','Url','Authors','Publication Date','Institution','Action'],
+							colNames : [ 'Employee Name','Title','Url','Authors','Publication Date','Institution','Action'],
 							colModel : [
+								{
+									name : 'employee.fullName',
+									index : 'employee.fullName',
+									width : 150,
+									editable : false,
+								},
 								{
 									name : 'title',
 									index : 'title',
@@ -137,7 +143,8 @@
 								jQuery("#thesis-detail-grid-list").jqGrid('setGridParam',{url:"/QEC_HEC_SU/qec/thesis/returnAllCitationThesisForGrid?title="+thesisTitle}).trigger("reloadGrid");
 								
 				         });
-						   
+							validateIntegerValues();
+						    validateFloatValues(); 
 				  });
 				</script>
     		</div><!-- Row -->

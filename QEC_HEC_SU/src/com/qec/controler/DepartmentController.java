@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.qec.common.JQGridDTO;
+import com.qec.dto.DepartmentsDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.service.DepartmentsService;
 
@@ -25,7 +26,7 @@ public class DepartmentController {
 	//start get all department for Grid
 	@RequestMapping(value="qec/department/returnAllDepartmentsForGrid", produces = "application/json")
 	@ResponseBody
-	public JQGridDTO<DepartmentsModel> returnAllDepartmenForGrid(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) 
+	public JQGridDTO<DepartmentsDTO> returnAllDepartmenForGrid(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) 
 	{
 		return departmentsService.returnAllDepartmentsForGrid(request);
 	}
@@ -39,9 +40,9 @@ public class DepartmentController {
 	 */
 	@RequestMapping(value="/department/save.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public String saveDepartment(@RequestBody DepartmentsModel departmentsModel, HttpServletRequest request) 
+	public String saveDepartment(@RequestBody DepartmentsDTO departmentsDTO, HttpServletRequest request) 
 	{
-		String result = departmentsService.saveDepartment(departmentsModel);
+		String result = departmentsService.saveDepartment(departmentsDTO);
 		return result;
 	}
 
@@ -52,12 +53,12 @@ public class DepartmentController {
 	 * @param model
 	 * @return DepartmentModel
 	 */
-	@RequestMapping(value="/department/getDepartmentById", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value="/department/returnDepartmentById", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public DepartmentsModel  getDepartmentById(@RequestParam("departmentId") Integer departmentId, Model model) 
+	public DepartmentsDTO  returnDepartmentById(@RequestParam("departmentId") Integer departmentId, Model model) 
 	{
-		DepartmentsModel departmentsModel = departmentsService.getDepartmentById(Long.valueOf(departmentId));
-		return departmentsModel;
+		DepartmentsDTO departmentsDTO = departmentsService.returnDepartmentById(Long.valueOf(departmentId));
+		return departmentsDTO;
 	}
 	
 	/**
@@ -68,9 +69,9 @@ public class DepartmentController {
 	 */
 	@RequestMapping(value="/department/deleteDepartmentById", method = RequestMethod.POST)
 	@ResponseBody
-	public String  deleteDepartmentById(@RequestBody DepartmentsModel departmentsModel, HttpServletRequest request) 
+	public String  deleteDepartmentById(@RequestParam("departmentId") Integer departmentId, HttpServletRequest request) 
 	{
-		String result = departmentsService.deleteDepartment(departmentsModel);
+		String result = departmentsService.deleteDepartment(departmentId);
 		return result;
 	}
 }

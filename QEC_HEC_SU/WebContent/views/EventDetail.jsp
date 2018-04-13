@@ -14,7 +14,7 @@
                     
 						<div class="form-group">
 							<form:label path="dateof" >Start Date : </form:label>
-							<form:input path="dateof" cssClass="form-control validate-required datetimepicker" id="events_dateof" placeholder="Start Date" />
+							<form:input path="dateof" cssClass="form-control validate-required datetimepicker" id="events_dateof" placeholder="Start Date"  />
 					    </div>    
 					    <div class="form-group">
                     		<form:label path="endDate" >End Date : </form:label>
@@ -29,17 +29,23 @@
 							<form:input path="eventTitle" cssClass="form-control validate-required" id="events_eventTitle" placeholder="Event title"  />
 					    </div>                    
                        <div class="form-group">
-		                    <form:label path="departmentsModel" > Selcet Department : </form:label>
-	  	 			        <form:select path="departmentsModel" cssClass="form-control validate-required" id="events_departmentId" items="${departmentsModelList}" itemValue="departmentId" itemLabel="name">
+		                    <form:label path="departmentId" > Selcet Department : </form:label>
+	  	 			        <form:select path="departmentId" cssClass="form-control validate-required" id="events_departmentId" items="${departmentsModelList}" itemValue="departmentId" itemLabel="name">
 					 	    	<form:option  value="---Select Customer---" />
 					 		</form:select>
 	                    </div>
-                       <div class="form-group">
+                       	<div class="form-group">
                     		<form:label path="eventDetail" >Event Detail : </form:label>
 							<form:textarea path="eventDetail" cssClass="form-control" id="events_eventDetail" placeholder="Event Detail"  />
 					    </div>
+					    
+					    <div class="form-group">
+                    		<label for="events_file" >Event File: </label>
+							 <input type="file" id="events_file" name="events_file" multiple="multiple"/>
+					    </div>
+					    
                        
-                        <button id="events-save-btn" type="submit" class="btn" onclick="return event_Crud();">Save</button>
+                        <button id="events-save-btn" type="submit" class="btn" onclick="return event_Crud(event);">Save</button>
                         <!-- Hidden fields -->
 						 <form:hidden path="eventsId" id="events_eventsId" />
                         <%-- <form:hidden path="departmentsModel" id="events_departmentId" /> --%>
@@ -58,14 +64,14 @@ $(document).ready(function(){
 	
 	var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
 	start_date_input.datepicker({
-		dateFormat: "mm-dd-yy",
+		dateFormat: "yy-mm-dd",
 		container: container,
 		todayHighlight: true,
 		autoclose: true,
 		orientation : "bottom right"
 	})
 	end_date_input.datepicker({
-		dateFormat: "mm-dd-yy",
+		dateFormat: "yy-mm-dd",
 		container: container,
 		todayHighlight: true,
 		autoclose: true,

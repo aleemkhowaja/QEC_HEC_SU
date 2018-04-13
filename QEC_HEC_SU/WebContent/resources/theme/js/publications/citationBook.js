@@ -1,7 +1,7 @@
 /**
  * Submit Form while Save/Update
  */
-	function citationBook_Crud()
+	function citationBook_Crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
@@ -60,7 +60,7 @@
 		url ='/QEC_HEC_SU/qec/book/returnCitationBookById';
 		var rowData = jQuery("#book-detail-grid-list").getRowData(rowId); 
 		var citationBookId = rowData['citationBookId'];
-		event.preventDefault();
+//		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -96,34 +96,38 @@
 		$("#citationBook_pages").val(data.pages);
 		$("#citationBook_publisher").val(data.publisher);
 		$("#citationBook_description").val(data.description);
+		pageAniamateScroll();
 	}
 	
 	function citationBook_DeleteCitationBook()
 	{
-		var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/qec/book/deleteCitationBookById';
-		var citationBookId = $("#citationBook_citationBookId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         data:{citationBookId : citationBookId},
-			 async:false,
-			 beforeSend: function(xhr) 
-	         {
-				 xhr.setRequestHeader(header, token);
-	         },
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#book-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					citationBook_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/book/deleteCitationBookById';
+			var citationBookId = $("#citationBook_citationBookId").val();
+			//event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         data:{citationBookId : citationBookId},
+				 async:false,
+				 beforeSend: function(xhr) 
+		         {
+					 xhr.setRequestHeader(header, token);
+		         },
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#book-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						citationBook_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
+			});
+		}
 	}

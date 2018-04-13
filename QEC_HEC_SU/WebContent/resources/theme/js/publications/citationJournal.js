@@ -1,7 +1,7 @@
 /**
  * Submit Form while Save/Update
  */
-	function citationJournal_Crud()
+	function citationJournal_Crud(event)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
 	    var header = $("meta[name='_csrf_header']").attr("content");
@@ -48,12 +48,21 @@
 		return true;
 	}
 	
+	/**
+	 * clear Form Data
+	 * @returns
+	 */
 	function citationJournal_Clear_FromData()
 	{
 		clearFields("citationJournal_form");
 		remove_child_Elements('citationJournal-delete-btn');
 	}
 	
+	/**
+	 * DBClick for view Record
+	 * @param rowId
+	 * @returns
+	 */
 	function citationJournal_Db_Click(rowId)
 	{
 		var token = $("meta[name='_csrf']").attr("content");
@@ -61,7 +70,6 @@
 		url ='/QEC_HEC_SU/qec/journal/returnCitationJournalById';
 		var rowData = jQuery("#journal-detail-grid-list").getRowData(rowId); 
 		var citationJournalId = rowData['citationJournalId'];
-		event.preventDefault();
 		$.ajax({
 			url :url,
 			 type: "POST",
@@ -82,7 +90,11 @@
 		});
 	}
 	
-	
+	/**
+	 * set Data into Form Fields
+	 * @param data
+	 * @returns
+	 */
 	function citationJournal_Set_FormData(data)
 	{
 		$("#citationJournal_citationJournalId").val(data.citationJournalId);
@@ -100,34 +112,43 @@
 		$("#citationJournal_impactFactor").val(data.impactFactor);
 		$("#citationJournal_impactFactorValue").val(data.impactFactorValue);
 		$("#citationJournal_hecRecognize").val(data.hecRecognize);
+		pageAniamateScroll();
 	}
 	
+	/**
+	 * Delete record
+	 * @returns
+	 */
 	function citationJournal_DeleteCitationJournal()
 	{
-		var token = $("meta[name='_csrf']").attr("content");
-	    var header = $("meta[name='_csrf_header']").attr("content");
-		url ='/QEC_HEC_SU/qec/journal/deleteCitationJournalById';
-		var citationJournalId = $("#citationJournal_citationJournalId").val();
-		
-		//event.preventDefault();
-		$.ajax({
-			url :url,
-			 type: "POST",
-	         data:{citationJournalId : citationJournalId},
-			 async:false,
-			 beforeSend: function(xhr) 
-	         {
-				 xhr.setRequestHeader(header, token);
-	         },
-			 success : function(data) {
-				if(data != undefined) {
-					jQuery("#journal-detail-grid-list").trigger("reloadGrid");
-					toaster_success(data);
-					citationJournal_Clear_FromData();
+		var result = confirm("Do you want to Delete?");
+		if(result)
+		{
+			var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+			url ='/QEC_HEC_SU/qec/journal/deleteCitationJournalById';
+			var citationJournalId = $("#citationJournal_citationJournalId").val();
+			
+			//event.preventDefault();
+			$.ajax({
+				url :url,
+				 type: "POST",
+		         data:{citationJournalId : citationJournalId},
+				 async:false,
+				 beforeSend: function(xhr) 
+		         {
+					 xhr.setRequestHeader(header, token);
+		         },
+				 success : function(data) {
+					if(data != undefined) {
+						jQuery("#journal-detail-grid-list").trigger("reloadGrid");
+						toaster_success(data);
+						citationJournal_Clear_FromData();
+					}
+					else {
+						toaster_error(data);
+					}
 				}
-				else {
-					toaster_error(data);
-				}
-			}
-		});
+			});
+		}
 	}

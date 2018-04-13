@@ -28,7 +28,7 @@
 	               
 	               </div>
 	                    
-                   <button id="citationGoogle-save-btn" type="submit" class="btn" onclick="return citationGoogle_Crud();" >Save</button>
+                   <button id="citationGoogle-save-btn" type="submit" class="btn" onclick="return citationGoogle_Crud(event);" >Save</button>
                    
                    <!-- Hidden fields -->
                    <form:hidden path="citationGoogleId" id="citationGoogle_citationGoogleId" />

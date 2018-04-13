@@ -55,8 +55,14 @@
 							mtype : 'POST',
 							width : 1000,
 							height : 400,
-							colNames : [ 'Title','Url','Authors','Publication Date','Conference','Volume','Issue','Pages','Action'],
+							colNames : [ 'Employee Name','Title','Url','Authors','Publication Date','Conference','Volume','Action'],
 							colModel : [
+								{
+									name : 'employee.fullName',
+									index : 'employee.fullName',
+									width : 150,
+									editable : false,
+								},  
 								{
 									name : 'title',
 									index : 'title',
@@ -92,19 +98,7 @@
 							        width : 150,
 							        editable : false
 								},
-								{
-									name : 'issue',
-							        index : 'issue',
-							        width : 150,
-							        editable : false
-								},
-								{
-									name : 'pages',
-							        index : 'pages',
-							        width : 150,
-							        editable : false
-								},
-								{
+													{
 									name : 'citationConferenceId',
 							        index : 'citationConferenceId',
 							        width : 150,
@@ -155,7 +149,8 @@
 								jQuery("#conference-detail-grid-list").jqGrid('setGridParam',{url:"/QEC_HEC_SU/qec/conference/returnAllCitationConferenceForGrid?title="+conferenceTitle}).trigger("reloadGrid");
 								
 				         });
-						   
+							validateIntegerValues();
+						    validateFloatValues(); 
 				  });
 				</script>
     		</div><!-- Row -->

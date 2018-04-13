@@ -12,6 +12,7 @@ import com.qec.dao.CitationThesisDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationThesisDTO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationThesisModel;
 import com.qec.model.EmployeeModel;
 import com.qec.service.CitationThesisService;
@@ -35,6 +36,7 @@ public class CitationThesisServiceImpl implements CitationThesisService  {
 		JQGridDTO<CitationThesisDTO> jqGridDTO = new JQGridDTO<CitationThesisDTO>();
 		List<CitationThesisDTO> citationThesisDTOs = new ArrayList<CitationThesisDTO>();
 		CitationThesisDTO citationThesisDTO = new CitationThesisDTO();
+		EmployeeDTO employeeDTO = new EmployeeDTO();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -47,6 +49,14 @@ public class CitationThesisServiceImpl implements CitationThesisService  {
 			{
 				CitationThesisModel citationThesisModel = citationThesisModels.get(i);
 				citationThesisDTO = new CitationThesisDTO();
+				//set Employee Details
+				employeeDTO = new EmployeeDTO();
+				if(citationThesisModel.getEmployeeModel() != null )
+				{
+					employeeDTO.setFullName(citationThesisModel.getEmployeeModel().getFullName());
+					citationThesisDTO.setEmployee(employeeDTO);
+				}
+				
 				citationThesisDTO.setCitationThesisId(citationThesisModel.getCitationThesisId());
 				citationThesisDTO.setAuthors(citationThesisModel.getAuthors());
 				citationThesisDTO.setDescription(citationThesisModel.getDescription());

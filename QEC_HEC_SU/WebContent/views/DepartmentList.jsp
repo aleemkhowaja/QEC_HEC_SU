@@ -60,9 +60,14 @@
 							mtype : 'POST',
 							width : 1000,
 							height : 100,
-							colNames : [ 'DepartmentId', 'Department Name','Details'],
+							colNames : [ 'Faculty Name', 'DepartmentId', 'Department Name','Details'],
 							colModel : [ 
-							      
+							    
+								{
+									name : 'faculty.facultyName',
+							    	index : 'faculty.facultyName',
+							    	width : 150
+								}, 
 								{
 									name : 'departmentId',
 									index : 'departmentId',
@@ -123,7 +128,7 @@
 								var departmentName =  $("#departmentName").val();
 								jQuery("#department-detail-grid-list").jqGrid('setGridParam',
 										{
-											url:"returnAllDepartmentsForGrid?departmentName="+departmentName
+											url:"department/returnAllDepartmentsForGrid?departmentName="+departmentName
 										}
 								).trigger("reloadGrid");
 				         });

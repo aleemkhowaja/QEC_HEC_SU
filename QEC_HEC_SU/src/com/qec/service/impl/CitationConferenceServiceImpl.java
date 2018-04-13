@@ -16,6 +16,7 @@ import com.qec.dao.CitationConferenceDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationConferenceDTO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationConferenceModel;
 import com.qec.model.EmployeeModel;
 import com.qec.service.CitationConferenceService;
@@ -40,6 +41,7 @@ public class CitationConferenceServiceImpl implements CitationConferenceService 
 		JQGridDTO<CitationConferenceDTO> jqGridDTO = new JQGridDTO<CitationConferenceDTO>();
 		List<CitationConferenceDTO> citationConferenceDTOs = new ArrayList<CitationConferenceDTO>();
 		CitationConferenceDTO citationConferenceDTO = new CitationConferenceDTO();
+		EmployeeDTO employeeDTO = new EmployeeDTO();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -54,6 +56,12 @@ public class CitationConferenceServiceImpl implements CitationConferenceService 
 			{
 				CitationConferenceModel citationConferenceModel = citationConferenceModels.get(i);
 				citationConferenceDTO = new CitationConferenceDTO();
+				employeeDTO = new EmployeeDTO();
+				if(citationConferenceModel.getEmployeeModel() != null )
+				{
+					employeeDTO.setFullName(citationConferenceModel.getEmployeeModel().getFullName());
+					citationConferenceDTO.setEmployee(employeeDTO);
+				}
 				citationConferenceDTO.setCitationConferenceId(citationConferenceModel.getCitationConferenceId());
 				citationConferenceDTO.setAuthors(citationConferenceModel.getAuthors());
 				citationConferenceDTO.setDescription(citationConferenceModel.getDescription());

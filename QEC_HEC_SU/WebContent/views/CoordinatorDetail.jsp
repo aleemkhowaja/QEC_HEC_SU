@@ -56,7 +56,7 @@
 				 			<form:option value="1" label="In Active" />
 				 			</form:select>
 	                    </div> 
-                        <button id="users-save-btn" type="submit" class="btn" onclick="return coordinator_Crud();" >Save</button>
+                        <button id="users-save-btn" type="submit" class="btn" onclick="return coordinator_Crud(event);" >Save</button>
                         <!-- Hidden fields -->
                          <form:hidden path="userId" id="users_userId" />
 <%--                         <form:hidden path="departmentsModel" id="users_departmentId" /> --%>

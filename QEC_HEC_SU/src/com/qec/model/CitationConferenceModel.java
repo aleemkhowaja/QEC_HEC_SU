@@ -41,7 +41,7 @@ public class CitationConferenceModel extends Model  implements java.io.Serializa
      
 
     @Id @GeneratedValue(strategy=IDENTITY)
-    @Column(name="citation_conference", unique=true, nullable=false)
+    @Column(name="citation_conference_id", unique=true, nullable=false)
     public Long getCitationConferenceId() {
         return this.citationConferenceId;
     }

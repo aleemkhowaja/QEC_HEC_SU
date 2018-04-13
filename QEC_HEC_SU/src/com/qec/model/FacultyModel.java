@@ -1,17 +1,11 @@
 package com.qec.model;
 // Generated Aug 19, 2017 7:08:20 PM by Hibernate Tools 3.2.1.GA
 
-
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,31 +13,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="faculty")
-public class FacultyModel  implements java.io.Serializable {
-
+public class FacultyModel extends Model  implements java.io.Serializable  {
 
      private Long facultyId;
      private String facultyName;
-     private Set<UniDepartmentsModel> uniDepartmentses = new HashSet<UniDepartmentsModel>(0);
-     private Set<AccreditationsModel> accreditationses = new HashSet<AccreditationsModel>(0);
-     private Set<EmployeesServicesModel> employeesServiceses = new HashSet<EmployeesServicesModel>(0);
 
-    public FacultyModel() {
-    }
-
-	
-    public FacultyModel(String facultyName) {
-        this.facultyName = facultyName;
-    }
-    public FacultyModel(String facultyName, Set<UniDepartmentsModel> uniDepartmentses, Set<AccreditationsModel> accreditationses, Set<EmployeesServicesModel> employeesServiceses) {
-       this.facultyName = facultyName;
-       this.uniDepartmentses = uniDepartmentses;
-       this.accreditationses = accreditationses;
-       this.employeesServiceses = employeesServiceses;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="faculty_id", unique=true, nullable=false)
     public Long getFacultyId() {
         return this.facultyId;
@@ -61,34 +36,6 @@ public class FacultyModel  implements java.io.Serializable {
     public void setFacultyName(String facultyName) {
         this.facultyName = facultyName;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="faculty")
-    public Set<UniDepartmentsModel> getUniDepartmentses() {
-        return this.uniDepartmentses;
-    }
-    
-    public void setUniDepartmentses(Set<UniDepartmentsModel> uniDepartmentses) {
-        this.uniDepartmentses = uniDepartmentses;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="faculty")
-    public Set<AccreditationsModel> getAccreditationses() {
-        return this.accreditationses;
-    }
-    
-    public void setAccreditationses(Set<AccreditationsModel> accreditationses) {
-        this.accreditationses = accreditationses;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="faculty")
-    public Set<EmployeesServicesModel> getEmployeesServiceses() {
-        return this.employeesServiceses;
-    }
-    
-    public void setEmployeesServiceses(Set<EmployeesServicesModel> employeesServiceses) {
-        this.employeesServiceses = employeesServiceses;
-    }
-
-
-
-
 }
 
 

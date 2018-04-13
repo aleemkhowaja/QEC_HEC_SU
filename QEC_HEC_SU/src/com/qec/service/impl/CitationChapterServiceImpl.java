@@ -12,6 +12,7 @@ import com.qec.dao.CitationChapterDAO;
 import com.qec.dao.EmployeeDAO;
 import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationChapterDTO;
+import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationChapterModel;
 import com.qec.model.EmployeeModel;
 import com.qec.service.CitationChapterService;
@@ -35,6 +36,7 @@ public class CitationChapterServiceImpl implements CitationChapterService  {
 		JQGridDTO<CitationChapterDTO> jqGridDTO = new JQGridDTO<CitationChapterDTO>();
 		List<CitationChapterDTO> citationChapterDTOs = new ArrayList<CitationChapterDTO>();
 		CitationChapterDTO citationChapterDTO = new CitationChapterDTO();
+		EmployeeDTO employeeDTO = new EmployeeDTO();
 		try {
 			String order = request.getParameter("sord");
 			String sortingProperty = request.getParameter("sidx");
@@ -47,6 +49,13 @@ public class CitationChapterServiceImpl implements CitationChapterService  {
 			{
 				CitationChapterModel citationChapterModel = citationChapterModels.get(i);
 				citationChapterDTO = new CitationChapterDTO();
+				employeeDTO = new EmployeeDTO();
+				if(citationChapterModel.getEmployeeModel() != null )
+				{
+					System.out.println(citationChapterModel.getEmployeeModel().getFullName());
+					employeeDTO.setFullName(citationChapterModel.getEmployeeModel().getFullName());
+					citationChapterDTO.setEmployee(employeeDTO);
+				}
 				citationChapterDTO.setCitationChapterId(citationChapterModel.getCitationChapterId());
 				citationChapterDTO.setAuthors(citationChapterModel.getAuthors());
 				citationChapterDTO.setDescription(citationChapterModel.getDescription());
