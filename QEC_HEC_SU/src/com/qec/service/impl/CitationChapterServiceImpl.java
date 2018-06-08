@@ -8,26 +8,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.CitationChapterDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationChapterDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationChapterModel;
 import com.qec.model.EmployeeModel;
+import com.qec.repository.CitationChapterRepository;
+import com.qec.repository.EmployeeRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.CitationChapterService;
 
 @Service
 public class CitationChapterServiceImpl implements CitationChapterService  {
 
 	@Autowired
-	private  CitationChapterDAO citationChapterDAO;
+	private  CitationChapterRepository citationChapterDAO;
 	
 	@Autowired
-	private EmployeeDAO employeeDAO; 
+	private EmployeeRepository employeeDAO; 
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Override
 	@Transactional

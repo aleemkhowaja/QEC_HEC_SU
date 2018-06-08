@@ -31,6 +31,7 @@ public class EventsModel  extends Model  implements java.io.Serializable {
     private Double quota;
     private String eventDetail;
     private String color;
+    private String fileName;
 
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="events_id", unique=true, nullable=false)
@@ -116,5 +117,16 @@ public class EventsModel  extends Model  implements java.io.Serializable {
     
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	@Column(name="file_name", length=100)
+	public String getFileName() 
+	{
+		return fileName;
+	}
+
+	public void setFileName(String fileName) 
+	{
+		this.fileName = fileName;
 	}
 }

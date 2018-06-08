@@ -538,9 +538,15 @@ function validateForm()
 
 function clearFields(formId)
 {
-	$("#"+formId+" input,#"+formId+" select,#"+formId+" textarea").each(function(){
+	$("#"+formId+" input:text,#"+formId+" select,#"+formId+" textarea").each(function(){
 		 $("#"+$(this).attr('id')).val("");
 	});
+	
+	$("#"+formId+" :radio").each(function () {
+		$(this).removeAttr('checked');
+		
+		$('input[type="radio"]').attr('checked', false);
+	})
 	
 
 }

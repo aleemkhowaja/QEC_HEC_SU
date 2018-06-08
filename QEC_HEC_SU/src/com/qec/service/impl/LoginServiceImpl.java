@@ -18,14 +18,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.qec.dao.LoginDAO;
 import com.qec.model.UserModel;
+import com.qec.repository.LoginRepository;
 
 @Service("loginServiceImpl")
 public class LoginServiceImpl implements /*LoginService*/ UserDetailsService {
 
 	@Autowired
-	private LoginDAO loginDAO;
+	private LoginRepository loginDAO;
 	
 	@Autowired
     private PasswordEncoder passwordEncoder;

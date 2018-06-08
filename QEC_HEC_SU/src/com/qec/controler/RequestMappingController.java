@@ -25,9 +25,12 @@ import com.qec.dto.CitationPatentDTO;
 import com.qec.dto.CitationThesisDTO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.dto.EmployeeDTO;
+import com.qec.dto.EmployeeMphilPhdStudentsDTO;
+import com.qec.dto.EmployeeTrainingDTO;
 import com.qec.dto.EventsDTO;
 import com.qec.dto.FacultyDTO;
 import com.qec.dto.UserDTO;
+import com.qec.enums.DegreeType;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
 import com.qec.enums.HECRecognize;
@@ -345,5 +348,46 @@ public class RequestMappingController {
 		model.addAttribute("google", new CitationGoogleDTO());
 		return new ModelAndView("CitationGoogleList");
 	}
+	
+	
+	/**
+	 * return Coordinator Page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/employeeTraining/employeeTraining.htm", method=RequestMethod.GET)
+	public String returnEmployeeTraining(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+		/*try 
+		{*/
+			employeeDTOs    = employeesService.returnAllEmployeeModels();
+		/*} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}*/
+		model.addAttribute("employeeTraining", new EmployeeTrainingDTO());
+		model.addAttribute("employeeList", employeeDTOs);
+		return "EmployeeTrainingList";
+	}
+	
+	/**
+	 * return Coordinator Page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/qec/employeeMphilPhdStudents/employeeMphilPhdStudent.htm", method=RequestMethod.GET)
+	public String returnEmployeeMphilPhdStudent(Model model) 
+	{
+		List<EmployeeDTO> employeeDTOs = employeesService.returnAllEmployeeModels();
+		List<DepartmentsDTO> departmentsDTOs = departmentsService.returnAllDepartments();
+		DegreeType degreeType[] = DegreeType.values();
+		model.addAttribute("employeeList", employeeDTOs);
+		model.addAttribute("departmentList", departmentsDTOs);
+		model.addAttribute("degreeTypeList", degreeType);
+		model.addAttribute("employeeMphilPhdStudent", new EmployeeMphilPhdStudentsDTO());
+		return "EmployeeMphilPhdStudentList";
+	}
+	
 	
 }

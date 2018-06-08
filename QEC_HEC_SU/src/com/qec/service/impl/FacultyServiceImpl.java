@@ -8,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.FacultyDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.FacultyDTO;
 import com.qec.model.FacultyModel;
+import com.qec.repository.FacultyRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.FacultyService;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
 
 	@Autowired
-	private FacultyDAO facultyDAO;
+	private FacultyRepository facultyDAO;
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 
 	@Transactional
@@ -131,19 +131,19 @@ public class FacultyServiceImpl implements FacultyService {
 	}
 	
 	
-	public FacultyDAO getFacultyDAO() {
+	public FacultyRepository getFacultyDAO() {
 		return facultyDAO;
 	}
 
-	public void setFacultyDAO(FacultyDAO facultyDAO) {
+	public void setFacultyDAO(FacultyRepository facultyDAO) {
 		this.facultyDAO = facultyDAO;
 	}
 
-	public GenericDAO getGenericDAO() {
+	public GenericRepository getGenericDAO() {
 		return genericDAO;
 	}
 
-	public void setGenericDAO(GenericDAO genericDAO) {
+	public void setGenericDAO(GenericRepository genericDAO) {
 		this.genericDAO = genericDAO;
 	}
 

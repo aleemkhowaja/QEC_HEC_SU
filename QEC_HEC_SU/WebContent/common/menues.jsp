@@ -13,11 +13,11 @@
     <c:url var="returnPublicationPage" value="/qec/publication/publication.htm" ></c:url>
     <c:url var="returnCitationPage" value="/qec/publication/journal.htm" ></c:url>
     <c:url var="dashboardPage" value="/qec/dashboard.htm" ></c:url>
+    <c:url var="returnEmployeeTrainingPage" value="/qec/employeeTraining/employeeTraining.htm" ></c:url>
+    <c:url var="returnEmployeeMphilPhdStudentsPage" value="/qec/employeeMphilPhdStudents/employeeMphilPhdStudent.htm" ></c:url>
     
     <c:url var="logout" value="/logout" ></c:url>
-    
     <!-- end page urls -->  
-    
     <main class="page-content content-wrap">
     	<div class="navbar">
         	<div class="navbar-inner container">
@@ -95,8 +95,8 @@
 	            <span class="menu-icon fa fa-beer"></span><p>Research</p><span class="arrow"></span></a>
     	        <ul class="sub-menu">
         	        <li><a href="#" onclick="returnPage('${returnPublicationPage}', event);">Publications</a></li> 
-                    <li><a href="http://3melements.com/sindhuni/research/training">Training/workShops</a></li> 
-                    <li><a href="http://3melements.com/sindhuni/research/phdStudents">MPHIL/PHD Students</a></li> 
+                    <li><a href="#" onclick="returnPage('${returnEmployeeTrainingPage}', event)">Training/workShops</a></li> 
+                    <li><a href="#" onclick="returnPage('${returnEmployeeMphilPhdStudentsPage}', event)" >MPHIL/PHD Students</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/travelGrands">Research/Travel Grants</a></li> 
                     <li><a href="http://3melements.com/sindhuni/research/industrialLinkages">Industrial Linkages</a></li> 
 	            </ul>

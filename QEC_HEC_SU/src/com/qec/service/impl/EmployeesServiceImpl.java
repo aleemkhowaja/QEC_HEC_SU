@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.DepartmentDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.enums.EmployeeTitle;
 import com.qec.enums.Gender;
@@ -19,19 +16,22 @@ import com.qec.enums.MaritalStatus;
 import com.qec.enums.Religion;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
+import com.qec.repository.DepartmentRepository;
+import com.qec.repository.EmployeeRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.EmployeesService;
 
 @Service
 public class EmployeesServiceImpl implements EmployeesService {
 
 	@Autowired
-	private EmployeeDAO employeeDAO;
+	private EmployeeRepository employeeDAO;
 	
 	@Autowired
-	private DepartmentDAO departmentDAO;
+	private DepartmentRepository departmentDAO;
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Override
 	@Transactional
@@ -88,9 +88,6 @@ public class EmployeesServiceImpl implements EmployeesService {
 		try
 		{
 			List emploayeeModel = employeeDAO.returnAllEmployeeModels();
-			EmployeeDTO employeeDTO = new EmployeeDTO();
-			employeeDTO.setFullName("Select Employee");
-			employeeDTOs.add(employeeDTO);
 			employeeDTOs.addAll(emploayeeModel);
 		}
 		catch(Exception exc)

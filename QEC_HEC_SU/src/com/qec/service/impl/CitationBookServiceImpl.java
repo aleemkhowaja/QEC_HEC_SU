@@ -8,26 +8,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.CitationBookDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationBookDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationBookModel;
 import com.qec.model.EmployeeModel;
+import com.qec.repository.CitationBookRepository;
+import com.qec.repository.EmployeeRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.CitationBookService;
 
 @Service
 public class CitationBookServiceImpl implements CitationBookService  {
 
 	@Autowired
-	private  CitationBookDAO citationBookDAO;
+	private  CitationBookRepository citationBookRepository;
 	
 	@Autowired
-	private EmployeeDAO employeeDAO; 
+	private EmployeeRepository employeeRepository; 
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericRepository;
 	
 	@Override
 	@Transactional
@@ -44,7 +44,7 @@ public class CitationBookServiceImpl implements CitationBookService  {
 			Integer jtPageSize = request.getParameter("rows") == null ? 0 : Integer.parseInt(request.getParameter("rows"));
 			Integer jtStartIndex = (page-1)*jtPageSize;
 			String citationBook = request.getParameter("title");
-			List<CitationBookModel> citationBookModels  =  citationBookDAO.returnAllCitationBookModelForGrid(jtStartIndex, jtPageSize, sortingProperty, order, citationBook);
+			List<CitationBookModel> citationBookModels  =  citationBookRepository.returnAllCitationBookModelForGrid(jtStartIndex, jtPageSize, sortingProperty, order, citationBook);
 			for(int i=0; i<citationBookModels.size(); i++)
 			{
 				CitationBookModel citationBookModel = citationBookModels.get(i);
@@ -67,7 +67,7 @@ public class CitationBookServiceImpl implements CitationBookService  {
 				citationBookDTO.setPages(citationBookModel.getPages());
 				citationBookDTOs.add(citationBookDTO);
 			}
-			Long records = citationBookDAO.returnAllCitationBookModelForGridCount(citationBook);
+			Long records = citationBookRepository.returnAllCitationBookModelForGridCount(citationBook);
 			jqGridDTO.setRows(citationBookDTOs);
 			jqGridDTO.setTotal(String.valueOf(Math.ceil((double) records / jtPageSize)));
 			jqGridDTO.setRecords(String.valueOf(records));
@@ -87,7 +87,7 @@ public class CitationBookServiceImpl implements CitationBookService  {
 		CitationBookDTO citationBookDTO = new CitationBookDTO();
 		try
 		{
-			CitationBookModel citationBookModel =  citationBookDAO.returnCitationBookModelById(Long.valueOf(citationBookId));
+			CitationBookModel citationBookModel =  citationBookRepository.returnCitationBookModelById(Long.valueOf(citationBookId));
 			citationBookDTO.setCitationBookId(citationBookModel.getCitationBookId());
 			citationBookDTO.setAuthors(citationBookModel.getAuthors());
 			citationBookDTO.setDescription(citationBookModel.getDescription());
@@ -121,14 +121,14 @@ public class CitationBookServiceImpl implements CitationBookService  {
 			if(citationBookDTO != null && citationBookDTO.getCitationBookId() == null)
 			{
 				citationBookModel = setBookDTOToBookModel(citationBookDTO, citationBookModel);
-				genericDAO.save(citationBookModel);
+				genericRepository.save(citationBookModel);
 				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
-				citationBookModel = citationBookDAO.returnCitationBookModelById(citationBookDTO.getCitationBookId());
+				citationBookModel = citationBookRepository.returnCitationBookModelById(citationBookDTO.getCitationBookId());
 				citationBookModel = setBookDTOToBookModel(citationBookDTO, citationBookModel);
-				genericDAO.update(citationBookModel);
+				genericRepository.update(citationBookModel);
 				return CommonConstants.UPLDATE_SUCCESS_MSG;
 			}
 			
@@ -143,7 +143,7 @@ public class CitationBookServiceImpl implements CitationBookService  {
 		EmployeeModel employeeModel = new EmployeeModel();
 		if(citationBookDTO != null && citationBookDTO.getEmployeeId() != null )
 		{
-			employeeModel = employeeDAO.returnEmployeesById(citationBookDTO.getEmployeeId());
+			employeeModel = employeeRepository.returnEmployeesById(citationBookDTO.getEmployeeId());
 		}
 		citationBookModel.setEmployeeModel(employeeModel);
 		citationBookModel.setCitationBookId(citationBookDTO.getCitationBookId());
@@ -166,9 +166,9 @@ public class CitationBookServiceImpl implements CitationBookService  {
 	{
 		try
 		{
-			CitationBookModel citationBookModel = citationBookDAO.returnCitationBookModelById(Long.valueOf(citationBookId));
+			CitationBookModel citationBookModel = citationBookRepository.returnCitationBookModelById(Long.valueOf(citationBookId));
 			citationBookModel.setIsDeleted(true);
-			genericDAO.update(citationBookModel);
+			genericRepository.update(citationBookModel);
 			return CommonConstants.DELETE_SUCCESS_MSG;
 		}
 		catch(Exception e)

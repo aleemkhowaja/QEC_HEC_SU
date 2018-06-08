@@ -43,12 +43,13 @@
                     		<label for="events_file" >Event File: </label>
 							 <input type="file" id="events_file" name="events_file" multiple="multiple"/>
 					    </div>
-					    
-                       
+					    <div class="form-group" id="qec_downloadEvent">
+                       		
+                       	</div>
                         <button id="events-save-btn" type="submit" class="btn" onclick="return event_Crud(event);">Save</button>
                         <!-- Hidden fields -->
 						 <form:hidden path="eventsId" id="events_eventsId" />
-                        <%-- <form:hidden path="departmentsModel" id="events_departmentId" /> --%>
+                         <form:hidden path="fileName" id="events_fileName" />
                   
                    </form:form>
                 </div>

@@ -11,32 +11,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.DepartmentDAO;
-import com.qec.dao.GenericDAO;
-import com.qec.dao.UniProgramsDAO;
 import com.qec.dto.UniProgramsDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.UniProgramsModel;
+import com.qec.repository.DepartmentRepository;
+import com.qec.repository.GenericRepository;
+import com.qec.repository.UniProgramsRepository;
 import com.qec.service.UniProgramsService;
 
 @Service
 public class UniProgramsServiceImpl implements UniProgramsService {
 
 	@Autowired
-	private UniProgramsDAO uniProgramDAO;
+	private UniProgramsRepository uniProgramDAO;
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Autowired
-	private DepartmentDAO departmentDAO; 
+	private DepartmentRepository departmentDAO; 
 	
-	public UniProgramsDAO getUniProgramDAO() 
+	public UniProgramsRepository getUniProgramDAO() 
 	{
 		return uniProgramDAO;
 	}
 
-	public void setUniProgramDAO(UniProgramsDAO uniProgramDAO) 
+	public void setUniProgramDAO(UniProgramsRepository uniProgramDAO) 
 	{
 		this.uniProgramDAO = uniProgramDAO;
 	}

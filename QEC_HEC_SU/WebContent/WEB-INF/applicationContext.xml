@@ -22,7 +22,7 @@
 	
 	<context:component-scan base-package="com.qec.controler"></context:component-scan>
 	<context:component-scan base-package="com.qec.service.impl"></context:component-scan>
-	<context:component-scan base-package="com.qec.dao.impl"></context:component-scan>
+	<context:component-scan base-package="com.qec.repository.impl"></context:component-scan>
 	<context:component-scan base-package="com.qec.security"></context:component-scan>
 	
 	<!-- Start jsp files Mappings  -->
@@ -80,6 +80,8 @@
 				<value>com.qec.model.CitationGoogleModel</value>
 				<value>com.qec.model.LoginsHistoryModel</value>
 				<value>com.qec.model.EventsModel</value>
+				<value>com.qec.model.EmployeeTrainingModel</value>
+				<value>com.qec.model.EmployeeMphilPhdStudentsModel</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

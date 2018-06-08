@@ -11,26 +11,26 @@ import org.springframework.stereotype.Service;
 
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.CitationJournalDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationJournalDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationJournalModel;
 import com.qec.model.EmployeeModel;
+import com.qec.repository.CitationJournalRepository;
+import com.qec.repository.EmployeeRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.CitationJournalService;
 
 @Service
 public class CitationJournalServiceImpl implements CitationJournalService  {
 
 	@Autowired
-	private  CitationJournalDAO citationJournalDAO;
+	private  CitationJournalRepository citationJournalDAO;
 	
 	@Autowired
-	private EmployeeDAO employeeDAO; 
+	private EmployeeRepository employeeDAO; 
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Override
 	@Transactional

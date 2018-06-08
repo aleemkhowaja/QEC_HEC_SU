@@ -11,14 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.CitationConferenceDAO;
-import com.qec.dao.CitationConferenceDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationConferenceDTO;
 import com.qec.dto.EmployeeDTO;
 import com.qec.model.CitationConferenceModel;
 import com.qec.model.EmployeeModel;
+import com.qec.repository.CitationConferenceRepository;
+import com.qec.repository.EmployeeRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.CitationConferenceService;
 import com.qec.service.CitationConferenceService;
 
@@ -26,13 +25,13 @@ import com.qec.service.CitationConferenceService;
 public class CitationConferenceServiceImpl implements CitationConferenceService  {
 
 	@Autowired
-	private  CitationConferenceDAO citationConferenceDAO;
+	private  CitationConferenceRepository citationConferenceDAO;
 	
 	@Autowired
-	private EmployeeDAO employeeDAO; 
+	private EmployeeRepository employeeDAO; 
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Override
 	@Transactional

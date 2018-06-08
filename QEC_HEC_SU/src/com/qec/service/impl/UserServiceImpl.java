@@ -9,36 +9,36 @@ import org.springframework.stereotype.Service;
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
 import com.qec.common.SecurityUtil;
-import com.qec.dao.CampusesDAO;
-import com.qec.dao.DepartmentDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
-import com.qec.dao.UserDAO;
 import com.qec.dto.UserDTO;
 import com.qec.enums.Role;
 import com.qec.model.CampusesModel;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EmployeeModel;
 import com.qec.model.UserModel;
+import com.qec.repository.CampusesRepository;
+import com.qec.repository.DepartmentRepository;
+import com.qec.repository.EmployeeRepository;
+import com.qec.repository.GenericRepository;
+import com.qec.repository.UserRepository;
 import com.qec.service.UsersService;
 
 @Service
 public class UserServiceImpl implements UsersService  {
 	
 	@Autowired
-	private UserDAO userDAO;
+	private UserRepository userDAO;
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Autowired
-	private DepartmentDAO departmentDAO;
+	private DepartmentRepository departmentDAO;
 	
 	@Autowired
-	private EmployeeDAO employeeDAO;
+	private EmployeeRepository employeeDAO;
 	
 	@Autowired
-	private CampusesDAO campusesDAO;
+	private CampusesRepository campusesDAO;
 	
 
 	@Override

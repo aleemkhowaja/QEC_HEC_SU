@@ -11,25 +11,25 @@ import org.springframework.stereotype.Service;
 
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.DepartmentDAO;
-import com.qec.dao.FacultyDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.DepartmentsDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.FacultyModel;
+import com.qec.repository.DepartmentRepository;
+import com.qec.repository.FacultyRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.DepartmentsService;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentsService {
 
 	@Autowired
-	private DepartmentDAO departmentDAO;
+	private DepartmentRepository departmentDAO;
 	
 	@Autowired
-	private FacultyDAO facultyDAO;
+	private FacultyRepository facultyDAO;
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 
 	@Transactional
@@ -156,19 +156,19 @@ public class DepartmentServiceImpl implements DepartmentsService {
 	}
 	
 	
-	public DepartmentDAO getDepartmentDAO() {
+	public DepartmentRepository getDepartmentDAO() {
 		return departmentDAO;
 	}
 
-	public void setDepartmentDAO(DepartmentDAO departmentDAO) {
+	public void setDepartmentDAO(DepartmentRepository departmentDAO) {
 		this.departmentDAO = departmentDAO;
 	}
 
-	public GenericDAO getGenericDAO() {
+	public GenericRepository getGenericDAO() {
 		return genericDAO;
 	}
 
-	public void setGenericDAO(GenericDAO genericDAO) {
+	public void setGenericDAO(GenericRepository genericDAO) {
 		this.genericDAO = genericDAO;
 	}
 

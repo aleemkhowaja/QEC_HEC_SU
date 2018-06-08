@@ -18,25 +18,25 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.qec.common.CommonConstants;
 import com.qec.common.DateUtil;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.DepartmentDAO;
-import com.qec.dao.EventsDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.EventsDTO;
 import com.qec.model.DepartmentsModel;
 import com.qec.model.EventsModel;
+import com.qec.repository.DepartmentRepository;
+import com.qec.repository.EventsRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.EventsService;
 
 @Service
 public class EventsServiceImpl implements EventsService {
 
 	@Autowired
-	private EventsDAO eventsDAO;
+	private EventsRepository eventsDAO;
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Autowired
-	private DepartmentDAO departmentDAO; 
+	private DepartmentRepository departmentDAO; 
 	
 	@SuppressWarnings({ "rawtypes", "unused", "unchecked" })
 	@Override
@@ -105,15 +105,16 @@ public class EventsServiceImpl implements EventsService {
 			String quota = request.getParameter("quota");
 			String eventTitle = request.getParameter("eventTitle");
 			String department = request.getParameter("departmentId");
+			String eventId = request.getParameter("eventsId");
 			String eventDetail = request.getParameter("eventDetail");
-			
 			Long size = multipartFile.getSize();
+			String fileName = "eventFile"+System.currentTimeMillis()+".txt";
 		    String contentType = multipartFile.getContentType();
 		    InputStream stream;
 		    byte[] bytes;
 			stream = multipartFile.getInputStream();
 			bytes = IOUtils.toByteArray(stream);
-			File path = new File(CommonConstants.uploadFileUrl+"eventFile/eventFile"+System.currentTimeMillis()+".txt");
+			File path = new File(CommonConstants.uploadFileUrl+"eventFile/"+fileName);
 			if(!path.exists())
 			{
 				path.createNewFile();
@@ -124,38 +125,39 @@ public class EventsServiceImpl implements EventsService {
 			} finally {
 				stream.close();
 			}
-			System.out.println(contentType+"------------------------- "+bytes.length);
-			/*DepartmentsModel departmentsModel = new DepartmentsModel();
-			if(eventsDTO.getDepartmentId() != null)
+			DepartmentsModel departmentsModel = new DepartmentsModel();
+			if(department != null || !department.equals(""))
 			{
-				departmentsModel = departmentDAO.returnDepartmentById(Long.valueOf(eventsDTO.getDepartmentId()));
+				departmentsModel = departmentDAO.returnDepartmentById(Long.valueOf(department));
 			}
 			
-			if(eventsDTO.getEventsId() == null)
+			if(eventId == null || eventId.equals(""))
 			{
 				
 				eventsModel.setDepartmentsModel(departmentsModel);
-				eventsModel.setEventTitle(eventsDTO.getEventTitle());
-				eventsModel.setDateof(DateUtil.stringToDate(eventsDTO.getDateof()));
-				eventsModel.setEndDate(DateUtil.stringToDate(eventsDTO.getEndDate()));
-				eventsModel.setQuota(eventsDTO.getQuota());
-				eventsModel.setEventDetail(eventsDTO.getEventDetail());
+				eventsModel.setEventTitle(eventTitle);
+				eventsModel.setDateof(DateUtil.stringToDate(startDate));
+				eventsModel.setEndDate(DateUtil.stringToDate(endDate));
+				eventsModel.setQuota(Double.valueOf(quota));
+				eventsModel.setEventDetail(eventDetail);
+				eventsModel.setFileName(fileName);
 				eventsModel.setIsDeleted(false);
 				genericDAO.save(eventsModel);
 				return CommonConstants.SAVE_SUCCESS_MSG;
 			}
 			else
 			{
-				eventsModel = eventsDAO.returnEventsModelById(eventsDTO.getEventsId());
+				eventsModel = eventsDAO.returnEventsModelById(Long.valueOf(eventId));
 				eventsModel.setDepartmentsModel(departmentsModel);
-				eventsModel.setEventTitle(eventsDTO.getEventTitle());
-				eventsModel.setEventDetail(eventsDTO.getEventDetail());
-				eventsModel.setDateof(DateUtil.stringToDate(eventsDTO.getDateof()));
-				eventsModel.setEndDate(DateUtil.stringToDate(eventsDTO.getEndDate()));
-				eventsModel.setQuota(eventsDTO.getQuota());
+				eventsModel.setEventTitle(eventTitle);
+				eventsModel.setEventDetail(eventDetail);
+				eventsModel.setDateof(DateUtil.stringToDate(startDate));
+				eventsModel.setEndDate(DateUtil.stringToDate(endDate));
+				eventsModel.setQuota(Double.valueOf(quota));
+				eventsModel.setFileName(fileName);
 				genericDAO.update(eventsModel);
 				return CommonConstants.UPLDATE_SUCCESS_MSG;
-			}*/
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -194,6 +196,7 @@ public class EventsServiceImpl implements EventsService {
 			eventsDTO.setQuota(eventsModel.getQuota());
 			eventsDTO.setEventDetail(eventsModel.getEventDetail());
 			eventsDTO.setEventsId(eventsModel.getEventsId());
+			eventsDTO.setFileName(eventsModel.getFileName());
 		}
 		catch(Exception e)
 		{

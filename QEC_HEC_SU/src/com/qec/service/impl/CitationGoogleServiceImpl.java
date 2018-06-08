@@ -8,25 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qec.common.CommonConstants;
 import com.qec.common.JQGridDTO;
-import com.qec.dao.CitationGoogleDAO;
-import com.qec.dao.EmployeeDAO;
-import com.qec.dao.GenericDAO;
 import com.qec.dto.CitationGoogleDTO;
 import com.qec.model.CitationGoogleModel;
 import com.qec.model.EmployeeModel;
+import com.qec.repository.CitationGoogleRepository;
+import com.qec.repository.EmployeeRepository;
+import com.qec.repository.GenericRepository;
 import com.qec.service.CitationGoogleService;
 
 @Service
 public class CitationGoogleServiceImpl implements CitationGoogleService  {
 
 	@Autowired
-	private  CitationGoogleDAO citationGoogleDAO;
+	private  CitationGoogleRepository citationGoogleDAO;
 	
 	@Autowired
-	private EmployeeDAO employeeDAO; 
+	private EmployeeRepository employeeDAO; 
 	
 	@Autowired
-	private GenericDAO genericDAO;
+	private GenericRepository genericDAO;
 	
 	@Override
 	@Transactional

@@ -10,16 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qec.common.JTableList;
-import com.qec.dao.CampusesDAO;
 import com.qec.dto.CampusesDTO;
 import com.qec.model.CampusesModel;
+import com.qec.repository.CampusesRepository;
 import com.qec.service.CampusesService;
 
 @Service
 public class CampusesServiceImpl implements CampusesService  {
 
 	@Autowired
-	private CampusesDAO campusesDAO;
+	private CampusesRepository campusesDAO;
 	
 	@Override
 	public JTableList<CampusesModel> returnAllCampusesForGrid(HttpServletRequest request) {

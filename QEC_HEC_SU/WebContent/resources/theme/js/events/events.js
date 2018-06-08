@@ -17,12 +17,9 @@ function event_Crud(event)
 		eventsData['endDate'] = $("#events_endDate").val();
 		eventsData['quota'] = $("#events_quota").val();
 		eventsData['eventDetail'] = $("#events_eventDetail").val();
-		 
 		var formData = $("#events_form").serialize();
-		
-			
 		event.preventDefault();
-		
+
 		$.ajax({
             url: url,
             type: "POST",
@@ -33,12 +30,20 @@ function event_Crud(event)
             enctype: 'multipart/form-data',
             processData: false,
             contentType: false
-          }).done(function(data) {
-        	  alert('File uploaded ...');
-              
+          }).done(function(data) 
+          {
+        	  if(data != undefined) 
+        	  {
+        		  jQuery("#events-detail-grid-list").trigger("reloadGrid");
+        		  toaster_success(data);
+        		  events_Clear_FromData();
+        	  }
+        	  else 
+        	  {
+        		  toaster_error(data);
+        	  }
           }).fail(function(jqXHR, textStatus) {
-              //alert(jqXHR.responseText);
-              alert('File upload failed ...');
+        	  toaster_error(data);
           });
 		
 		
@@ -98,10 +103,11 @@ function events_Db_Click(rowId)
 			 if (myElem == null)
 			 {
 				 $("#events-save-btn").after("<input type='button' id='events-delete-btn' style='margin-left: 1%;' class='btn' value='Delete' onclick='events_deleteEvents() ;'/>");
+				 //$("#qec_downloadEvent").html("<a href='/QEC_HEC_SU/qec/events/downloadEvent'>Click here to download file</a>");
+				 $("#qec_downloadEvent").html("<input type='button' id='events-download-btn' style='margin-left: 1%;' class='btn' value='Download Event' onclick='events_dowloadEventFile(); '/>");
 			 }
 		 }
 	});
-	
 }
 
 /**
@@ -111,7 +117,6 @@ function events_Db_Click(rowId)
  */
 function events_Set_FormData(data)
 {
-
 	$("#events_departmentId").val(data.departmentId)
 	$("#events_eventsId").val(data.eventsId)
 	$("#events_eventTitle").val(data.eventTitle)
@@ -119,6 +124,7 @@ function events_Set_FormData(data)
 	$("#events_quota").val(data.quota)
 	$("#events_eventDetail").val(data.eventDetail);
 	$("#events_endDate").val(data.endDate);
+	$("#events_fileName").val(data.fileName);
 	pageAniamateScroll();
 }
 
@@ -128,29 +134,21 @@ function events_Set_FormData(data)
  */
 function events_Clear_FromData()
 {
-	
-	$("#events_departmentId").val("")
-	$("#events_eventsId").val("")
-	$("#events_eventTitle").val("")
-	$("#events_dateof").val("")
-	$("#events_quota").val("")
-	$("#events_eventDetail").val("")
-	$("#events_endDate").val("")
-	events_Remove_DeleteButton();
+	$("#events_departmentId").val("");
+	$("#events_eventsId").val("");
+	$("#events_eventTitle").val("");
+	$("#events_dateof").val("");
+	$("#events_quota").val("");
+	$("#events_eventDetail").val("");
+	$("#events_endDate").val("");
+	$("#events_file").val("");
+	remove_child_Elements('events-delete-btn');
 }
 
 /**
- * 
+ * delete event record
  * @returns
  */
-function users_Remove_DeleteButton() 
-{
-    var elem = document.getElementById('events-delete-btn');
-    elem.parentNode.removeChild(elem);
-    return false;
-}
-
-
 function events_deleteEvents() 
 {
 	var token = $("meta[name='_csrf']").attr("content");
@@ -190,4 +188,28 @@ function events_deleteEvents()
 		}
 	});
 	//event.preventDefault();
+}
+
+function events_dowloadEventFile()
+{
+	var fileName = $("#events_fileName").val();
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+	$.ajax({
+        type: 'GET',
+        url : '/QEC_HEC_SU/qec/events/downloadEvent',
+/*        contentType: 'application/json; charset=UTF-8',
+*/        data:{fileName : fileName},
+        beforeSend: function(xhr) 
+        {
+			 xhr.setRequestHeader(header, token);
+        },
+        success: function (data) {
+            // or window.location.href = data.fileUrl;
+        },
+        error:function (xhr, ajaxOptions, thrownError) {
+            console.log("in error");
+        } 
+    });
+
 }
